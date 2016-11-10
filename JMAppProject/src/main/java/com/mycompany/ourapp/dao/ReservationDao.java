@@ -37,7 +37,7 @@ public class ReservationDao {
 	}
 	
 	public Reservation selectById(String rvMid, int rvResid) {
-		String sql = "select * where rvMid=? and rvResid=?";
+		String sql = "select * from reservation where rvMid=? and rvResid=?";
 		List<Reservation> list = jdbcTemplate.query(sql, new Object[]{rvMid, rvResid}, new RowMapper<Reservation>() {
 			@Override
 			public Reservation mapRow(ResultSet rs, int row) throws SQLException {

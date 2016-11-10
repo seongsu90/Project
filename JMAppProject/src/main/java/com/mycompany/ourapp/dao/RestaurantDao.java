@@ -17,7 +17,7 @@ public class RestaurantDao {
 	@Autowired
 	private static JdbcTemplate jdbcTemplate;
 	
-	public static int insert(Restaurant restaurant) {
+	public int insert(Restaurant restaurant) {
 		String sql="insert into Restaurant (resId, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, closeday) values(?,?,?,?,?,?,?,?,?,?)";
 		int row=jdbcTemplate.update(
 				sql,
@@ -81,6 +81,12 @@ public class RestaurantDao {
 		});
 		return (list.size()!=0)? list.get(0) : null;
 	}
+
+/*	public static int emptyTableNum(int resid) {
+		String sql="select count (distinct ptableno) from Pos where resid=? ";
+		jdbcTemplate.
+		return ;
+	}*/
 	
 	
 	

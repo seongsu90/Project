@@ -20,6 +20,7 @@ public class RestaurantService {
 	
 @Autowired
 private RestaurantDao restaurantDao;  
+
 		public int add(Restaurant restaurant){
 			restaurantDao.insert(restaurant);
 			return ADD_SUCCESS;
@@ -41,10 +42,11 @@ private RestaurantDao restaurantDao;
 			return restaurantDao.selectByResid(resid);
 		}
 		
-		public int nowTable(int Resid){
+		/*public int nowTable(int resid){
+			int emptyTable=RestaurantDao.emptyTableNum(resid);
+			return emptyTable;}*/
 			
-			return 0;
-		}
+		
 		
 		
 }

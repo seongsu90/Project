@@ -34,7 +34,7 @@ public class CouponDao {
 	}
 	
 	public int delete(int cnumber) {
-		String sql = "delete from reservation where cnumber=?";
+		String sql = "delete from coupon where cnumber=?";
 		int row = jdbcTemplate.update( sql, cnumber );		
 		return row;
 	}
@@ -51,7 +51,7 @@ public class CouponDao {
 	}
 	
 	public Coupon selectById(int cnumber) {
-		String sql = "select * where cnumber=?";
+		String sql = "select * from coupon where cnumber=?";
 		List<Coupon> list = jdbcTemplate.query(sql, new Object[]{cnumber}, new RowMapper<Coupon>() {
 			@Override
 			public Coupon mapRow(ResultSet rs, int row) throws SQLException {

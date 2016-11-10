@@ -29,8 +29,8 @@
 
 	<beans:bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<beans:property name="driverClass" value="oracle.jdbc.OracleDriver"/>
-		<beans:property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
-		<beans:property name="user" value="final"/>
+		<beans:property name="jdbcUrl" value="jdbc:oracle:thin:@106.253.56.123:1521:orcl"/>
+		<beans:property name="user" value="kosauser7"/>
 		<beans:property name="password" value="kosa12345"/>
 		<beans:property name="maxPoolSize" value="3"/>
 		<beans:property name="initialPoolSize" value="1"/>

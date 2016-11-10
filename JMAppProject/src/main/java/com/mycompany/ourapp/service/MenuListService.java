@@ -26,8 +26,11 @@ public class MenuListService {
 	}
 	
 	public List<MenuList> resHotList(int mlResid, boolean mlishot){
+		
 		List<MenuList> menulist = new ArrayList<>();
-	
+		if(mlishot==true){
+			menulist.add()
+		}
 		return menulist;
 	}
 	
