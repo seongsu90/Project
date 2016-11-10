@@ -4,8 +4,8 @@ import com.mycompany.ourapp.dto.MenuList;
 
 public class MenuListService {
 	public MenuList resList(int mlresid){
-		MenuList menulist = new Menulist();
-		return MenuList;
+		MenuList menulist = new MenuList();
+		return menulist;
 	}
 	
 	public int addMenu(int mlresid){
