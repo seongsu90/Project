@@ -35,17 +35,17 @@ public class EventDao {
 	}
 	
 	public int update(Event event){
-		String sql = "update event set ename=?,eresid=?,esavedfile=?,einfo=?,emlname=?,eprice=?,estart=?,eend=?";
+		String sql = "update event set ename=?,esavedfile=?,einfo=?,emlname=?,eprice=?,estart=?,eend=? where eresid=?";
 		int row = jdbcTemplate.update(
 				sql,
 				event.getEname(),
-				event.geteResid(),
 				event.getEsavedfile(),
 				event.getEinfo(),
 				event.geteMlname(),
 				event.getEprice(),
 				event.getEstart(),
-				event.getEend()
+				event.getEend(),
+				event.geteResid()
 				);
 		return row;
 	}

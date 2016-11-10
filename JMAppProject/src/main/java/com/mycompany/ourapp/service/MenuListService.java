@@ -48,7 +48,8 @@ public class MenuListService {
 	}
 	
 	public int modifyHot(int mlResid,String mlname, boolean mlishot){
-		
+		int row = menuListdao.modifyHot(mlResid, mlname, mlishot);
+		if(row==0){return MODIFY_FAIL;}
 		return MODIFY_SUCCESS;
 	}
 }
