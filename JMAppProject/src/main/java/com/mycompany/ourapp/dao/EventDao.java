@@ -29,7 +29,7 @@ public class EventDao {
 	}
 	
 	public int delete(int eResid, String eMlname){
-		String sql="delete from event where eresid=?, emlname=?";
+		String sql="delete from event where eresid=? and emlname=?";
 		int row = jdbcTemplate.update(sql, eResid, eMlname);
 		return row;
 	}
