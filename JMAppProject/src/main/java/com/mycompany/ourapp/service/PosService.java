@@ -1,5 +1,7 @@
 package com.mycompany.ourapp.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mycompany.ourapp.dao.PosDao;
@@ -30,9 +32,9 @@ public class PosService {
 		return pos;
 	}
 	
-	public int calcSum(int ptableno, int pResid) {		
-		int sum = posDao.calc(ptableno, pResid);
-		return sum;
+	public List<Integer> calcSum(int ptableno, int pResid) {		
+		List<Integer> list = posDao.calc(ptableno, pResid);
+		return list;
 	}
 }
 

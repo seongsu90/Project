@@ -1,10 +1,12 @@
 package com.mycompany.ourapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.mycompany.ourapp.dao.MemberDao;
 import com.mycompany.ourapp.dto.Member;
 
+@Component
 class MemberService {
 	public static final int JOIN_SUCCESS = 0;
 	public static final int JOIN_FAIL = 1;
@@ -46,13 +48,6 @@ class MemberService {
 	
 	public String findMid(String mname, String mphone) {
 		return memberDao.selectByMnameAndMphone(mname, mphone);
-	}
-	
-	public String findMpassword(String mid, String mphone) {
-		Member member = memberDao.selectByMidAndMphone(mid, mphone);
-		if ( member == null ) return null;
-		if ( member.getMphone().equals(mphone) == false ) return null;
-		return member.getMpassword();
 	}
 	
 	public Member info(String mid, String mpassword) {
