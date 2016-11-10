@@ -25,7 +25,7 @@ public class MenuListService {
 		return 0;
 	}
 	
-	public List<MenuList> resHotList(int mlResid){
+	public List<MenuList> resHotList(int mlResid, boolean mlishot){
 		List<MenuList> menulist = new ArrayList<>();
 	
 		return menulist;
