@@ -8,7 +8,7 @@ public class ReviewService {
 		return 0;
 	}
 
-	public int delete(int revno) {
+	public int delete(int revno,int revMid) {
 		return 0;
 	}
 	

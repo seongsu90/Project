@@ -8,7 +8,7 @@ class MemberService {
 		return 0;
 	}
 	
-	public int login(String mid, String password) {
+	public int login(String mid, String mpassword) {
 		return 0;
 	}
 	

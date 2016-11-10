@@ -12,14 +12,17 @@ public class RestaurantService {
 			return SUCCESS;
 		}
 		
-		public int modify(Restaurant restaurant){
+		public Restaurant modify(Restaurant restaurant){
 			return restaurant;
 		}
 		
-		public Restaurant info(Restaurant restaurant){
-			Restaurant restaurant = new Restaurant();
+		public Restaurant info(int resid){
+			
 			return restaurant;
 		}
 		
+		public int nowTable(int Resid){
+			return 0;
+		}
 }
 

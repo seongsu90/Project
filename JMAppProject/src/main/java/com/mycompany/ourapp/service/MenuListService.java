@@ -1,35 +1,37 @@
 package com.mycompany.ourapp.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.mycompany.ourapp.dto.MenuList;
 
 public class MenuListService {
-	public MenuList resList(int mlresid){
-		MenuList menulist = new MenuList();
+	
+	public List<MenuList> resMenuList(int mlResid){
+		List<MenuList> menulist = new ArrayList<>();
 	
 		return menulist;
 	}
 	
-	public int addMenu(int mlresid){
+	public int add(MenuList menuList){
 		return SUCCESS;
 	}
 	
-	public int modify(MenuList menulist){
+	public int modify(MenuList menuList){
 		return SUCCESS;
 	}
 	
-	public int deleteMenu(String mlname){
+	public int delete(int mlResid,String mlname){
 		return SUCCESS;
 	}
 	
-	public boolean resHotList(boolean mlishot){
-		return true;
+	public List<MenuList> resHotList(int mlResid){
+		List<MenuList> menulist = new ArrayList<>();
+	
+		return menulist;
 	}
 	
-	public int addHot(String mlname, boolean mlishot){
-		return SUCCESS;
-	}
-	
-	public int deleteHot(String mlname, boolean mlishot){
+	public int modifyHot(int mlResid,String mlname, boolean mlishot){
 		return SUCCESS;
 	}
 }

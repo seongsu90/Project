@@ -4,19 +4,19 @@ import com.mycompany.ourapp.dto.Coupon;
 
 public class CouponService {
 	
-	public int createCoupon(Coupon coupon) {
+	public int add(Coupon coupon) {
 		return 0;
 	}
 	
-	public int sendCoupon(String cbmid, int cbnumber) {
+	public int send(String cbMid, int cbnumber) {
 		return 0;
 	}
 	
-	public int deleteCoupon(int cnumber) {
+	public int delete(int cnumber) {
 		return 0;
 	}
 	
-	public Coupon couponInfo(int cnumber) {
+	public Coupon info(int cnumber) {
 		Coupon coupon = new Coupon();
 		return coupon;
 	}
