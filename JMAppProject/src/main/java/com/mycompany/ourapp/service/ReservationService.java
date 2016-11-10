@@ -1,16 +1,34 @@
 package com.mycompany.ourapp.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.mycompany.ourapp.dao.ReservationDao;
 import com.mycompany.ourapp.dto.Reservation;
 
+@Component
 public class ReservationService {
+	private static final int ADD_SUCCESS = 0;
+	private static final int ADD_FAIL =1;
+	
+	private static final int DELETE_SUCCESS = 0;
+	private static final int DELETE_FAIL = 1;
+	
+	@Autowired
+	private ReservationDao reservationDao;
+	
 	public int add(Reservation reservation) {
-		
-		return 0;
+		int row = reservationDao.insert(reservation);
+		return ADD_SUCCESS;
 	}
 	
 	public int delete(String rvMid, int rvResid) {
-		
-		return 0;
+		int row = reservationDao.delete(rvMid,rvResid);
+		if(row==0)
+		{
+			return DELETE_FAIL;
+		}
+		return DELETE_SUCCESS;
 	}
 	
 	public Reservation info(String rvMid, int rvResid) {
