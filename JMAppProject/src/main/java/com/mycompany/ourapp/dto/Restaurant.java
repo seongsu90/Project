@@ -1,5 +1,6 @@
 package com.mycompany.ourapp.dto;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class Restaurant {
@@ -9,8 +10,9 @@ public class Restaurant {
 	private int restotaltable;
 	private String resinfo;
 	private String restel;
-	private Date resopen;
-	private Date resclose;
+	private String rescloseday;
+	private Time resopen;
+	private Time resclose;
 	private String ressavedfile;
 	
 	public int getResId() {
@@ -49,16 +51,16 @@ public class Restaurant {
 	public void setRestel(String restel) {
 		this.restel = restel;
 	}
-	public Date getResopen() {
+	public Time getResopen() {
 		return resopen;
 	}
-	public void setResopen(Date resopen) {
+	public void setResopen(Time resopen) {
 		this.resopen = resopen;
 	}
-	public Date getResclose() {
+	public Time getResclose() {
 		return resclose;
 	}
-	public void setResclose(Date resclose) {
+	public void setResclose(Time resclose) {
 		this.resclose = resclose;
 	}
 	public String getRessavedfile() {
@@ -67,7 +69,11 @@ public class Restaurant {
 	public void setRessavedfile(String ressavedfile) {
 		this.ressavedfile = ressavedfile;
 	}
-	
-	
+	public String getRescloseday() {
+		return rescloseday;
+	}
+	public void setRescloseday(String rescloseday) {
+		this.rescloseday = rescloseday;
+	}
 	
 }
