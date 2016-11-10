@@ -1,10 +1,12 @@
 package com.mycompany.ourapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.mycompany.ourapp.dao.MemberDao;
 import com.mycompany.ourapp.dto.Member;
 
+@Component
 class MemberService {
 	public static final int JOIN_SUCCESS = 0;
 	public static final int JOIN_FAIL = 1;
