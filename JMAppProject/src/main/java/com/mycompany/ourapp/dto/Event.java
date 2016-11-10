@@ -9,7 +9,7 @@ public class Event {
 	private String einfo;
 	private String eMlname;
 	private int eprice;
-	private Date estar;
+	private Date estart;
 	private Date eend;
 	
 	public String getEname() {
@@ -48,11 +48,11 @@ public class Event {
 	public void setEprice(int eprice) {
 		this.eprice = eprice;
 	}
-	public Date getEstar() {
-		return estar;
+	public Date getEstart() {
+		return estart;
 	}
-	public void setEstar(Date estar) {
-		this.estar = estar;
+	public void setEstart(Date estart) {
+		this.estart = estart;
 	}
 	public Date getEend() {
 		return eend;
