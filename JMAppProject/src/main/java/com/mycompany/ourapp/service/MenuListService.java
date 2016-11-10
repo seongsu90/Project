@@ -5,6 +5,7 @@ import com.mycompany.ourapp.dto.MenuList;
 public class MenuListService {
 	public MenuList resList(int mlresid){
 		MenuList menulist = new MenuList();
+	
 		return menulist;
 	}
 	
