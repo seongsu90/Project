@@ -48,13 +48,6 @@ class MemberService {
 		return memberDao.selectByMnameAndMphone(mname, mphone);
 	}
 	
-	public String findMpassword(String mid, String mphone) {
-		Member member = memberDao.selectByMidAndMphone(mid, mphone);
-		if ( member == null ) return null;
-		if ( member.getMphone().equals(mphone) == false ) return null;
-		return member.getMpassword();
-	}
-	
 	public Member info(String mid, String mpassword) {
 		Member member = memberDao.selectByMid(mid);
 		if ( member.getMpassword().equals(mpassword) == false ) return null;
