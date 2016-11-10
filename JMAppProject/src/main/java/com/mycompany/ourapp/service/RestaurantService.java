@@ -5,11 +5,11 @@ import com.mycompany.ourapp.dto.Restaurant;
 public class RestaurantService {
 
 		public int add(Restaurant restaurant){
-			return SUCCESS;
+			return 0;
 		}
 			
 		public int delete(int resid){
-			return SUCCESS;
+			return 0;
 		}
 		
 		public Restaurant modify(Restaurant restaurant){
@@ -17,8 +17,8 @@ public class RestaurantService {
 		}
 		
 		public Restaurant info(int resid){
-			
-			return restaurant;
+			Restaurant r = new Restaurant();
+			return r;
 		}
 		
 		public int nowTable(int Resid){

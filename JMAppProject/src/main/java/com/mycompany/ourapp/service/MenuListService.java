@@ -14,15 +14,15 @@ public class MenuListService {
 	}
 	
 	public int add(MenuList menuList){
-		return SUCCESS;
+		return 0;
 	}
 	
 	public int modify(MenuList menuList){
-		return SUCCESS;
+		return 0;
 	}
 	
 	public int delete(int mlResid,String mlname){
-		return SUCCESS;
+		return 0;
 	}
 	
 	public List<MenuList> resHotList(int mlResid){
@@ -32,6 +32,6 @@ public class MenuListService {
 	}
 	
 	public int modifyHot(int mlResid,String mlname, boolean mlishot){
-		return SUCCESS;
+		return 0;
 	}
 }

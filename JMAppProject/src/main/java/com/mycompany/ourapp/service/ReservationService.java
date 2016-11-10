@@ -5,12 +5,12 @@ import com.mycompany.ourapp.dto.Reservation;
 public class ReservationService {
 	public int add(Reservation reservation) {
 		
-		return SUCCESS;
+		return 0;
 	}
 	
 	public int delete(String rvMid, int rvResid) {
 		
-		return SUCCESS;
+		return 0;
 	}
 	
 	public Reservation info(String rvMid, int rvResid) {

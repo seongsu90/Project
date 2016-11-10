@@ -16,15 +16,15 @@ public class PosService {
 	}
 	
 	public int modify(Pos pos){
-		return MODIFY_SUCCESS;
+		return 0;
 	}
 	
 	public int add(Pos pos){ //테이블에 손님이 올때
-		return ADD_SUCCESS;
+		return 0;
 	}
 	
 	public int delete(int pResid,int ptableno){
-		return DELETE_SUCCESS;
+		return 0;
 	}
 	
 
