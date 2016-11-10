@@ -3,7 +3,6 @@ package com.mycompany.ourapp.dto;
 public class Pos {
 	private int ptableno;
 	private int pResid;
-	private int ptablesum;
 	private String pMlname;
 	private int pcount;
 	
@@ -19,12 +18,7 @@ public class Pos {
 	public void setpResid(int pResid) {
 		this.pResid = pResid;
 	}
-	public int getPtablesum() {
-		return ptablesum;
-	}
-	public void setPtablesum(int ptablesum) {
-		this.ptablesum = ptablesum;
-	}
+
 	public String getpMlname() {
 		return pMlname;
 	}
@@ -37,7 +31,4 @@ public class Pos {
 	public void setPcount(int pcount) {
 		this.pcount = pcount;
 	}
-	
-	
-	
 }
