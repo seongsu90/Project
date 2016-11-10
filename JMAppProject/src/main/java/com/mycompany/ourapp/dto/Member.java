@@ -11,7 +11,7 @@ public class Member {
 	private String mlocation;
 	private int mrank;
 	private int mpoint;
-	private int mresid;
+	private int mResid;
 	
 	public String getMid() {
 		return mid;
@@ -61,11 +61,11 @@ public class Member {
 	public void setMpoint(int mpoint) {
 		this.mpoint = mpoint;
 	}
-	public int getMresid() {
-		return mresid;
+	public int getMResid() {
+		return mResid;
 	}
-	public void setMresid(int mresid) {
-		this.mresid = mresid;
+	public void setMResid(int mResid) {
+		this.mResid = mResid;
 	}
 
 }

@@ -1,12 +1,21 @@
 package com.mycompany.ourapp.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.mycompany.ourapp.dao.FavoriteDao;
+
 public class FavoriteService {
 	
+	@Autowired
+	private FavoriteDao favoriteDao;
+	
 	public int add(String fMid, int fResid) {
-		return 0;		
+		int result = favoriteDao.insert(fMid, fResid);
+		return result;	
 	}
 	
 	public int delete(String fMid, int fResid) {
-		return 0; 
+		int result = favoriteDao.delete(fMid, fResid);
+		return result;	
 	}
 }
