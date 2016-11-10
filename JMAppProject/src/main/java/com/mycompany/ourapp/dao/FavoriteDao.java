@@ -17,7 +17,7 @@ public class FavoriteDao {
 	}
 
 	public int delete(String fMid, int fResid) {
-		String sql = "delete from favorite where fMid=? and fResid=?;";
+		String sql = "delete from favorite where fmid=? and fresid=?;";
 		int row = jdbcTemplate.update(sql, fMid, fResid);
 		return row;
 	}
