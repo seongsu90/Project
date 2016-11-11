@@ -51,6 +51,7 @@ private RestaurantDao restaurantDao;
 		public int getCount(){
 			return restaurantDao.count();
 		}
+		
 		/*public int nowTable(int resid){
 			int emptyTable=RestaurantDao.emptyTableNum(resid);
 			return emptyTable;}*/
