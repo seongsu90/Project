@@ -44,13 +44,7 @@ public class MenuListService {
 	public List<MenuList> resHotList(int mlResid, boolean mlishot){
 		
 		List<MenuList> menulist = new ArrayList<>();
-<<<<<<< HEAD
-		if(mlishot==true){
-			menulist.add()
-		}
-=======
 		
->>>>>>> branch 'master' of https://github.com/seongsu90/TeamRepository
 		return menulist;
 	}
 	
