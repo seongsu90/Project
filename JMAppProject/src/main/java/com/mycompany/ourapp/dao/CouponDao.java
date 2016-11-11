@@ -20,7 +20,7 @@ public class CouponDao {
 	private JdbcTemplate jdbcTemplate;
 	
 	public int insert(Coupon coupon) {
-		String sql = "insert into coupon(cnumber, cname, cdday, cinfo, cResid,cdisscount) values(?, ?, ?, ?, ?, ?)";
+		String sql = "insert into coupon(cnumber, cname, cdday, cinfo, cResid,cdiscount) values(?, ?, ?, ?, ?, ?)";
 		int row = jdbcTemplate.update(
 				sql,
 				coupon.getCnumber(),
@@ -28,7 +28,7 @@ public class CouponDao {
 				coupon.getCdday(),
 				coupon.getCinfo(),
 				coupon.getCResid(),
-				coupon.getCdisscount()
+				coupon.getCdiscount()
 		);		
 		return row;
 	}
@@ -61,7 +61,7 @@ public class CouponDao {
 				coupon.setCdday(rs.getDate("cdday"));
 				coupon.setCinfo(rs.getString("cinfo"));
 				coupon.setCresid(rs.getInt("cResid"));
-				coupon.setCdisscount(rs.getInt("cdisscount"));
+				coupon.setCdiscount(rs.getInt("cdiscount"));
 				
 				return coupon;
 			}
