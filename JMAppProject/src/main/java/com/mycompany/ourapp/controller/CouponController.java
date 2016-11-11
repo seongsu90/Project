@@ -26,7 +26,7 @@ public class CouponController {
 	
 	@RequestMapping("/add")
 	public String add(){
-		logger.info("add 요청처리");i
+		logger.info("add 요청처리");
 		return "/coupon/addform";
 	}
 }
