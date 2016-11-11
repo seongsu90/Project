@@ -6,9 +6,6 @@
 		<meta charset="UTF-8"> 
 	</head>
 	<body>
-		<a href="/photo">
-			<input type="image" src="/photo/resources/main.jpg" width="300"/><br/>
-		</a>
 		<hr/>
 		<b>아이디 찾기</b>
 		<hr/>

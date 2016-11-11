@@ -3,6 +3,9 @@ package com.mycompany.ourapp.dto;
 import java.util.Date;
 
 public class Member {
+	public final static int ADMINISTRATOR = 2;
+	public final static int RES_MANAGER = 1;
+	public final static int NORMAL = 0;
 	private String mid;
 	private String mname;
 	private String mpassword;

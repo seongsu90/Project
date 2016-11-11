@@ -17,8 +17,9 @@ public class MemberDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	// 회원 가입
 	public int insert(Member member) {
-		String sql = "insert into member(mid, mname, mpassword, mphone, mbirth, mlocation) values(?, ?, ?, ?, ?, ?, 0, 0, 0)";
+		String sql = "insert into member(mid, mname, mpassword, mphone, mbirth, mlocation, mrank, mpoint, mresid) values(?, ?, ?, ?, ?, ?, 0, 0, 0)";
 		int row = jdbcTemplate.update(
 				sql,
 				member.getMid(),
@@ -31,6 +32,7 @@ public class MemberDao {
 		return row;
 	}
 	
+	// 회원 수정, 비밀번호 재설정
 	public int update(Member member) {
 		String sql = "update member set mpassword=?, mphone=?, mlocation=?, mrank=?, mpoint=?, mresid=? where mid=?";
 		int row = jdbcTemplate.update(
@@ -46,12 +48,14 @@ public class MemberDao {
 		return row;
 	}
 
+	// 회원 탈퇴
 	public int delete(String mid) {
 		String sql = "delete from member where mid=?";
 		int row = jdbcTemplate.update(sql, mid);
 		return row;		
 	}
 
+	// 회원 정보 조회
 	public Member selectByMid(String mid) {
 		String sql = "select mid, mname, mpassword, mphone, mbirth, mlocation, mrank, mpoint, mresid from member where mid=?";
 		
@@ -74,6 +78,7 @@ public class MemberDao {
 		return (list.size() != 0)?list.get(0) : null;	
 	}
 
+	// 아이디 찾기
 	public String selectMidByMnameAndMphone(String mname, String mphone) {
 		String sql = "select mid from member where mname=? and mphone=?";
 		
@@ -83,6 +88,7 @@ public class MemberDao {
 				return rs.getString("mid");
 			}
 		});
+		System.out.println(list.get(0));
 		return (list.size() != 0)?list.get(0) : null;
 	}
 	

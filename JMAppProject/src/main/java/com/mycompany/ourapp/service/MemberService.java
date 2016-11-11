@@ -72,7 +72,6 @@ public class MemberService {
 		Member member = memberDao.selectByMid(mid);
 		if ( member.getMpassword().equals(mpassword) == false ) return WITHDRAW_FAIL;
 		memberDao.delete(mid);
-		logout(mid);
 		return WITHDRAW_SUCCESS;
 	}
 	
