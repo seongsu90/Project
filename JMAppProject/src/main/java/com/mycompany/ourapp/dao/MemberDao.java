@@ -74,7 +74,7 @@ public class MemberDao {
 		return (list.size() != 0)?list.get(0) : null;	
 	}
 
-	public String selectByMnameAndMphone(String mname, String mphone) {
+	public String selectMidByMnameAndMphone(String mname, String mphone) {
 		String sql = "select mid from member where mname=? and mphone=?";
 		
 		List<String> list = jdbcTemplate.query(sql, new Object[] {mname, mphone}, new RowMapper<String>(){

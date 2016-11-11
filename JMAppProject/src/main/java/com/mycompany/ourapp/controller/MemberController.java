@@ -47,11 +47,33 @@ public class MemberController {
 	public String findMid(String mname, String mphone, Model model, HttpSession session) {
 		String mid = memberService.findMid(mname, mphone);
 		if ( mid == null ) {
-			model.addAttribute("error", " 이메일이 존재하지 않음");
+			model.addAttribute("error", " 입력하신 이름과 번호를 가진 id가 없습니다.");
 			return "member/findMidForm";
 		}
 		session.setAttribute("findMid", mid);
 		return "redirect:/member/login";
+	}
+	
+	@RequestMapping(value="/findMpassword", method=RequestMethod.GET)
+	public String findMpasswordForm() {
+		return "member/findMpasswordForm";
+	}
+	
+	@RequestMapping(value="/findMpassword", method=RequestMethod.POST)
+	public String findMpassword(String mid, String mphone, Model model, HttpSession session) {
+		Member member = memberService.getInfo(mid);
+		if ( member == null ) {
+			model.addAttribute("error", " 존재하지 않는 id입니다.");
+			return "member/findMidForm";
+		}
+		if ( member.getMphone().equals(mphone) ) {
+			session.setAttribute("findMid", mid);
+			return "redirect:/member/login";
+		} else {
+			model.addAttribute("error", " id와 휴대폰 번호가 일치하지 않습니다.");
+			return "member/findMidForm";
+		}
+		
 	}
 	
 	@RequestMapping(value="/join", method=RequestMethod.GET)

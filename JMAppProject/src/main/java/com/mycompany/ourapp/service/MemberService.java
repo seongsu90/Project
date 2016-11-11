@@ -47,13 +47,17 @@ public class MemberService {
 	}
 	
 	public String findMid(String mname, String mphone) {
-		return memberDao.selectByMnameAndMphone(mname, mphone);
+		return memberDao.selectMidByMnameAndMphone(mname, mphone);
 	}
 	
 	public Member info(String mid, String mpassword) {
 		Member member = memberDao.selectByMid(mid);
 		if ( member.getMpassword().equals(mpassword) == false ) return null;
 		return member;
+	}
+	
+	public Member getInfo(String mid) {
+		return memberDao.selectByMid(mid);
 	}
 	
 	public int modify(Member member) {
@@ -86,5 +90,6 @@ public class MemberService {
 		if ( row != 1 ) return RANK_CHANGE_FAIL;
 		return RANK_CHANGE_SUCCESS;
 	}
+
 }
 	
