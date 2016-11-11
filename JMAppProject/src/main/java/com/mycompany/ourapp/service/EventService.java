@@ -16,22 +16,22 @@ public class EventService {
 	public static final int MODIFY_FAIL=1;
 	
 	@Autowired
-	private Event event;
+	private EventDao eventdao;
 	
 	public int add(Event event){
-		int row = EventDao.insert(event); 
+		int row = eventdao.insert(event);
 		return ADD_SUCCESS;
 	}
 	
 	public int delete(int eResid,String eMlname){
-		int row = EventDao.delete(eResid, eMlname);
+		int row = eventdao.delete(eResid, eMlname);
 		if(row==0){return DELETE_FAIL;}
 		return DELETE_SUCCESS;
 	}
 	
 	public int modify(Event event){
-		int row = EventDao.update(event);
+		int row = eventdao.update(event);
 		if(row==0){return MODIFY_SUCCESS;}
-		return MODIFY_SUCCESS;
+		return  MODIFY_SUCCESS;
 	}
 }

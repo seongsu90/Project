@@ -30,7 +30,7 @@ public class PosDao {
 	}
 
 	public int update(Pos pos) {
-		String sql = "update pos set pmlname=?, pcount=? where ptableno=? and presid=?, ";
+		String sql = "update pos set pmlname=?, pcount=? where ptableno=? and presid=?";
 		int row = jdbcTemplate.update(
 				sql,
 				pos.getpMlname(),
@@ -63,15 +63,24 @@ public class PosDao {
 		return (list.size() != 0) ? list.get(0) : null;
 	}
 
-	public int calc(int ptableno, int pResid) {
+	public List<Integer> calc(int ptableno, int pResid) {
 		String sql = "";
-				sql += "select (m.mlprice * p.pcount) ";
+				sql += "select (m.mlprice * p.pcount) sum ";
 				sql += "from pos p, menulist m ";
 				sql += "where p.presid = m.mlresid ";
 				sql += "and p.pmlname = m.mlname ";
 				sql += "and p.ptableno = ? ";
 				sql += "and p.presid = ? ";
-		return 0;
+		
+		List<Integer> list =  jdbcTemplate.query(sql, new Object[] {ptableno, pResid}, new RowMapper<Integer>() {
+			@Override
+			public Integer mapRow(ResultSet rs, int row) throws SQLException {
+				
+				return rs.getInt("sum");
+			}
+		});
+		
+		return list;
 	}
 
 }

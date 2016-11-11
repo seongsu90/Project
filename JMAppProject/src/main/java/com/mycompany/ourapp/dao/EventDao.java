@@ -29,23 +29,23 @@ public class EventDao {
 	}
 	
 	public int delete(int eResid, String eMlname){
-		String sql="delete from event where eresid=?, emlname=?";
+		String sql="delete from event where eresid=? and emlname=?";
 		int row = jdbcTemplate.update(sql, eResid, eMlname);
 		return row;
 	}
 	
 	public int update(Event event){
-		String sql = "update event set ename=?,eresid=?,esavedfile=?,einfo=?,emlname=?,eprice=?,estart=?,eend=?";
+		String sql = "update event set ename=?,esavedfile=?,einfo=?,emlname=?,eprice=?,estart=?,eend=? where eresid=?";
 		int row = jdbcTemplate.update(
 				sql,
 				event.getEname(),
-				event.geteResid(),
 				event.getEsavedfile(),
 				event.getEinfo(),
 				event.geteMlname(),
 				event.getEprice(),
 				event.getEstart(),
-				event.getEend()
+				event.getEend(),
+				event.geteResid()
 				);
 		return row;
 	}
