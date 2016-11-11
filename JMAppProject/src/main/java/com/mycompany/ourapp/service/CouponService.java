@@ -23,6 +23,10 @@ public class CouponService {
 	
 	public int add(Coupon coupon) {
 		int row=coupondao.insert(coupon);
+		if(row==0)
+		{
+			return ADD_FAIL;
+		}
 		return ADD_SUCCESS;
 	}
 	
