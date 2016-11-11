@@ -8,7 +8,7 @@ public class Coupon {
 	private Date cdday;
 	private String cinfo;
 	private int cResid;
-	private int cdisscount;
+	private int cdiscount;
 	
 	public int getCnumber() {
 		return cnumber;
@@ -40,11 +40,16 @@ public class Coupon {
 	public void setCresid(int cResid) {
 		this.cResid = cResid;
 	}
-	public int getCdisscount() {
-		return cdisscount;
+	public int getcResid() {
+		return cResid;
 	}
-	public void setCdisscount(int cdisscount) {
-		this.cdisscount = cdisscount;
+	public void setcResid(int cResid) {
+		this.cResid = cResid;
 	}
-
-}
+	public int getCdiscount() {
+		return cdiscount;
+	}
+	public void setCdiscount(int cdiscount) {
+		this.cdiscount = cdiscount;
+	}
+	}
