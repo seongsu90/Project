@@ -27,7 +27,14 @@
      <b>[reviewcontroller-King of Analog]</b><br/>
      11.<a href="/ourapp/review/write">리뷰쓰기</a><br/>
      12.<a href="/ourapp/review/delete">리뷰삭제</a><br/>
-     11.<a href="/ourapp/review/info">리뷰보기</a><br/>
+     13.<a href="/ourapp/review/info">리뷰보기</a><br/>
+    -------------------------------------------------------<br/>
+     [restaurant]<br/>
+     14.<a href="/ourapp/restaurant/list">음식점 리스트보기</a><br/>
+     15.<a href="/ourapp/restaurant/add">음식점추가하기</a><br/>
+     16.<a href="/ourapp/restaurant/delete">음식점삭제하기</a><br/>
+     17.<a href="/ourapp/restaurant/info">음식점 정보보기</a><br/>
+     18.<a href="/ourapp/restaurant/modify">음식점 정보수정하기</a><br/>
 </body>
 	<!--  -->
 
