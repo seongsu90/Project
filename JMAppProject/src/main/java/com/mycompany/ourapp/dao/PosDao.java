@@ -65,7 +65,7 @@ public class PosDao {
 
 	public List<Integer> calc(int ptableno, int pResid) {
 		String sql = "";
-				sql += "select (m.mlprice * p.pcount) sum ";
+				sql += "select (m.mlprice * p.pcount) price ";
 				sql += "from pos p, menulist m ";
 				sql += "where p.presid = m.mlresid ";
 				sql += "and p.pmlname = m.mlname ";
@@ -76,7 +76,7 @@ public class PosDao {
 			@Override
 			public Integer mapRow(ResultSet rs, int row) throws SQLException {
 				
-				return rs.getInt("sum");
+				return rs.getInt("price");
 			}
 		});
 		
