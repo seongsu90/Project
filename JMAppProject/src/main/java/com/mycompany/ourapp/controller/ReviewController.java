@@ -20,25 +20,27 @@ public class ReviewController {
 	
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String writeForm() {
-		return "review/write";
+		return "review/writeForm";
 	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String write(Review review, HttpSession session) {
 		String mid = (String) session.getAttribute("login");
+		int resid = (int) session.getAttribute("resinfo");
 		review.setRevMid(mid);
+		review.setRevResid(resid);
 		
 		int result = reviewService.write(review);
 		if ( result == reviewService.WRITE_FAIL ) {
 			return "review/write";
 		}		
-		return "review/list";
+		return "review/";
 	}
 	
 	@RequestMapping("/delete")
 	public String delete(int revno, int revMid) {
 		reviewService.delete(revno, revMid);
-		return "review/list";
+		return "review/";
 	}
 	
 	@RequestMapping("/info")

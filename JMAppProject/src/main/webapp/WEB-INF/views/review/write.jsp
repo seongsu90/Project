@@ -7,5 +7,10 @@
 	</head>
 	
 	<body>
+		리뷰 작성
+		<hr/>
+		
+		
+		
 	</body>
 </html>

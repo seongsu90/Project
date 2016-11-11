@@ -2,10 +2,13 @@ package com.mycompany.ourapp.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycompany.ourapp.dto.Pos;
 import com.mycompany.ourapp.service.PosService;
@@ -17,13 +20,28 @@ public class PosController {
 	@Autowired
 	private PosService posService;
 	
-	@RequestMapping("/add")
-	public String add(Pos pos, Model model) {		// 수기 주문, 모바일 주문
-		int result = posService.add(pos);
-		return "pos/add";
+	@RequestMapping("/index")
+	public String index() {
+		return "pos/index";
+	}
+	
+	@RequestMapping(value="/add", method=RequestMethod.GET)
+	public String addForm() {				
+		return "pos/addForm";
+	}
+	
+	@RequestMapping(value="/add", method=RequestMethod.POST)
+	public String add(Pos pos) {		// 수기 주문, 모바일 주문
+		int row = posService.add(pos);	
+		return "redirect:/pos/index";	
 	}
 
-	@RequestMapping("/modify")
+	@RequestMapping(value="/modify", method=RequestMethod.GET)
+	public String modifyForm() {
+		return "pos/modifyForm";
+	}
+	
+	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Pos pos) {
 		return "pos/modify";
 	}
@@ -31,7 +49,7 @@ public class PosController {
 	@RequestMapping("/delete")
 	public String delete(int ptableno, int pResid) {
 		posService.delete(ptableno, pResid);
-		return "pos/";	
+		return "redirect:/pos/index";	
 	}
 	
 	@RequestMapping("/info")	
