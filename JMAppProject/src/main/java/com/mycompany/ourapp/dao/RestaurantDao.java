@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
-
 import com.mycompany.ourapp.dto.Restaurant;
 
 @Component
@@ -59,6 +58,35 @@ public class RestaurantDao {
 				);
 		return row;
 	}
+	
+	public List<Restaurant> selectByPage(int pageNo, int rowsPerPage){
+		String sql="";
+		sql+="select rn, resid, resname, resinfo, ressavedfile ";
+		sql+="from( " ;
+		sql+="select rownum as rn, resid, resname, resinfo, ressavedfile ";
+		sql+="from (select resid, resname, resinfo, ressavedfile from Restaurant order by resid desc) ";
+		sql+="where rownum<=? ";
+		sql+=") ";
+		sql+="where rn>=? ";
+		
+		List<Restaurant> list=jdbcTemplate.query(
+				sql, 
+				new Object[]{(pageNo*rowsPerPage),((pageNo-1)*rowsPerPage+1)},
+				new RowMapper<Restaurant>(){
+					@Override
+					public Restaurant mapRow(ResultSet rs, int row)throws SQLException{
+						Restaurant restaurant=new Restaurant();
+						restaurant.setResId(rs.getInt("resid"));
+						restaurant.setResname(rs.getString("resname"));
+						restaurant.setResinfo(rs.getString("resinfo"));
+						restaurant.setRessavedfile(rs.getString("ressavedfile"));
+						
+						return restaurant;
+					}
+				}
+		);
+	return list;
+	}
 
 	public Restaurant selectByResid(int resid) {
 		String sql="select resId, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, rescloseday from restaurant where resid=?";
@@ -80,6 +108,12 @@ public class RestaurantDao {
 			}
 		});
 		return (list.size()!=0)? list.get(0) : null;
+	}
+
+	public int count(){
+		String sql="select count(*) from restaurant";
+		int count=jdbcTemplate.queryForObject(sql, Integer.class);   
+		return count;
 	}
 
 /*	public static int emptyTableNum(int resid) {

@@ -1,5 +1,7 @@
 package com.mycompany.ourapp.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.mycompany.myweb.dto.PhotoBoard;
 import com.mycompany.ourapp.dto.Restaurant;
 import com.mycompany.ourapp.service.RestaurantService;
 
@@ -17,6 +17,52 @@ import com.mycompany.ourapp.service.RestaurantService;
 public class RestaurantController {
 	@Autowired
 	private RestaurantService restaurantService;
+	
+	
+	@RequestMapping("/list")
+	public String list(String pageNo, Model model, HttpSession session){
+		
+		int intPageNo = 1;
+		if ( pageNo == null ) {
+			pageNo = (String) session.getAttribute("pageNo");
+			if ( pageNo != null ) {
+				intPageNo = Integer.parseInt(pageNo);
+			}
+		} else {
+			intPageNo = Integer.parseInt(pageNo);
+		}
+		session.setAttribute("pageNo", String.valueOf(intPageNo));
+		
+
+		
+		int rowsPerPage=8;
+		int pagesPerGroup=5;
+		int totalBoardNo=restaurantService.getCount();
+		
+		int totalPageNo=totalBoardNo/rowsPerPage+((totalBoardNo%rowsPerPage!=0)?1:0);
+		int totalGroupNo=totalPageNo/pagesPerGroup+((totalPageNo%pagesPerGroup!=0)?1:0);
+		
+		int groupNo=(intPageNo-1)/pagesPerGroup+1;
+		int startPageNo=(groupNo-1)*pagesPerGroup+1;
+		int endPageNo=startPageNo+pagesPerGroup-1;
+		if(groupNo==totalGroupNo){
+			endPageNo=totalPageNo;
+		}
+		
+		List<Restaurant> list=restaurantService.list(intPageNo, rowsPerPage);
+		model.addAttribute("list", list);
+		model.addAttribute("pageNo", intPageNo);
+		model.addAttribute("rowsPerPage", rowsPerPage);
+		model.addAttribute("pagesPerGroup", pagesPerGroup);
+		model.addAttribute("totalBoardNo", totalBoardNo);
+		model.addAttribute("totalPageNo", totalPageNo);
+		model.addAttribute("totalGroupNo", totalGroupNo);
+		model.addAttribute("groupNo", groupNo);
+		model.addAttribute("startPageNo", startPageNo);
+		model.addAttribute("endPageNo", endPageNo);
+		return "photoboard/list";
+	}
+	
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addForm(Restaurant restaurant){
@@ -48,19 +94,18 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public String modifyForm(int bno, Model model){
-		PhotoBoard photoBoard=photoBoardService.info(bno);
-		model.addAttribute("photoboard",photoBoard);
-		return "photoboard/modify";
+	public String modifyForm(int resid, Model model){
+		Restaurant restaurant=restaurantService.info(resid);
+		model.addAttribute("restaurant", restaurant);
+		return "restaurant/modify";
 	}
 	
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Restaurant restaurant){
-		PhotoBoard dbPhotoBoard=photoBoardService.info(photoBoard.getBno());
-		photoBoard.setBhitcount(dbPhotoBoard.getBhitcount());
-		photoBoardService.modify(photoBoard);
-		return "redirect:/photoboard/list";
+		Restaurant dbRestaurant=restaurantService.info(restaurant.getResId());
+		restaurantService.modify(restaurant);
+		return "redirect:/restaurant/list";
 	}
 	
 	
