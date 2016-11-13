@@ -34,4 +34,8 @@ public class EventService {
 		if(row==0){return MODIFY_SUCCESS;}
 		return  MODIFY_SUCCESS;
 	}
+	
+	public Event info(int eResid, String eMlname){
+		return eventdao.selectByEResidAndEMlname(eResid,eMlname);
+	}
 }

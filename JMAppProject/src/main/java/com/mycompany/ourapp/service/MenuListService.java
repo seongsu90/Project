@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mycompany.ourapp.dao.MenuListDao;
+import com.mycompany.ourapp.dto.Event;
 import com.mycompany.ourapp.dto.MenuList;
 
 @Component
@@ -43,14 +44,18 @@ public class MenuListService {
 	
 	public List<MenuList> resHotList(int mlResid, boolean mlishot){
 		
-		List<MenuList> menulist = new ArrayList<>();
+		List<MenuList> list = menuListdao.resHotList(mlResid, mlishot);
 		
-		return menulist;
+		return list;
 	}
 	
 	public int modifyHot(int mlResid,String mlname, boolean mlishot){
 		int row = menuListdao.modifyHot(mlResid, mlname, mlishot);
 		if(row==0){return MODIFY_FAIL;}
 		return MODIFY_SUCCESS;
+	}
+	
+	public MenuList info(int mlResid, String mlname){
+		return menuListdao.selectBymlResidAndmlname(mlResid,mlname);
 	}
 }

@@ -1,12 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ page  contentType="text/html;charset=UTF-8"%>
 
-</body>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		
+		이벤트
+		<hr/>
+			1. <a href="/ourapp/event/add">이벤트 생성</a><br/>
+			2. <a href="/ourapp/event/modify">이벤트 수정</a> <br/>
+			3. <a href="/ourapp/event/delete">이벤트 삭제</a> <br/>
+			4. <a href="/ourapp/event/info">이벤트 정보</a> <br/>
+	</body>
 </html>

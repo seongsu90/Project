@@ -5,7 +5,7 @@ public class MenuList {
 	private int mlResid;
 	private String mlinfo;
 	private String mlsavedfile;
-	private boolean mlisshot;
+	private boolean mlishot;
 	
 	public String getMlname() {
 		return mlname;
@@ -37,12 +37,13 @@ public class MenuList {
 	public void setMlsavedfile(String mlsavedfile) {
 		this.mlsavedfile = mlsavedfile;
 	}
-	public boolean isMlisshot() {
-		return mlisshot;
+	public boolean getisMlishot() {
+		return mlishot;
 	}
-	public void setMlisshot(boolean mlisshot) {
-		this.mlisshot = mlisshot;
+	public void setMlishot(boolean mlishot) {
+		this.mlishot = mlishot;
 	}
+	
 	
 	
 }
