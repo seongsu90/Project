@@ -19,13 +19,13 @@
 			패스워드 : <input type="password" name="mpassword"/>
 			<br/>
 			
-			휴대전화 : <input type="tel" name="mtel" value="${member.mtel}"/>
+			휴대전화 : <input type="tel" name="mphone" value="${member.mphone}"/>
 			<br/>
 			
-			이메일 : <input type="email" name="memail" value="${member.memail}"/>
+			생일 : <input type="date" name="mbirth" value="${member.mbirth}"/>
 			<br/>
 			
-			주소 : <input type="text" name="maddress" value="${member.maddress}"/>
+			관심지역 : <input type="text" name="mlocation" value="${member.mlocation}"/>
 			<br/>
 			
 			<input type="submit" value="가입"/> ${error2}<br/>

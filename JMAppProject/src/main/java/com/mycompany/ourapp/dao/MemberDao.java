@@ -88,8 +88,48 @@ public class MemberDao {
 				return rs.getString("mid");
 			}
 		});
-		System.out.println(list.get(0));
 		return (list.size() != 0)?list.get(0) : null;
+	}
+	
+	// 회원 목록
+	public List<Member> selectByPage(int pageNo, int rowsPerPage, String find) {
+		String sql = "";
+		sql += "select rn, mid, mname, mpassword, mphone, mbirth, mlocation, mrank, mpoint, mresid ";
+		sql += "from ( ";
+		sql += "select rownum as rn, mid, mname, mpassword, mphone, mbirth, mlocation, mrank, mpoint, mresid ";
+		sql += "from (select mid, mname, mpassword, mphone, mbirth, mlocation, mrank, mpoint, mresid from member) ";
+		sql += "where mid like ? or mname like ? and rownum<=? ";
+		sql += ") ";
+		sql += "where rn>=? order by rn desc ";
+		
+		List<Member> list = jdbcTemplate.query(
+			sql,
+			new Object[]{"%"+find+"%", "%"+find+"%", (pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage + 1)},
+			new RowMapper<Member>() {
+				@Override
+				public Member mapRow(ResultSet rs, int row) throws SQLException {
+					Member member = new Member();
+					member.setMid(rs.getString("mid"));
+					member.setMname(rs.getString("mname"));
+					member.setMpassword(rs.getString("mpassword"));
+					member.setMphone(rs.getString("mphone"));
+					member.setMbirth(rs.getDate("mbirth"));
+					member.setMlocation(rs.getString("mlocation"));
+					member.setMrank(rs.getInt("mrank"));
+					member.setMpoint(rs.getInt("mpoint"));
+					member.setMResid(rs.getInt("mResid"));
+					return member;
+				}					
+			}
+		);
+		return list;
+	}
+	
+	// 검색 결과의 수
+	public int count(String find) {
+		String sql = "select count(*) from member where mid like ? or mname like ?";
+		int count = jdbcTemplate.queryForObject(sql, new Object[]{"%"+find+"%", "%"+find+"%"}, Integer.class);
+		return count;
 	}
 	
 }

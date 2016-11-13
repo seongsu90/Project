@@ -11,7 +11,7 @@
 		<hr/>
 		<form method="post">
 			이름 : <input type="text" name="mname"/><br/>
-			번호 : <input type="text" name="mphone"/>${error}<br/>
+			번호 : <input type="tel" name="mphone"/>${error}<br/>
 			<input type="submit" value="찾기"/>
 		</form>
 	</body>

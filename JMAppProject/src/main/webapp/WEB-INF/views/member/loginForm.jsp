@@ -18,7 +18,8 @@
 			<br/>
 			<input type="submit" value="로그인"/> <br/>
 		</form>
-		<a href="${pageContext.servletContext.contextPath}/member/join">회원 가입</a> <br/>
-		<a href="findMid">아이디 찾기</a> <br/>
+		<a href="/ourapp/member/list?pageNo=1">회원 목록</a>
+<%-- 		<a href="${pageContext.servletContext.contextPath}/member/join">회원 가입</a> <br/>
+		<a href="findMid">아이디 찾기</a> <br/> --%>
 	</body>
 </html>

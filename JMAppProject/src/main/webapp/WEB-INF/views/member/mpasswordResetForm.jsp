@@ -7,11 +7,12 @@
 	</head>
 	<body>
 		<hr/>
-		<b>비밀번호 찾기</b>
+		<b>비밀번호 재설정</b>
 		<hr/>
 		<form method="post">
-			아 이 디 : <input type="text" name="mid"/><br/>
-			휴대폰번호 : <input type="text" name="mphone"/>${error}<br/>
+			<input type="hidden" name="mid" value="${findMid}"/>
+			새로운 비밀번호 : <input type="password" name="mpassword"/><br/>
+			 비밀번호 확인  : <input type="password" name="mpassword2"/>${error}<br/>
 			<input type="submit" value="확인"/>
 		</form>
 	</body>

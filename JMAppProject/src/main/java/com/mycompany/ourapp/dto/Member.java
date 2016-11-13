@@ -2,6 +2,8 @@ package com.mycompany.ourapp.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Member {
 	public final static int ADMINISTRATOR = 2;
 	public final static int RES_MANAGER = 1;
@@ -10,6 +12,7 @@ public class Member {
 	private String mname;
 	private String mpassword;
 	private String mphone;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date mbirth;
 	private String mlocation;
 	private int mrank;

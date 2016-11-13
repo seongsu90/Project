@@ -1,5 +1,7 @@
 package com.mycompany.ourapp.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -56,13 +58,11 @@ public class MemberService {
 		return member;
 	}
 	
-	public Member getInfo(String mid) {
+	public Member info(String mid) {
 		return memberDao.selectByMid(mid);
 	}
 	
 	public int modify(Member member) {
-		Member dbMember = memberDao.selectByMid(member.getMid());
-		if ( dbMember.getMpassword().equals(member.getMpassword()) == false ) return MODIFY_FAIL;
 		int row = memberDao.update(member);
 		if ( row != 1 ) return MODIFY_FAIL;
 		return MODIFY_SUCCESS;
@@ -88,6 +88,14 @@ public class MemberService {
 		int row = memberDao.update(member);
 		if ( row != 1 ) return RANK_CHANGE_FAIL;
 		return RANK_CHANGE_SUCCESS;
+	}
+	
+	public int getCount(String find) {
+		return memberDao.count(find);
+	}
+	
+	public List<Member> list(int pageNo, int rowsPerPage, String find) {
+		return memberDao.selectByPage(pageNo, rowsPerPage, find);
 	}
 
 }
