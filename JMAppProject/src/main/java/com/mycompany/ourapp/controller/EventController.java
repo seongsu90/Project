@@ -1,5 +1,6 @@
 package com.mycompany.ourapp.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,28 +13,24 @@ import com.mycompany.ourapp.service.EventService;
 @Controller
 @RequestMapping("/event")
 public class EventController {
+	
 	@Autowired
 	private EventService eventService;
 	
 	@RequestMapping("/index")
 	public String index() {
-		return "event/index";
+		return "/event/index";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addForm(Event event){
-		return "event/addForm";
+		return "/event/addForm";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String add(Event event){
-		try{
-			int result=eventService.add(event);
-			return "redirect:/event/add";
-	
-		}catch(Exception e){
-			return "redirect:/event/addForm";
-		}
+		eventService.add(event);
+		return "redirect:/event/index";
 	}
 	
 	@RequestMapping("/delete")

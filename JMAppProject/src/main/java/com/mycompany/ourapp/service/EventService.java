@@ -31,7 +31,7 @@ public class EventService {
 	
 	public int modify(Event event){
 		int row = eventdao.update(event);
-		if(row==0){return MODIFY_SUCCESS;}
+		if(row==0){return MODIFY_FAIL;}
 		return  MODIFY_SUCCESS;
 	}
 	
