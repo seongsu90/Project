@@ -17,10 +17,10 @@ public class RestaurantDao {
 	private static JdbcTemplate jdbcTemplate;
 	
 	public int insert(Restaurant restaurant) {
-		String sql="insert into Restaurant (resId, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, closeday) values(?,?,?,?,?,?,?,?,?,?)";
+		String sql="insert into Restaurant (resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, closeday) values(?,?,?,?,?,?,?,?,?,?)";
 		int row=jdbcTemplate.update(
 				sql,
-				restaurant.getResId(),
+				restaurant.getResid(),
 				restaurant.getResname(),
 				restaurant.getReslocation(),
 				restaurant.getRestotaltable(),
@@ -35,7 +35,7 @@ public class RestaurantDao {
 	}
 
 	public int delete(int resid) {
-		String sql="delete from restaurant where resId=?";
+		String sql="delete from restaurant where resid=?";
 		int row=jdbcTemplate.update(sql, resid);
 		return row;
 	}
@@ -53,7 +53,7 @@ public class RestaurantDao {
 				restaurant.getResclose(),
 				restaurant.getRessavedfile(),
 				restaurant.getRescloseday(),
-				restaurant.getResId()
+				restaurant.getResid()
 				
 				);
 		return row;
@@ -76,7 +76,7 @@ public class RestaurantDao {
 					@Override
 					public Restaurant mapRow(ResultSet rs, int row)throws SQLException{
 						Restaurant restaurant=new Restaurant();
-						restaurant.setResId(rs.getInt("resid"));
+						restaurant.setResid(rs.getInt("resid"));
 						restaurant.setResname(rs.getString("resname"));
 						restaurant.setResinfo(rs.getString("resinfo"));
 						restaurant.setRessavedfile(rs.getString("ressavedfile"));
@@ -89,12 +89,12 @@ public class RestaurantDao {
 	}
 
 	public Restaurant selectByResid(int resid) {
-		String sql="select resId, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, rescloseday from restaurant where resid=?";
+		String sql="select resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, rescloseday from restaurant where resid=?";
 		List<Restaurant> list=jdbcTemplate.query(sql, new Object[]{resid}, new RowMapper<Restaurant>(){
 			@Override
 			public Restaurant mapRow(ResultSet rs, int row) throws SQLException{
 				Restaurant restaurant=new Restaurant();
-				restaurant.setResId(rs.getInt("resid"));
+				restaurant.setResid(rs.getInt("resid"));
 				restaurant.setResname(rs.getString("resname"));
 				restaurant.setReslocation(rs.getString("reslocation"));
 				restaurant.setResinfo(rs.getString("resinfo"));

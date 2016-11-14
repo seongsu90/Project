@@ -4,7 +4,7 @@ import java.sql.Time;
 import java.util.Date;
 
 public class Restaurant {
-	private int resId;
+	private int resid;
 	private String resname;
 	private String reslocation;
 	private int restotaltable;
@@ -15,11 +15,11 @@ public class Restaurant {
 	private Time resclose;
 	private String ressavedfile;
 	
-	public int getResId() {
-		return resId;
+	public int getResid() {
+		return resid;
 	}
-	public void setResId(int resId) {
-		this.resId = resId;
+	public void setResid(int resid) {
+		this.resid = resid;
 	}
 	public String getResname() {
 		return resname;

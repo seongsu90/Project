@@ -103,7 +103,7 @@ public class RestaurantController {
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Restaurant restaurant){
-		Restaurant dbRestaurant=restaurantService.info(restaurant.getResId());
+		Restaurant dbRestaurant=restaurantService.info(restaurant.getResid());
 		restaurantService.modify(restaurant);
 		return "redirect:/restaurant/list";
 	}
