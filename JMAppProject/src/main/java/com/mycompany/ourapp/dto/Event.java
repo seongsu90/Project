@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class Event {
 	private String ename;
-	private int eResid;
+	private int eresid;
 	private String esavedfile;
 	private String einfo;
-	private String eMlname;
+	private String emlname;
 	private int eprice;
 	private Date estart;
 	private Date eend;
@@ -18,11 +18,11 @@ public class Event {
 	public void setEname(String ename) {
 		this.ename = ename;
 	}
-	public int geteResid() {
-		return eResid;
+	public int geteresid() {
+		return eresid;
 	}
-	public void seteResid(int eResid) {
-		this.eResid = eResid;
+	public void seteresid(int eresid) {
+		this.eresid = eresid;
 	}
 	public String getEsavedfile() {
 		return esavedfile;
@@ -36,11 +36,11 @@ public class Event {
 	public void setEinfo(String einfo) {
 		this.einfo = einfo;
 	}
-	public String geteMlname() {
-		return eMlname;
+	public String getemlname() {
+		return emlname;
 	}
-	public void seteMlname(String eMlname) {
-		this.eMlname = eMlname;
+	public void setemlname(String emlname) {
+		this.emlname = emlname;
 	}
 	public int getEprice() {
 		return eprice;

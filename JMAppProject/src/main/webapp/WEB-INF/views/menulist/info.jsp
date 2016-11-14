@@ -12,23 +12,28 @@
 		<table style="width:570px text-align=center;">
 		    <tr>
 				<td style="background-color:blue; width:100px">메뉴 이름</td>
-				<td>${event.mlname}</td>
+				<td>${menuList.mlname}</td>
 			</tr>
 			<tr>
-				<td style="background-color:orange; width:100px">메뉴 가격</td>	
-				<td>${event.mlprice}</td>
+				<td style="background-color:blue; width:100px">메뉴 가격</td>	
+				<td>${menuList.mlprice}</td>
 			</tr>
 			<tr>
-				<td style="background-color:orange; width:100px">식당</td>
-				<td>${event.mlResid}</td>
+				<td style="background-color:blue; width:100px">식당</td>
+				<td>${menuList.mlResid}</td>
 			</tr>	
 			<tr>
-				<td style="background-color:orange; width:100px">정보</td>
-				<td>${event.mlinfo}</td>
+				<td style="background-color:blue; width:100px">정보</td>
+				<td>${menuList.mlinfo}</td>
 			</tr>
 			<tr>
-				<td style="background-color:orange; width:100px">메뉴 사진</td>
-				<td>${event.mlsavedfile}</td>
+				<td style="background-color:blue; width:100px">메뉴 사진</td>
+				<td>${menuList.mlsavedfile}</td>
 			</tr>
+			<tr>
+				<td style="background-color:blue; width:100px">핫</td>
+				<td>${menuList.mlishot}</td>
+			</tr>
+		</table>
 	</body>
 </html>

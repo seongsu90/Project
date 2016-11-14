@@ -7,14 +7,15 @@
 	</head>
 	<body>
 		
-		이벤트 수정
+		메뉴리스트 수정
 		<hr/>
 			<form method="post">
-				메뉴이름 : <input type="text" name="ename"/><br/>	
-				메뉴가격 : <input type="text" name="eResid"/><br/>
-				메뉴 정보 : <input type="text" name="einfo"/><br/>
-				메뉴 사진 : <input type="file" name="eMlname"/><br/>
-				핫메뉴 선택 : <input type="checkbox" name="emlhot"/><br/>
+				메뉴이름 : <input type="text" name="mlname" value="${menuList.mlname}"/><br/>	
+				메뉴가격 : <input type="text" name="mlprice" value="${menuList.mlprice}"/><br/>
+				식당명 : <input type="text" name="mlResid" value="${menuList.mlResid}"/><br/>
+				메뉴 정보 : <input type="text" name="mlinfo" value="${menuList.mlinfo}"/><br/>
+				메뉴 사진 : <input type="file" name="mlsavedfile" value="${menuList.mlsavedfile}"/><br/>
+				핫메뉴 선택 : <input type="checkbox" name="mlishot" value="${menuList.mlishot}"/><br/>
 					
 				<input type="submit" value="수정"/>
 			</form>

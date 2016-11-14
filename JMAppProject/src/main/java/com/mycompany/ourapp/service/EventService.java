@@ -23,8 +23,8 @@ public class EventService {
 		return ADD_SUCCESS;
 	}
 	
-	public int delete(int eResid,String eMlname){
-		int row = eventdao.delete(eResid, eMlname);
+	public int delete(int eresid,String emlname){
+		int row = eventdao.delete(eresid, emlname);
 		if(row==0){return DELETE_FAIL;}
 		return DELETE_SUCCESS;
 	}
@@ -35,7 +35,7 @@ public class EventService {
 		return  MODIFY_SUCCESS;
 	}
 	
-	public Event info(int eResid, String eMlname){
-		return eventdao.selectByEResidAndEMlname(eResid,eMlname);
+	public Event info(int eresid, String emlname){
+		return eventdao.selectByEResidAndEMlname(eresid,emlname);
 	}
 }

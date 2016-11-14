@@ -32,26 +32,26 @@ public class EventController {
 			return "redirect:/event/add";
 	
 		}catch(Exception e){
-			return "event/addForm";
+			return "redirect:/event/addForm";
 		}
 	}
 	
 	@RequestMapping("/delete")
-	public String delete(int eResid,String eMlname){
-		eventService.delete(eResid,eMlname);
-		return "event/info";
+	public String delete(int eresid,String emlname){
+		eventService.delete(eresid,emlname);
+		return "redirect:/event/info";
 	}
 	
 	@RequestMapping("/info")
-	public String info(int eResid,String eMlname, Model model){
-		Event event=eventService.info(eResid,eMlname);
+	public String info(int eresid,String emlname, Model model){
+		Event event=eventService.info(eresid,emlname);
 		model.addAttribute("event", event);
 		return "event/info";
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public String modifyForm(int eResid,String eMlname, Model model){
-		Event event=eventService.info(eResid,eMlname);
+	public String modifyForm(int eresid,String emlname, Model model){
+		Event event=eventService.info(eresid,emlname);
 		model.addAttribute("event", event);
 		return "event/modify";
 	}
@@ -59,7 +59,7 @@ public class EventController {
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Event event){
-		Event dbEvent=eventService.info(event.geteResid(),event.geteMlname());
+		Event dbEvent=eventService.info(event.geteresid(),event.getemlname());
 		eventService.modify(event);
 		return "redirect:/event/info";
 	}
