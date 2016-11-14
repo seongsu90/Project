@@ -6,7 +6,6 @@
 		<meta charset="UTF-8"> 
 	</head>
 	<body>
-		<hr/>
 		<b>비밀번호 재설정</b>
 		<hr/>
 		<form method="post">

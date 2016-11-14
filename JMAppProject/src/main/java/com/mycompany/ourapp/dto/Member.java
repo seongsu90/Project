@@ -5,9 +5,9 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Member {
-	public final static int ADMINISTRATOR = 2;
-	public final static int RES_MANAGER = 1;
-	public final static int NORMAL = 0;
+	public final static int MRANK_ADMINISTRATOR = 2;
+	public final static int MRANK_RES_MANAGER = 1;
+	public final static int MRANK_NORMAL = 0;
 	private String mid;
 	private String mname;
 	private String mpassword;

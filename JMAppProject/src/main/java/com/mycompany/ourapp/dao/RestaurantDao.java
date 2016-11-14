@@ -17,7 +17,7 @@ public class RestaurantDao {
 	private static JdbcTemplate jdbcTemplate;
 	
 	public int insert(Restaurant restaurant) {
-		String sql="insert into Restaurant (resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, closeday) values(?,?,?,?,?,?,?,?,?,?)";
+		String sql="insert into Restaurant (resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, rescloseday) values(?,?,?,?,?,?,?,?,?,?)";
 		int row=jdbcTemplate.update(
 				sql,
 				restaurant.getResid(),

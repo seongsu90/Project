@@ -1,6 +1,5 @@
 package com.mycompany.ourapp.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -26,12 +25,14 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	// 로그인 폼
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String loginForm() {
 		logger.info("loginForm() GET 실행");
 		return "member/loginForm";
 	}
 	
+	// 로그인
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(String mid, String mpassword, HttpSession session, Model model) {
 		logger.info("login() POST 실행");
@@ -48,12 +49,14 @@ public class MemberController {
 		}
 	}
 	
+	// 아이디 찾기 폼
 	@RequestMapping(value="/findMid", method=RequestMethod.GET)
 	public String findMidForm() {
 		logger.info("findMidForm() GET 실행");
 		return "member/findMidForm";
 	}
 	
+	// 아이디 찾기
 	@RequestMapping(value="/findMid", method=RequestMethod.POST)
 	public String findMid(String mname, String mphone, Model model, HttpSession session) {
 		logger.info("findMid() POST 실행");
@@ -66,12 +69,14 @@ public class MemberController {
 		return "redirect:/member/login";
 	}
 	
+	// 비밀번호 찾기 폼
 	@RequestMapping(value="/findMpassword", method=RequestMethod.GET)
 	public String findMpasswordForm() {
 		logger.info("findMpasswordForm() GET 실행");
 		return "member/findMpasswordForm";
 	}
 	
+	// 비밀번호 찾기
 	@RequestMapping(value="/findMpassword", method=RequestMethod.POST)
 	public String findMpassword(String mid, String mphone, Model model, HttpSession session) {
 		logger.info("findMpassword() POST 실행");
@@ -90,12 +95,14 @@ public class MemberController {
 		
 	}
 	
+	// 비밀번호 변경 폼
 	@RequestMapping(value="/mpasswordReset", method=RequestMethod.GET)
 	public String mpasswordResetForm() {
 		logger.info("mpasswordResetForm() GET 실행");
 		return "member/mpasswordResetForm";
 	}
 	
+	// 비밀번호 변경 
 	@RequestMapping(value="/mpasswordReset", method=RequestMethod.POST)
 	public String mpasswordReset(String mid, String mpassword, String mpassword2, Model model) {
 		logger.info("mpasswordReset() POST 실행");
@@ -111,12 +118,14 @@ public class MemberController {
 		
 	}
 	
+	// 회원가입 폼
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String joinForm() {
 		logger.info("joinForm() GET 실행");
 		return "member/joinForm";
 	}
 	
+	// 회원가입
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String join(Member member, Model model) {
 		logger.info("join() POST 실행");
@@ -131,32 +140,44 @@ public class MemberController {
 			return "member/joinForm";
 		}
 	}
+
 	
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-		logger.info("logout() GET 실행");
-		String mid = (String) session.getAttribute("login");
-		int result = memberService.logout(mid);
-		if ( result == MemberService.LOGOUT_SUCCESS ) {
-			session.removeAttribute("login");
-		}		
-		return "redirect:/";
-	}
-	
-	// 회원 정보보기. jsp랑 태그 필요
+	// 회원 정보보기 ( 사용자 기준 ) jsp랑 태그 필요
 	@RequestMapping("/info")
-	public String info(String mpassword, HttpSession session, Model model) {
-		logger.info("info() GET 실행");
-		String mid = (String) session.getAttribute("login");
-		Member member = memberService.info(mid, mpassword);
+	public String info(String mid, HttpSession session, Model model) {
+		logger.info("info() 실행");
+		Member member = memberService.info(mid);
 		model.addAttribute("member", member);
 		return "member/info";
 	}
+/*	
+	// 회원 수정하기 폼
+	@RequestMapping(value="/modifyInfo", method=RequestMethod.GET)
+	public String modifyInfoForm() {
+		logger.info("joinForm() GET 실행");
+		return "member/modifyInfo";
+	}
 	
-	// 회원 리스트 보기 ( 미완성 )
+	// 회원 수정
+	@RequestMapping(value="/join", method=RequestMethod.POST)
+	public String modifyInfo(Member member, Model model) {
+		logger.info("join() POST 실행");
+		try {
+			int result = memberService.join(member);
+			return "redirect:/member/login";
+		} catch (DuplicateKeyException e) {
+			model.addAttribute("error", " 아이디가 존재합니다. 다른 아이디를 입력해 주세요.");
+			return "member/joinForm";
+		} catch (Exception e1) {
+			model.addAttribute("error2", " 모든 항목을 입력해 주세요");
+			return "member/joinForm";
+		}
+	}
+	*/
+	// 회원 리스트 보기
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(String pageNo, @RequestParam(required=false, defaultValue="") String find, Model model, HttpSession session) {
-		logger.info("list() 실행");
+		logger.info("list() GET 실행");
 		int intPageNo = 1;
 		if ( pageNo == null ) {
 			pageNo = (String) session.getAttribute("pageNo");
@@ -198,12 +219,32 @@ public class MemberController {
 		return "member/list";	
 	}
 	
+	// 회원 검색 ( mid, mname 기준 ) 
 	@RequestMapping(value="/list", method=RequestMethod.POST)
 	public String findList(String pageNo, String find, Model model) {
+		logger.info("findList() POST 실행");
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("find", find);
 
 		return "redirect:/member/list";		
 	}
+	
+	// 로그아웃
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		logger.info("logout() GET 실행");
+		String mid = (String) session.getAttribute("login");
+		int result = memberService.logout(mid);
+		if ( result == MemberService.LOGOUT_SUCCESS ) {
+			session.removeAttribute("login");
+		}		
+		return "redirect:/";
+	}
+	
+	// 탈퇴하기
+	
+	// 회원 등급 조정하기
+	
+	// 
 
 }
