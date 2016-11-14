@@ -4,8 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mycompany.ourapp.dto.Coupon;
 import com.mycompany.ourapp.service.CouponService;
 
 
@@ -24,9 +27,37 @@ public class CouponController {
 		return "/coupon/index";
 	}
 	
-	@RequestMapping("/add")
-	public String add(){
+	@RequestMapping(value="/add", method=RequestMethod.GET)
+	public String addform(){
 		logger.info("add 요청처리");
 		return "/coupon/addform";
+	}
+	
+	@RequestMapping(value="/add", method=RequestMethod.POST)
+	public String add(Coupon coupon){
+		couponservice.add(coupon);
+		logger.info("add 요청처리");
+		return "redirect:/coupon/index";
+	}
+	
+	@RequestMapping(value="/delete",method=RequestMethod.GET)
+	public String deleteForm(){
+		logger.info("deleteForm 처리");
+		return "/coupon/delete";
+	}
+	
+	@RequestMapping(value="/delete",method=RequestMethod.POST)
+	public String delete(int cnumber){
+		logger.info("delete 처리");
+		couponservice.delete(cnumber);
+		return "redirect:/coupon/index";
+	}
+	
+	@RequestMapping("/info")
+	public String info(int cnumber)
+	{
+		logger.info("info 처리 요청");
+		couponservice.info(cnumber);
+		return "/coupon/info";
 	}
 }

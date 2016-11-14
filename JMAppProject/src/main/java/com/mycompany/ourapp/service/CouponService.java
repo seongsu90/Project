@@ -19,10 +19,10 @@ public class CouponService {
 	private static final int DELETE_FAIL = 1;
 	
 	@Autowired
-	private CouponDao coupondao;
+	private CouponDao couponDao;
 	
 	public int add(Coupon coupon) {
-		int row=coupondao.insert(coupon);
+		int row=couponDao.insert(coupon);
 		if(row==0)
 		{
 			return ADD_FAIL;
@@ -31,7 +31,7 @@ public class CouponService {
 	}
 	
 	public int send(CouponBox couponBox) {	
-		int row=coupondao.send(couponBox);
+		int row=couponDao.send(couponBox);
 		if(row==0)
 		{
 			return SEND_FAIL;
@@ -40,7 +40,7 @@ public class CouponService {
 	}
 	
 	public int delete(int cnumber) {
-		int row = coupondao.delete(cnumber);
+		int row = couponDao.delete(cnumber);
 		if(row==0)
 		{
 			return DELETE_FAIL;
@@ -48,8 +48,7 @@ public class CouponService {
 		return DELETE_SUCCESS;
 	}
 	
-	public Coupon info(int cnumber) {
-		Coupon coupon = new Coupon();
-		return coupon;
+	public void info(int cnumber) {
+		couponDao.selectById(cnumber);
 	}
 }

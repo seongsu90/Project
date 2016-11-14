@@ -7,14 +7,13 @@
 	</head>
 	<body> <!-- 브라우저에 나오는 부분 -->
 		
-		&nbsp; <font size="6"><b>coupon 메인모습</b></font></p>
+		
+		&nbsp; <font size="6"><b>add</b></font></p>
 		<hr/> <!-- 시작과 동시에 끝이다라는 의미<br/>// 태그의 의미는 수평선그리기 -->
-			1. <a href="/ourapp/coupon/add">쿠폰 생성</a> <br/>
-			2. 쿠폰 전송 <br/>
-			3. <a href="ourapp/coupon/delete">쿠폰 삭제</a> <br/>
-			4.<a href="ourapp/coupon/info?cnumber=1"> 쿠폰 상세보기</a> <br/>
-			
-			<%-- 회원전용메뉴 --%>
-			내 쿠폰함
+		<form method="post">
+		- 쿠폰번호<input type="text"  name="cnumber" value="쿠폰번호를 입력해주세요"/> <br/> <br/>
+		
+		<input type="submit" value="쿠폰 삭제"/> <br/>
+		</form>
 	</body>
 </html>

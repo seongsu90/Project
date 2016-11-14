@@ -13,7 +13,8 @@
 	※<a href="/ourapp/member/findMid">아이디찾기</a><br/>
 	※<a href="/ourapp/member/findMpassword">비밀번호찾기</a><br/>
     ※<a href="/ourapp/member/join">회원가입</a><br/>
-    ※<a href="/ourapp/member/list">회원목록</a>
+    ※<a href="/ourapp/member/list">회원목록</a><br/>
+    ※<a href="/ourapp/member/info?mid=">회원정보보기</a><br/>
     ------------------------------------------------------<br/>
     [couponcontroller]<br/>
     ※<a href="/ourapp/coupon/index">쿠폰 기능</a><br/>

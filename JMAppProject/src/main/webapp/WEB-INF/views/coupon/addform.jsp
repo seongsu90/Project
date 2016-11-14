@@ -20,6 +20,7 @@
 		</textarea> <br/>
 		- 쿠폰적용 음식점<br/>
 		- 쿠폰 할인금액<input type="text"  name="cdiscount" value="쿠폰이름을 입력해주세요"/> <br/>
+		<input type="submit" value="쿠폰 등록"/> <br/>
 		</form>
 	</body>
 </html>
