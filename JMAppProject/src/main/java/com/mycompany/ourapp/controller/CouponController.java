@@ -24,14 +24,6 @@ public class CouponController {
 	@Autowired
 	private CouponService couponservice;
 	
-	private Member member;
-	@Autowired
-	public void setMember(Member member)
-	{
-		this.member = member;
-	}
-	
-	
 	@RequestMapping("/index")
 	public String index(){
 		logger.info("index 처리요청");
@@ -44,6 +36,7 @@ public class CouponController {
 		int cnumber=0;
 		int ranNum =0;
 		boolean chkNum = false;
+		int cresid = 0;
 		for(;;)
 		{
 			if(chkNum!=true)
@@ -54,7 +47,7 @@ public class CouponController {
 			cnumber = ranNum;
 			break;
 		}
-		session.setAttribute("cresid", member.getMResid());
+		session.setAttribute("cresid", cresid);
 		session.setAttribute("cnumber", cnumber);
 		return "/coupon/addform";
 	}
