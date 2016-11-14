@@ -10,7 +10,7 @@
 <body>
 	[membercontroller]<br/>
 	<c:if test="${login==null}">
-	※ <a href="/ourapp/member/login">로그인하기</a><br/>
+	※<a href="/ourapp/member/login">로그인하기</a><br/>
 	</c:if> 	
 	<c:if test="${login!=null}">
 	※ <a href="/ourapp/member/logout">로그아웃</a><br/>
@@ -21,7 +21,7 @@
     ※<a href="/ourapp/member/list">회원목록</a><br/>
     <c:if test="${login != null}">
     ※<a href="/ourapp/member/info?mid=${login}">회원정보</a>
-    </c:if>
+    </c:if><br/>
     ------------------------------------------------------<br/>
     [couponcontroller]<br/>
     <c:if test="${login==null}">
