@@ -37,9 +37,9 @@ public class RestaurantController {
 		
 		int rowsPerPage=8;
 		int pagesPerGroup=5;
-		int totalBoardNo=restaurantService.getCount();
+		int totalRestaurantNo=restaurantService.getCount();
 		
-		int totalPageNo=totalBoardNo/rowsPerPage+((totalBoardNo%rowsPerPage!=0)?1:0);
+		int totalPageNo=totalRestaurantNo/rowsPerPage+((totalRestaurantNo%rowsPerPage!=0)?1:0);
 		int totalGroupNo=totalPageNo/pagesPerGroup+((totalPageNo%pagesPerGroup!=0)?1:0);
 		
 		int groupNo=(intPageNo-1)/pagesPerGroup+1;
@@ -54,13 +54,13 @@ public class RestaurantController {
 		model.addAttribute("pageNo", intPageNo);
 		model.addAttribute("rowsPerPage", rowsPerPage);
 		model.addAttribute("pagesPerGroup", pagesPerGroup);
-		model.addAttribute("totalBoardNo", totalBoardNo);
+		model.addAttribute("totalRestaurantNo", totalRestaurantNo);
 		model.addAttribute("totalPageNo", totalPageNo);
 		model.addAttribute("totalGroupNo", totalGroupNo);
 		model.addAttribute("groupNo", groupNo);
 		model.addAttribute("startPageNo", startPageNo);
 		model.addAttribute("endPageNo", endPageNo);
-		return "photoboard/list";
+		return "restaurant/list";
 	}
 	
 	
