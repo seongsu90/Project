@@ -142,7 +142,7 @@ public class MemberController {
 	}
 
 	
-	// 회원 정보보기 ( 사용자 기준 ) jsp랑 태그 필요
+	// 회원 정보보기 ( 사용자 기준 )
 	@RequestMapping("/info")
 	public String info(String mid, HttpSession session, Model model) {
 		logger.info("info() 실행");
@@ -150,18 +150,20 @@ public class MemberController {
 		model.addAttribute("member", member);
 		return "member/info";
 	}
-/*	
+	
 	// 회원 수정하기 폼
 	@RequestMapping(value="/modifyInfo", method=RequestMethod.GET)
-	public String modifyInfoForm() {
-		logger.info("joinForm() GET 실행");
+	public String modifyInfoForm(String mid,  Model model) {
+		logger.info("modifyInfoForm() GET 실행");
+		Member member = memberService.info(mid);
+		model.addAttribute("member", member);
 		return "member/modifyInfo";
 	}
 	
 	// 회원 수정
-	@RequestMapping(value="/join", method=RequestMethod.POST)
+	@RequestMapping(value="/modifyInfo", method=RequestMethod.POST)
 	public String modifyInfo(Member member, Model model) {
-		logger.info("join() POST 실행");
+		logger.info("modifyInfo() POST 실행");
 		try {
 			int result = memberService.join(member);
 			return "redirect:/member/login";
@@ -173,7 +175,7 @@ public class MemberController {
 			return "member/joinForm";
 		}
 	}
-	*/
+	
 	// 회원 리스트 보기
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(String pageNo, @RequestParam(required=false, defaultValue="") String find, Model model, HttpSession session) {
@@ -241,7 +243,38 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	// 탈퇴하기
+	// 테스트 못함 해야함.	
+	// 탈퇴하기 폼 ( 비밀번호 확인 )
+	@RequestMapping(value="/withdraw", method=RequestMethod.GET)
+	public String withdrawForm() {
+		logger.info("withdrawForm() GET 실행");
+		
+		
+		return "member/withdraw";
+	}
+	
+	// 테스트 못함 해야함.
+	// 탈퇴
+	@RequestMapping(value="/withdraw", method=RequestMethod.POST)
+	public String withdraw(String mpassword, HttpSession session, Model model) {
+		logger.info("findList() POST 실행");
+		String mid = (String) session.getAttribute("login");
+		Member member = memberService.info(mid);
+		int result = memberService.withdraw(mid, mpassword);
+		
+		if ( result == MemberService.WITHDRAW_SUCCESS ) {
+			// 탈퇴 성공
+			session.removeAttribute("login");
+			return "redirect:/";
+		} else {
+			// 탈퇴 실패
+			model.addAttribute("error", " 비밀번호가 일치하지 않습니다.");
+			return "member/withdraw";
+		}
+		
+
+				
+	}
 	
 	// 회원 등급 조정하기
 	

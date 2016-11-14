@@ -52,10 +52,10 @@
 					<td class="content">${member.mpoint}</td>
 				</tr>
 				
-				<c:if test="${member.MResid==1}">
+				<c:if test="${member.mresid==1}">
 					<tr>
 						<td class="list">보유 Restaurant </td>
-						<td class="content">${member.MResid}</td>
+						<td class="content">${member.mresid}</td>
 					</tr>
 				</c:if>
 			</table>

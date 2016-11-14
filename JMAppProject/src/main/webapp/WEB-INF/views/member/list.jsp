@@ -58,7 +58,7 @@
 					<td> ${member.mlocation} </td>
 					<td> ${member.mrank} </td>
 					<td> ${member.mpoint} </td>
-					<td> ${member.MResid} </td>
+					<td> ${member.mresid} </td>
 					<%-- <td> <a href="/ourapp/member/info?mid=${member.mid}"><input type="button" value="수정"/></a></td> --%>
 				</tr>
 			</c:forEach>
