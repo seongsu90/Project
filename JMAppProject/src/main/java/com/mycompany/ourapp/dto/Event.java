@@ -18,10 +18,10 @@ public class Event {
 	public void setEname(String ename) {
 		this.ename = ename;
 	}
-	public int geteresid() {
+	public int getEresid() {
 		return eresid;
 	}
-	public void seteresid(int eresid) {
+	public void setEresid(int eresid) {
 		this.eresid = eresid;
 	}
 	public String getEsavedfile() {
@@ -36,10 +36,10 @@ public class Event {
 	public void setEinfo(String einfo) {
 		this.einfo = einfo;
 	}
-	public String getemlname() {
+	public String getEmlname() {
 		return emlname;
 	}
-	public void setemlname(String emlname) {
+	public void setEmlname(String emlname) {
 		this.emlname = emlname;
 	}
 	public int getEprice() {

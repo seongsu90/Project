@@ -36,6 +36,6 @@ public class EventService {
 	}
 	
 	public Event info(int eresid, String emlname){
-		return eventdao.selectByEResidAndEMlname(eresid,emlname);
+		return eventdao.selectByEresidAndEmlname(eresid,emlname);
 	}
 }

@@ -59,7 +59,7 @@ public class EventController {
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Event event){
-		Event dbEvent=eventService.info(event.geteresid(),event.getemlname());
+		Event dbEvent=eventService.info(event.getEresid(),event.getEmlname());
 		eventService.modify(event);
 		return "redirect:/event/info";
 	}

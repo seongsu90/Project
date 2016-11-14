@@ -23,10 +23,10 @@ public class EventDao {
 		int row = jdbcTemplate.update(
 				sql,
 				event.getEname(),
-				event.geteresid(),
+				event.getEresid(),
 				event.getEsavedfile(),
 				event.getEinfo(),
-				event.getemlname(),
+				event.getEmlname(),
 				event.getEprice(),
 				event.getEstart(),
 				event.getEend()
@@ -47,16 +47,16 @@ public class EventDao {
 				event.getEname(),
 				event.getEsavedfile(),
 				event.getEinfo(),
-				event.getemlname(),
+				event.getEmlname(),
 				event.getEprice(),
 				event.getEstart(),
 				event.getEend(),
-				event.geteresid()
+				event.getEresid()
 				);
 		return row;
 	}
 	
-	public Event selectByEResidAndEMlname(int eresid, String emlname) {
+	public Event selectByEresidAndEmlname(int eresid, String emlname) {
 		String sql = "select * from event where eresid=? and emlname=?";
 		List<Event> list = jdbcTemplate.query(sql, new Object[]{eresid,emlname}, new RowMapper<Event>() {
 			@Override

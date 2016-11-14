@@ -16,8 +16,8 @@
 				이벤트 정보 : <input type="text" name="einfo" value="${event.einfo}"/><br/>
 				이벤트 메뉴 : <input type="text" name="emlname" value="${event.emlname}" /><br/>
 				이벤트 할인가격 : <input type="text" name="eprice" value="${event.eprice}"/><br/>
-				이벤트 시작기간 : <input type="datetime" name="estart" value="${event.estart}"/><br/>
-				이벤트 종료기간 : <input type="datetime" name="eend" value="${event.eend}"/><br/>
+				이벤트 시작기간 : <input type="date" name="estart" value="${event.estart}"/><br/>
+				이벤트 종료기간 : <input type="date" name="eend" value="${event.eend}"/><br/>
 				
 				<input type="submit" value="수정"/>
 			</form>
