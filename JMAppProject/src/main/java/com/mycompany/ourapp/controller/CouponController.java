@@ -38,13 +38,14 @@ public class CouponController {
 		return "/coupon/index";
 	}
 	
-	@RequestMapping("/list")
-	public String list()
+	/*@RequestMapping("/list")
+	public String list(HttpSession session)
 	{
 		couponservice.list(mid);
 		logger.info("list 처리 요청");
+		session.setAttribute("couponbox", couponbox);
 		return "/coupon/list";
-	}
+	}*/
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addform(HttpSession session){
@@ -104,4 +105,6 @@ public class CouponController {
 		model.addAttribute("coupon",coupon);
 		return "/coupon/info";
 	}
+	
+	
 }
