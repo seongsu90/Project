@@ -11,7 +11,7 @@
 		<hr/>
 			<form method="post">
 				메뉴이름 : <input type="text" name="ename"/><br/>	
-				메뉴가격 : <input type="text" name="eResid"/><br/>
+				메뉴가격 : <input type="text" name="eresid"/><br/>
 				식당명 : <input type="file" name="savedfile"/><br/>
 				메뉴 정보 : <input type="text" name="einfo"/><br/>
 				메뉴 사진 : <input type="file" name="eMlname"/><br/>

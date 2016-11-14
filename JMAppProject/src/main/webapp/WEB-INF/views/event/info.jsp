@@ -16,7 +16,7 @@
 			</tr>
 			<tr>
 				<td style="background-color:blue; width:100px">식당명</td>	
-				<td>${event.eResid}</td>
+				<td>${event.eresid}</td>
 			</tr>
 			<tr>
 				<td style="background-color:blue; width:100px">이벤트 사진</td>
@@ -28,7 +28,7 @@
 			</tr>
 			<tr>
 				<td style="background-color:blue; width:100px">이벤트 메뉴 이름</td>
-				<td>${event.eMlname}</td>
+				<td>${event.emlname}</td>
 			</tr>
 			<tr>
 				<td style="background-color:blue; width:100px">이벤트 할인가격</td>

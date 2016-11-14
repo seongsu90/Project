@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<td style="background-color:blue; width:100px">식당</td>
-				<td>${menuList.mlResid}</td>
+				<td>${menuList.mlresid}</td>
 			</tr>	
 			<tr>
 				<td style="background-color:blue; width:100px">정보</td>
