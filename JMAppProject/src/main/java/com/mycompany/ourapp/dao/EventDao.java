@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import com.mycompany.ourapp.dto.Coupon;
 import com.mycompany.ourapp.dto.Event;
 
 @Component
@@ -17,7 +16,7 @@ public class EventDao {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	//이벤트 생성
+
 	public int insert(Event event){
 		String sql="insert into event(ename,eresid,esavedfile,einfo,emlname,eprice,estart,eend) values(?,?,?,?,?,?,?,?)";
 		int row = jdbcTemplate.update(
@@ -33,13 +32,13 @@ public class EventDao {
 				);
 		return row;
 	}
-	//이벤트 삭제
+	
 	public int delete(int eresid, String emlname){
 		String sql="delete from event where eresid=? and emlname=?";
 		int row = jdbcTemplate.update(sql, eresid, emlname);
 		return row;
 	}
-	//이벤트 추가
+	
 	public int update(Event event){
 		String sql = "update event set ename=?,esavedfile=?,einfo=?,emlname=?,eprice=?,estart=?,eend=? where eresid=?";
 		int row = jdbcTemplate.update(

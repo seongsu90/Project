@@ -7,7 +7,7 @@ import com.mycompany.ourapp.dao.EventDao;
 import com.mycompany.ourapp.dto.Event;
 
 @Component
-public class EventService {
+public class EventService { 
 	public static final int ADD_SUCCESS=0;
 	public static final int ADD_FAIL=1;
 	public static final int DELETE_SUCCESS=0;

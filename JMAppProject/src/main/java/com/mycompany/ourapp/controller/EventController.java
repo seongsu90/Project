@@ -13,7 +13,7 @@ import com.mycompany.ourapp.service.EventService;
 @Controller
 @RequestMapping("/event")
 public class EventController {
-	
+	 
 	@Autowired
 	private EventService eventService;
 	

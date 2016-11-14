@@ -3,7 +3,7 @@ package com.mycompany.ourapp.dto;
 import java.util.Date;
 
 public class Event {
-	private String ename;
+	private String ename; 
 	private int eresid;
 	private String esavedfile;
 	private String einfo;
