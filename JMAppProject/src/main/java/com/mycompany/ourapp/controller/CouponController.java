@@ -1,5 +1,7 @@
 package com.mycompany.ourapp.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycompany.ourapp.dto.Coupon;
+import com.mycompany.ourapp.dto.Member;
 import com.mycompany.ourapp.service.CouponService;
 
 
@@ -21,6 +24,14 @@ public class CouponController {
 	@Autowired
 	private CouponService couponservice;
 	
+	private Member member;
+	@Autowired
+	public void setMember(Member member)
+	{
+		this.member = member;
+	}
+	
+	
 	@RequestMapping("/index")
 	public String index(){
 		logger.info("index 처리요청");
@@ -28,8 +39,23 @@ public class CouponController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
-	public String addform(){
+	public String addform(HttpSession session){
 		logger.info("add 요청처리");
+		int cnumber=0;
+		int ranNum =0;
+		boolean chkNum = false;
+		for(;;)
+		{
+			if(chkNum!=true)
+			{
+			ranNum =(int)(Math.random()*100000000)+1;
+			chkNum = couponservice.check(ranNum);
+			}
+			cnumber = ranNum;
+			break;
+		}
+		session.setAttribute("cresid", member.getMResid());
+		session.setAttribute("cnumber", cnumber);
 		return "/coupon/addform";
 	}
 	

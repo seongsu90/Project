@@ -52,4 +52,14 @@ public class CouponService {
 		Coupon coupon = couponDao.selectById(cnumber);
 		return coupon;
 	}
+
+	public boolean check(int ranNum) {
+		boolean chkNum = couponDao.chkNum(ranNum);
+		if(chkNum==false)
+		{
+			return false;
+		}
+		return true;
+		
+	}
 }
