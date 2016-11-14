@@ -11,7 +11,7 @@
 		<hr/>		
 		
 		<form method="post">
-			메뉴 : <input type="text" name="pmlname" value="${pos.pmlname}"/><br/>			
+			메뉴 : <input type="text" name="pMlname" value="${pos.pmlname}"/><br/>			
 			수량 : <input type="number" name="pcount" value="${pos.pcount}"/><br/>			
 			<input type="submit" value="주문"/><br/>		
 		</form>

@@ -11,9 +11,9 @@
 		<hr/>		
 		
 		<form method="post">
-			매장 : <input type="text" name="presid" value="${pos.presid}"/><br/>	
+			매장 : <input type="text" name="pResid" value="${pos.presid}"/><br/>	
 			테이블 : <input type="text" name="ptableno" value="${pos.ptableno}"/><br/>
-			메뉴 : <input type="text" name="pmlname" value="${pos.pmlname}"/><br/>			
+			메뉴 : <input type="text" name="pMlname" value="${pos.pmlname}"/><br/>			
 			수량 : <input type="number" name="pcount" value="${pos.pcount}"/><br/>			
 			<input type="submit" value="주문"/><br/>		
 		</form>

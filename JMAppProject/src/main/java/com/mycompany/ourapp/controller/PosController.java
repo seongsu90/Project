@@ -21,7 +21,9 @@ public class PosController {
 	private PosService posService;
 	
 	@RequestMapping("/index")
-	public String index() {
+	public String index(int pResid, Model model) {
+		List<Pos> list = posService.list(pResid);
+		model.addAttribute("list", list);
 		return "pos/index";
 	}
 	

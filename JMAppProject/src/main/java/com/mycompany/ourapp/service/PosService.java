@@ -56,5 +56,10 @@ public class PosService {
 		List<Integer> list = posDao.calc(ptableno, pResid);
 		return list;
 	}
+	
+	public List<Pos> list(int pResid) {
+		List<Pos> list = posDao.list(pResid);
+		return list; 
+	}
 }
 
