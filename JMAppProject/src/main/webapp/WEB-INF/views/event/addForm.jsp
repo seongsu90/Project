@@ -9,7 +9,7 @@
 	
 		이벤트 생성
 		<hr/>
-			<form method="post">
+			<form method="post" enctype="multipart/form-data">
 				이름 : <input type="text" name="ename"/><br/>	
 				식당명 : <input type="text" name="eresid"/><br/>
 				이벤트 사진 : <input type="file" name="esavedfile"/><br/>

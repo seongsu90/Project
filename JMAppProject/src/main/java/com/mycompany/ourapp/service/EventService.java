@@ -20,6 +20,9 @@ public class EventService {
 	
 	public int add(Event event){
 		int row = eventdao.insert(event);
+		if(row == 0){
+			return ADD_FAIL;
+		}
 		return ADD_SUCCESS;
 	}
 	

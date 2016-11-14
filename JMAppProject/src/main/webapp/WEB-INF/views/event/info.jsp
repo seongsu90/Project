@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<td style="background-color:blue; width:100px">이벤트 사진</td>
-				<td>${event.ensavedfile}</td>
+				<td>${event.esavedfile}</td>
 			</tr>	
 			<tr>
 				<td style="background-color:blue; width:100px">이벤트 정보</td>
