@@ -48,7 +48,8 @@ public class CouponService {
 		return DELETE_SUCCESS;
 	}
 	
-	public void info(int cnumber) {
-		couponDao.selectById(cnumber);
+	public Coupon info(int cnumber) {
+		Coupon coupon = couponDao.selectById(cnumber);
+		return coupon;
 	}
 }

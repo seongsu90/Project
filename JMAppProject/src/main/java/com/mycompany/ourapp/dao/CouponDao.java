@@ -51,7 +51,7 @@ public class CouponDao {
 	}
 	
 	public Coupon selectById(int cnumber) {
-		String sql = "select * from coupon where cnumber=?";
+		String sql = "select cnumber,cname,cdday,cinfo,cResid,cdiscount from coupon where cnumber=?";
 		List<Coupon> list = jdbcTemplate.query(sql, new Object[]{cnumber}, new RowMapper<Coupon>() {
 			@Override
 			public Coupon mapRow(ResultSet rs, int row) throws SQLException {

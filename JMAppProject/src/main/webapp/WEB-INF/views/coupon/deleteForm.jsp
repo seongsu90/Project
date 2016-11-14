@@ -11,7 +11,7 @@
 		&nbsp; <font size="6"><b>add</b></font></p>
 		<hr/> <!-- 시작과 동시에 끝이다라는 의미<br/>// 태그의 의미는 수평선그리기 -->
 		<form method="post">
-		- 쿠폰번호<input type="text"  name="cnumber" value="쿠폰번호를 입력해주세요"/> <br/> <br/>
+		- 쿠폰번호 &nbsp;&nbsp;<input type="text"  name="cnumber"  /> <br/> <br/>
 		
 		<input type="submit" value="쿠폰 삭제"/> <br/>
 		</form>

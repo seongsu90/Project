@@ -7,14 +7,33 @@
 	</head>
 	<body> <!-- 브라우저에 나오는 부분 -->
 		
-		&nbsp; <font size="6"><b>coupon 메인모습</b></font></p>
+		&nbsp; <font size="6"><b>coupon 상세보기</b></font></p>
 		<hr/> <!-- 시작과 동시에 끝이다라는 의미<br/>// 태그의 의미는 수평선그리기 -->
-			1. <a href="/ourapp/coupon/add">쿠폰 생성</a> <br/>
-			2. 쿠폰 전송 <br/>
-			3. <a href="ourapp/coupon/delete">쿠폰 삭제</a> <br/>
-			4.<a href="ourapp/coupon/info?cnumber=1"> 쿠폰 상세보기</a> <br/>
-			
-			<%-- 회원전용메뉴 --%>
-			내 쿠폰함
+		<table style="width:570px">
+			<tr>
+				<td style="background-color:#9966FF; width:70px">쿠폰 번호</td>
+				<td>${coupon.cnumber}</td>
+			</tr>
+			<tr>
+				<td style="background-color:#9966FF; width:70px">쿠폰 이름</td>
+				<td>${coupon.cname}</td>
+			</tr>
+			<tr>
+				<td style="background-color:#9966FF; width:70px">쿠폰 유효기간</td>
+				<td><pre>${coupon.cdday}</pre></td>
+			</tr>
+			<tr>
+				<td style="background-color:#9966FF; width:70px">쿠폰 정보</td>
+				<td>${coupon.cinfo}</td>
+			</tr>
+			<tr>
+				<td style="background-color:#9966FF; width:70px">음식점 ID</td>
+				<td>${coupon.cResid}</td>
+			</tr>
+			<tr>
+				<td style="background-color:#9966FF; width:70px">할인 금액</td>
+				<td>${coupon.cdiscount}</td>
+			</tr>
+		</table>
 	</body>
 </html>

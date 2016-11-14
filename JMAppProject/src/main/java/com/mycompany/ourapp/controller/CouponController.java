@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -43,7 +43,7 @@ public class CouponController {
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
 	public String deleteForm(){
 		logger.info("deleteForm 처리");
-		return "/coupon/delete";
+		return "/coupon/deleteForm";
 	}
 	
 	@RequestMapping(value="/delete",method=RequestMethod.POST)
@@ -54,10 +54,11 @@ public class CouponController {
 	}
 	
 	@RequestMapping("/info")
-	public String info(int cnumber)
+	public String info(int cnumber, Model model)
 	{
 		logger.info("info 처리 요청");
-		couponservice.info(cnumber);
+		Coupon coupon = couponservice.info(cnumber);
+		model.addAttribute("coupon",coupon);
 		return "/coupon/info";
 	}
 }

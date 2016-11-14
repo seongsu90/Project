@@ -20,11 +20,11 @@
     ※<a href="/ourapp/coupon/index">쿠폰 기능</a><br/>
       ------------------------------------------------------<br/>
      <b>[poscontroller-King of Analog]</b><br/>
-    ※<a href="/ourapp/pos/add">pos 추가</a><br/>
-    ※<a href="/ourapp/pos/modify">pos 수정</a><br/>
+    ※<a href="/ourapp/pos/index">pos 기능</a><br/>
+  <!--   ※<a href="/ourapp/pos/modify">pos 수정</a><br/>
     ※<a href="/ourapp/pos/delete">pos 삭제</a><br/>
     ※<a href="/ourapp/pos/info">pos 정보보기</a><br/>
-    ※<a href="/ourapp/pos/calcsum">총가격</a><br/>
+    ※<a href="/ourapp/pos/calcsum">총가격</a><br/> -->
     -------------------------------------------------------<br/>
      <b>[reviewcontroller-King of Analog]</b><br/>
      ※<a href="/ourapp/review/write">리뷰쓰기</a><br/>
