@@ -27,8 +27,8 @@ public class ReviewController {
 	public String write(Review review, HttpSession session) {
 		String mid = (String) session.getAttribute("login");
 		int resid = (int) session.getAttribute("resinfo");
-		review.setRevMid(mid);
-		review.setRevResid(resid);
+		review.setRevmid(mid);
+		review.setRevresid(resid);
 		
 		int result = reviewService.write(review);
 		if ( result == reviewService.WRITE_FAIL ) {
@@ -38,8 +38,8 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/delete")
-	public String delete(int revno, int revMid) {
-		reviewService.delete(revno, revMid);
+	public String delete(int revno, int revmid) {
+		reviewService.delete(revno, revmid);
 		return "review/";
 	}
 	

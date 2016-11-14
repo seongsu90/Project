@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>		
@@ -10,7 +11,7 @@
 	 주문 상세정보
 	 <hr/>
 	 
-	 		<table>
+	 	<table>	 		
 			<tr>
 				<td style="background-color:orange; width:70px"> 매장 </td>
 			 	<td>${pos.presid}</td>
@@ -29,8 +30,8 @@
 			<tr>
 				<td style="background-color:orange; width:70px"> 수량 </td>
 			 	<td>${pos.pcount}</td>
-			</tr>
-		</table>		 
+			</tr>			
+		</table>
 	 
 	</body>
 </html>

@@ -22,16 +22,16 @@ public class ReviewDao {
 		int row = jdbcTemplate.update(
 				sql,
 				review.getRevno(),     // 시퀀스?
-				review.getRevResid(),
-				review.getRevMid(),
+				review.getRevresid(),
+				review.getRevmid(),
 				review.getRevcontent()
 		);
 		return row;		
 	}
 
-	public int delete(int revno, int revMid) {
+	public int delete(int revno, int revmid) {
 		String sql = "delete from review where revno=? and revMid=?";
-		int row = jdbcTemplate.update(sql, revno, revMid);
+		int row = jdbcTemplate.update(sql, revno, revmid);
 		return row;
 	}
 
@@ -42,8 +42,8 @@ public class ReviewDao {
 			public Review mapRow(ResultSet rs, int row) throws SQLException {
 				Review review = new Review();
 				review.setRevno(rs.getInt("revno"));
-				review.setRevResid(rs.getInt("revresid"));
-				review.setRevMid(rs.getString("revmid"));
+				review.setRevresid(rs.getInt("revresid"));
+				review.setRevmid(rs.getString("revmid"));
 				review.setRevcontent(rs.getString("revcontent"));
 				review.setRevscore(rs.getInt("revscore"));
 				review.setRevdate(rs.getDate("revdate"));

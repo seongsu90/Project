@@ -39,26 +39,26 @@ public class PosService {
 		return MODIFY_SUCCESS;
 	}
 	
-	public int delete(int ptableno, int pResid) {
-		int row = posDao.delete(ptableno, pResid);
+	public int delete(int ptableno, int presid) {
+		int row = posDao.delete(ptableno, presid);
 		if(row==0){
 			return DELETE_FAIL;
 		}
 		return DELETE_SUCCESS;
 	}
 	
-	public Pos info(int ptableno, int pResid) {
-		Pos pos = posDao.selectInfo(ptableno, pResid);
-		return pos;
-	}
-	
-	public List<Integer> calcSum(int ptableno, int pResid) {		
-		List<Integer> list = posDao.calc(ptableno, pResid);
+	public List<Pos> info(int presid, int ptableno) {
+		List<Pos> list = posDao.selectInfo(presid, ptableno);
 		return list;
 	}
 	
-	public List<Pos> list(int pResid) {
-		List<Pos> list = posDao.list(pResid);
+	public List<Integer> calcSum(int ptableno, int presid) {		
+		List<Integer> list = posDao.calc(ptableno, presid);
+		return list;
+	}
+	
+	public List<Pos> list(int presid) {
+		List<Pos> list = posDao.list(presid);
 		return list; 
 	}
 }

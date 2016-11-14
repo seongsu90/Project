@@ -5,47 +5,57 @@
 <html>		
 	<head>	
 		<meta charset="UTF-8">
-		<style type="text/css">
-			* {
-				font-family: 돋움;
-				font-size: 12px;		
-			}
-			a {	
+		
+<!-- 		<style type="text/css">
+
+ 			a {	
 				text-decoration: none;
 				color: black;
 			}
 			a:HOVER {				
 				color: green;
-			}
+			} 
 			
 		</style>
+		 -->
 	</head>
 	
 	<body>
 		Pos 메인화면
 		<hr/>		
-		
-		<table>
+ 		
+<!-- 		1. <a href="/ourapp/pos/add">add</a><br/>
+		2. <a href="/ourapp/pos/modify">modify</a><br/>
+		3. <a href="/ourapp/pos/del">del</a><br/>
+		4. <a href="/ourapp/pos/info">info</a><br/> -->
+
+	<table>
 			<tr>
 				<td>
 					<c:forEach var="pos" items="${list}">
-						<a href="info?pResid=${pos.pResid}">							
-								
+						<a href="info?presid=${pos.presid};ptableno=${pos.ptableno}">
 							<div>
-								<table style="width:100%; height:30px; background-color: black; opacity: 0.7">
-									<tr>
-										<td style="text-align:left; color:white;">${pos.ptableno}</td>
-										<td style="text-align:right; color:aqua;">${pos.pMlname}</td>
-										<td style="text-align:right; color:yellow;">${pos.pcount}</td>
-									</tr>
+								<table style="width:100%; height:30px; opacity: 0.7">
+									<tr>																		
+										<td style="background-color:orange; width:70px"> 매장 </td>
+				 						<td><input type="text" name="presid" style="width:100px" value="${pos.presid}"></td>
+				 						
+										<td style="background-color:orange; width:70px"> 테이블 </td>
+				 						<td><input type="text" name="ptableno" style="width:100px" value="${pos.ptableno}"></td>				 						
+				 												
+										<td style="background-color:orange; width:70px"> 메뉴 </td>
+									 	<td><input type="text" name="pmlname" style="width:100px" value="${pos.pmlname}"></td>
+									
+										<td style="background-color:orange; width:70px"> 수량 </td>
+									 	<td><input type="text" name="pcount" style="width:100px" value="${pos.pcount}"></td>
+									</tr>	
 								</table>
-							</div>							
-							
-						</a>	
+							</div>										
+						</a>
 					</c:forEach>
 				</td>
 			</tr>	
-		</table>
+		</table> 
 		
 	</body>
 </html>

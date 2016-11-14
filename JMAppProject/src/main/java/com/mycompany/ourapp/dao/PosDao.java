@@ -22,57 +22,58 @@ public class PosDao {
 		int row = jdbcTemplate.update(
 				sql,
 				pos.getPtableno(),
-				pos.getpResid(),
-				pos.getpMlname(),
+				pos.getPresid(),
+				pos.getPmlname(),
 				pos.getPcount()
 		);
 		return row;		
 	}
 
 	public int update(Pos pos) {
-		String sql = "update pos set pMlname=?, pcount=? where ptableno=? and presid=?";
+		String sql = "update pos set pmlname=?, pcount=? where presid=? and ptableno=?";
 		int row = jdbcTemplate.update(
 				sql,
-				pos.getpMlname(),
+				pos.getPmlname(),
 				pos.getPcount(),
 				pos.getPtableno(),
-				pos.getpResid()
+				pos.getPresid()
 		);
 		return row;
 	}
 
-	public int delete(int ptableno, int pResid) {
-		String sql = "delete from pos where ptableno=? and presid=?";
-		int row = jdbcTemplate.update(sql, ptableno, pResid);
+	public int delete(int ptableno, int presid) {
+		String sql = "delete from pos where presid=? and ptableno=?";
+		int row = jdbcTemplate.update(sql, presid, ptableno);
 		return row;
 	}
 	
-	public Pos selectInfo(int ptableno, int pResid) {
-		String sql = "select ptableno, presid, pmlname, pcount from pos where presid=?, ptableno=?";
-		List<Pos> list =  jdbcTemplate.query(sql, new Object[] {pResid, ptableno}, new RowMapper<Pos>() {
+	public List<Pos> selectInfo(int presid, int ptableno) {
+		String sql = "select presid, ptableno, pmlname, pcount from pos where presid=? and ptableno=?";
+		List<Pos> list =  jdbcTemplate.query(sql, new Object[] {presid, ptableno}, new RowMapper<Pos>() {
 			@Override
 			public Pos mapRow(ResultSet rs, int row) throws SQLException {
 				Pos pos = new Pos();
-				pos.setpMlname(rs.getString("pmlname"));
+				pos.setPresid(rs.getInt("presid"));
+				pos.setPtableno(rs.getInt("ptableno"));	
+				pos.setPmlname(rs.getString("pmlname"));
 				pos.setPcount(rs.getInt("pcount"));
-				pos.setpResid(rs.getInt("presid"));
-				pos.setPtableno(rs.getInt("ptableno"));				
+							
 				return pos;
 			}	
 		});				
-		return (list.size() !=0) ? list.get(0) : null;
+		return list;
 	}
 
-	public List<Integer> calc(int ptableno, int pResid) {
+	public List<Integer> calc(int presid, int ptableno) {
 		String sql = "";
 				sql += "select (m.mlprice * p.pcount) price ";
 				sql += "from pos p, menulist m ";
 				sql += "where p.presid = m.mlresid ";
 				sql += "and p.pmlname = m.mlname ";
-				sql += "and p.ptableno = ? ";
 				sql += "and p.presid = ? ";
+				sql += "and p.ptableno = ? ";
 		
-		List<Integer> list =  jdbcTemplate.query(sql, new Object[] {ptableno, pResid}, new RowMapper<Integer>() {
+		List<Integer> list =  jdbcTemplate.query(sql, new Object[] {presid, ptableno}, new RowMapper<Integer>() {
 			@Override
 			public Integer mapRow(ResultSet rs, int row) throws SQLException {
 				
@@ -83,14 +84,15 @@ public class PosDao {
 		return list;
 	}
 	
-	public List<Pos> list(int pResid) {
-		String sql = "select ptableno, pmlname, pcount from pos where presid=?";
-		List<Pos> list = jdbcTemplate.query(sql, new Object[] {pResid}, new RowMapper<Pos>() {
+	public List<Pos> list(int presid) {
+		String sql = "select presid, ptableno, pmlname, pcount from pos where presid=?";
+		List<Pos> list = jdbcTemplate.query(sql, new Object[] {presid}, new RowMapper<Pos>() {
 			@Override
 			public Pos mapRow(ResultSet rs, int row) throws SQLException {
-				Pos pos = new Pos();
+				Pos pos = new Pos();	
+				pos.setPresid(rs.getInt("presid"));
 				pos.setPtableno(rs.getInt("ptableno"));
-				pos.setpMlname(rs.getString("pmlname"));
+				pos.setPmlname(rs.getString("pmlname"));
 				pos.setPcount(rs.getInt("pcount"));
 					
 				return pos;

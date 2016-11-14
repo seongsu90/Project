@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class Review {
 	private int revno;
-	private int revResid;
-	private String revMid;
+	private int revresid;
+	private String revmid;
 	private String revcontent;
 	private int revscore;
 	private Date revdate;
@@ -16,17 +16,17 @@ public class Review {
 	public void setRevno(int revno) {
 		this.revno = revno;
 	}
-	public int getRevResid() {
-		return revResid;
+	public int getRevresid() {
+		return revresid;
 	}
-	public void setRevResid(int revResid) {
-		this.revResid = revResid;
+	public void setRevresid(int revresid) {
+		this.revresid = revresid;
 	}
-	public String getRevMid() {
-		return revMid;
+	public String getRevmid() {
+		return revmid;
 	}
-	public void setRevMid(String revMid) {
-		this.revMid = revMid;
+	public void setRevmid(String revmid) {
+		this.revmid = revmid;
 	}
 	public String getRevcontent() {
 		return revcontent;
