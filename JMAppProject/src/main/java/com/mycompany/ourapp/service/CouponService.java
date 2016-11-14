@@ -4,22 +4,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mycompany.ourapp.dao.CouponDao;
+import com.mycompany.ourapp.dao.MemberDao;
 import com.mycompany.ourapp.dto.Coupon;
 import com.mycompany.ourapp.dto.CouponBox;
 
 @Component
 public class CouponService {
-	private static final int ADD_SUCCESS = 0;
-	private static final int ADD_FAIL =1;
+	public static final int ADD_SUCCESS = 0;
+	public static final int ADD_FAIL =1;
 	
-	private static final int SEND_SUCCESS = 0;
-	private static final int SEND_FAIL = 1;
+	public static final int SEND_SUCCESS = 0;
+	public static final int SEND_FAIL = 1;
 	
-	private static final int DELETE_SUCCESS = 0;
-	private static final int DELETE_FAIL = 1;
+	public static final int DELETE_SUCCESS = 0;
+	public static final int DELETE_FAIL = 1;
+	
 	
 	@Autowired
 	private CouponDao couponDao;
+	
 	
 	public int add(Coupon coupon) {
 		int row=couponDao.insert(coupon);
@@ -29,6 +32,7 @@ public class CouponService {
 		}
 		return ADD_SUCCESS;
 	}
+	
 	
 	public int send(CouponBox couponBox) {	
 		int row=couponDao.send(couponBox);
@@ -50,6 +54,7 @@ public class CouponService {
 	
 	public Coupon info(int cnumber) {
 		Coupon coupon = couponDao.selectById(cnumber);
+		
 		return coupon;
 	}
 
@@ -59,7 +64,7 @@ public class CouponService {
 		{
 			return false;
 		}
-		return true;
-		
+		return true;	
 	}
+
 }

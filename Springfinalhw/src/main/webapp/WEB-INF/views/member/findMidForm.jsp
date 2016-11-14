@@ -8,14 +8,12 @@
 	</head>
 	<body> <!-- 브라우저에 나오는 부분 -->
 		
-		
-		&nbsp; <font size="6"><b>add</b></font></p>
+		<p align="left"><a href="/myweb2/"><IMAGE SRC="/myweb2/resources/spring.jpg"></IMAGE></a>
+		&nbsp; <font size="6"><b>아이디찾기</b></font></p>
 		<hr/> <!-- 시작과 동시에 끝이다라는 의미<br/>// 태그의 의미는 수평선그리기 -->
 		<form method="post">
-		- 쿠폰번호 &nbsp;&nbsp;<input type="text"  name="cnumber"  />
-		<c:if test="${error == 'DELETE_FAIL'}"> *쿠폰번호가 존재하지 않음</c:if> <br/>
-
-		<input type="submit" value="쿠폰 삭제"/> <br/>
+			이메일: <input type="email" name="memail"/>${error}<br/>
+			<input type="submit" value="찾기"/> 
 		</form>
 	</body>
 </html>

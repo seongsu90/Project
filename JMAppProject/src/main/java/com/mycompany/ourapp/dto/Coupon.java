@@ -2,9 +2,12 @@ package com.mycompany.ourapp.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Coupon {
 	private int cnumber;
 	private String cname;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date cdday;
 	private String cinfo;
 	private int cresid;
