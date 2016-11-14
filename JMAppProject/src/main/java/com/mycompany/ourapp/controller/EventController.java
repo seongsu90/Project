@@ -19,17 +19,17 @@ public class EventController {
 	
 	@RequestMapping("/index")
 	public String index() {
-		return "/event/index";
+		return "event/index";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addForm(Event event){
-		return "/event/addForm";
+		return "event/addForm";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String add(Event event){
-		eventService.add(event);
+		int row = eventService.add(event);
 		return "redirect:/event/index";
 	}
 	
