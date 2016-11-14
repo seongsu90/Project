@@ -20,22 +20,25 @@ public class EventService {
 	
 	public int add(Event event){
 		int row = eventdao.insert(event);
+		if(row == 0){
+			return ADD_FAIL;
+		}
 		return ADD_SUCCESS;
 	}
 	
-	public int delete(int eResid,String eMlname){
-		int row = eventdao.delete(eResid, eMlname);
+	public int delete(int eresid,String emlname){
+		int row = eventdao.delete(eresid, emlname);
 		if(row==0){return DELETE_FAIL;}
 		return DELETE_SUCCESS;
 	}
 	
 	public int modify(Event event){
 		int row = eventdao.update(event);
-		if(row==0){return MODIFY_SUCCESS;}
+		if(row==0){return MODIFY_FAIL;}
 		return  MODIFY_SUCCESS;
 	}
 	
-	public Event info(int eResid, String eMlname){
-		return eventdao.selectByEResidAndEMlname(eResid,eMlname);
+	public Event info(int eresid, String emlname){
+		return eventdao.selectByEresidAndEmlname(eresid,emlname);
 	}
 }

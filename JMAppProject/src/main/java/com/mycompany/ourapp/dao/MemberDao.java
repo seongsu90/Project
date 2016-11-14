@@ -42,7 +42,7 @@ public class MemberDao {
 				member.getMlocation(),
 				member.getMrank(),
 				member.getMpoint(),
-				member.getMResid(),
+				member.getMresid(),
 				member.getMid()
 		);
 		return row;
@@ -71,7 +71,7 @@ public class MemberDao {
 				member.setMlocation(rs.getString("mlocation"));
 				member.setMrank(rs.getInt("mrank"));
 				member.setMpoint(rs.getInt("mpoint"));
-				member.setMResid(rs.getInt("mResid"));
+				member.setMresid(rs.getInt("mresid"));
 				return member;
 			}
 		});
@@ -117,7 +117,7 @@ public class MemberDao {
 					member.setMlocation(rs.getString("mlocation"));
 					member.setMrank(rs.getInt("mrank"));
 					member.setMpoint(rs.getInt("mpoint"));
-					member.setMResid(rs.getInt("mResid"));
+					member.setMresid(rs.getInt("mresid"));
 					return member;
 				}					
 			}

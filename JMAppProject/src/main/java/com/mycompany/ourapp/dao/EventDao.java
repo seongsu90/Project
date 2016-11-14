@@ -19,14 +19,14 @@ public class EventDao {
 	private JdbcTemplate jdbcTemplate;
 	//이벤트 생성
 	public int insert(Event event){
-		String sql="insert into event(ename,eresid,esavedfile,einfo,emlname,eprice,estart,eend), values(?,?,?,?,?,?,?,?)";
+		String sql="insert into event(ename,eresid,esavedfile,einfo,emlname,eprice,estart,eend) values(?,?,?,?,?,?,?,?)";
 		int row = jdbcTemplate.update(
 				sql,
 				event.getEname(),
-				event.geteResid(),
+				event.getEresid(),
 				event.getEsavedfile(),
 				event.getEinfo(),
-				event.geteMlname(),
+				event.getEmlname(),
 				event.getEprice(),
 				event.getEstart(),
 				event.getEend()
@@ -34,9 +34,9 @@ public class EventDao {
 		return row;
 	}
 	//이벤트 삭제
-	public int delete(int eResid, String eMlname){
+	public int delete(int eresid, String emlname){
 		String sql="delete from event where eresid=? and emlname=?";
-		int row = jdbcTemplate.update(sql, eResid, eMlname);
+		int row = jdbcTemplate.update(sql, eresid, emlname);
 		return row;
 	}
 	//이벤트 추가
@@ -47,18 +47,18 @@ public class EventDao {
 				event.getEname(),
 				event.getEsavedfile(),
 				event.getEinfo(),
-				event.geteMlname(),
+				event.getEmlname(),
 				event.getEprice(),
 				event.getEstart(),
 				event.getEend(),
-				event.geteResid()
+				event.getEresid()
 				);
 		return row;
 	}
 	
-	public Event selectByEResidAndEMlname(int eResid, String eMlname) {
-		String sql = "select * from event where eResid=? and eMlname=?";
-		List<Event> list = jdbcTemplate.query(sql, new Object[]{eResid,eMlname}, new RowMapper<Event>() {
+	public Event selectByEresidAndEmlname(int eresid, String emlname) {
+		String sql = "select * from event where eresid=? and emlname=?";
+		List<Event> list = jdbcTemplate.query(sql, new Object[]{eresid,emlname}, new RowMapper<Event>() {
 			@Override
 			public Event mapRow(ResultSet rs, int row) throws SQLException {
 				Event event = new Event();

@@ -6,9 +6,9 @@ public class Reservation {
 
 	private Date rvtime;
 	private int rvperson;
-	private String rvMid;
-	private int rvResid;
-
+	private String rvmid;
+	private int rvresid;
+	
 	public Date getRvtime() {
 		return rvtime;
 	}
@@ -21,18 +21,20 @@ public class Reservation {
 	public void setRvperson(int rvperson) {
 		this.rvperson = rvperson;
 	}
-	public String getRvMid() {
-		return rvMid;
+	public String getRvmid() {
+		return rvmid;
 	}
-	public void setRvMid(String rvMid) {
-		this.rvMid = rvMid;
+	public void setRvmid(String rvmid) {
+		this.rvmid = rvmid;
 	}
-	public int getRvResid() {
-		return rvResid;
+	public int getRvresid() {
+		return rvresid;
 	}
-	public void setRvResid(int rvResid) {
-		this.rvResid = rvResid;
+	public void setRvresid(int rvresid) {
+		this.rvresid = rvresid;
 	}
+
+	
 	
 	
 }

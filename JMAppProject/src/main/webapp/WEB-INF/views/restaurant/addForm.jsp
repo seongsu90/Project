@@ -9,8 +9,13 @@
 	Restaurant 추가
 		<hr/>		
 		
+<<<<<<< HEAD
 		<form method="post">
 			식당 아이디 : <input type="text" name="resid" value="${restaurant.resid}"/><br/>
+=======
+		<form method="post" enctype="multipart/form-data">
+			식당 아이디 : <input type="text" name="resid"  /><br/>
+>>>>>>> 8bd5c202462104852376c0418417b905388fa658
 			식당 이름 : <input type="text" name="resname" value="${restaurant.resname}"/><br/>
 			식당 위치 : <input type="text" name="reslocation" value="${restaurant.reslocation}"/><br/>	
 			식당 테이블 수 : <input type="number" name="restotaltable" value="${restaurant.restotaltable}"/><br/>

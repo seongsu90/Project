@@ -6,7 +6,6 @@
 		<meta charset="UTF-8"> 
 	</head>
 	<body>
-		<hr/>
 		<b>로그인</b>
 		<hr/>
 		<form method="post">
@@ -17,9 +16,9 @@
 			<c:if test="${error == 'LOGIN_FAIL_MPASSWORD'}"> *패스워드가 틀림</c:if>
 			<br/>
 			<input type="submit" value="로그인"/> <br/>
+			<c:if test="${login != null}">
+				<a href="/ourapp/member/info?mid=${login}">회원정보</a>
+			</c:if>
 		</form>
-		<a href="/ourapp/member/list?pageNo=1">회원 목록</a>
-<%-- 		<a href="${pageContext.servletContext.contextPath}/member/join">회원 가입</a> <br/>
-		<a href="findMid">아이디 찾기</a> <br/> --%>
 	</body>
 </html>

@@ -19,33 +19,33 @@ public class ReservationDao {
 	private JdbcTemplate jdbcTemplate;
 	
 	public int insert(Reservation reservation) {
-		String sql = "insert into reservation(rvtime, rvperson, rvMid, rvResid) values(sysdate, ?, ?, ?)";
+		String sql = "insert into reservation(rvtime, rvperson, rvmid, rvresid) values(sysdate, ?, ?, ?)";
 		int row = jdbcTemplate.update(
 				sql,
 				reservation.getRvtime(),
 				reservation.getRvperson(),
-				reservation.getRvMid(),
-				reservation.getRvResid()
+				reservation.getRvmid(),
+				reservation.getRvresid()
 		);		
 		return row;
 	}
 	
 	public int delete(String rvMid, int rvResid) {
-		String sql = "delete from reservation where rvMid=? and rvResid=?";
+		String sql = "delete from reservation where rvmid=? and rvresid=?";
 		int row = jdbcTemplate.update( sql, rvMid, rvResid );		
 		return row;
 	}
 	
 	public Reservation selectById(String rvMid, int rvResid) {
-		String sql = "select * from reservation where rvMid=? and rvResid=?";
+		String sql = "select * from reservation where rvmid=? and rvresid=?";
 		List<Reservation> list = jdbcTemplate.query(sql, new Object[]{rvMid, rvResid}, new RowMapper<Reservation>() {
 			@Override
 			public Reservation mapRow(ResultSet rs, int row) throws SQLException {
 				Reservation reservation = new Reservation();
 				reservation.setRvtime(rs.getDate("rvtime"));
 				reservation.setRvperson(rs.getInt("rvperson"));
-				reservation.setRvMid(rs.getString("rvMid"));
-				reservation.setRvResid(rs.getInt("rvResid"));
+				reservation.setRvmid(rs.getString("rvmid"));
+				reservation.setRvresid(rs.getInt("rvresid"));
 				
 				return reservation;
 			}

@@ -15,33 +15,34 @@
 				<td>${event.ename}</td>
 			</tr>
 			<tr>
-				<td style="background-color:orange; width:100px">식당명</td>	
-				<td>${event.eResid}</td>
+				<td style="background-color:blue; width:100px">식당명</td>	
+				<td>${event.eresid}</td>
 			</tr>
 			<tr>
-				<td style="background-color:orange; width:100px">이벤트 사진</td>
-				<td>${event.ensavedfile}</td>
+				<td style="background-color:blue; width:100px">이벤트 사진</td>
+				<td>${event.esavedfile}</td>
 			</tr>	
 			<tr>
-				<td style="background-color:orange; width:100px">이벤트 정보</td>
+				<td style="background-color:blue; width:100px">이벤트 정보</td>
 				<td>${event.einfo}</td>
 			</tr>
 			<tr>
-				<td style="background-color:orange; width:100px">이벤트 메뉴 이름</td>
-				<td>${event.eMlname}</td>
+				<td style="background-color:blue; width:100px">이벤트 메뉴 이름</td>
+				<td>${event.emlname}</td>
 			</tr>
 			<tr>
-				<td style="background-color:orange; width:100px">이벤트 할인가격</td>
+				<td style="background-color:blue; width:100px">이벤트 할인가격</td>
 				<td>${event.eprice}</td>
 			</tr>
 			<tr>
-				<td style="background-color:orange; width:100px">이벤트 시작기간</td>
+				<td style="background-color:blue; width:100px">이벤트 시작기간</td>
 				<td>${event.start}</td>
 			</tr>	
 			<tr>
-				<td style="background-color:orange; width:100px">이벤트 종료기간</td>
+				<td style="background-color:blue; width:100px">이벤트 종료기간</td>
 				<td>${event.eend}</td>
 			</tr>	
 		</table>
+		
 	</body>
 </html>

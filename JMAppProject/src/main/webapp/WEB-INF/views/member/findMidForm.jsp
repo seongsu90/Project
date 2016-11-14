@@ -6,7 +6,6 @@
 		<meta charset="UTF-8"> 
 	</head>
 	<body>
-		<hr/>
 		<b>아이디 찾기</b>
 		<hr/>
 		<form method="post">

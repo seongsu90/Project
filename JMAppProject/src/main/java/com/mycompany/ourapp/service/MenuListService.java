@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mycompany.ourapp.dao.MenuListDao;
-import com.mycompany.ourapp.dto.Event;
 import com.mycompany.ourapp.dto.MenuList;
 
 @Component
@@ -23,6 +22,10 @@ public class MenuListService {
 	@Autowired
 	private MenuListDao menuListdao;
 	
+	public List<MenuList> list(int pageNo, int rowsPerPage){
+		return menuListdao.selectByPage(pageNo, rowsPerPage); 
+	}
+	
 	public int add(MenuList menuList){
 		int row = menuListdao.insert(menuList);
 		if(row==0){return DELETE_FAIL;}
@@ -36,26 +39,30 @@ public class MenuListService {
 		return MODIFY_SUCCESS;
 	}
 	
-	public int delete(int mlResid,String mlname){
-		int row = menuListdao.delete(mlResid,mlname);
+	public int delete(int mlresid,String mlname){
+		int row = menuListdao.delete(mlresid,mlname);
 		if(row==0){return DELETE_FAIL;}
 		return DELETE_SUCCESS;
 	}
 	
-	public List<MenuList> resHotList(int mlResid, boolean mlishot){
+	public List<MenuList> resHotList(int mlresid, boolean mlishot){
 		
-		List<MenuList> list = menuListdao.resHotList(mlResid, mlishot);
+		List<MenuList> list = menuListdao.resHotList(mlresid, mlishot);
 		
 		return list;
 	}
 	
-	public int modifyHot(int mlResid,String mlname, boolean mlishot){
-		int row = menuListdao.modifyHot(mlResid, mlname, mlishot);
+	public int modifyHot(int mlresid,String mlname, boolean mlishot){
+		int row = menuListdao.modifyHot(mlresid, mlname, mlishot);
 		if(row==0){return MODIFY_FAIL;}
 		return MODIFY_SUCCESS;
 	}
 	
-	public MenuList info(int mlResid, String mlname){
-		return menuListdao.selectBymlResidAndmlname(mlResid,mlname);
+	public MenuList info(int mlresid, String mlname){
+		return menuListdao.selectBymlResidAndmlname(mlresid,mlname);
+	}
+
+	public int getCount() {
+		return menuListdao.count();
 	}
 }

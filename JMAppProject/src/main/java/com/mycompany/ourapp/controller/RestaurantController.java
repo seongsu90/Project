@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +17,10 @@ import com.mycompany.ourapp.service.RestaurantService;
 @Controller
 @RequestMapping("/restaurant")
 public class RestaurantController {
+	private static final Logger logger = LoggerFactory.getLogger(RestaurantController.class);
+	
 	@Autowired
 	private RestaurantService restaurantService;
-	
 	
 	@RequestMapping("/list")
 	public String list(String pageNo, Model model, HttpSession session){
@@ -32,8 +35,6 @@ public class RestaurantController {
 			intPageNo = Integer.parseInt(pageNo);
 		}
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
-		
-
 		
 		int rowsPerPage=8;
 		int pagesPerGroup=5;
@@ -66,11 +67,13 @@ public class RestaurantController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addForm(Restaurant restaurant){
+		logger.info("addForm() 실행");
 		return "restaurant/addForm";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String add(Restaurant restaurant){
+		logger.info("add() 실행");
 		try{
 			int result=restaurantService.add(restaurant);
 			return "redirect:/restaurant/add";

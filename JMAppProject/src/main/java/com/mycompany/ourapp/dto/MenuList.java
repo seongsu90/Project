@@ -2,7 +2,7 @@ package com.mycompany.ourapp.dto;
 public class MenuList {
 	private String mlname;
 	private int mlprice;
-	private int mlResid;
+	private int mlresid;
 	private String mlinfo;
 	private String mlsavedfile;
 	private boolean mlishot;
@@ -19,11 +19,11 @@ public class MenuList {
 	public void setMlprice(int mlprice) {
 		this.mlprice = mlprice;
 	}
-	public int getMlResid() {
-		return mlResid;
+	public int getMlresid() {
+		return mlresid;
 	}
-	public void setMlResid(int mlResid) {
-		this.mlResid = mlResid;
+	public void setMlresid(int mlresid) {
+		this.mlresid = mlresid;
 	}
 	public String getMlinfo() {
 		return mlinfo;

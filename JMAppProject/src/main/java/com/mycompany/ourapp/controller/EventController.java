@@ -1,5 +1,6 @@
 package com.mycompany.ourapp.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import com.mycompany.ourapp.service.EventService;
 @Controller
 @RequestMapping("/event")
 public class EventController {
+	
 	@Autowired
 	private EventService eventService;
 	
@@ -27,31 +29,26 @@ public class EventController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String add(Event event){
-		try{
-			int result=eventService.add(event);
-			return "redirect:/event/add";
-	
-		}catch(Exception e){
-			return "event/addForm";
-		}
+		int row = eventService.add(event);
+		return "redirect:/event/index";
 	}
 	
 	@RequestMapping("/delete")
-	public String delete(int eResid,String eMlname){
-		eventService.delete(eResid,eMlname);
-		return "event/info";
+	public String delete(int eresid,String emlname){
+		eventService.delete(eresid,emlname);
+		return "redirect:/event/info";
 	}
 	
 	@RequestMapping("/info")
-	public String info(int eResid,String eMlname, Model model){
-		Event event=eventService.info(eResid,eMlname);
+	public String info(int eresid,String emlname, Model model){
+		Event event=eventService.info(eresid,emlname);
 		model.addAttribute("event", event);
 		return "event/info";
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public String modifyForm(int eResid,String eMlname, Model model){
-		Event event=eventService.info(eResid,eMlname);
+	public String modifyForm(int eresid,String emlname, Model model){
+		Event event=eventService.info(eresid,emlname);
 		model.addAttribute("event", event);
 		return "event/modify";
 	}
@@ -59,7 +56,7 @@ public class EventController {
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Event event){
-		Event dbEvent=eventService.info(event.geteResid(),event.geteMlname());
+		Event dbEvent=eventService.info(event.getEresid(),event.getEmlname());
 		eventService.modify(event);
 		return "redirect:/event/info";
 	}

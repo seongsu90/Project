@@ -12,9 +12,9 @@
 			1. <a href="/ourapp/coupon/add">쿠폰 생성</a> <br/>
 			2. 쿠폰 전송 <br/>
 			3. <a href="/ourapp/coupon/delete">쿠폰 삭제</a> <br/>
-			4.<a href="/ourapp/coupon/info?cnumber=1"> 쿠폰 상세보기</a> <br/>
+			4.<a href="/ourapp/coupon/info?cnumber=2115507"> 쿠폰 상세보기</a> <br/>
 			
 			<%-- 회원전용메뉴 --%>
-			내 쿠폰함
+			※<a href="/ourapp/coupon/list">내 쿠폰함</a>
 	</body>
 </html>
