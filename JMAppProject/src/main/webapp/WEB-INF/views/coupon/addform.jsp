@@ -16,7 +16,7 @@
 		- 쿠폰 유효기간<input type="date" name="cdday"> <br/>
 		- 쿠폰정보<br/>
 		<textarea name="cinfo" rows="10" cols="30">쿠폰정보를 입력해 주세요</textarea> <br/>
-		- 쿠폰적용 음식점 <input type="text"  name="cnumber"  value="${cresid}" readonly/> <br/>
+		- 쿠폰적용 음식점 <input type="text"  name="cresid"  value="${cresid}" readonly/> <br/>
 		- 쿠폰 할인금액<input type="text"  name="cdiscount" value="10000"/> <br/>
 		<input type="submit" value="쿠폰 등록"/> <br/>
 		</form>
