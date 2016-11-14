@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.mycompany.ourapp.dto.Restaurant;
 
 @Component
@@ -17,7 +19,7 @@ public class RestaurantDao {
 	private static JdbcTemplate jdbcTemplate;
 	
 	public int insert(Restaurant restaurant) {
-		String sql="insert into Restaurant (resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, closeday) values(?,?,?,?,?,?,?,?,?,?)";
+		String sql="insert into Restaurant (resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, rescloseday) values(?,?,?,?,?,?,?,?,?,?)";
 		int row=jdbcTemplate.update(
 				sql,
 				restaurant.getResid(),
@@ -79,7 +81,7 @@ public class RestaurantDao {
 						restaurant.setResid(rs.getInt("resid"));
 						restaurant.setResname(rs.getString("resname"));
 						restaurant.setResinfo(rs.getString("resinfo"));
-						restaurant.setRessavedfile(rs.getString("ressavedfile"));
+						restaurant.setRessavedfile((MultipartFile) rs.getObject("ressavedfile"));
 						
 						return restaurant;
 					}
@@ -103,7 +105,7 @@ public class RestaurantDao {
 				restaurant.setRescloseday(rs.getString("rescloseday"));
 				restaurant.setResopen(rs.getTime("resopen"));
 				restaurant.setResclose(rs.getTime("resclose"));
-				restaurant.setRessavedfile(rs.getString("ressavedfile"));
+				restaurant.setRessavedfile((MultipartFile) rs.getObject("ressavedfile"));
 				return restaurant;
 			}
 		});

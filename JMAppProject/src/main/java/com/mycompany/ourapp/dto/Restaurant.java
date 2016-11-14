@@ -3,6 +3,8 @@ package com.mycompany.ourapp.dto;
 import java.sql.Time;
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Restaurant {
 	private int resid;
 	private String resname;
@@ -13,7 +15,7 @@ public class Restaurant {
 	private String rescloseday;
 	private Time resopen;
 	private Time resclose;
-	private String ressavedfile;
+	private MultipartFile ressavedfile;
 	
 	public int getResid() {
 		return resid;
@@ -63,10 +65,10 @@ public class Restaurant {
 	public void setResclose(Time resclose) {
 		this.resclose = resclose;
 	}
-	public String getRessavedfile() {
+	public MultipartFile getRessavedfile() {
 		return ressavedfile;
 	}
-	public void setRessavedfile(String ressavedfile) {
+	public void setRessavedfile(MultipartFile ressavedfile) {
 		this.ressavedfile = ressavedfile;
 	}
 	public String getRescloseday() {
