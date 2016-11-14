@@ -38,6 +38,14 @@ public class CouponController {
 		return "/coupon/index";
 	}
 	
+	@RequestMapping("/list")
+	public String list()
+	{
+		couponservice.list(mid);
+		logger.info("list 처리 요청");
+		return "/coupon/list";
+	}
+	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addform(HttpSession session){
 		logger.info("add 요청처리");
@@ -54,7 +62,7 @@ public class CouponController {
 			}
 			cnumber = ranNum;
 			Member member = memberservice.info(mid);
-			cresid = member.getMResid();
+			cresid = member.getMresid();
 			break;
 		}
 		session.setAttribute("cresid", cresid);

@@ -1,10 +1,12 @@
 package com.mycompany.ourapp.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mycompany.ourapp.dao.CouponDao;
-import com.mycompany.ourapp.dao.MemberDao;
 import com.mycompany.ourapp.dto.Coupon;
 import com.mycompany.ourapp.dto.CouponBox;
 
@@ -54,7 +56,6 @@ public class CouponService {
 	
 	public Coupon info(int cnumber) {
 		Coupon coupon = couponDao.selectById(cnumber);
-		
 		return coupon;
 	}
 
@@ -65,6 +66,16 @@ public class CouponService {
 			return false;
 		}
 		return true;	
+	}
+
+
+	public List<CouponBox> list(String mid) {
+		// TODO Auto-generated method stub
+		List<CouponBox> couponList = new ArrayList<>();
+		CouponBox couponbox = couponDao.myCoupon(mid);
+		couponList.add(couponbox);
+		
+		return couponList;
 	}
 
 }
