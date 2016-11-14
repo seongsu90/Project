@@ -28,7 +28,7 @@
 			</tr>
 			<tr>
 				<td style="background-color:#9966FF; width:70px">음식점 ID</td>
-				<td>${coupon.cResid}</td>
+				<td>${coupon.cresid}</td>
 			</tr>
 			<tr>
 				<td style="background-color:#9966FF; width:70px">할인 금액</td>

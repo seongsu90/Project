@@ -2,8 +2,8 @@ package com.mycompany.ourapp.dto;
 
 public class Pos {
 	private int ptableno;
-	private int pResid;
-	private String pMlname;
+	private int presid;
+	private String pmlname;
 	private int pcount;
 	
 	public int getPtableno() {
@@ -12,18 +12,17 @@ public class Pos {
 	public void setPtableno(int ptableno) {
 		this.ptableno = ptableno;
 	}
-	public int getpResid() {
-		return pResid;
+	public int getPresid() {
+		return presid;
 	}
-	public void setpResid(int pResid) {
-		this.pResid = pResid;
+	public void setPresid(int presid) {
+		this.presid = presid;
 	}
-
-	public String getpMlname() {
-		return pMlname;
+	public String getPmlname() {
+		return pmlname;
 	}
-	public void setpMlname(String pMlname) {
-		this.pMlname = pMlname;
+	public void setPmlname(String pmlname) {
+		this.pmlname = pmlname;
 	}
 	public int getPcount() {
 		return pcount;

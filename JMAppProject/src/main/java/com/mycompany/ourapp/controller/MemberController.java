@@ -144,7 +144,7 @@ public class MemberController {
 	
 	// 회원 정보보기 ( 사용자 기준 )
 	@RequestMapping("/info")
-	public String info(String mid, HttpSession session, Model model) {
+	public String info(String mid, Model model) {
 		logger.info("info() 실행");
 		Member member = memberService.info(mid);
 		model.addAttribute("member", member);
@@ -157,22 +157,31 @@ public class MemberController {
 		logger.info("modifyInfoForm() GET 실행");
 		Member member = memberService.info(mid);
 		model.addAttribute("member", member);
-		return "member/modifyInfo";
+		return "member/modifyInfoForm";
 	}
 	
 	// 회원 수정
 	@RequestMapping(value="/modifyInfo", method=RequestMethod.POST)
-	public String modifyInfo(Member member, Model model) {
+	public String modifyInfo(String mphone, String mlocation, String mpassword, String newmpassword, Model model, HttpSession session) {
 		logger.info("modifyInfo() POST 실행");
-		try {
-			int result = memberService.join(member);
-			return "redirect:/member/login";
-		} catch (DuplicateKeyException e) {
-			model.addAttribute("error", " 아이디가 존재합니다. 다른 아이디를 입력해 주세요.");
-			return "member/joinForm";
-		} catch (Exception e1) {
-			model.addAttribute("error2", " 모든 항목을 입력해 주세요");
-			return "member/joinForm";
+		String mid = (String) session.getAttribute("login");
+		Member member = memberService.info(mid);
+		if ( member.getMpassword().equals(mpassword) ) {
+			member.setMphone(mphone);
+			member.setMlocation(mlocation);
+			member.setMpassword(newmpassword);
+			try {
+				memberService.modify(member);
+				return "redirect:/member/info?mid=" + mid;
+			} catch (Exception e) {
+				model.addAttribute("member", member);
+				model.addAttribute("error", " 모든 항목을 입력해 주세요");
+				return "member/modifyInfoForm";
+			}
+		} else {
+			model.addAttribute("member", member);
+			model.addAttribute("error", " 비밀번호가 틀렸습니다");
+			return "member/modifyInfoForm";
 		}
 	}
 	
@@ -243,41 +252,29 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	// 테스트 못함 해야함.	
 	// 탈퇴하기 폼 ( 비밀번호 확인 )
 	@RequestMapping(value="/withdraw", method=RequestMethod.GET)
 	public String withdrawForm() {
-		logger.info("withdrawForm() GET 실행");
-		
-		
-		return "member/withdraw";
+		logger.info("withdrawForm() GET 실행");	
+		return "member/withdrawForm";
 	}
 	
-	// 테스트 못함 해야함.
 	// 탈퇴
 	@RequestMapping(value="/withdraw", method=RequestMethod.POST)
 	public String withdraw(String mpassword, HttpSession session, Model model) {
-		logger.info("findList() POST 실행");
+		logger.info("withdraw() POST 실행");
 		String mid = (String) session.getAttribute("login");
-		Member member = memberService.info(mid);
-		int result = memberService.withdraw(mid, mpassword);
-		
-		if ( result == MemberService.WITHDRAW_SUCCESS ) {
-			// 탈퇴 성공
+		int result = memberService.withdraw(mid, mpassword); 
+		if ( result == MemberService.WITHDRAW_SUCCESS ){
 			session.removeAttribute("login");
-			return "redirect:/";
+			return "redirect:/";			
 		} else {
-			// 탈퇴 실패
 			model.addAttribute("error", " 비밀번호가 일치하지 않습니다.");
-			return "member/withdraw";
+			return "member/withdrawForm";
 		}
-		
-
-				
+						
 	}
 	
 	// 회원 등급 조정하기
 	
-	// 
-
 }

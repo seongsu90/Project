@@ -103,8 +103,8 @@ public class RestaurantDao {
 				restaurant.setRestel(rs.getString("restel"));
 				restaurant.setRestotaltable(rs.getInt("restotaltable"));
 				restaurant.setRescloseday(rs.getString("rescloseday"));
-				restaurant.setResopen(rs.getTime("resopen"));
-				restaurant.setResclose(rs.getTime("resclose"));
+				restaurant.setResopen(rs.getTimestamp("resopen"));
+				restaurant.setResclose(rs.getTimestamp("resclose"));
 				restaurant.setRessavedfile((MultipartFile) rs.getObject("ressavedfile"));
 				return restaurant;
 			}

@@ -5,46 +5,41 @@
 <html>		
 	<head>	
 		<meta charset="UTF-8">
-		<style type="text/css">
-			* {
-				font-family: 돋움;
-				font-size: 12px;		
-			}
-			a {	
+		
+<!-- 		<style type="text/css">
+
+ 			a {	
 				text-decoration: none;
 				color: black;
 			}
 			a:HOVER {				
 				color: green;
-			}
+			} 
 			
 		</style>
+		 -->
 	</head>
 	
 	<body>
 		Pos 메인화면
 		<hr/>		
 		
-		<table>
+		<table width="400" border="1">			
 			<tr>
-				<td>
-					<c:forEach var="pos" items="${list}">
-						<a href="info?pResid=${pos.pResid}">							
-								
-							<div>
-								<table style="width:100%; height:30px; background-color: black; opacity: 0.7">
-									<tr>
-										<td style="text-align:left; color:white;">${pos.ptableno}</td>
-										<td style="text-align:right; color:aqua;">${pos.pMlname}</td>
-										<td style="text-align:right; color:yellow;">${pos.pcount}</td>
-									</tr>
-								</table>
-							</div>							
-							
-						</a>	
-					</c:forEach>
-				</td>
-			</tr>	
+				<td style="width:100px">매장</td>
+				<td style="width:100px">테이블</td>
+				<td style="width:100px">메뉴</td>
+				<td style="width:100px">수량</td>
+			</tr>
+			
+			<c:forEach var="pos" items="${list}">
+				<tr>
+					<td>${pos.presid}</td>
+					<td><a href="info?presid=${pos.presid}&ptableno=${pos.ptableno}">${pos.ptableno}</a></td>
+					<td>${pos.pmlname}</td>
+					<td>${pos.pcount}</td>
+				</tr>
+			</c:forEach>
 		</table>
 		
 	</body>

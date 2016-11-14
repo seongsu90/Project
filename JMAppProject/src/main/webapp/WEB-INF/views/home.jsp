@@ -10,7 +10,7 @@
 <body>
 	[membercontroller]<br/>
 	<c:if test="${login==null}">
-	※ <a href="/ourapp/member/login">로그인하기</a><br/>
+	※<a href="/ourapp/member/login">로그인하기</a><br/>
 	</c:if> 	
 	<c:if test="${login!=null}">
 	※ <a href="/ourapp/member/logout">로그아웃</a><br/>
@@ -19,7 +19,9 @@
 	※<a href="/ourapp/member/findMpassword">비밀번호찾기</a><br/>
     ※<a href="/ourapp/member/join">회원가입</a><br/>
     ※<a href="/ourapp/member/list">회원목록</a><br/>
-    ※<a href="/ourapp/member/info?mid=">회원정보보기</a><br/>
+    <c:if test="${login != null}">
+    ※<a href="/ourapp/member/info?mid=${login}">회원정보</a>
+    </c:if><br/>
     ------------------------------------------------------<br/>
     [couponcontroller]<br/>
     <c:if test="${login==null}">
@@ -45,7 +47,7 @@
      ※<a href="/ourapp/restaurant/list">음식점 리스트보기</a><br/>
      ※<a href="/ourapp/restaurant/add">음식점추가하기</a><br/>
      ※<a href="/ourapp/restaurant/delete">음식점삭제하기</a><br/>
-     ※<a href="/ourapp/restaurant/info">음식점 정보보기</a><br/>
+     ※<a href="/ourapp/restaurant/info?resid=1">음식점 정보보기</a><br/>
      ※<a href="/ourapp/restaurant/modify">음식점 정보수정하기</a><br/>
      -------------------------------------------------------<br/>
      [Event] <br/>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>		
@@ -9,28 +10,32 @@
 	<body>
 	 주문 상세정보
 	 <hr/>
-	 
-	 		<table>
+	 	
+	 	<table>			
 			<tr>
-				<td style="background-color:orange; width:70px"> 매장 </td>
-			 	<td>${pos.presid}</td>
+				<td style="width:100px">매장</td>
+				<td style="width:100px">테이블</td>
+				<td style="width:100px">메뉴</td>
+				<td style="width:100px">수량</td>
+				<td style="width:100px">가격</td>
 			</tr>
+			
+			<c:forEach var="pos" items="${list}">
+				<tr>
+					<td>${pos.presid}</td>
+					<td>${pos.ptableno}</td>
+					<td>${pos.pmlname}</td>
+					<td>${pos.pcount}</td>	
+					<td>${menuPrice}</td>				
+				</tr>
+			</c:forEach>
+		</table>
 		
-			<tr>
-				<td style="background-color:orange; width:70px"> 테이블 </td>
-			 	<td>${pos.ptableno}</td>
-			</tr>
-			
-			<tr>
-				<td style="background-color:orange; width:70px"> 메뉴 </td>
-			 	<td>${pos.pmlname}</td>
-			</tr>
-			
-			<tr>
-				<td style="background-color:orange; width:70px"> 수량 </td>
-			 	<td>${pos.pcount}</td>
-			</tr>
-		</table>		 
+		<c:forEach var="pos" items="${list}">
+			<b>합계 : ${totalPrice}</b><br/>
+			<a href="delete?presid=${pos.presid}&ptableno=${pos.ptableno}">결제(삭제)</a>
+		</c:forEach>
+		
 	 
 	</body>
 </html>
