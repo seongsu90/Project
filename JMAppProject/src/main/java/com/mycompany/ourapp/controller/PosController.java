@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.ourapp.dto.Pos;
 import com.mycompany.ourapp.service.PosService;
@@ -40,9 +41,11 @@ public class PosController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String add(Pos pos) {		// 수기 주문, 모바일 주문
+	public String add(Pos pos, Model model) {		// 수기 주문, 모바일 주문
 		logger.info("pos add 실행");
-		int row = posService.add(pos);		
+		posService.add(pos);	
+		model.addAttribute("pos", pos);
+		
 		return "redirect:/pos/index";	
 	}
 
@@ -67,27 +70,17 @@ public class PosController {
 	}
 	
 	@RequestMapping("/info")	
-	public String info(HttpSession session, Model model) {
+	public String info(int presid, int ptableno, Model model) {
 		logger.info("pos info 실행");
-		/*int presid = (Integer) session.getAttribute("presid");*/
-		/*int ptableno = (Integer) session.getAttribute("ptableno");*/
-		int presid = 1;
-		int ptableno = 1;
+
 		List<Pos> list = posService.info(presid, ptableno);
-		model.addAttribute("pos", list);		
+		List<Integer> menuPrice = posService.calcPrice(presid, ptableno);
+		int totalPrice = posService.calcSum(presid, ptableno);
+		
+		model.addAttribute("list", list);	
+		model.addAttribute("menuPrice", menuPrice);	
+		model.addAttribute("totalPrice", totalPrice);
 		return "pos/info";
 	}
-	
-	@RequestMapping("/calcsum")
-	public String calcSum(int presid, int ptableno, Model model) {
-		List<Integer> list = posService.calcSum(presid, ptableno);
-		
-		int price = 0;
-		for ( int i = 0; i < list.size(); i++ ) {
-			price += list.get(i);
-		}
-		
-		model.addAttribute("price", price);
-		return "pos/calcSum";
-	}
+
 }

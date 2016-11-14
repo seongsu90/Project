@@ -41,7 +41,7 @@ public class PosDao {
 		return row;
 	}
 
-	public int delete(int ptableno, int presid) {
+	public int delete(int presid, int ptableno) {
 		String sql = "delete from pos where presid=? and ptableno=?";
 		int row = jdbcTemplate.update(sql, presid, ptableno);
 		return row;
@@ -85,7 +85,7 @@ public class PosDao {
 	}
 	
 	public List<Pos> list(int presid) {
-		String sql = "select presid, ptableno, pmlname, pcount from pos where presid=?";
+		String sql = "select presid, ptableno, pmlname, pcount from pos where presid=? order by ptableno";
 		List<Pos> list = jdbcTemplate.query(sql, new Object[] {presid}, new RowMapper<Pos>() {
 			@Override
 			public Pos mapRow(ResultSet rs, int row) throws SQLException {
