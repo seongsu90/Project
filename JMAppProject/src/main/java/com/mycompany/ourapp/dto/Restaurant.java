@@ -16,7 +16,11 @@ public class Restaurant {
 	private String rescloseday;
 	private Timestamp resopen;
 	private Timestamp resclose;
-	private MultipartFile ressavedfile;
+	
+	private MultipartFile resphoto;
+	private String ressavedfile;
+	private String resmime;
+	
 	
 	public int getResid() {
 		return resid;
@@ -66,17 +70,29 @@ public class Restaurant {
 	public void setResclose(Timestamp resclose) {
 		this.resclose = resclose;
 	}
-	public MultipartFile getRessavedfile() {
-		return ressavedfile;
-	}
-	public void setRessavedfile(MultipartFile ressavedfile) {
-		this.ressavedfile = ressavedfile;
-	}
+
 	public String getRescloseday() {
 		return rescloseday;
 	}
 	public void setRescloseday(String rescloseday) {
 		this.rescloseday = rescloseday;
 	}
-	
+	public MultipartFile getResphoto() {
+		return resphoto;
+	}
+	public void setResphoto(MultipartFile resphoto) {
+		this.resphoto = resphoto;
+	}
+	public String getRessavedfile() {
+		return ressavedfile;
+	}
+	public void setRessavedfile(String ressavedfile) {
+		this.ressavedfile = ressavedfile;
+	}
+	public String getResmime() {
+		return resmime;
+	}
+	public void setResmime(String resmime) {
+		this.resmime = resmime;
+	}
 }

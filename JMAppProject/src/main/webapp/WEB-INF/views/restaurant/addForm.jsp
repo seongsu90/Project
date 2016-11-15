@@ -20,8 +20,8 @@
 			식당 OPEN TIME : <input type="time" name="resopen" value="${restaurant.resopen}"/><br/>
 			식당 CLOSE TIME : <input type="time" name="resclose" value="${restaurant.resclose}"/><br/>			
 			식당 사진 :<input type="file" name="ressavedfile"/><br/>  
-						 <input type="submit" value="등록"><br>
-</form>
+					
+
 			식당 휴일:<input type="checkbox" name="rescloseday" value="월요일" >월요일
 			          <input type="checkbox" name="rescloseday" value="화요일" >화요일
 			          <input type="checkbox" name="rescloseday" value="수요일" >수요일

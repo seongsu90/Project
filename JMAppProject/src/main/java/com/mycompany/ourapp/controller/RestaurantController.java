@@ -75,10 +75,12 @@ public class RestaurantController {
 	public String add(Restaurant restaurant){
 		logger.info("add() 실행");
 		try{
+		//	photoBoard
 			int result=restaurantService.add(restaurant);
-			return "redirect:/restaurant/add";
+			return "redirect:/restaurant/list";
 	
 		}catch(Exception e){
+			e.printStackTrace();
 			return "restaurant/addForm";
 		}
 	}
