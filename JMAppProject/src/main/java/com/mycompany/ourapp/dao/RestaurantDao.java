@@ -19,7 +19,7 @@ public class RestaurantDao {
 	private static JdbcTemplate jdbcTemplate;
 	
 	public int insert(Restaurant restaurant) {
-		String sql="insert into Restaurant (resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, rescloseday) values(?,?,?,?,?,?,?,?,?,?)";
+		String sql="insert into Restaurant (resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, rescloseday) values(seq_restaurant_resid.nextval,?,?,?,?,?,?,?,?,?,?,?)";
 		int row=jdbcTemplate.update(
 				sql,
 				restaurant.getResid(),
@@ -31,7 +31,9 @@ public class RestaurantDao {
 				restaurant.getResopen(),
 				restaurant.getResclose(),
 				restaurant.getRessavedfile(),
-				restaurant.getRescloseday()
+				restaurant.getRescloseday(),
+				restaurant.getResphoto(),
+				restaurant.getResmime()
 				);
 		return row;
 	}
@@ -43,7 +45,7 @@ public class RestaurantDao {
 	}
 
 	public int update(Restaurant restaurant) {
-		String sql="update restaurant set resname=?, reslocation=?, restotaltable=?, resinfo=?, restel=?, resopen=?, resclose=?, ressavedfile=?, rescloseday=? where resid=?";
+		String sql="update restaurant set resname=?, reslocation=?, restotaltable=?, resinfo=?, restel=?, resopen=?, resclose=?, ressavedfile=?, rescloseday=?, resphoto=?, resmime=? where resid=?";
 		int row=jdbcTemplate.update(
 				sql,
 				restaurant.getResname(),
@@ -55,6 +57,8 @@ public class RestaurantDao {
 				restaurant.getResclose(),
 				restaurant.getRessavedfile(),
 				restaurant.getRescloseday(),
+				restaurant.getResphoto(),
+				restaurant.getResmime(),
 				restaurant.getResid()
 				
 				);
@@ -81,7 +85,7 @@ public class RestaurantDao {
 						restaurant.setResid(rs.getInt("resid"));
 						restaurant.setResname(rs.getString("resname"));
 						restaurant.setResinfo(rs.getString("resinfo"));
-						restaurant.setRessavedfile((MultipartFile) rs.getObject("ressavedfile"));
+						restaurant.setRessavedfile(rs.getString("ressavedfile"));
 						
 						return restaurant;
 					}
@@ -91,7 +95,7 @@ public class RestaurantDao {
 	}
 
 	public Restaurant selectByResid(int resid) {
-		String sql="select resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, rescloseday from restaurant where resid=?";
+		String sql="select resid, resname, reslocation, restotaltable, resinfo, restel,  rescloseday, resopen, resclose, ressavedfile, resmime from restaurant where resid=?";
 		List<Restaurant> list=jdbcTemplate.query(sql, new Object[]{resid}, new RowMapper<Restaurant>(){
 			@Override
 			public Restaurant mapRow(ResultSet rs, int row) throws SQLException{
@@ -103,9 +107,11 @@ public class RestaurantDao {
 				restaurant.setRestel(rs.getString("restel"));
 				restaurant.setRestotaltable(rs.getInt("restotaltable"));
 				restaurant.setRescloseday(rs.getString("rescloseday"));
-				restaurant.setResopen(rs.getTime("resopen"));
-				restaurant.setResclose(rs.getTime("resclose"));
-				restaurant.setRessavedfile((MultipartFile) rs.getObject("ressavedfile"));
+				restaurant.setResopen(rs.getTimestamp("resopen"));
+				restaurant.setResclose(rs.getTimestamp("resclose"));
+				restaurant.setRessavedfile(rs.getString("ressavedfile"));
+				restaurant.setResmime(rs.getString("resmime"));
+			
 				return restaurant;
 			}
 		});

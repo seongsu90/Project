@@ -61,6 +61,7 @@
 			</table>
 			<br/>
 			
-			<a href="/ourapp/member/modifyInfo?mid=${login}"><input type="button" value="수정하기"/><br/></a>
+			<a href="/ourapp/member/modifyInfo?mid=${login}"><input type="button" value="수정"/></a>
+			<a href="/ourapp/member/withdraw"><input type="button" value="탈퇴"/><br/></a>
 	</body>
 </html>

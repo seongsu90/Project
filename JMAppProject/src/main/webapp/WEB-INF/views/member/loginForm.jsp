@@ -16,9 +16,6 @@
 			<c:if test="${error == 'LOGIN_FAIL_MPASSWORD'}"> *패스워드가 틀림</c:if>
 			<br/>
 			<input type="submit" value="로그인"/> <br/>
-			<c:if test="${login != null}">
-				<a href="/ourapp/member/info?mid=${login}">회원정보</a>
-			</c:if>
 		</form>
 	</body>
 </html>

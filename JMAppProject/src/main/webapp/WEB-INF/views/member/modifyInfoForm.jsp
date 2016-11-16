@@ -21,25 +21,38 @@
 	<body>
 		<b>회원 정보</b>
 		<hr/>
+		
+		<form method="post">
+			
 			<table>
 				<tr>
 					<td class="list">아이디 </td>
-					<td class="content"><input type="text" name="mid" value="${member.mid}" readonly/></td>
+					<td class="content">${member.mid}</td>
+				</tr>
+				
+				<tr>
+					<td class="list">비밀번호 </td>
+					<td class="content"><input type="password" name="mpassword"></td>
+				</tr>
+				
+				<tr>
+					<td class="list">새로운 비밀번호 </td>
+					<td class="content"><input type="password" name="newmpassword"></td>
 				</tr>
 				
 				<tr>
 					<td class="list">이름 </td>
-					<td class="content"><input type="text" name="mname" value="${member.mname}" readonly/></td>
+					<td class="content">${member.mname}</td>
 				</tr>
 				
 				<tr>
 					<td class="list">휴대전화 </td>
-					<td class="content"><input type="tel" name="mphone" value="${member.mphone}" readonly/></td>
+					<td class="content"><input type="tel" name="mphone" value="${member.mphone}"></td>
 				</tr>
 				
 				<tr>
 					<td class="list">생일 </td>
-					<td class="content"><input type="date" name="mbirth" value="${member.mbirth}" readonly/></td>
+					<td class="content">${member.mbirth}</td>
 				</tr>
 				
 				<tr>
@@ -61,6 +74,7 @@
 			</table>
 			<br/>
 			
-			<a href="/ourapp/member/modifyInfo?mid=${login}"><input type="button" value="수정하기"/><br/></a>
+			<input type="submit" value="수정하기"/>	&nbsp; <span style="color: red"><b>${error}</b></span> <br/>
+		</form>
 	</body>
 </html>

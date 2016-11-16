@@ -39,8 +39,8 @@ public class PosService {
 		return MODIFY_SUCCESS;
 	}
 	
-	public int delete(int ptableno, int presid) {
-		int row = posDao.delete(ptableno, presid);
+	public int delete(int presid, int ptableno) {
+		int row = posDao.delete(presid, ptableno);
 		if(row==0){
 			return DELETE_FAIL;
 		}
@@ -52,8 +52,20 @@ public class PosService {
 		return list;
 	}
 	
-	public List<Integer> calcSum(int ptableno, int presid) {		
-		List<Integer> list = posDao.calc(ptableno, presid);
+	public int calcSum(int presid, int ptableno) {		
+		List<Integer> list = posDao.calc(presid, ptableno);
+		
+		int price = 0;
+		for ( int i = 0; i < list.size(); i++ ) {
+			price += list.get(i);
+		}
+		
+		return price;
+	}
+	
+	public List<Integer> calcPrice(int presid, int ptableno) {		
+		List<Integer> list = posDao.calc(presid, ptableno);
+		
 		return list;
 	}
 	

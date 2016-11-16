@@ -6,10 +6,10 @@
 		<meta charset="UTF-8"> 
 	</head>
 	<body>
-		<b>비밀번호 재설정</b>
+		<b>회원 탈퇴</b>
 		<hr/>
 		<form method="post">
-			아이디 : <input type="text" name="mid" value="${login}" readonly/><br/>
+			아이디 : ${login}<br/>
 			비밀번호  : <input type="password" name="mpassword"/>${error}<br/>
 			<input type="submit" value="탈퇴"/>
 		</form>
