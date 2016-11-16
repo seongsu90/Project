@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mycompany.ourapp.dto.Reservation;
 import com.mycompany.ourapp.service.ReservationService;
 
 @Controller
@@ -26,7 +27,15 @@ public class ReservationController {
 	
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String addForm(){
+		logger.info("addform 처리");
 		return "/reservation/addForm";
+	}
+	
+	@RequestMapping(value="/add",method=RequestMethod.POST)
+	public String add(Reservation reservation){
+		logger.info("add 처리");
+		reservationservice.add(reservation);
+		return "redirect:/reservaion/index";
 	}
 	
 }
