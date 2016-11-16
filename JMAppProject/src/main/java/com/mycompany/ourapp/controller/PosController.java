@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycompany.ourapp.dto.Member;
+import com.mycompany.ourapp.dto.MenuList;
 import com.mycompany.ourapp.dto.Pos;
 import com.mycompany.ourapp.service.MemberService;
 import com.mycompany.ourapp.service.MenuListService;
@@ -41,7 +42,7 @@ public class PosController {
 		
 		List<Pos> posList = posService.list(presid);
 		
-		model.addAttribute("presid", presid);
+		session.setAttribute("presid", presid);
 		model.addAttribute("posList", posList);
 		return "pos/index";
 	}
@@ -69,7 +70,7 @@ public class PosController {
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Pos pos) {
 		logger.info("pos modify 실행");
-		int row = posService.modify(pos);
+		posService.modify(pos);
 		return "redirect:/pos/index";
 	}
 	
@@ -85,14 +86,13 @@ public class PosController {
 		logger.info("pos info 실행");
 
 		List<Pos> infoList = posService.info(presid, ptableno);		
-		List<Integer> price = posService.calcSum(presid, ptableno);		
+		List<Integer> price = posService.calcSum(presid, ptableno);	
 		
 		int totalPrice = 0;
 		for ( int i = 0; i < price.size(); i++ ) {
 			totalPrice += price.get(i);
 		}
 		
-		model.addAttribute("presid", presid);
 		model.addAttribute("ptableno", ptableno);
 		model.addAttribute("infoList", infoList);
 		model.addAttribute("totalPrice", totalPrice);

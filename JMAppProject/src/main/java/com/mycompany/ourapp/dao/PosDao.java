@@ -35,8 +35,9 @@ public class PosDao {
 				sql,
 				pos.getPmlname(),
 				pos.getPcount(),
-				pos.getPtableno(),
-				pos.getPresid()
+				pos.getPresid(),
+				pos.getPtableno()
+				
 		);
 		return row;
 	}

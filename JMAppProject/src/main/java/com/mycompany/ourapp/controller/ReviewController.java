@@ -26,15 +26,15 @@ public class ReviewController {
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String write(Review review, HttpSession session) {
 		String mid = (String) session.getAttribute("login");
-		int resid = (int) session.getAttribute("resinfo");
+		int revresid = (int) session.getAttribute("presid");
 		review.setRevmid(mid);
-		review.setRevresid(resid);
+		review.setRevresid(revresid);
 		
 		int result = reviewService.write(review);
 		if ( result == reviewService.WRITE_FAIL ) {
 			return "review/write";
-		}		
-		return "review/";
+		}	 
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/delete")

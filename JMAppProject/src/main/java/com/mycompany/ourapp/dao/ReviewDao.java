@@ -18,10 +18,9 @@ public class ReviewDao {
 	private JdbcTemplate jdbcTemplate;
 
 	public int insert(Review review) {
-		String sql = "insert into review(revno, revresid, revmid, revcontent, revscore, revdate) values(?, ?, ?, ?, 0, sysdate)";
+		String sql = "insert into review(revno, revresid, revmid, revcontent, revscore, revdate) values(seq_review_revno.nextval, ?, ?, ?, 0, sysdate)";
 		int row = jdbcTemplate.update(
 				sql,
-				review.getRevno(),     // 시퀀스?
 				review.getRevresid(),
 				review.getRevmid(),
 				review.getRevcontent()

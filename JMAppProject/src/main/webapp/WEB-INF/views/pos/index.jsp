@@ -27,7 +27,11 @@
 			<table width="400" border="1">
 				<tr>
 					<td style="width:200px; height:200px">
-						<a href="info?presid=${presid}&ptableno=1">1</a>										
+						<a href="info?presid=${presid}&ptableno=1">1							
+							<c:forEach  var="pos" items="${posList}">	
+									<br/>${pos.pmlname}		${pos.pcount}<br/>
+							</c:forEach>									
+						</a>										
 					</td>
 					<td style="width:200px; height:200px">
 						<a href="info?presid=${presid}&ptableno=2">2</a>					
