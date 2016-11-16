@@ -61,7 +61,7 @@
     로그인을 해야 예약기능을 이용할 수 있습니다.<br/>
     </c:if> 
     <c:if test="${login!=null}">
-     ※<a href="/ourapp/reservation/index">예약기능</a>
+     ※<a href="/ourapp/reservation/index">예약기능</a><br/>
     </c:if>
      -------------------------------------------------------<br/>
      [Favorite]<br/>
