@@ -16,7 +16,7 @@ import com.mycompany.ourapp.dto.Restaurant;
 public class RestaurantDao {
 
 	@Autowired
-	private static JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 	
 	public int insert(Restaurant restaurant) {
 		String sql="insert into Restaurant(resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, rescloseday, resmime) values(seq_restaurant_resid.nextval,?,?,?,?,?,?,?,?,?,?)";
@@ -93,7 +93,7 @@ public class RestaurantDao {
 	}
 
 	public Restaurant selectByResid(int resid) {
-		String sql="select resid, resname, reslocation, restotaltable, resinfo, restel,  rescloseday, resopen, resclose, ressavedfile, resmime from restaurant where resid=?";
+		String sql="select resid, resname, reslocation, restotaltable, resinfo, restel, rescloseday, resopen, resclose, ressavedfile, resmime from restaurant where resid=?";
 		List<Restaurant> list=jdbcTemplate.query(sql, new Object[]{resid}, new RowMapper<Restaurant>(){
 			@Override
 			public Restaurant mapRow(ResultSet rs, int row) throws SQLException{
