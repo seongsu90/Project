@@ -35,8 +35,8 @@
 	<body>
 		<p style="font-size:150%;"><b>즐겨찾기 목록</b></p>
 		<hr/>
-		
-		<br/>
+		ID : ${member.mid} &nbsp; 이름 : ${member.mname}
+		<br/> <br/>
 		<table style="border-collapse: collapse; border-style: solid; border-width: 2px; border-color: black;">
 			<tr>
 				<th> Restaurant id </th>
@@ -44,45 +44,16 @@
 				<th> Restaurant Info </th>
 				<th> &nbsp; </th>
 			</tr>
-			<c:forEach var="favorite" items="${list}">
+			<c:forEach var="resList" items="${resList}">
 				<tr>
-					<td> ${favorite.mid} </td>
-					<td> ${favorite.mname} </td>
-					<td> ${favorite.mpassword} </td>
-					<td> <a href="/ourapp/member/modifyInfoForManager?mid=${member.mid}"><input type="button" value="수정"/></a></td>
+					<td> ${resList.resid} </td>
+					<td> ${resList.resname} </td>
+					<td> ${resList.resinfo} </td>
+					<td> <a href="/ourapp/favorite/delete?fresid=${resList.resid}"><input type="button" value="삭제"/></a></td>
 				</tr>
 			</c:forEach>
 		</table>
 		<br/>
  		
-		<form method="post" action="/ourapp/member/list?pageNo=1">
-			검색 <input type="text" name="find" value="${find}"/>
-			<input type="submit" value="찾기"/>
-		</form><br/>
- 		
-		<div style="width: 600px">
-			<c:if test="${pageNo!=1}">
-			<a href="list?pageNo=1&find=${find}">[처음]</a>
-			</c:if>
-			
-			<c:if test="${groupNo>1}">
-				<a href="list?pageNo=${startPageNo-1}&find=${find}">[이전]</a>
-			</c:if>
-			
-			<c:forEach var="i" begin="${startPageNo}" end="${endPageNo}">
-				<a href="list?pageNo=${i}&find=${find}"
-					<c:if test="${pageNo==i}">style="color:red" </c:if>
-				>${i}</a>
-			</c:forEach>
-			
-			<c:if test="${groupNo<totalGroupNo}">
-				<a href="list?pageNo=${endPageNo+1}&find=${find}">[다음]</a>
-			</c:if>
-			
-			<c:if test="${pageNo!=totalPageNo}">
-			<a href="list?pageNo=${totalPageNo}&find=${find}">[맨끝]</a>
-			</c:if>
-		</div>
-		
 	</body>
 </html>

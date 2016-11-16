@@ -1,5 +1,7 @@
 package com.mycompany.ourapp.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -10,8 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mycompany.ourapp.dto.Member;
+import com.mycompany.ourapp.dto.Restaurant;
 import com.mycompany.ourapp.service.FavoriteService;
 import com.mycompany.ourapp.service.MemberService;
+import com.mycompany.ourapp.service.RestaurantService;
 
 @Controller
 @RequestMapping("/favorite")
@@ -44,7 +49,13 @@ public class FavoriteController {
 	// Favorit 목록 보기 ( Restaurant Info 필요함 )
 	@RequestMapping("/list")
 	public String list(HttpSession session, Model model) {
+		logger.info("list() 실행");
+		String fmid = (String) session.getAttribute("login");
+		Member member = memberService.info(fmid);
 		
+		List<Restaurant> resList = favoriteService.list(fmid);
+		model.addAttribute("resList", resList);
+		model.addAttribute("member", member);
 		
 		return "favorite/list";
 	}

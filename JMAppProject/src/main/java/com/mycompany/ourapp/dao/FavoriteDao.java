@@ -30,7 +30,7 @@ public class FavoriteDao {
 	}
 	
 	// 즐겨찾기 목록
-	public List<Integer> selectByFMid(String fmid) {
+	public List<Integer> selectByFmid(String fmid) {
 		String sql = "select fresid from favorite where fmid=?";
 		List<Integer> list = jdbcTemplate.query(sql, new Object[] {fmid}, new RowMapper<Integer>(){
 			@Override
