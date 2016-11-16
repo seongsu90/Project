@@ -16,7 +16,7 @@
 			</tr>
 			 <tr>
 				<td style="background-color:blue; width:100px">메뉴 가격</td>	
-				<td>${menuList.mlname}</td>
+				<td>${menuList.mlprice}</td>
 			 </tr>
 			 <tr>
 				<td style="background-color:blue; width:100px">식당</td>
@@ -35,12 +35,12 @@
 				<td>${menuList.mlishot}</td>
 			</tr>
 		</table>
-		 <div>
+		<%--  <div>
 			<c:if test="${mlresid == menuList.mlresid},${mlname == menuList.mlname}">
 				<a href="modify?mlresid=${menuList.mlresid},mlname=${menuList.mlname}">[수정]</a>
 				<a href="delete?mlresid=${menuList.mlresid},mlname=${menuList.mlname}">[삭제]</a>
 			</c:if>
 			<a href="list">[목록]</a>
-		 </div> 
+		 </div>  --%>
 	</body>
 </html>

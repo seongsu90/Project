@@ -101,7 +101,7 @@ public class MenuListController {
 		
 		@RequestMapping("/info")	
 		public String info(int mlresid, String mlname, Model model) {
-			List<MenuList> list = menuListService.info(mlresid, mlname);
+			MenuList menuList = menuListService.info(mlresid, mlname);
 			model.addAttribute("mlresid", mlresid);
 			model.addAttribute("mlname", mlname);
 			return "menulist/info";

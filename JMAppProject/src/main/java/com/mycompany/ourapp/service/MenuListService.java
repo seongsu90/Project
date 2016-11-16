@@ -58,9 +58,9 @@ public class MenuListService {
 		return MODIFY_SUCCESS;
 	}
 	
-	public List<MenuList> info(int mlresid, String mlname){
-		List<MenuList> list = menuListdao.selectByMlresidAndMlname(mlresid, mlname);
-		return list;
+	public MenuList info(int mlresid, String mlname){
+		MenuList menuList = menuListdao.selectByMlresidAndMlname(mlresid, mlname);
+		return menuList;
 	}
 
 	public int getCount() {
