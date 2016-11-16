@@ -67,14 +67,14 @@ public class RestaurantController {
 		model.addAttribute("groupNo", groupNo);
 		model.addAttribute("startPageNo", startPageNo);
 		model.addAttribute("endPageNo", endPageNo);
-		return "/restaurant/list";
+		return "restaurant/list";
 	}
 	
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
-	public String addForm(Restaurant restaurant){
+	public String add(Restaurant restaurant){
 		logger.info("addForm() 실행");
-		return "/restaurant/addForm";
+		return "restaurant/add";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
@@ -82,12 +82,14 @@ public class RestaurantController {
 		logger.info("add() 실행");
 		try{
 			int resid=(int)session.getAttribute("login");
+		
 			restaurant.setResid(resid);
 			
 			
 			
 			String ressavedfile=new Date().getTime()+restaurant.getResopen();
-			restaurant.setRessavedfile(ressavedfile);
+			restaurant.setRessavedfile(
+					ressavedfile);
 			String realpath=session.getServletContext().getRealPath("/WEB-INF/photo/"+ressavedfile);
 			
 			

@@ -19,7 +19,7 @@ public class RestaurantDao {
 	private static JdbcTemplate jdbcTemplate;
 	
 	public int insert(Restaurant restaurant) {
-		String sql="insert into Restaurant (resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, rescloseday, resmime) values(seq_restaurant_resid.nextval,?,?,?,?,?,?,?,?,?,?)";
+		String sql="insert into Restaurant(resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, rescloseday, resmime) values(seq_restaurant_resid.nextval,?,?,?,?,?,?,?,?,?,?)";
 		int row=jdbcTemplate.update(
 				sql,
 				restaurant.getResname(),
@@ -101,9 +101,9 @@ public class RestaurantDao {
 				restaurant.setResid(rs.getInt("resid"));
 				restaurant.setResname(rs.getString("resname"));
 				restaurant.setReslocation(rs.getString("reslocation"));
+				restaurant.setRestotaltable(rs.getInt("restotaltable"));
 				restaurant.setResinfo(rs.getString("resinfo"));
 				restaurant.setRestel(rs.getString("restel"));
-				restaurant.setRestotaltable(rs.getInt("restotaltable"));
 				restaurant.setRescloseday(rs.getString("rescloseday"));
 				restaurant.setResopen(rs.getString("resopen"));
 				restaurant.setResclose(rs.getString("resclose"));
