@@ -1,5 +1,5 @@
 <%@ page  contentType="text/html;charset=UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,18 +14,18 @@
 				<td style="background-color:blue; width:100px">메뉴 이름</td>
 				<td>${menuList.mlname}</td>
 			</tr>
-			<tr>
+			 <tr>
 				<td style="background-color:blue; width:100px">메뉴 가격</td>	
-				<td>${menuList.mlprice}</td>
-			</tr>
-			<tr>
+				<td>${menuList.mlname}</td>
+			 </tr>
+			 <tr>
 				<td style="background-color:blue; width:100px">식당</td>
 				<td>${menuList.mlresid}</td>
-			</tr>	
-			<tr>
+			 </tr>
+			 <tr>
 				<td style="background-color:blue; width:100px">정보</td>
 				<td>${menuList.mlinfo}</td>
-			</tr>
+			 </tr>
 			<tr>
 				<td style="background-color:blue; width:100px">메뉴 사진</td>
 				<td>${menuList.mlsavedfile}</td>
@@ -35,5 +35,12 @@
 				<td>${menuList.mlishot}</td>
 			</tr>
 		</table>
+		<div>
+			<c:if test="${mlresid == menuList.mlresid},${mlname == menuList.mlname}">
+				<a href="modify?mlresid=${menuList.mlresid},mlname=${menuList.mlname}">[수정]</a>
+				<a href="delete?mlresid=${menuList.mlresid},mlname=${menuList.mlname}">[삭제]</a>
+			</c:if>
+			<a href="list">[목록]</a>
+		 </div>
 	</body>
 </html>

@@ -1,6 +1,6 @@
 package com.mycompany.ourapp.service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +28,13 @@ public class MenuListService {
 	
 	public int add(MenuList menuList){
 		int row = menuListdao.insert(menuList);
-		if(row==0){return DELETE_FAIL;}
+		if(row==0){return ADD_FAIL;}
 	
 		return ADD_SUCCESS;
 	}
 	
 	public int modify(MenuList menuList){
-		int row = menuListdao.modify(menuList);
+		int row = menuListdao.update(menuList);
 		if(row==0){return MODIFY_FAIL;}
 		return MODIFY_SUCCESS;
 	}
@@ -59,7 +59,7 @@ public class MenuListService {
 	}
 	
 	public MenuList info(int mlresid, String mlname){
-		return menuListdao.selectBymlResidAndmlname(mlresid,mlname);
+		return menuListdao.selectBymlresidAndmlname(mlresid,mlname);
 	}
 
 	public int getCount() {

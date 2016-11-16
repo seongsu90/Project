@@ -29,14 +29,14 @@ public class EventController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String add(Event event){
-		int row = eventService.add(event);
+		eventService.add(event);
 		return "redirect:/event/index";
 	}
 	
 	@RequestMapping("/delete")
 	public String delete(int eresid,String emlname){
 		eventService.delete(eresid,emlname);
-		return "redirect:/event/info";
+		return "redirect:/event/index";
 	}
 	
 	@RequestMapping("/info")
@@ -58,6 +58,6 @@ public class EventController {
 	public String modify(Event event){
 		Event dbEvent=eventService.info(event.getEresid(),event.getEmlname());
 		eventService.modify(event);
-		return "redirect:/event/info";
+		return "redirect:/event/index";
 	}
 }

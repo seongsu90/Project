@@ -73,19 +73,19 @@ public class MenuListController {
 		}
 		
 		@RequestMapping(value="/add", method=RequestMethod.GET)
-		public String addForm() {				
+		public String addForm(MenuList menuList) {				
 			return "menulist/addForm";
 		}
 		
 		@RequestMapping(value="/add", method=RequestMethod.POST)
 		public String add(MenuList menuList) {		
-			int row = menuListService.add(menuList);	
-			return "redirect:/menulist/list";	
+		   menuListService.add(menuList);	
+			return "redirect:/menulist/index";	
 		}
 
 		@RequestMapping(value="/modify", method=RequestMethod.GET)
 		public String modifyForm() {
-			return "menulist/modifyForm";
+			return "menulist/modify";
 		}
 		
 		@RequestMapping(value="/modify", method=RequestMethod.POST)
@@ -94,14 +94,14 @@ public class MenuListController {
 		}
 		
 		@RequestMapping("/delete")
-		public String delete(int mlResid, String mlname) {
-			menuListService.delete(mlResid, mlname);
+		public String delete(int mlresid, String mlname) {
+			menuListService.delete(mlresid, mlname);
 			return "redirect:/menulist/list";	
 		}
 		
 		@RequestMapping("/info")	
-		public String info(int mlResid, String mlname, Model model) {
-			MenuList menuList = menuListService.info(mlResid, mlname);
+		public String info(int mlresid, String mlname, Model model) {
+			MenuList menuList = menuListService.info(mlresid, mlname);
 			model.addAttribute("menulist", menuList);		
 			return "menulist/info";
 		}

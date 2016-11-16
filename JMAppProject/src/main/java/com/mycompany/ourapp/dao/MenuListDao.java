@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import com.mycompany.ourapp.dto.Event;
 import com.mycompany.ourapp.dto.MenuList;
 
 
@@ -29,12 +28,12 @@ public class MenuListDao {
 				menuList.getMlresid(),
 				menuList.getMlinfo(),
 				menuList.getMlsavedfile(),
-				menuList.getisMlishot()
+				menuList.getMlishot()
 				);
 		return row;
 	}
 	
-	public int modify(MenuList menuList){
+	public int update(MenuList menuList){
 		String sql="update menuList set mlname=?,mlprice=?,mlinfo=?,mlsavedfile=?,mlishot=? where mlresid=?";
 		int row = jdbcTemplate.update(
 				sql,
@@ -42,7 +41,7 @@ public class MenuListDao {
 				menuList.getMlprice(),
 				menuList.getMlinfo(),
 				menuList.getMlsavedfile(),
-				menuList.getisMlishot(),
+				menuList.getMlishot(),
 				menuList.getMlresid()
 				);
 		return row;
@@ -75,21 +74,22 @@ public class MenuListDao {
 	}
 		
 	public int modifyHot(int mlresid,String mlname, boolean mlishot){
-		String sql="update menuList set mlprice=?,mlinfo=?,mlsavedfile=? where mlresid=? and mlname=? and mlishot=true";
+		String sql="update menuList set mlprice=?,mlinfo=?,mlsavedfile=? where mlresid=? and mlname=? and mlishot=?";
 		int row = jdbcTemplate.update(
 				sql,
 				menuList.getMlprice(),
 				menuList.getMlinfo(),
 				menuList.getMlsavedfile(),
 				menuList.getMlresid(),
-				menuList.getMlname()
+				menuList.getMlname(),
+				menuList.getMlishot()
 	               );
 		return row;
 	
 	}
 
-	public MenuList selectBymlResidAndmlname(int mlresid, String mlname) {
-		String sql = "select * from event where mlResid=? and mlname=?";
+	public MenuList selectBymlresidAndmlname(int mlresid, String mlname) {
+		String sql = "select * from menuList where mlresid=? and mlname=?";
 		List<MenuList> list = jdbcTemplate.query(sql, new Object[]{mlresid,mlname}, new RowMapper<MenuList>() {
 			@Override
 			public MenuList mapRow(ResultSet rs, int row) throws SQLException {
@@ -112,7 +112,7 @@ public class MenuListDao {
 		sql+="select rn, mlresid, mlname, mlprice, mlinfo, mlsavedfile, mlishot ";
 		sql+="from( ";
 		sql+="select rownum as rn, mlresid, mlname, mlprice, mlinfo, mlsavedfile, mlishot ";
-		sql+="from (select mlresid, mlname, mlprice, mlinfo, mlsavedfile, mlishot from MenuList order by mlname desc) ";
+		sql+="from (select mlresid, mlname, mlprice, mlinfo, mlsavedfile, mlishot from menuList order by mlname desc) ";
 		sql+="where rownum<=? ";
 		sql+=") ";
 		sql+="where rn>=? ";

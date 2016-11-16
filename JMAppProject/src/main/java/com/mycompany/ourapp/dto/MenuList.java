@@ -37,7 +37,7 @@ public class MenuList {
 	public void setMlsavedfile(String mlsavedfile) {
 		this.mlsavedfile = mlsavedfile;
 	}
-	public boolean getisMlishot() {
+	public boolean getMlishot() {
 		return mlishot;
 	}
 	public void setMlishot(boolean mlishot) {
