@@ -10,6 +10,6 @@
 		메뉴리스트
 		<hr/>
 			1. <a href="/ourapp/reservation/add">예약하기</a><br/>
-			
+			2. <a href="/ourapp/reservation/delete">예약 취소하기</a><br/>
 	</body>
 </html>

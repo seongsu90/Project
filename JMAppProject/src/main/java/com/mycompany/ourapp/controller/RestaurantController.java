@@ -80,12 +80,8 @@ public class RestaurantController {
 			return "redirect:/restaurant/list";
 	
 		}catch(Exception e){
-<<<<<<< HEAD
-			return "/restaurant/addForm";
-=======
 			e.printStackTrace();
 			return "restaurant/addForm";
->>>>>>> 8a81c2d1ec252a944b7f6c525d1d200507cef8f6
 		}
 	}
 	

@@ -28,14 +28,28 @@ public class ReservationController {
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String addForm(){
 		logger.info("addform 처리");
-		return "/reservation/addForm";
+		return "/reservation/addform";
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String add(Reservation reservation){
 		logger.info("add 처리");
 		reservationservice.add(reservation);
-		return "redirect:/reservaion/index";
+		return "redirect:/reservation/index";
+	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String deleteform()
+	{
+		logger.info("deleteform 처리");
+		return "/reservation/deleteform";
+	}
+	
+	@RequestMapping(value="/delete",method=RequestMethod.POST)
+	public String delete (String rvMid, int rvResid)
+	{
+		reservationservice.delete(rvMid, rvResid);
+		return "redirect:/reservation/index";
 	}
 	
 }
