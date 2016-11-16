@@ -35,12 +35,12 @@
 				<td>${menuList.mlishot}</td>
 			</tr>
 		</table>
-		<div>
+		 <div>
 			<c:if test="${mlresid == menuList.mlresid},${mlname == menuList.mlname}">
 				<a href="modify?mlresid=${menuList.mlresid},mlname=${menuList.mlname}">[수정]</a>
 				<a href="delete?mlresid=${menuList.mlresid},mlname=${menuList.mlname}">[삭제]</a>
 			</c:if>
 			<a href="list">[목록]</a>
-		 </div>
+		 </div> 
 	</body>
 </html>

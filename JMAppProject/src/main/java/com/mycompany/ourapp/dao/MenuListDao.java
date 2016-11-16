@@ -88,8 +88,8 @@ public class MenuListDao {
 	
 	}
 
-	public MenuList selectBymlresidAndmlname(int mlresid, String mlname) {
-		String sql = "select * from menuList where mlresid=? and mlname=?";
+	public List<MenuList> selectByMlresidAndMlname(int mlresid, String mlname) {
+		String sql = "select mlname, mlprice, mlresid, mlinfo, mlsavedfile, mllishot from menuList where mlresid=? and mlname=?";
 		List<MenuList> list = jdbcTemplate.query(sql, new Object[]{mlresid,mlname}, new RowMapper<MenuList>() {
 			@Override
 			public MenuList mapRow(ResultSet rs, int row) throws SQLException {
@@ -104,7 +104,7 @@ public class MenuListDao {
 				return menuList;
 			}
 		});
-		return (list.size() != 0)?list.get(0) : null;
+		return list;
 	}
 
 	public List<MenuList> selectByPage(int pageNo, int rowsPerPage) {
