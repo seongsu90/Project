@@ -34,10 +34,9 @@ public class MemberDao {
 	
 	// 회원 수정, 비밀번호 재설정
 	public int update(Member member) {
-		String sql = "update member set mid=?, mname=?, mpassword=?, mphone=?, mbirth=?, mlocation=?, mrank=?, mpoint=?, mresid=? where mid=?";
+		String sql = "update member set mname=?, mpassword=?, mphone=?, mbirth=?, mlocation=?, mrank=?, mpoint=?, mresid=? where mid=?";
 		int row = jdbcTemplate.update(
 				sql,
-				member.getMid(),
 				member.getMname(),
 				member.getMpassword(),
 				member.getMphone(),

@@ -204,6 +204,7 @@ public class MemberController {
 		int pagesPerGroup = 5;
 		
 		int totalMemberNo = memberService.getCount(find);
+		if ( totalMemberNo == 0 ) totalMemberNo = 1;
 		
 		int totalPageNo = totalMemberNo / rowsPerPage + ((totalMemberNo%rowsPerPage!=0)?1:0);
 		int totalGroupNo = totalPageNo / pagesPerGroup + ((totalPageNo%pagesPerGroup!=0)?1:0);
@@ -275,7 +276,7 @@ public class MemberController {
 						
 	}
 	
-	// 회원 정보 수정 (Manager)
+	// 회원 정보 수정 폼(Manager)
 	@RequestMapping(value="/modifyInfoForManager", method=RequestMethod.GET)
 	public String modifyInfoForManagerForm(String mid,  Model model) {
 		logger.info("modifyInfoForManagerForm() GET 실행");
@@ -284,19 +285,17 @@ public class MemberController {
 		return "member/modifyInfoForManagerForm";
 	}
 	
-	// 회원 수정
+	// 회원 정보 수정 (Manager)
 	@RequestMapping(value="/modifyInfoForManager", method=RequestMethod.POST)
 	public String modifyInfoForManager(Member member, Model model) {
 		logger.info("modifyInfoForManager() POST 실행");
 			try {
 				memberService.modify(member);
-				logger.info("수정완료");
 				return "redirect:/member/list";
 			} catch (Exception e) {
-				logger.info("수정실패");
 				model.addAttribute("member", member);
 				model.addAttribute("error", " 모든 항목을 입력해 주세요");
-				return "member/modifyInfoForManager";
+				return "member/modifyInfoForManagerForm";
 			}
 	}
 	

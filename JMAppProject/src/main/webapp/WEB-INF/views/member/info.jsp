@@ -8,13 +8,12 @@
 			.list {
 				text-align: right;
 				background-color: #ffccff;
-				padding: 5px 5px;
-				width: 100px;
+				padding: 5px 10px;
 			}
 			
 			.content {
 				text-align: left;
-				padding-left: 5px;
+				padding-left: 10px;
 			}
 		</style>
 	</head>
@@ -52,7 +51,7 @@
 					<td class="content">${member.mpoint}</td>
 				</tr>
 				
-				<c:if test="${member.mresid==1}">
+				<c:if test="${member.mresid!=0}">
 					<tr>
 						<td class="list">보유 Restaurant </td>
 						<td class="content">${member.mresid}</td>
@@ -63,5 +62,8 @@
 			
 			<a href="/ourapp/member/modifyInfo?mid=${login}"><input type="button" value="수정"/></a>
 			<a href="/ourapp/member/withdraw"><input type="button" value="탈퇴"/><br/></a>
+			
+			<a href="/ourapp/favorite/add"><input type="button" value="즐겨찾기 추가"/></a>
+			<a href="/ourapp/favorite/list"><input type="button" value="즐겨찾기 목록"/></a>
 	</body>
 </html>

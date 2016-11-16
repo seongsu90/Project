@@ -11,13 +11,13 @@ public class FavoriteService {
 	@Autowired
 	private FavoriteDao favoriteDao;
 	
-	public int add(String fMid, int fResid) {
-		int result = favoriteDao.insert(fMid, fResid);
+	public int add(String fmid, int fresid) {
+		int result = favoriteDao.insert(fmid, fresid);
 		return result;	
 	}
 	
-	public int delete(String fMid, int fResid) {
-		int result = favoriteDao.delete(fMid, fResid);
+	public int delete(String fmid, int fresid) {
+		int result = favoriteDao.delete(fmid, fresid);
 		return result;	
 	}
 }

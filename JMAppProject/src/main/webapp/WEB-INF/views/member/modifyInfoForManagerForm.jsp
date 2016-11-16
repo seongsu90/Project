@@ -23,11 +23,11 @@
 		<hr/>
 		
 		<form method="post" action="/ourapp/member/modifyInfoForManager">
-			
+			<input type="hidden" name="mid" value="${member.mid}" readonly/>
 			<table>
 				<tr>
-					<td class="list">아이디 </td>
-					<td class="content"><input type="text" name="mid" value="${member.mid}"></td>
+					<td class="list" style="background-color: #ff66ff;"><b>아이디</b></td>
+					<td class="content"><b> ${member.mid}</b></td>
 				</tr>
 					
 				<tr>

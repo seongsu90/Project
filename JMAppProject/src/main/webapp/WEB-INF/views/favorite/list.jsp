@@ -33,34 +33,22 @@
 		</style>
 	</head>
 	<body>
-		<p style="font-size:150%;"><b>회원 목록</b></p>
+		<p style="font-size:150%;"><b>즐겨찾기 목록</b></p>
 		<hr/>
 		
 		<br/>
 		<table style="border-collapse: collapse; border-style: solid; border-width: 2px; border-color: black;">
 			<tr>
-				<th> 아이디 </th>
-				<th> 이름 </th>
-				<th> 비밀번호 </th>
-				<th> 휴대폰 번호 </th>
-				<th> 생일 </th>
-				<th> 관심지역 </th>
-				<th> 회원등급 </th>
-				<th> Point </th>
-				<th> Res No </th>
+				<th> Restaurant id </th>
+				<th> Restaurant Name </th>
+				<th> Restaurant Info </th>
 				<th> &nbsp; </th>
 			</tr>
-			<c:forEach var="member" items="${list}">
+			<c:forEach var="favorite" items="${list}">
 				<tr>
-					<td> ${member.mid} </td>
-					<td> ${member.mname} </td>
-					<td> ${member.mpassword} </td>
-					<td> ${member.mphone} </td>
-					<td> ${member.mbirth} </td>
-					<td> ${member.mlocation} </td>
-					<td> ${member.mrank} </td>
-					<td> ${member.mpoint} </td>
-					<td> ${member.mresid} </td>
+					<td> ${favorite.mid} </td>
+					<td> ${favorite.mname} </td>
+					<td> ${favorite.mpassword} </td>
 					<td> <a href="/ourapp/member/modifyInfoForManager?mid=${member.mid}"><input type="button" value="수정"/></a></td>
 				</tr>
 			</c:forEach>

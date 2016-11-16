@@ -1,20 +1,20 @@
 package com.mycompany.ourapp.dto;
 
 public class Favorite {
-	private String fMid;
-	private int fResid;
+	private String fmid;
+	private int fresid;
 	
-	public String getfMid() {
-		return fMid;
+	public String getFmid() {
+		return fmid;
 	}
-	public void setfMid(String fMid) {
-		this.fMid = fMid;
+	public void setFmid(String fmid) {
+		this.fmid = fmid;
 	}
-	public int getfResid() {
-		return fResid;
+	public int getFresid() {
+		return fresid;
 	}
-	public void setfResid(int fResid) {
-		this.fResid = fResid;
+	public void setFresid(int fresid) {
+		this.fresid = fresid;
 	}
-
+	
 }

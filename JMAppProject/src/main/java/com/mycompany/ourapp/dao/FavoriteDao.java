@@ -16,26 +16,26 @@ public class FavoriteDao {
 	private JdbcTemplate jdbcTemplate;
 
 	// 즐겨찾기 추가
-	public int insert(String fMid, int fResid) {
+	public int insert(String fmid, int fresid) {
 		String sql = "insert into favorite(fmid, fresid) values(?, ?)";
-		int row = jdbcTemplate.update(sql, fMid, fResid);
+		int row = jdbcTemplate.update(sql, fmid, fresid);
 		return row;
 	}
 
 	// 즐겨찾기 삭제
-	public int delete(String fMid, int fResid) {
+	public int delete(String fmid, int fresid) {
 		String sql = "delete from favorite where fmid=? and fresid=?;";
-		int row = jdbcTemplate.update(sql, fMid, fResid);
+		int row = jdbcTemplate.update(sql, fmid, fresid);
 		return row;
 	}
 	
 	// 즐겨찾기 목록
-	public List<Integer> selectByFMid(String fMid) {
+	public List<Integer> selectByFMid(String fmid) {
 		String sql = "select fresid from favorite where fmid=?";
-		List<Integer> list = jdbcTemplate.query(sql, new Object[] {fMid}, new RowMapper<Integer>(){
+		List<Integer> list = jdbcTemplate.query(sql, new Object[] {fmid}, new RowMapper<Integer>(){
 			@Override
 			public Integer mapRow(ResultSet rs, int row) throws SQLException {
-				return rs.getInt("fResid");
+				return rs.getInt("fresid");
 			}
 		});
 		return (list.size() != 0)?list : null;	
