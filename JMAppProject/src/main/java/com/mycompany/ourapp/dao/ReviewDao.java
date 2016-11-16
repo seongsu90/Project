@@ -28,9 +28,9 @@ public class ReviewDao {
 		return row;		
 	}
 
-	public int delete(int revno, int revmid) {
-		String sql = "delete from review where revno=? and revMid=?";
-		int row = jdbcTemplate.update(sql, revno, revmid);
+	public int delete(int revno) {
+		String sql = "delete from review where revno=?";
+		int row = jdbcTemplate.update(sql, revno);
 		return row;
 	}
 

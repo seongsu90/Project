@@ -28,7 +28,7 @@
 			
 			<tr>
 				<td style="background-color:orange; width:70px"> 글쓴이 </td>
-			 	<td>${review.revMid}</td>
+			 	<td>${review.revmid}</td>
 			</tr>
 			
 			<tr>
@@ -42,9 +42,10 @@
 			</tr>
 		</table>		
 		<div>
-			<c:if test="${login == review.revMid}" >
-				<a href="delete?revMid=${review.revMid}">[삭제]</a>				
+			<c:if test="${login == review.revmid}" >
+				<a href="delete?revno=${review.revno}">[삭제]</a>				
 			</c:if>
+			<a href="list">[목록]</a>
 		</div>
 	</body>
 </html>

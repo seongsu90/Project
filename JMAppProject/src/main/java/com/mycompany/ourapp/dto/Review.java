@@ -2,12 +2,15 @@ package com.mycompany.ourapp.dto;
 
 import java.sql.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Review {
 	private int revno;
 	private int revresid;
 	private String revmid;
 	private String revcontent;
 	private int revscore;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date revdate;
 	
 	public int getRevno() {

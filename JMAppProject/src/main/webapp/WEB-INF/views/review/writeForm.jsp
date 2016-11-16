@@ -13,13 +13,16 @@
 		<form method="post">
 			<table>
 				<tr>
-					<td style="background-color:orange; width:70px"> 레스토랑 </td>
-				 	<td><input type="text" name="btitle" style="width:600px" value="${review.revresid}"></td>
+					<td style="background-color:orange; width:70px; border: 1px solid black;"> 작성자 </td>
+				 	<td style="border: 1px solid black;">${login}</td>				 	
 				</tr>
-				
 				<tr>
-					<td style="background-color:orange; width:70px"> 내용 </td>
-				 	<td><textarea name="bcontent" style="width:600px; height:200px;">${review.revcontent}</textarea></td>
+					<td style="background-color:orange; width:70px; border: 1px solid black;"> 레스토랑 </td>
+				 	<td style="border: 1px solid black;">${presid}</td>
+				</tr>
+				<tr>
+					<td style="background-color:orange; width:70px; border: 1px solid black;"> 내용 </td>
+				 	<td><textarea name="revcontent" style="width:600px; height:200px; border: 1px solid black;">${review.revcontent}</textarea></td>
 				</tr>
 			</table>
 			<input type="submit" value="글쓰기"/>

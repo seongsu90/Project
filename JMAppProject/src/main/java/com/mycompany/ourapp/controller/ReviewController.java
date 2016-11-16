@@ -34,13 +34,14 @@ public class ReviewController {
 		if ( result == reviewService.WRITE_FAIL ) {
 			return "review/write";
 		}	 
-		return "redirect:/";
+		return "review/list";
+		//return "redirect:/";
 	}
 	
 	@RequestMapping("/delete")
-	public String delete(int revno, int revmid) {
-		reviewService.delete(revno, revmid);
-		return "review/";
+	public String delete(int revno) {
+		reviewService.delete(revno);
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/info")
@@ -49,4 +50,12 @@ public class ReviewController {
 		model.addAttribute("review", review);
 		return "review/info";
 	}
+	
+	@RequestMapping("/list")
+	public String list(int revno, Model model) {	
+		Review review = reviewService.info(revno);
+		model.addAttribute("review", review);
+		return "review/list";
+	}
+	
 }

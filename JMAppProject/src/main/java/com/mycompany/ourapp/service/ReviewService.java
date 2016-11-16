@@ -26,8 +26,8 @@ public class ReviewService {
 		return WRITE_SUCCESS;		
 	}
 
-	public int delete(int revno, int revMid) {
-		int row = reviewDao.delete(revno, revMid);
+	public int delete(int revno) {
+		int row = reviewDao.delete(revno);
 		if(row == 0) {
 			return DELETE_FAIL;
 		}
