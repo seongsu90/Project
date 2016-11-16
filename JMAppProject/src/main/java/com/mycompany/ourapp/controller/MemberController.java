@@ -275,6 +275,29 @@ public class MemberController {
 						
 	}
 	
-	// 회원 등급 조정하기
+	// 회원 정보 수정 (Manager)
+	@RequestMapping(value="/modifyInfoForManager", method=RequestMethod.GET)
+	public String modifyInfoForManagerForm(String mid,  Model model) {
+		logger.info("modifyInfoForManagerForm() GET 실행");
+		Member member = memberService.info(mid);
+		model.addAttribute("member", member);
+		return "member/modifyInfoForManagerForm";
+	}
+	
+	// 회원 수정
+	@RequestMapping(value="/modifyInfoForManager", method=RequestMethod.POST)
+	public String modifyInfoForManager(Member member, Model model) {
+		logger.info("modifyInfoForManager() POST 실행");
+			try {
+				memberService.modify(member);
+				logger.info("수정완료");
+				return "redirect:/member/list";
+			} catch (Exception e) {
+				logger.info("수정실패");
+				model.addAttribute("member", member);
+				model.addAttribute("error", " 모든 항목을 입력해 주세요");
+				return "member/modifyInfoForManager";
+			}
+	}
 	
 }

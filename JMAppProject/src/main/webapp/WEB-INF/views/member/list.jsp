@@ -46,7 +46,7 @@
 				<th> 회원등급 </th>
 				<th> Point </th>
 				<th> Res No </th>
-				<%-- <th> &nbsp; </th> --%>
+				<th> &nbsp; </th>
 			</tr>
 			<c:forEach var="member" items="${list}">
 				<tr>
@@ -59,7 +59,7 @@
 					<td> ${member.mrank} </td>
 					<td> ${member.mpoint} </td>
 					<td> ${member.mresid} </td>
-					<%-- <td> <a href="/ourapp/member/info?mid=${member.mid}"><input type="button" value="수정"/></a></td> --%>
+					<td> <a href="/ourapp/member/modifyInfoForManager?mid=${member.mid}"><input type="button" value="수정"/></a></td>
 				</tr>
 			</c:forEach>
 		</table>
