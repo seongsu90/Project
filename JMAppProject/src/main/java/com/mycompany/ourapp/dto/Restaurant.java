@@ -1,9 +1,5 @@
 package com.mycompany.ourapp.dto;
 
-
-import java.sql.Timestamp;
-import java.util.Date;
-
 import org.springframework.web.multipart.MultipartFile;
 
 public class Restaurant {
@@ -14,8 +10,8 @@ public class Restaurant {
 	private String resinfo;
 	private String restel;
 	private String rescloseday;
-	private Timestamp resopen;
-	private Timestamp resclose;
+	private String resopen;
+	private String resclose;
 	
 	private MultipartFile resphoto;
 	private String ressavedfile;
@@ -58,16 +54,16 @@ public class Restaurant {
 	public void setRestel(String restel) {
 		this.restel = restel;
 	}
-	public Timestamp getResopen() {
+	public String getResopen() {
 		return resopen;
 	}
-	public void setResopen(Timestamp resopen) {
+	public void setResopen(String resopen) {
 		this.resopen = resopen;
 	}
-	public Timestamp getResclose() {
+	public String getResclose() {
 		return resclose;
 	}
-	public void setResclose(Timestamp resclose) {
+	public void setResclose(String resclose) {
 		this.resclose = resclose;
 	}
 

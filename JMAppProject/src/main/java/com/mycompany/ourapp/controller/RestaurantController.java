@@ -1,7 +1,13 @@
 package com.mycompany.ourapp.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -72,18 +78,62 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String add(Restaurant restaurant){
+	public String add(Restaurant restaurant, HttpSession session){
 		logger.info("add() 실행");
 		try{
-		//	photoBoard
-			int result=restaurantService.add(restaurant);
-			return "redirect:/restaurant/list";
+			int resid=(int)session.getAttribute("login");
+			restaurant.setResid(resid);
+			
+			
+			
+			String ressavedfile=new Date().getTime()+restaurant.getResopen();
+			restaurant.setRessavedfile(ressavedfile);
+			String realpath=session.getServletContext().getRealPath("/WEB-INF/photo/"+ressavedfile);
+			
+			
+			restaurant.getResphoto().transferTo(new File(realpath)); //실제파일데이타는여기에저장
+			
+			
+			restaurant.setResmime(restaurant.getResphoto().getContentType()); //파일종류얻기
+			
+			int result=restaurantService.add(restaurant);  //디비에는 원래파일이름. 저장된파일이름, 파일종류저장
+			
+			return "redirect:/restaurant/add";  //재요청 경로니까 freeBoard객체 사용못한다.
+			
+			}catch(Exception e){
+				e.printStackTrace();
+				return "restaurant/add";
+			}
+			
+	}
 	
+	@RequestMapping("/showPhoto")
+	public void showPhoto(String ressavedfile, HttpServletRequest request, HttpServletResponse response){
+		try{
+		String fileName=ressavedfile;
+		
+		
+		String resmime=request.getServletContext().getMimeType(fileName);
+		response.setContentType("image/jpeg");
+		
+		OutputStream os=response.getOutputStream();
+		
+		String filePath=request.getServletContext().getRealPath("/WEB-INF/photo/"+fileName);
+		FileInputStream is=new FileInputStream(filePath);
+		
+		byte[] values=new byte[1024];
+		int byteNum=-1;
+		while((byteNum=is.read(values))!=-1){
+			os.write(values, 0, byteNum);
+		}
+		os.flush();
+		is.close();
+		os.close();
 		}catch(Exception e){
 			e.printStackTrace();
-			return "restaurant/addForm";
 		}
 	}
+	
 	
 	@RequestMapping("/delete")
 	public String delete(int resid){
