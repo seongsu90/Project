@@ -52,20 +52,8 @@ public class PosService {
 		return list;
 	}
 	
-	public int calcSum(int presid, int ptableno) {		
+	public List<Integer> calcSum(int presid, int ptableno) {		
 		List<Integer> list = posDao.calc(presid, ptableno);
-		
-		int price = 0;
-		for ( int i = 0; i < list.size(); i++ ) {
-			price += list.get(i);
-		}
-		
-		return price;
-	}
-	
-	public List<Integer> calcPrice(int presid, int ptableno) {		
-		List<Integer> list = posDao.calc(presid, ptableno);
-		
 		return list;
 	}
 	
