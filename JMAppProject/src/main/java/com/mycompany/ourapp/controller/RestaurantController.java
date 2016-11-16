@@ -81,25 +81,17 @@ public class RestaurantController {
 	public String add(Restaurant restaurant, HttpSession session){
 		logger.info("add() 실행");
 		try{
-			int resid=(int)session.getAttribute("login");
-		
-			restaurant.setResid(resid);
+			String mid=(String)session.getAttribute("login");
 			
 			
-			
+		//	restaurant.setResid(resid);
 			String ressavedfile=new Date().getTime()+restaurant.getResopen();
 			restaurant.setRessavedfile(
 					ressavedfile);
 			String realpath=session.getServletContext().getRealPath("/WEB-INF/photo/"+ressavedfile);
-			
-			
 			restaurant.getResphoto().transferTo(new File(realpath)); //실제파일데이타는여기에저장
-			
-			
 			restaurant.setResmime(restaurant.getResphoto().getContentType()); //파일종류얻기
-			
 			int result=restaurantService.add(restaurant);  //디비에는 원래파일이름. 저장된파일이름, 파일종류저장
-			
 			return "redirect:/restaurant/add";  //재요청 경로니까 freeBoard객체 사용못한다.
 			
 			}catch(Exception e){
