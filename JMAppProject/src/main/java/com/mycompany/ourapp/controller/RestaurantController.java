@@ -61,14 +61,14 @@ public class RestaurantController {
 		model.addAttribute("groupNo", groupNo);
 		model.addAttribute("startPageNo", startPageNo);
 		model.addAttribute("endPageNo", endPageNo);
-		return "restaurant/list";
+		return "/restaurant/list";
 	}
 	
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addForm(Restaurant restaurant){
 		logger.info("addForm() 실행");
-		return "restaurant/addForm";
+		return "/restaurant/addForm";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
@@ -79,7 +79,7 @@ public class RestaurantController {
 			return "redirect:/restaurant/add";
 	
 		}catch(Exception e){
-			return "restaurant/addForm";
+			return "/restaurant/addForm";
 		}
 	}
 	
@@ -93,14 +93,14 @@ public class RestaurantController {
 	public String info(int resid, Model model){
 		Restaurant restaurant=restaurantService.info(resid);
 		model.addAttribute("restaurant", restaurant);
-		return "restaurant/info";
+		return "/restaurant/info";
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public String modifyForm(int resid, Model model){
 		Restaurant restaurant=restaurantService.info(resid);
 		model.addAttribute("restaurant", restaurant);
-		return "restaurant/modify";
+		return "/restaurant/modify";
 	}
 	
 	
