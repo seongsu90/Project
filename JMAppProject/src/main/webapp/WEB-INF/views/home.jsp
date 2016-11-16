@@ -55,7 +55,17 @@
      -------------------------------------------------------<br/>
      [MenuList] <br/>
      ※<a href="/ourapp/menulist/index">메뉴리스트</a><br/>
-    
+     -------------------------------------------------------<br/>
+     [Reservation]<br/>
+     <c:if test="${login==null}">
+    로그인을 해야 예약기능을 이용할 수 있습니다.<br/>
+    </c:if> 
+    <c:if test="${login!=null}">
+     ※<a href="/ourapp/reservation/index">예약기능</a>
+    </c:if>
+     -------------------------------------------------------<br/>
+     [Favorite]<br/>
+     ※<a href="/ourapp/favorite/index">즐겨찾기 기능하라고 현태가 오더내림</a>
 </body>
 	<!--  -->
 
