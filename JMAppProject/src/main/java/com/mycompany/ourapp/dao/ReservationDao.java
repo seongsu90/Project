@@ -19,7 +19,7 @@ public class ReservationDao {
 	private JdbcTemplate jdbcTemplate;
 	
 	public int insert(Reservation reservation) {
-		String sql = "insert into reservation(rvtime, rvperson, rvmid, rvresid) values(sysdate, ?, ?, ?)";
+		String sql = "insert into reservation(rvtime, rvperson, rvmid, rvresid) values(?, ?, ?, ?)";
 		int row = jdbcTemplate.update(
 				sql,
 				reservation.getRvtime(),
@@ -42,7 +42,7 @@ public class ReservationDao {
 			@Override
 			public Reservation mapRow(ResultSet rs, int row) throws SQLException {
 				Reservation reservation = new Reservation();
-				reservation.setRvtime(rs.getDate("rvtime"));
+				reservation.setRvtime(rs.getString("rvtime"));
 				reservation.setRvperson(rs.getInt("rvperson"));
 				reservation.setRvmid(rs.getString("rvmid"));
 				reservation.setRvresid(rs.getInt("rvresid"));

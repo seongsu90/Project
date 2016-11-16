@@ -11,14 +11,13 @@
 		&nbsp; <font size="6"><b>add</b></font></p>
 		<hr/> <!-- 시작과 동시에 끝이다라는 의미<br/>// 태그의 의미는 수평선그리기 -->
 		<form method="post">
-		- 예약 시간 <input type="text"  name="cnumber"  value="${cnumber}" readonly/> <br/>
-		- 인원 수<input type="text"  name="cname" value="쿠폰이름을 입력해주세요"/> <br/>
-		- 예약 아이디<input type="date" name="cdday"> <br/>
-		- 예약하는 식당<br/>
-		<textarea name="cinfo" rows="10" cols="30">쿠폰정보를 입력해 주세요</textarea> <br/>
-		- 쿠폰적용 음식점 <input type="text"  name="cresid"  value="${cresid}" readonly/> <br/>
-		- 쿠폰 할인금액<input type="text"  name="cdiscount" value="10000"/> <br/>
-		<input type="submit" value="쿠폰 등록"/> <br/>
+		※ 당일 예약만 가능합니다.<br/>
+		- 예약 시간 <input type="time"  name="rvtime"  /> <br/>
+		- 인원 수(테이블당 최대 4명) <input type="number" name="rvperson" min="1" max="8"><br/>
+		- 예약 아이디<input type="text" name="rvmid" value="${login}"readonly> <br/>
+		- 예약하는 식당 <input type="text"  name="rvresid"  value="0" readonly/> <br/>
+		
+		<input type="submit" value="예약하기"/> <br/>
 		</form>
 	</body>
 </html>
