@@ -52,4 +52,38 @@ public class ReservationDao {
 		});
 		return (list.size() != 0)?list.get(0) : null;
 	}
+
+	public List<Reservation> selectByPage(int pageNo, int rowsPerPage) {
+		String sql = "";
+		sql += "select rn, rvtime, rvperson, rvmid, rvresid ";
+		sql += "from ( ";
+		sql += "select rownum as rn,rvtime, rvperson, rvmid, rvresid ";
+		sql += "from (select rvtime, rvperson, rvmid, rvresid from reservation order by rvtime desc) ";
+		sql += "where rownum<=? ";
+		sql += ") ";
+		sql += "where rn>=? ";
+		
+		List<Reservation> list = jdbcTemplate.query(
+			sql,
+			new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage + 1)},
+			new RowMapper<Reservation>() {
+				@Override
+				public Reservation mapRow(ResultSet rs, int row) throws SQLException {
+					Reservation reservation = new Reservation();
+					reservation.setRvtime(rs.getString("rvtime"));
+					reservation.setRvperson(rs.getInt("rvperson"));
+					reservation.setRvmid(rs.getString("rvmid"));
+					reservation.setRvresid(rs.getInt("rvresid"));
+					return reservation;
+				}					
+			}
+		);
+		return list;
+	}
+
+	public int count(){
+		String sql="select count(*) from reservation";
+		int count = jdbcTemplate.queryForObject(sql, Integer.class);
+		return count;
+	}
 }

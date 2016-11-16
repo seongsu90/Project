@@ -1,5 +1,7 @@
 package com.mycompany.ourapp.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,10 +33,16 @@ public class ReservationService {
 		return DELETE_SUCCESS;
 	}
 	
+	public List<Reservation> list(int pageNo, int rowsPerPage){
+		return reservationDao.selectByPage(pageNo, rowsPerPage);
+	}
+	
 	public Reservation info(String rvMid, int rvResid) {
-		
 		Reservation reservation = new Reservation();
-		
 		return reservation;
+	}
+	
+	public int getCount(){
+		return reservationDao.count();
 	}
 }
