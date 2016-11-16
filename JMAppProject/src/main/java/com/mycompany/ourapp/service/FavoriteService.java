@@ -1,5 +1,6 @@
 package com.mycompany.ourapp.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,15 +31,11 @@ public class FavoriteService {
 	
 	public List<Restaurant> list(String fmid) {
 		List<Integer> residList = favoriteDao.selectByFmid(fmid);
-		//List<Restaurant> resList = new ArrayList<>();
-		System.out.println(residList.get(0));
-		System.out.println(residList.get(1));
-		Restaurant res = restaurantDao.selectByResid(1);
-		System.out.println(res.getResid());
-		System.out.println(res.getResname());
-//		for ( int i = 0 ; i < residList.size() ; i++ ) {
-//			resList.add( restaurantDao.selectByResid(residList.get(i)) );
-//		}
-		return null;
+		List<Restaurant> resList = new ArrayList<>();
+		
+		for ( int i = 0 ; i < residList.size() ; i++ ) {
+			resList.add( restaurantDao.selectByResid(residList.get(i)) );
+		}
+		return resList;
 	}
 }
