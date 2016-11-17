@@ -19,7 +19,7 @@ public class RestaurantDao {
 	private JdbcTemplate jdbcTemplate;
 	
 	public int insert(Restaurant restaurant) {
-		String sql="insert into restaurant(resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, rescloseday, resmime) values(seq_restaurant_resid.nextval,?,?,?,?,?,?,?,?,?,?)";
+		String sql="insert into restaurant(resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, rescloseday, resmime) values(seq_restaurant_resid.nextval,?,?,?,?,?,?,?,0,?,0)";
 		int row=jdbcTemplate.update(
 				sql,
 				restaurant.getResname(),
@@ -29,9 +29,9 @@ public class RestaurantDao {
 				restaurant.getRestel(),
 				restaurant.getResopen(),
 				restaurant.getResclose(),
-				restaurant.getRessavedfile(),
-				restaurant.getRescloseday(),
-				restaurant.getResmime()
+			//	restaurant.getRessavedfile(),
+				restaurant.getRescloseday()
+			//	restaurant.getResmime()
 				);
 		return row;
 	}
@@ -65,10 +65,10 @@ public class RestaurantDao {
 	
 	public List<Restaurant> selectByPage(int pageNo, int rowsPerPage){
 		String sql="";
-		sql+="select rn, resid, resname, resinfo, ressavedfile ";
+		sql+="select rn, resid, resname, reslocation, resinfo, restotaltable, restel, resopen, resclose, rescloseday ,ressavedfile ";
 		sql+="from( " ;
-		sql+="select rownum as rn, resid, resname, resinfo, ressavedfile ";
-		sql+="from (select resid, resname, resinfo, ressavedfile from Restaurant order by resid desc) ";
+		sql+="select rownum as rn, resid, resname, reslocation, resinfo, restotaltable, restel, resopen, resclose, rescloseday ,ressavedfile ";
+		sql+="from (select resid, resname, reslocation, resinfo, restotaltable, restel, resopen, resclose, rescloseday ,ressavedfile from Restaurant order by resid desc) ";
 		sql+="where rownum<=? ";
 		sql+=") ";
 		sql+="where rn>=? ";
@@ -82,7 +82,13 @@ public class RestaurantDao {
 						Restaurant restaurant=new Restaurant();
 						restaurant.setResid(rs.getInt("resid"));
 						restaurant.setResname(rs.getString("resname"));
+						restaurant.setReslocation(rs.getString("reslocation"));
 						restaurant.setResinfo(rs.getString("resinfo"));
+						restaurant.setRestotaltable(rs.getInt("restotaltable"));
+						restaurant.setRestel(rs.getString("restel"));
+						restaurant.setResopen(rs.getString("resopen"));
+						restaurant.setResclose(rs.getString("resclose"));
+						restaurant.setRescloseday(rs.getString("rescloseday"));
 						restaurant.setRessavedfile(rs.getString("ressavedfile"));
 						
 						return restaurant;

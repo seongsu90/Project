@@ -72,32 +72,17 @@ public class RestaurantController {
 	
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
-	public String add(Restaurant restaurant){
+	public String addForm(){
 		logger.info("addForm() 실행");
-		return "restaurant/add";
+		return "restaurant/addForm";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String add(Restaurant restaurant, HttpSession session){
+	public String add(Restaurant restaurant){
 		logger.info("add() 실행");
-		try{
-			String mid=(String)session.getAttribute("login");
+			restaurantService.add(restaurant);
+			return "redirect:/restaurant/list";  
 			
-			
-		//	restaurant.setResid(resid);
-			String ressavedfile=new Date().getTime()+restaurant.getResopen();
-			restaurant.setRessavedfile(
-					ressavedfile);
-			String realpath=session.getServletContext().getRealPath("/WEB-INF/photo/"+ressavedfile);
-			restaurant.getResphoto().transferTo(new File(realpath)); //실제파일데이타는여기에저장
-			restaurant.setResmime(restaurant.getResphoto().getContentType()); //파일종류얻기
-			int result=restaurantService.add(restaurant);  //디비에는 원래파일이름. 저장된파일이름, 파일종류저장
-			return "redirect:/restaurant/add";  //재요청 경로니까 freeBoard객체 사용못한다.
-			
-			}catch(Exception e){
-				e.printStackTrace();
-				return "restaurant/add";
-			}
 			
 	}
 	
