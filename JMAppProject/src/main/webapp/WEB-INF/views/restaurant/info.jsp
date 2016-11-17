@@ -64,13 +64,17 @@
 		
 		</table>
 		
-		<div>
 		
-		<a href="modify">[수정]</a>
-		<a href="remove">[삭제]</a>
-		<hr/>
-		<a href="list">[목록]</a>
-		</div> 
-
+		
+		<div>
+			<c:if test="${member.mrank==1 || member.mresid==restaurant.resid}">
+			<a href="modify?bno=${freeboard.bno}">[수정]</a>
+			</c:if>
+			
+			<c:if test="${member.mrank==2  || member.mresid==restaurant.resid}">
+			<a href="remove?bno=${freeboard.bno}">[삭제]</a>
+			</c:if>
+			<a href="list">[목록]</a>
+		</div>
 	</body>
 </html>

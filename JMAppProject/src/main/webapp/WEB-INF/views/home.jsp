@@ -44,12 +44,14 @@
      ※<a href="/ourapp/review/info">리뷰보기</a><br/>
      ※<a href="/ourapp/review/list">리뷰리스트</a><br/>
     -------------------------------------------------------<br/>
-     [restaurant]<br/>
+     [restaurant]<br/>  
+     <c:if test="${login==null}">
      ※<a href="/ourapp/restaurant/list">음식점 리스트보기</a><br/>
-     ※<a href="/ourapp/restaurant/add">음식점추가하기</a><br/>
-     ※<a href="/ourapp/restaurant/delete">음식점삭제하기</a><br/>
-     ※<a href="/ourapp/restaurant/info?resid=1">음식점 정보보기</a><br/>
-     ※<a href="/ourapp/restaurant/modify">음식점 정보수정하기</a><br/>
+    로그인을 해야 추가 식당기능을 이용할 수 있습니다.<br/>
+    </c:if> 
+    <c:if test="${login!=null}">
+     ※<a href="/ourapp/restaurant/index?mid=${login}">음식점 기능</a><br/>
+     </c:if>
      -------------------------------------------------------<br/>
      [Event] <br/>
      ※<a href="/ourapp/event/index">이벤트 기능</a><br/>

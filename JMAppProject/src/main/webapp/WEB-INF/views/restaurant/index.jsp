@@ -8,10 +8,13 @@
 	<body> 
 		Restaurant 메인 화면
 		<hr/>		
-		<a href="/ourapp/restaurant/add">식당 추가</a><br/>
-		<a href="/ourapp/restaurant/modify">식당 정보 수정</a><br/>
-		<a href="/ourapp/restaurant/delete">식당 삭제</a><br/>
-		<a href="/ourapp/restaurant/info">식당 정보 상세보기</a><br/>	
-		<a href="/ourapp/restaurant/list">식당 리스트 보기</a><br/>	
+		
+		※<a href="/ourapp/restaurant/list">음식점 리스트보기</a><br/>
+     ※<a href="/ourapp/restaurant/add">음식점추가하기</a><br/>
+     ※<a href="/ourapp/restaurant/delete">음식점삭제하기</a><br/>
+     ※<a href="/ourapp/restaurant/info?resid=1">음식점 정보보기</a><br/>
+     ※<a href="/ourapp/restaurant/modify">음식점 정보수정하기</a><br/>
+
+
 	</body>
 </html>

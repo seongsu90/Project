@@ -17,7 +17,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.mycompany.ourapp.dto.Member;
 import com.mycompany.ourapp.dto.Restaurant;
+import com.mycompany.ourapp.service.MemberService;
 import com.mycompany.ourapp.service.RestaurantService;
 
 @Controller
@@ -27,6 +30,11 @@ public class RestaurantController {
 	
 	@Autowired
 	private RestaurantService restaurantService;
+	
+	@Autowired
+	private MemberService memberService;
+	
+	String mid = null;
 	
 	@RequestMapping("/list")
 	public String list(String pageNo, Model model, HttpSession session){
@@ -123,9 +131,13 @@ public class RestaurantController {
 	@RequestMapping("/info")
 	public String info(int resid, Model model){
 		Restaurant restaurant=restaurantService.info(resid);
+	//	Member member=memberService.
 		model.addAttribute("restaurant", restaurant);
 		return "/restaurant/info";
 	}
+	
+
+	
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public String modifyForm(int resid, Model model){
@@ -142,6 +154,12 @@ public class RestaurantController {
 		return "redirect:/restaurant/list";
 	}
 	
+	@RequestMapping("/index")
+	public String index(String mid)
+	{
+		this.mid = mid;
+		return "restaurant/index";
+	}
 	
 
 }

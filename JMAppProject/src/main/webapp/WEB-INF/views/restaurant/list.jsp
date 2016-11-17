@@ -52,6 +52,7 @@
 			<c:forEach var="restaurant" items="${list}">
 				<tr>
 					<td> ${restaurant.resid} </td>
+						<a href="/ourapp/restaurant/info">${restaurant.resid}</a>			
 					<td> ${restaurant.resname} </td>
 					<td> ${restaurant.reslocation} </td>
 					<td> ${restaurant.resinfo} </td>
