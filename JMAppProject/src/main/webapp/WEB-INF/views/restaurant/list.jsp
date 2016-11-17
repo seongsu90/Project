@@ -38,8 +38,7 @@
 		<br/>
 		<table style="width: 700px; border-collapse: collapse; border-style: solid; border-width: 2px; border-color: black;">
 			<tr>
-				<th>  </th>
-				
+				<th> 식당 아이디 </th>
 				<th> 식당 이름</th>
 				<th> 식당 위치</th>
 				<th> 식당 정보 </th>
@@ -52,6 +51,7 @@
 			</tr>
 			<c:forEach var="restaurant" items="${list}">
 				<tr>
+					<td> ${restaurant.resid} </td>
 					<td> ${restaurant.resname} </td>
 					<td> ${restaurant.reslocation} </td>
 					<td> ${restaurant.resinfo} </td>

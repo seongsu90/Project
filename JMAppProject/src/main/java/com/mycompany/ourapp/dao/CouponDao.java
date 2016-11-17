@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
-
 import com.mycompany.ourapp.dto.Coupon;
 import com.mycompany.ourapp.dto.CouponBox;
 
@@ -77,19 +76,37 @@ public class CouponDao {
 		return false;
 	}
 	
-	public CouponBox myCoupon(String cbmid)
-	{
-		String sql = "select cbmid,cbnumber from couponbox where cbmid=? ";
-		List<CouponBox> list = jdbcTemplate.query(sql, new Object[]{cbmid}, new RowMapper<CouponBox>() {
-			@Override
-			public CouponBox mapRow(ResultSet rs, int row) throws SQLException {
-				CouponBox couponbox = new CouponBox();
-				couponbox.setCbmid(rs.getString("cbmid"));
-				couponbox.setCbnumber(rs.getInt("cbnumber"));
 
-				return couponbox;
+
+	public int count() {
+		String sql="select count(*) from couponbox";
+		int count = jdbcTemplate.queryForObject(sql, Integer.class);
+		return count;
+	}
+
+	public List<CouponBox> selectByPage(int pageNo, int rowsPerPage) {
+		String sql = "";
+		sql += "select rn, cbmid, cbnumber ";
+		sql += "from ( ";
+		sql += "select rownum as rn, cbmid, cbnumber ";
+		sql += "from (select cbmid, cbnumber from couponbox) ";
+		sql += "where rownum<=? ";
+		sql += ") ";
+		sql += "where rn>=? ";
+		
+		List<CouponBox> list = jdbcTemplate.query(
+			sql,
+			new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage + 1)},
+			new RowMapper<CouponBox>() {
+				@Override
+				public CouponBox mapRow(ResultSet rs, int row) throws SQLException {
+					CouponBox couponbox = new CouponBox();
+					couponbox.setCbmid(rs.getString("cbmid"));
+					couponbox.setCbnumber(rs.getInt("cbnumber"));
+					return couponbox;
+				}					
 			}
-		});
-		return (list.size() != 0)?list.get(0) : null;
+		);
+		return list;
 	}
 }

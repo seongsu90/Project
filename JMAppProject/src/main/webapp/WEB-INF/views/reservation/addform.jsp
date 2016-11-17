@@ -11,7 +11,7 @@
 		&nbsp; <font size="6"><b>add</b></font></p>
 		<hr/> <!-- 시작과 동시에 끝이다라는 의미<br/>// 태그의 의미는 수평선그리기 -->
 		<form method="post">
-		※ 당일 예약만 가능합니다.<br/>
+		※ 당일 예약만 가능합니다. 현재시각 <br/>
 		- 예약 시간 <input type="time"  name="rvtime"  /> <br/>
 		- 인원 수(테이블당 최대 4명) <input type="number" name="rvperson" min="1" max="8"><br/>
 		- 예약 아이디<input type="text" name="rvmid" value="${login}"readonly> <br/>

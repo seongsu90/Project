@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.mycompany.ourapp.dao.CouponDao;
 import com.mycompany.ourapp.dto.Coupon;
 import com.mycompany.ourapp.dto.CouponBox;
+import com.mycompany.ourapp.dto.Reservation;
 
 @Component
 public class CouponService {
@@ -68,14 +69,12 @@ public class CouponService {
 		return true;	
 	}
 
+	public List<CouponBox> list(int pageNo, int rowsPerPage){
+		return couponDao.selectByPage(pageNo, rowsPerPage);
+	}
 
-	public List<CouponBox> list(String mid) {
-		// TODO Auto-generated method stub
-		List<CouponBox> couponList = new ArrayList<>();
-		CouponBox couponbox = couponDao.myCoupon(mid);
-		couponList.add(couponbox);
-		
-		return couponList;
+	public int getCount() {
+		return couponDao.count();
 	}
 
 }
