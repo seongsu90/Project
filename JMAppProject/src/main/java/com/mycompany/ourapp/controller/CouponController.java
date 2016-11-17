@@ -86,7 +86,7 @@ public class CouponController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addform(HttpSession session){
-		logger.info("add 요청처리");
+		logger.info("addform 요청처리");
 		int cnumber=0;
 		int ranNum =0;
 		boolean chkNum = false;
@@ -105,7 +105,7 @@ public class CouponController {
 		}
 		session.setAttribute("cresid", cresid);
 		session.setAttribute("cnumber", cnumber);
-		return "/coupon/addform";
+		return "coupon/addform";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
@@ -151,9 +151,10 @@ public class CouponController {
 	}
 	
 	@RequestMapping(value="/send",method=RequestMethod.POST)
-	public String send(CouponBox couponbox){
+	public String send(CouponBox couponbox,HttpSession session){
 		logger.info("send 요청처리");
-		couponservice.send(couponbox);
-		return "redirect:/coupon/sendForm";
+
+		int result = couponservice.send(couponbox);
+		return "redirect:/coupon/index";
 	}
 }

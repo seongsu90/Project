@@ -38,7 +38,7 @@ public class CouponDao {
 	
 	public int send(CouponBox couponBox)
 	{
-		String sql="insert into couponbox(cbMid,cbnumber) values(?,?)";
+		String sql="insert into couponbox(cbmid,cbnumber) values(?,?)";
 		int row = jdbcTemplate.update(
 				sql,
 				couponBox.getCbmid(),
