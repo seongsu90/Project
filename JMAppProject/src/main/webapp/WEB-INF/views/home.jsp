@@ -42,6 +42,7 @@
      ※<a href="/ourapp/review/write">리뷰쓰기</a><br/>
      ※<a href="/ourapp/review/delete">리뷰삭제</a><br/>
      ※<a href="/ourapp/review/info">리뷰보기</a><br/>
+     ※<a href="/ourapp/review/list">리뷰리스트</a><br/>
     -------------------------------------------------------<br/>
      [restaurant]<br/>
      ※<a href="/ourapp/restaurant/list">음식점 리스트보기</a><br/>
