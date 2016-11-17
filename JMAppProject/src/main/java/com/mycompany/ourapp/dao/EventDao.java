@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.mycompany.ourapp.controller.EventController;
 import com.mycompany.ourapp.dto.Event;
+import com.mycompany.ourapp.dto.Restaurant;
 
 @Component
 public class EventDao {
@@ -84,4 +85,42 @@ public class EventDao {
 		return (list.size() != 0)?list.get(0) : null;
 	}
 	
+	public int count(){
+		String sql="select count(*) from event";
+		int count=jdbcTemplate.queryForObject(sql, Integer.class);   
+		return count;
+	}
+	
+	public List<Event> selectByPage(int pageNo, int rowsPerPage){
+		String sql="";
+		sql+="select rn, ename, eresid, esavedfile, einfo, emlname, eprice, estart, eend ";
+		sql+="from( " ;
+		sql+="select rownum as rn, ename, eresid, esavedfile, einfo, emlname, eprice, estart, eend ";
+		sql+="from (select ename, eresid, esavedfile, einfo, emlname, eprice, estart, eend from Event order by eresid desc) ";
+		sql+="where rownum<=? ";
+		sql+=") ";
+		sql+="where rn>=? ";
+		
+		List<Event> list=jdbcTemplate.query(
+				sql, 
+				new Object[]{(pageNo*rowsPerPage),((pageNo-1)*rowsPerPage+1)},
+				new RowMapper<Event>(){
+					@Override
+					public Event mapRow(ResultSet rs, int row)throws SQLException{
+						Event event=new Event();
+						event.setEname(rs.getString("ename"));
+						event.setEresid(rs.getInt("eresid"));
+						event.setEsavedfile(rs.getString("esavedfile"));
+						event.setEname(rs.getString("einfo"));
+						event.setEinfo(rs.getString("emlname"));
+						event.setEprice(rs.getInt("eprice"));
+						event.setEstart(rs.getDate("estart"));
+						event.setEend(rs.getDate("eend"));
+						
+						return event;
+					}
+				}
+		);
+	return list;
+	}
 }
