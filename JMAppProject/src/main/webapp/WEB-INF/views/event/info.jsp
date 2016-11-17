@@ -45,7 +45,6 @@
 		</table>
 		
 		<div>
-			<a href="modify">[수정]</a>
 			<a href="delete">[삭제]</a>
 		</div>
 		

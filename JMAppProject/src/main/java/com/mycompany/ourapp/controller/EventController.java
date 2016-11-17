@@ -2,7 +2,14 @@ package com.mycompany.ourapp.controller;
 
 
 
-import javax.servlet.http.HttpSession;
+
+
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +36,7 @@ public class EventController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
-	public String addForm(Event event){
+	public String addForm(){
 		logger.info("addForm 요청처리");
 		return "event/addForm";
 	}
@@ -52,15 +59,14 @@ public class EventController {
 	public String info(int eresid,String emlname, Model model){
 		logger.info("info 요청처리");
 		Event event=eventService.info(eresid,emlname);
-		model.addAttribute("event", event);
+		model.addAttribute("eresid", eresid);
+		model.addAttribute("emlname", emlname);
 		return "event/info";
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public String modifyForm(int eresid,String emlname,Model model){
+	public String modifyForm(){
 		logger.info("modify 요청처리");
-		Event event = eventService.info(eresid, emlname);
-		model.addAttribute("event",event);
 		return "event/modify";
 	}
 	
@@ -68,8 +74,10 @@ public class EventController {
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Event event){
 		logger.info("modify 요청처리");
-		Event dbevent = eventService.info(event.getEresid(), event.getEmlname());
 		eventService.modify(event);
+		
 		return "redirect:/event/index";
 	}
+	
+	
 }

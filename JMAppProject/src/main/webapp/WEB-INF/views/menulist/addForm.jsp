@@ -6,17 +6,16 @@
 	</head> 
 	<body>
 	
-		이벤트 생성
+		메뉴리스트 생성
 		<hr/>
 			<form method="post" enctype="multipart/form-data">
-				이름 : <input type="text" name="ename"/><br/>	
-				식당명 : <input type="number" name="eresid"/><br/>
-				이벤트 사진 : <input type="file" name="esavedfile"/><br/>
-				이벤트 정보 : <input type="text" name="einfo"/><br/>
-				이벤트 메뉴 이름 : <input type="text" name="emlname"/><br/>
+				메뉴이름 : <input type="text" name="mlname"/><br/>	
+				메뉴가격 : <input type="number" name="mlprice"/><br/>
+				식당명 : <input type="text" name="mlresid"/><br/>
+				메뉴 정보 : <input type="text" name="mlinfo"/><br/>
+				이벤트 메뉴 이름 : <input type="file" name="mlsavedfile"/><br/>
 				이벤트 할인가격 : <input type="number" name="eprice"/><br/>
 				이벤트 시작기간 : <input type="date" name="estart"/><br/>
-				이벤트 종료기간 : <input type="date" name="eend"/><br/>
 				
 					
 				<input type="submit" value="생성"/>

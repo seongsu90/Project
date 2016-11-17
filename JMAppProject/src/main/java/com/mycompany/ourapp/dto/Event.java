@@ -2,6 +2,8 @@ package com.mycompany.ourapp.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Event {
 	private String ename; 
 	private int eresid;
@@ -9,7 +11,9 @@ public class Event {
 	private String einfo;
 	private String emlname;
 	private int eprice;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date estart;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date eend;
 	
 	public String getEname() {

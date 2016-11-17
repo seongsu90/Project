@@ -29,7 +29,7 @@
 						
 						<tr>
 							<td style="background-color:blue; width:100px">이벤트 정보</td>
-							<td><input type="file" name="einfo" style="width:600px" value="${event.einfo}"/></td>
+							<td><input type="text" name="einfo" style="width:600px" value="${event.einfo}"/></td>
 						</tr>
 						
 						<tr>
@@ -44,15 +44,17 @@
 						
 						<tr>
 							<td style="background-color:blue; width:100px">이벤트 시작</td>
-							<td><input type="text" name="estart" style="width:600px" value="${event.estart}"/></td>
+							<td><input type="date" name="estart" style="width:600px" value="${event.estart}"/></td>
 						</tr>
 						
 						<tr>
 							<td style="background-color:blue; width:100px">이벤트 종료</td>
-							<td><input type="text" name="eend" value="${event.eend}"/></td>
+							<td><input type="date" name="eend" value="${event.eend}"/></td>
 						</tr>
 					</table>
 				<input type="submit" value="수정"/>
+		
+					<a href="delete">[삭제]</a>
 			</form>
 	</body>
 </html>
