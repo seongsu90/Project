@@ -36,13 +36,18 @@
 			</tr>
 			<tr>
 				<td style="background-color:blue; width:100px">이벤트 시작기간</td>
-				<td>${event.start}</td>
+				<td>${event.estart}</td>
 			</tr>	
 			<tr>
 				<td style="background-color:blue; width:100px">이벤트 종료기간</td>
 				<td>${event.eend}</td>
 			</tr>	
 		</table>
+		
+		<div>
+			<a href="modify">[수정]</a>
+			<a href="delete">[삭제]</a>
+		</div>
 		
 	</body>
 </html>

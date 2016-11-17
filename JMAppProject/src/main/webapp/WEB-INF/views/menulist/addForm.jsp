@@ -9,7 +9,7 @@
 	
 		메뉴리스트 생성
 		<hr/>
-			<form method="post">
+			<form method="post" >
 				메뉴이름 : <input type="text" name="mlname"/><br/>	
 				메뉴가격 : <input type="text" name="mlprice"/><br/>
 				식당명 : <input type="text" name="mlresid"/><br/>
