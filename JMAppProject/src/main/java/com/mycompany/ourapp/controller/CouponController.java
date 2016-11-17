@@ -1,5 +1,7 @@
 package com.mycompany.ourapp.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.mycompany.ourapp.dto.Coupon;
+import com.mycompany.ourapp.dto.CouponBox;
 import com.mycompany.ourapp.dto.Member;
 import com.mycompany.ourapp.service.CouponService;
 import com.mycompany.ourapp.service.MemberService;
@@ -38,14 +40,49 @@ public class CouponController {
 		return "/coupon/index";
 	}
 	
-	/*@RequestMapping("/list")
-	public String list(HttpSession session)
-	{
-		couponservice.list(mid);
-		logger.info("list 처리 요청");
-		session.setAttribute("couponbox", couponbox);
-		return "/coupon/list";
-	}*/
+	@RequestMapping("/list")
+	public String list(String pageNo,Model model,HttpSession session){
+		int intPageNo =1;
+		if(pageNo==null)
+		{
+			pageNo = (String) session.getAttribute("pageNo");
+			if(pageNo != null) //넘어오지도 않고 세션에 존재하지도 않을 때는 1페이를 넘겨주게끔 셋팅
+				{
+					intPageNo =Integer.parseInt(pageNo)	;
+				}
+		}else
+		{
+			intPageNo = Integer.parseInt(pageNo);
+		}
+		session.setAttribute("pageNo", String.valueOf(intPageNo));
+		
+		int rowsPerPage = 8;
+		int pagesPerGroup =5;
+		
+		int totalBoardNo = couponservice.getCount();
+		
+		int totalPageNo = totalBoardNo/rowsPerPage + ((totalBoardNo%rowsPerPage!=0)?1:0); //나머지가 있다면 1을 더하고 없으면 0을 더한다.
+		int totalGroupNo = (totalPageNo/pagesPerGroup)+((totalPageNo%pagesPerGroup!=0)?1:0);
+		
+		int groupNo = (intPageNo-1)/ pagesPerGroup +1;
+		int startPageNo = (groupNo-1)*pagesPerGroup +1;
+		int endPageNo = startPageNo + pagesPerGroup -1;
+		
+		if(groupNo==totalGroupNo){endPageNo= totalPageNo;}
+		
+		List<CouponBox> couponlist = couponservice.list(intPageNo, rowsPerPage);
+		model.addAttribute("pageNo",intPageNo);
+		model.addAttribute("rowsPerPage",rowsPerPage);
+		model.addAttribute("pagesPerGroup",pagesPerGroup);
+		model.addAttribute("totalPageNo",totalPageNo);
+		model.addAttribute("totalBoardNo",totalBoardNo);
+		model.addAttribute("totalGroupNo",totalGroupNo);
+		model.addAttribute("groupNo",groupNo);
+		model.addAttribute("startPageNo",startPageNo);
+		model.addAttribute("endPageNo",endPageNo);
+		model.addAttribute("couponlist",couponlist);
+		return "coupon/list";
+	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addform(HttpSession session){
@@ -106,5 +143,17 @@ public class CouponController {
 		return "/coupon/info";
 	}
 	
+	@RequestMapping(value="/send",method=RequestMethod.GET)
+	public String sendForm()
+	{
+		logger.info("sendform 요청처리");
+		return "/coupon/sendForm";
+	}
 	
+	@RequestMapping(value="/send",method=RequestMethod.POST)
+	public String send(CouponBox couponbox){
+		logger.info("send 요청처리");
+		couponservice.send(couponbox);
+		return "redirect:/coupon/sendForm";
+	}
 }

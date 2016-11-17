@@ -78,24 +78,13 @@ public class ReservationController {
 		int totalBoardNo = reservationservice.getCount();
 		
 		int totalPageNo = totalBoardNo/rowsPerPage + ((totalBoardNo%rowsPerPage!=0)?1:0); //나머지가 있다면 1을 더하고 없으면 0을 더한다.
-		int totalGroupNo = (totalPageNo/pagesPerGroup)+((totalPageNo%pagesPerGroup!=0)?1:0);
-		
-		int groupNo = (intPageNo-1)/ pagesPerGroup +1;
-		int startPageNo = (groupNo-1)*pagesPerGroup +1;
-		int endPageNo = startPageNo + pagesPerGroup -1;
-		
-		if(groupNo==totalGroupNo){endPageNo= totalPageNo;}
-		
+	
 		List<Reservation> list = reservationservice.list(intPageNo, rowsPerPage);
 		model.addAttribute("pageNo",intPageNo);
 		model.addAttribute("rowsPerPage",rowsPerPage);
 		model.addAttribute("pagesPerGroup",pagesPerGroup);
 		model.addAttribute("totalPageNo",totalPageNo);
 		model.addAttribute("totalBoardNo",totalBoardNo);
-		model.addAttribute("totalGroupNo",totalGroupNo);
-		model.addAttribute("groupNo",groupNo);
-		model.addAttribute("startPageNo",startPageNo);
-		model.addAttribute("endPageNo",endPageNo);
 		model.addAttribute("list",list);
 		return "reservation/list";
 	}
