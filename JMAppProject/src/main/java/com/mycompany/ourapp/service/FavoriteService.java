@@ -33,6 +33,8 @@ public class FavoriteService {
 		List<Integer> residList = favoriteDao.selectByFmid(fmid);
 		List<Restaurant> resList = new ArrayList<>();
 		
+		if ( residList == null ) return null;
+		
 		for ( int i = 0 ; i < residList.size() ; i++ ) {
 			resList.add( restaurantDao.selectByResid(residList.get(i)) );
 		}

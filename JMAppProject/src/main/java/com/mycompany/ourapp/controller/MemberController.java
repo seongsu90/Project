@@ -189,6 +189,13 @@ public class MemberController {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(String pageNo, @RequestParam(required=false, defaultValue="") String find, Model model, HttpSession session) {
 		logger.info("list() GET 실행");
+		//
+		String mid = (String) session.getAttribute("login");
+		Member member = memberService.info(mid);
+		if ( member == null || member.getMrank() != 2 ) {
+			return "redirect:/";
+		}
+		//
 		int intPageNo = 1;
 		if ( pageNo == null ) {
 			pageNo = (String) session.getAttribute("pageNo");

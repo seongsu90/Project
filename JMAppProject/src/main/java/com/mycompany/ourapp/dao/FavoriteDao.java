@@ -24,7 +24,7 @@ public class FavoriteDao {
 
 	// 즐겨찾기 삭제
 	public int delete(String fmid, int fresid) {
-		String sql = "delete from favorite where fmid=? and fresid=?;";
+		String sql = "delete from favorite where fmid=? and fresid=?";
 		int row = jdbcTemplate.update(sql, fmid, fresid);
 		return row;
 	}
