@@ -1,9 +1,12 @@
 package com.mycompany.ourapp.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mycompany.ourapp.dao.ReviewDao;
+import com.mycompany.ourapp.dto.Restaurant;
 import com.mycompany.ourapp.dto.Review;
 
 @Component
@@ -34,8 +37,20 @@ public class ReviewService {
 		return DELETE_SUCCESS;
 	}
 	
-	public Review info(int revno) {
-		Review review = reviewDao.selectInfo(revno);
+	public Review info(int revno, int revresid) {
+		Review review = reviewDao.selectInfo(revno, revresid);
 		return review;
+	}
+
+	public List<Restaurant> list(int pageNo, int rowsPerPage) {		
+		return reviewDao.selectByPage(pageNo, rowsPerPage);
+	}
+	
+	public List<Review> revList(int revresid, int pageNo, int rowsPerPage) {		
+		return reviewDao.selectByRevPage(revresid, pageNo, rowsPerPage);
+	}
+	
+	public int getCount() {
+		return reviewDao.count();
 	}
 }

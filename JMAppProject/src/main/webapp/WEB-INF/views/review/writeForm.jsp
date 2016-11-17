@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>		
@@ -18,7 +19,13 @@
 				</tr>
 				<tr>
 					<td style="background-color:orange; width:70px; border: 1px solid black;"> 레스토랑 </td>
-				 	<td style="border: 1px solid black;">${presid}</td>
+				 	<td style="border: 1px solid black;">${revresid}</td>
+				</tr>
+				<tr>
+					<td style="background-color:orange; width:70px; border: 1px solid black;"> 평점 </td>
+				 	<td style="border: 1px solid black;">
+				 		<input type="number" min="1" max="5" name=revscore value="${review.revscore}"/>
+				 	</td>				 		
 				</tr>
 				<tr>
 					<td style="background-color:orange; width:70px; border: 1px solid black;"> 내용 </td>
