@@ -67,13 +67,13 @@
 		
 		
 		<div>
-			<c:if test="${member.mrank==1 || member.mresid==restaurant.resid}">
-			<a href="modify?bno=${freeboard.bno}">[수정]</a>
-			</c:if>
 			
-			<c:if test="${member.mrank==2  || member.mresid==restaurant.resid}">
-			<a href="remove?bno=${freeboard.bno}">[삭제]</a>
-			</c:if>
+				<a href="modify?mid=${member.mid}">[수정]</a>
+		 
+			
+		 	<c:if test="${member.mrank==2}">
+				<a href="remove?mid=${member.mid}">[삭제]</a>
+			</c:if> 
 			<a href="list">[목록]</a>
 		</div>
 	</body>
