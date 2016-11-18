@@ -2,6 +2,7 @@ package com.mycompany.ourapp.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import com.mycompany.ourapp.dto.Coupon;
+import com.mycompany.ourapp.dto.MenuList;
 import com.mycompany.ourapp.dto.Pos;
+import com.mycompany.ourapp.dto.Reservation;
 
 @Component
 public class PosDao {
@@ -100,5 +104,57 @@ public class PosDao {
 			}
 		});
 		return list;
+	}
+
+	public List<MenuList> selectMenu(int presid) {
+		String sql="select mlname from menulist where mlresid=? ";
+		List<MenuList> list = jdbcTemplate.query(sql, new Object[]{presid}, new RowMapper<MenuList>() {
+			@Override
+			public MenuList mapRow(ResultSet rs, int row) throws SQLException {
+				MenuList menuList = new MenuList();
+				menuList.setMlname(rs.getString("mlname"));				
+				return menuList;
+			}
+		});
+		return list;
+	}
+
+	public List<Reservation> reservList(int presid) {
+		String sql = "select * from reservation where rvresid=? order by rvtime ";
+		List<Reservation> list = jdbcTemplate.query(sql, new Object[]{presid}, new RowMapper<Reservation>() {
+			@Override
+			public Reservation mapRow(ResultSet rs, int row) throws SQLException {
+				Reservation reservation = new Reservation();
+				reservation.setRvtime(rs.getString("rvtime"));
+				reservation.setRvperson(rs.getInt("rvperson"));
+				reservation.setRvmid(rs.getString("rvmid"));
+				reservation.setRvresid(rs.getInt("rvresid"));				
+				return reservation;
+			}
+		});
+		return list;
+	}
+
+	public Coupon checkCoupon(String cbmid, int cbnumber) {
+		String sql = "select c.cnumber, c.cname, c.cdday, c.cinfo, c.cresid, c.cdiscount "; 
+				 sql += "from coupon c, couponbox cb ";
+				 sql += "where c.cnumber = cb.cbnumber ";
+				 sql += "and cb.cbmid = ? ";
+				 sql += "and cb.cbnumber = ? ";
+		
+		List<Coupon> list =  jdbcTemplate.query(sql, new Object[] {cbmid, cbnumber}, new RowMapper<Coupon>() {
+			@Override
+			public Coupon mapRow(ResultSet rs, int row) throws SQLException {
+				Coupon coupon = new Coupon();
+				coupon.setCnumber(rs.getInt("cnumber"));
+				coupon.setCname(rs.getString("cname"));
+				coupon.setCdday(rs.getDate("cdday"));
+				coupon.setCinfo(rs.getString("cinfo"));
+				coupon.setCresid(rs.getInt("cresid"));
+				coupon.setCdiscount(rs.getInt("cdiscount"));
+				return coupon;
+			}
+		});
+		return (list.size() != 0) ? list.get(0) : null;
 	}
 }

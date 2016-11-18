@@ -67,7 +67,26 @@
 				</tr>	
 			</table>
 		</c:if>
+		
+		<br/><br/>
+		
+		<table width="400" border="1">			
+			<tr>
+				<td>예약시간</td>
+				<td>인원수</td>
+				<td>예약자</td>
+			</tr>
+			<c:forEach  var="reservList" items="${reservList}">
+				<tr>
+					<td>${reservList.rvtime}</td>
+					<td>${reservList.rvperson}</td>
+					<td>${reservList.rvmid}</td>
+				</tr>
+			</c:forEach>
+		</table>		
 		<c:if test="${presid == 0}">돌아가</c:if>
+		
+		
 		
 	<%-- 	<c:if test="${presid != 0}">
 			<table width="400" border="1">
@@ -119,6 +138,8 @@
 				</c:forEach>		
 			</table>
 		</c:if>	 --%>	
+		
+		
 
 	</body>
 </html>
