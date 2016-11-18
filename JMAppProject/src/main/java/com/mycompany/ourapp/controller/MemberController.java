@@ -257,6 +257,7 @@ public class MemberController {
 		int result = memberService.logout(mid);
 		if ( result == MemberService.LOGOUT_SUCCESS ) {
 			session.removeAttribute("login");
+			session.removeAttribute("mrank");
 		}		
 		return "redirect:/";
 	}

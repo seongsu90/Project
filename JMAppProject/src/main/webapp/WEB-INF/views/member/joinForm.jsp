@@ -11,12 +11,24 @@
  			$(document).ready(function() {
  				console.log("ready 실행");
  				setCity();
+ 				setProvince();
  				
  				$("#selMetro").change(function () {
- 					console.log("change");
+ 					console.log("Metro Change");
+ 					$("#mlocation").val($("#selMetro").val() + " "+ $("#selProvince").val());
  			        setProvince();
  			    });
+ 				
+ 				$("#selProvince").change(function () {
+ 					console.log("Province Change");
+ 					$("#mlocation").val($("#selMetro").val() + " "+ $("#selProvince").val());
+ 			    });
 			});
+ 			
+ 			window.onload = function() {
+				console.log("onload 실행");
+				$("#mlocation").val($("#selMetro").val() + " "+ $("#selProvince").val());
+			};
 			
 			function setCity() {
 				console.log("setCity 실행");
@@ -63,14 +75,14 @@
 			
 			관심지역 :
 			<select id="selMetro" name="selMerto">
+				<option value="강원도">강원도</option>
 			</select>
-			
 			<select id="selProvince" name="selProvince">
-				<option value="">전체</option>
-			</select>
-<%-- 			<input type="text" name="mlocation" value="${member.mlocation}"/> --%>
+				<option value="강릉시">강릉시</option>
+			</select>			
+			<input type="text" name="mlocation" id="mlocation"/>
 			<br/>
-			
+
 			<input type="submit" value="가입"/> ${error2}<br/>
 		</form>
 			
