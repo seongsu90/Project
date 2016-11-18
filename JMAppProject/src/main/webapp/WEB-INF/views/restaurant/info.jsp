@@ -72,7 +72,7 @@
 			</c:if>
 			
 			<c:if test="${mrank==2}">
-				<a href="delete?resid=${mresid}">[삭제]</a>
+				<a href="delete?resid=${resid}">[삭제]</a>
 			</c:if>
 			
 			<a href="list">[목록]</a>

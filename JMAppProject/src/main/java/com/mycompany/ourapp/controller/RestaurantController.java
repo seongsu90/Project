@@ -35,10 +35,6 @@ public class RestaurantController {
 	@Autowired
 	private MemberService memberService;
 	
-
-	
-	String mid = null;
-	
 	@RequestMapping("/list")
 	public String list(String pageNo, Model model, HttpSession session){
 		
@@ -54,12 +50,12 @@ public class RestaurantController {
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
 		
 		
-		mid=(String)session.getAttribute("login");
+	/*	mid=(String)session.getAttribute("login");
 		Member member=memberService.info(mid);
 		int mresid=member.getMresid();
 		int mrank=member.getMrank();
 		model.addAttribute("mresid", mresid);
-		model.addAttribute("mrank", mrank);
+		model.addAttribute("mrank", mrank);*/
 		
 		int rowsPerPage=8;
 		int pagesPerGroup=5;
@@ -133,7 +129,7 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping("/delete")
-	public String delete(int resid){
+	public String delete(int resid, Model model){
 		
 		restaurantService.delete(resid);
 		
@@ -144,17 +140,16 @@ public class RestaurantController {
 	public String info(int resid, Model model, HttpSession session){
 		Restaurant restaurant=restaurantService.info(resid);
 		model.addAttribute("restaurant", restaurant);
+		model.addAttribute("resid", resid);
 		
-		
-		mid=(String)session.getAttribute("login");
+		String mid=(String)session.getAttribute("login");
 		Member member=memberService.info(mid);
-		int mresid=member.getMresid();
+	
 		int mrank=member.getMrank();
-		model.addAttribute("mresid", mresid);
 		model.addAttribute("mrank", mrank);
 	
 		
-		return "/restaurant/info";
+		return "restaurant/info";
 	}
 	
 
@@ -176,9 +171,8 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping("/index")
-	public String index(String mid)
+	public String index()
 	{
-		this.mid = mid;
 		return "restaurant/index";
 	}
 	
