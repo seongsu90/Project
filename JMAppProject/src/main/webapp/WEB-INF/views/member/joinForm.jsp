@@ -5,20 +5,40 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript">
-
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+ 			$(document).ready(function() {
+ 				console.log("ready 실행");
+ 				setCity();
+ 				
+ 				$("#selMetro").change(function () {
+ 					console.log("change");
+ 			        setProvince();
+ 			    });
+			});
+			
+			function setCity() {
+				console.log("setCity 실행");
+				$.ajax({
+					url: "getCity.jsp",
+					success: function (data) {
+						$("#selMetro").html(data);
+					}
+				});
+			}
+			
+ 			function setProvince() {
+ 				console.log("setProvince 실행");
+ 				var cityName = $("#selMetro").val();
+ 				$.ajax({
+					url: "getProvince.jsp",
+					data: {"cityName":cityName},
+					success: function (data) {
+						$("#selProvince").html(data);
+					}
+				});
+			} 
 		
 	    </script>
 	</head>
@@ -42,41 +62,17 @@
 			<br/>
 			
 			관심지역 :
-			<select id="sel1" name="mlocation">
-				<option value="서울시">서울시</option>
-				<option value="경기도">경기도</option>			
+			<select id="selMetro" name="selMerto">
 			</select>
 			
-			<select id="sel2" name="mlocation">
-				<c:if test="#sel1==서울시">
-					<option value="송파구">송파구</option>
-					<option value="강남구">강남구</option>
-					<option value="강동구">강동구</option>
-					<option value="강북구">강북구</option>
-				</c:if>
-				
-				<c:if test="#sel1==경기도">
-					<option value="남양주시">남양주시</option>
-					<option value="광명시">광명시</option>
-					<option value="구리시">구리시</option>
-					<option value="오산시">오산시</option>
-					<option value="의정부시">의정부시</option>
-				</c:if>
+			<select id="selProvince" name="selProvince">
+				<option value="">전체</option>
 			</select>
 <%-- 			<input type="text" name="mlocation" value="${member.mlocation}"/> --%>
 			<br/>
 			
 			<input type="submit" value="가입"/> ${error2}<br/>
 		</form>
-		
-<%-- 		
-				<c:if test="${member.mresid==1}">
-					<tr>
-						<td class="list">보유 Restaurant </td>
-						<td class="content">${member.mresid}</td>
-					</tr>
-				</c:if>
---%>			
-				
+			
 	</body>
 </html>
