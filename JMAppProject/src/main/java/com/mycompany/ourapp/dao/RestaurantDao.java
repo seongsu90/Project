@@ -41,7 +41,7 @@ public class RestaurantDao {
 
 	public int delete(int resid) {
 		
-		String sql="delete from restaurant where resid=?";
+		String sql="delete from restaurant where resid=? ";
 		int row=jdbcTemplate.update(sql, resid);
 		return row;
 	}

@@ -133,8 +133,7 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping("/delete")
-	public String delete(int resid, HttpSession session){
-		
+	public String delete(int resid){
 		
 		restaurantService.delete(resid);
 		
