@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycompany.ourapp.dto.Member;
-import com.mycompany.ourapp.dto.MenuList;
 import com.mycompany.ourapp.dto.Pos;
+import com.mycompany.ourapp.dto.Restaurant;
 import com.mycompany.ourapp.service.MemberService;
 import com.mycompany.ourapp.service.MenuListService;
 import com.mycompany.ourapp.service.PosService;
+import com.mycompany.ourapp.service.RestaurantService;
 
 @Controller
 @RequestMapping("/pos")
@@ -33,17 +34,23 @@ public class PosController {
 	@Autowired
 	private MenuListService menuListService;
 	
+	@Autowired
+	private RestaurantService restaurantService;
+	
 	@RequestMapping("/index")
 	public String index(HttpSession session, Model model) {
 		logger.info("pos index");
 		String mid = (String) session.getAttribute("login");		// 로그인 mid 찾아서 mresid 확인
 		Member member = memberService.info(mid);
 		int presid = member.getMresid();
-		
 		List<Pos> posList = posService.list(presid);
+		
+		Restaurant restaurant = restaurantService.info(presid);
+		int totalTable = restaurant.getRestotaltable();
 		
 		session.setAttribute("presid", presid);
 		model.addAttribute("posList", posList);
+		model.addAttribute("totalTable", totalTable);
 		return "pos/index";
 	}
 

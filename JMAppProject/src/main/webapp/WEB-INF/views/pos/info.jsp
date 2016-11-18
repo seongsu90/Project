@@ -29,12 +29,15 @@
 		<br/>	
 	 	
 	 	<b>합계 : ${totalPrice}</b><br/>
+	 	<b>쿠폰 : </b><br/>
+	 	<b>이벤트 : </b><br/>
+	 	<b>마일리지 : </b><br/>
+	 	<b>---------------------------------------</b><br/>
+	 	<h3>결재 금액 : </h3><br/>
 	 	<br/>
 		<a href="add?presid=${presid}&ptableno=${ptableno}"><input type="submit" value="주문"/></a>
 		<a href="delete?presid=${presid}&ptableno=${ptableno}"><input type="submit" value="결제"/></a>		
-					
-		
-		
+		<a href="index"><input type="submit" value="뒤로"/></a>	
 		
 	</body>
 </html>
