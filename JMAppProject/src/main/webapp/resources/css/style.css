@@ -31,9 +31,9 @@ header { width:700px; height:100%; position:fixed; top:0px; left:-420px; backgro
 /* 2depth */
 #gnb ul { position:absolute; left:0px;  top:0px; opacity:0; transition:all 0.4s;}
 #gnb>li:hover ul { opacity:0.8; left:205px; }
-#gnb ul a { display:block; width:150px; height:40px; background:#222; border-bottom:1px solid #b9fb05; font:bold 16px/2.5 arial; color:#fff; box-sizing:border-box; padding-left:50px; margin-bottom:3px; transition:all 0.5s; }
+#gnb ul a { display:block; width:250px; height:40px; background:#222; border-bottom:1px solid #b9fb05; font:bold 16px/2.5 arial; color:#fff; box-sizing:border-box; padding-left:50px; margin-bottom:3px; transition:all 0.5s; }
 #gnb ul a:hover { background:#b9fb05; color:#333; }
-#gnb>li.on ul { opacity:0.8; left:205px; top:-10px; }
+#gnb>li.on ul { opacity:0.8; left:250px; top:-10px; }
 #gnb li.on ul a { background:#444; opacity:0.7; } 
 
 /* sns 버튼 모음*/

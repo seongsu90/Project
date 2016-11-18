@@ -45,6 +45,7 @@ public class MemberController {
 			return "member/loginForm";
 		} else {
 			session.setAttribute("login", mid);
+			session.setAttribute("mrank", memberService.info(mid).getMrank());
 			return "redirect:/";
 		}
 	}
