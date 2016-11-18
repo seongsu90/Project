@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.ourapp.dto.Member;
 import com.mycompany.ourapp.dto.Restaurant;
@@ -38,15 +39,20 @@ public class FavoriteController {
 	
 	// Favorite 추가
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String add(int fresid, HttpSession session, Model model) {
+	public String add(@RequestParam(required=false, defaultValue=""+Integer.MAX_VALUE) int fresid, HttpSession session, Model model) {
 		logger.info("add() POST 실행");
 		String fmid = (String) session.getAttribute("login");
+		if ( fresid == Integer.MAX_VALUE ) {
+			model.addAttribute("error", " 값을 입력하세요.");
+			return "favorite/addForm";
+		}
 		try {
 			favoriteService.add(fmid, fresid);
 		} catch (DuplicateKeyException e) {
 			model.addAttribute("error", " 이미 즐겨찾기에 추가된 레스토랑 입니다.");
 			return "favorite/addForm";
 		} catch (Exception e1) {
+			e1.printStackTrace();
 			model.addAttribute("error", " 입력하신 id를 가진 레스토랑이 없습니다.");
 			return "favorite/addForm";
 		}

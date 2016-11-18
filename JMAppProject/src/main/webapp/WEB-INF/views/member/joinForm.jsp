@@ -12,24 +12,20 @@
  				console.log("ready 실행");
  				setCity();
  				setProvince();
+ 				setMlocation();
  				
  				$("#selMetro").change(function () {
  					console.log("Metro Change");
- 					$("#mlocation").val($("#selMetro").val() + " "+ $("#selProvince").val());
  			        setProvince();
+ 			       	setMlocation();
  			    });
  				
  				$("#selProvince").change(function () {
  					console.log("Province Change");
- 					$("#mlocation").val($("#selMetro").val() + " "+ $("#selProvince").val());
+ 					setMlocation();
  			    });
-			});
+			});			
  			
- 			window.onload = function() {
-				console.log("onload 실행");
-				$("#mlocation").val($("#selMetro").val() + " "+ $("#selProvince").val());
-			};
-			
 			function setCity() {
 				console.log("setCity 실행");
 				$.ajax({
@@ -50,8 +46,12 @@
 						$("#selProvince").html(data);
 					}
 				});
-			} 
-		
+			}
+ 			
+ 			function setMlocation() {
+ 				console.log("setMlocation() 실행");
+				$("#mlocation").val($("#selMetro").val() + " "+ $("#selProvince").val()); 				
+ 			}
 	    </script>
 	</head>
 	<body>
@@ -77,7 +77,7 @@
 			<select id="selMetro" name="selMerto">
 				<option value="강원도">강원도</option>
 			</select>
-			<select id="selProvince" name="selProvince">
+			<select id="selProvince" name="selProvince" >
 				<option value="강릉시">강릉시</option>
 			</select>			
 			<input type="text" name="mlocation" id="mlocation"/>
