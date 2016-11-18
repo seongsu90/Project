@@ -26,7 +26,7 @@ if ( cityName.equals("강원도") ) {
 
 if ( cityName.equals("경기도") ) {
 %>
-<option value="가평군">가평군</option>
+<option selected="selected" value="가평군">가평군</option>
 <option value="고양시 덕양구">고양시 덕양구</option>
 <option value="고양시 일산동구">고양시 일산동구</option>
 <option value="고양시 일산서구">고양시 일산서구</option>
