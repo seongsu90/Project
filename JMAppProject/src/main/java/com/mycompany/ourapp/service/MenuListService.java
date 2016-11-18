@@ -26,6 +26,10 @@ public class MenuListService {
 		return menuListdao.selectByPage(pageNo, rowsPerPage); 
 	}
 	
+	public List<MenuList> hotlist(int pageNo, int rowsPerPage){
+		return menuListdao.selectByPage(pageNo, rowsPerPage); 
+	}
+	
 	public int add(MenuList menuList){
 		int row = menuListdao.insert(menuList);
 		if(row==0){return ADD_FAIL;}
@@ -46,24 +50,26 @@ public class MenuListService {
 	}
 	
 	public List<MenuList> resHotList(int mlresid, boolean mlishot){
+		return menuListdao.resHotList(mlresid, mlishot);
 		
-		List<MenuList> list = menuListdao.resHotList(mlresid, mlishot);
-		
-		return list;
 	}
 	
-	public int modifyHot(int mlresid,String mlname, boolean mlishot){
-		int row = menuListdao.modifyHot(mlresid, mlname, mlishot);
+	public int modifyHot(int mlresid,boolean mlishot){
+		int row = menuListdao.modifyHot(mlresid,mlishot);
 		if(row==0){return MODIFY_FAIL;}
 		return MODIFY_SUCCESS;
 	}
 	
 	public MenuList info(int mlresid, String mlname){
-		MenuList menuList = menuListdao.selectByMlresidAndMlname(mlresid, mlname);
-		return menuList;
+		return menuListdao.selectByMlresidAndMlname(mlresid, mlname);
 	}
 
 	public int getCount() {
 		return menuListdao.count();
 	}
+
+	public MenuList hotinfo(int mlresid, boolean mlishot) {
+		return menuListdao.selectByMlresidAndMlishot(mlresid, mlishot);
+	}
+
 }

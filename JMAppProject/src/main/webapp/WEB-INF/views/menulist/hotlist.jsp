@@ -21,39 +21,35 @@
 	</head>
 	<body>
 		<hr/>
-		<p style="font-size:150%;"><b>이벤트 목록</b></p>
+		<p style="font-size:150%;"><b>핫메뉴 리스트 목록</b></p>
 		<hr/>
 		
 		<br/>
 		<table style="width: 1000px;">
 			<tr>
-				<th>이벤트 이름</th>
-				<th>식당명</th>
-				<th>이벤트 사진</th>
-				<th>이벤트 정보</th>
-				<th>이벤트 메뉴 이름</th>
-				<th>이벤트 할인가격</th>
-				<th>이벤트 시작기간</th>
-				<th>이벤트 종료기간</th>
+				<th> 메뉴 이름</th>
+				<th> 메뉴 가격</th>
+				<th> 식당명 </th>
+				<th> 메뉴 정보 </th>
+				<th> 메뉴 사진  </th>
+				<th> 핫해하태 </th>
 			</tr>
-			<c:forEach var="event" items="${list}">
-			<tr>
-				<td>${event.ename}</td>			
-				<td>${event.eresid}</td>
-				<td>
-					<img src="showPhoto?esavedfile=${event.esavedfile}" width="100px"/>
-				</td>
-				<td>${event.einfo}</td>
-				<td>${event.emlname}</td>
-				<td>${event.eprice}</td>
-				<td>${event.estart}</td>
-				<td>${event.eend}</td>
-			</tr>
+			<c:forEach var="menuList" items="${menuList}">
+				<tr>
+					<td>${menuList.mlname}</td>			
+					<td>${menuList.mlprice}</td>
+					<td>${menuList.mlresid}</td>
+					<td>${menuList.mlinfo}</td>
+					<td>
+						<img src="showPhoto?mlsavedfile=${menuList.mlsavedfile}" width="500px"/>
+					</td>
+					<td>${menuList.mlishot}</td>
+				</tr>
 			</c:forEach>
 		</table>
 		<br/>
  		
-		<div style="width: 600px">
+		<%-- <div style="width: 600px">
 			<c:if test="${pageNo!=1}">
 			<a href="list?pageNo=1&find=${find}">[처음]</a>
 			</c:if>
@@ -75,7 +71,8 @@
 			<c:if test="${pageNo!=totalPageNo}">
 			<a href="list?pageNo=${totalPageNo}&find=${find}">[맨끝]</a>
 			</c:if>
-		</div>
+		</div> --%>
+		
 		
 	</body>
 </html>

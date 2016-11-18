@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		
-		메뉴리스트 정보
+		핫메뉴리스트 정보
 		<hr/>
 		<table style="width:570px text-align=center;">
 		    <tr>
@@ -35,12 +35,5 @@
 				<td>${menuList.mlishot}</td>
 			</tr>
 		</table>
-		<%--  <div>
-			<c:if test="${mlresid == menuList.mlresid},${mlname == menuList.mlname}">
-				<a href="modify?mlresid=${menuList.mlresid},mlname=${menuList.mlname}">[수정]</a>
-				<a href="delete?mlresid=${menuList.mlresid},mlname=${menuList.mlname}">[삭제]</a>
-			</c:if>
-			<a href="list">[목록]</a>
-		 </div>  --%>
 	</body>
 </html>

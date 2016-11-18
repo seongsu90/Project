@@ -9,7 +9,7 @@
 		
 		이벤트 수정
 		<hr/>
-			<form method="post">
+			<form method="post" enctype="multipart/form-data">
 					
 				이벤트 사진 : <input type="file" name=esavedfile value="${event.esavedfile}"/><br/>
 				이벤트 정보 : <input type="text" name=einfo value="${event.einfo}"/><br/>
