@@ -52,7 +52,13 @@ public class EventController {
 		return "redirect:/event/index";
 	}
 	
-	@RequestMapping("/delete")
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String delete(){
+		logger.info("delete 처리");
+		return "event/delete";
+	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public String delete(int eresid,String emlname){
 		logger.info("delete 요청처리");
 		eventService.delete(eresid,emlname);
@@ -64,14 +70,14 @@ public class EventController {
 		logger.info("info 처리 요청");
 		Event event = eventService.info(eresid,emlname);
 		model.addAttribute("event",event);
-		return "event/index";
+		return "event/info";
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public String modifyForm(int eresid, String emlname, Model model){
+	public String modifyForm(int eresid,String emlname,Model model){
 		logger.info("modify 요청처리");
-		Event event = eventService.info(eresid, emlname);
-		model.addAttribute("event", event);
+		Event event = eventService.info(eresid,emlname);
+		model.addAttribute("event",event);
 		return "event/modify";
 	}
 	
@@ -79,8 +85,7 @@ public class EventController {
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Event event){
 		logger.info("modify 요청처리");
-		Event dbevent = eventService.info(event.getEresid(),event.getEmlname());
-		eventService.modify(dbevent);
+		eventService.modify(event);
 		return "redirect:/event/index";
 	}
 	

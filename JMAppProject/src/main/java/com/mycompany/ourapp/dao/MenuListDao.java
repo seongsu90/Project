@@ -54,7 +54,7 @@ public class MenuListDao {
 	}
 	
 	public List<MenuList> resHotList(int mlresid, boolean mlishot){
-		String sql="select mlname from menuList where mlresid=? and mlishot=?";
+		String sql="select mlname, mlprice, mlresid, mlinfo, mlsavedfile, mlishot from menuList where mlresid=? and mlishot=?";
 		List<MenuList> list = jdbcTemplate.query(sql, new Object[]{mlresid,mlishot}, new RowMapper<MenuList>() {
 			@Override
 			public MenuList mapRow(ResultSet rs, int row) throws SQLException {
@@ -73,10 +73,11 @@ public class MenuListDao {
 		
 	}
 		
-	public int modifyHot(int mlresid,String mlname, boolean mlishot){
-		String sql="update menuList set mlprice=?,mlinfo=?,mlsavedfile=? where mlresid=? and mlname=? and mlishot=?";
+	public int modifyHot(int mlresid,boolean mlishot){
+		String sql="update menuList set mlname=?,mlprice=?,mlinfo=?,mlsavedfile=? where mlresid=? and mlishot=?";
 		int row = jdbcTemplate.update(
 				sql,
+				menuList.getMlname(),
 				menuList.getMlprice(),
 				menuList.getMlinfo(),
 				menuList.getMlsavedfile(),
@@ -89,7 +90,7 @@ public class MenuListDao {
 	}
 
 	public MenuList selectByMlresidAndMlname(int mlresid, String mlname) {
-		String sql = "select mlname,mlprice,mlresid,mlinfo,mlsavedfile,mllishot from menuList where mlresid=? and mlname=?";
+		String sql = "select mlname,mlprice,mlresid,mlinfo,mlsavedfile,mlishot from menuList where mlresid=? and mlname=?";
 		List<MenuList> list = jdbcTemplate.query(sql, new Object[]{mlresid,mlname}, new RowMapper<MenuList>() {
 			@Override
 			public MenuList mapRow(ResultSet rs, int row) throws SQLException {
@@ -97,7 +98,7 @@ public class MenuListDao {
 				menuList.setMlname(rs.getString("mlname"));
 				menuList.setMlprice(rs.getInt("mlprice"));
 				menuList.setMlresid(rs.getInt("mlresid"));
-				menuList.setMlinfo(rs.getString("minfo"));
+				menuList.setMlinfo(rs.getString("mlinfo"));
 				menuList.setMlsavedfile(rs.getString("mlsavedfile"));
 				menuList.setMlishot(rs.getBoolean("mlishot"));
 				
@@ -143,4 +144,25 @@ public class MenuListDao {
 		int count = jdbcTemplate.queryForObject(sql, Integer.class);
 		return count;
 	}
+
+	public MenuList selectByMlresidAndMlishot(int mlresid, boolean mlishot) {
+		String sql="select mlname,mlprice,mlresid,mlinfo,mlsavedfile,mlishot from menuList where mlresid=? and mlishot=?";
+		List<MenuList> list = jdbcTemplate.query(sql, new Object[]{mlresid,mlishot}, new RowMapper<MenuList>() {
+			@Override
+			public MenuList mapRow(ResultSet rs, int row) throws SQLException {
+				MenuList menuList = new MenuList();
+				menuList.setMlname(rs.getString("mlname"));
+				menuList.setMlprice(rs.getInt("mlprice"));
+				menuList.setMlresid(rs.getInt("mlresid"));
+				menuList.setMlinfo(rs.getString("mlinfo"));
+				menuList.setMlsavedfile(rs.getString("mlsavedfile"));
+				menuList.setMlishot(rs.getBoolean("mlishot"));
+				
+				return menuList;
+			}
+		});
+		return (list.size() != 0)?list.get(0) : null;
+	}
+
+	
 }

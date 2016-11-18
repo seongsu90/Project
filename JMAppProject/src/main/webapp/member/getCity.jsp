@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 
-<option value="">선택</option>
 <option value="강원도">강원도</option>
 <option value="경기도">경기도</option>
 <option value="경상남도">경상남도</option>

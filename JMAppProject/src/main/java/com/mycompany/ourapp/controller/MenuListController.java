@@ -1,7 +1,11 @@
 package com.mycompany.ourapp.controller;
 
+import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,18 +97,76 @@ public class MenuListController {
 			return "redirect:/menulist/list";
 		}
 		
-		@RequestMapping("/delete")
+		@RequestMapping(value="/delete", method=RequestMethod.GET)
+		public String delete(){
+			return "menulist/delete";
+		}
+		
+		@RequestMapping(value="/delete", method=RequestMethod.POST)
 		public String delete(int mlresid, String mlname) {
 			menuListService.delete(mlresid, mlname);
-			return "redirect:/menulist/list";	
+			return "redirect:/menulist/index";	
 		}
 		
 		@RequestMapping("/info")	
 		public String info(int mlresid, String mlname, Model model) {
 			MenuList menuList = menuListService.info(mlresid, mlname);
-			model.addAttribute("mlresid", mlresid);
-			model.addAttribute("mlname", mlname);
+			model.addAttribute("menuList",menuList);
 			return "menulist/info";
 		}
 	
+		@RequestMapping("/showPhoto")
+		public void showPhoto(String mlsavedfile, HttpServletRequest request, HttpServletResponse response){
+			try{
+			String fileName=mlsavedfile;
+			
+			
+			String mlmime=request.getServletContext().getMimeType(fileName);
+			response.setContentType("image/jpeg");
+			
+			OutputStream os=response.getOutputStream();
+			
+			String filePath=request.getServletContext().getRealPath("/WEB-INF/photo/"+fileName);
+			FileInputStream is=new FileInputStream(filePath);
+			
+			byte[] values=new byte[1024];
+			int byteNum=-1;
+			while((byteNum=is.read(values))!=-1){
+				os.write(values, 0, byteNum);
+			}
+			os.flush();
+			is.close();
+			os.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		@RequestMapping("/hotlist")	
+		public String resHotList(int mlresid, boolean mlishot,Model model){
+			List<MenuList> menuList = menuListService.resHotList(mlresid, mlishot);
+			model.addAttribute("menuList",menuList);
+			return "menulist/hotlist";
+		}
+		
+		@RequestMapping(value="/modifyhot",method=RequestMethod.GET)	
+		public String modifyhotForm(){
+			return "menulist/modifyhot";
+		}
+		
+		@RequestMapping(value="/modifyhot",method=RequestMethod.POST)	
+		public String modifyhot(int mlresid,boolean mlishot, Model model){
+			MenuList menuList = menuListService.hotinfo(mlresid,mlishot);
+			model.addAttribute("menuList", menuList);
+			return "redirect:/menulist/index";
+		}
+		
+		@RequestMapping(value="/hotinfo")
+		public String hotinfo(int mlresid, boolean mlishot, Model model){
+			MenuList menuList = menuListService.hotinfo(mlresid,mlishot);
+			model.addAttribute("menuList", menuList);
+			return "menulist/hotinfo";
+		}
+		
+		
 	}
