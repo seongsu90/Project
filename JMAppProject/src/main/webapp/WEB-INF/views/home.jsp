@@ -4,15 +4,18 @@
 ﻿<!DOCTYPE html >
 <html>
 <head>
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css"
-			href="/ourapp/css/bootstrap.min.css">
+			href="/ourapp/resources/bootstrap-3.3/css/bootstrap.min.css">
+			<script type="text/javascrpt"
+			src="/ourapp/resources/bootstrap-3.3/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/ourapp/resources/css/style.css" />	
 	<script type="text/javascript" src="/ourapp/resources/js/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="/ourapp/resources/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/ourapp/resources/js/jquery.easing.1.3.js"></script>
 	<script type="text/javascript" src="/ourapp/resources/js/prefixfree.min.js"></script>
 	<script type="text/javascript" src="/ourapp/resources/js/custom.js"></script>
+	<script type="text/javascrpt" src="/ourapp/resources/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -143,8 +146,8 @@
 	
 	<!-- 웹폰트 텍스트박스 -->
 	<section class="txtBox">
-		<p class="txt">Best Qualified<b>AIR MAX</b></p>
-		<p class="tit">50<em>/ 24</em></p>
+		<p class="txt">Best Qualified<b><br/>FRESH FOOD</b></p>
+		<!-- <p class="tit">50<em>/ 24</em></p> -->
 	</section>	
 	
 	<!-- 하단 컨텐츠박스 -->
