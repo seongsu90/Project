@@ -68,7 +68,8 @@
     </c:if>
      -------------------------------------------------------<br/>
      [Favorite]<br/>
-     ※<a href="/ourapp/favorite/index">즐겨찾기 기능하라고 현태가 오더내림</a>
+     ※<a href="/ourapp/favorite/add">즐겨찾기 추가폼</a><br/>
+     ※<a href="/ourapp/favorite/list">즐겨찾기 리스트</a><br/>
 </body>
 	<!--  -->
 
