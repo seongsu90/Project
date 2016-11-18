@@ -11,20 +11,18 @@
  			$(document).ready(function() {
  				console.log("ready 실행");
  				setCity();
- 				setProvince();
- 				setMlocation();
  				
  				$("#selMetro").change(function () {
  					console.log("Metro Change");
  			        setProvince();
- 			       	setMlocation();
+ 			       $("#mlocation").val(""); 
  			    });
  				
  				$("#selProvince").change(function () {
  					console.log("Province Change");
  					setMlocation();
  			    });
-			});			
+			});
  			
 			function setCity() {
 				console.log("setCity 실행");
@@ -74,11 +72,9 @@
 			<br/>
 			
 			관심지역 :
-			<select id="selMetro" name="selMerto">
-				<option value="강원도">강원도</option>
-			</select>
-			<select id="selProvince" name="selProvince" >
-				<option value="강릉시">강릉시</option>
+			시　도 | <select style="width: 110px" id="selMetro" name="selMerto"></select><br/>
+	　　　　　시군구 | <select style="width: 110px" id="selProvince" name="selProvince">
+				<option value="선택">선택</option>
 			</select>			
 			<input type="text" name="mlocation" id="mlocation"/>
 			<br/>

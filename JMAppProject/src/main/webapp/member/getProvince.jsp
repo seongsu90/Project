@@ -2,6 +2,9 @@
 
 <%
 String cityName = request.getParameter("cityName");
+%>
+<option value="선택">선택</option>
+<%
 if ( cityName.equals("강원도") ) {
 %>
 <option value="강릉시">강릉시</option>
@@ -26,7 +29,7 @@ if ( cityName.equals("강원도") ) {
 
 if ( cityName.equals("경기도") ) {
 %>
-<option selected="selected" value="가평군">가평군</option>
+<option value="가평군">가평군</option>
 <option value="고양시 덕양구">고양시 덕양구</option>
 <option value="고양시 일산동구">고양시 일산동구</option>
 <option value="고양시 일산서구">고양시 일산서구</option>
