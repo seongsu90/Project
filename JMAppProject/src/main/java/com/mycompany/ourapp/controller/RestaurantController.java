@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mycompany.ourapp.dao.FavoriteDao;
 import com.mycompany.ourapp.dto.Member;
 import com.mycompany.ourapp.dto.Restaurant;
 import com.mycompany.ourapp.service.MemberService;
@@ -34,6 +35,8 @@ public class RestaurantController {
 	@Autowired
 	private MemberService memberService;
 	
+
+	
 	String mid = null;
 	
 	@RequestMapping("/list")
@@ -49,6 +52,14 @@ public class RestaurantController {
 			intPageNo = Integer.parseInt(pageNo);
 		}
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
+		
+		
+		mid=(String)session.getAttribute("login");
+		Member member=memberService.info(mid);
+		int mresid=member.getMresid();
+		int mrank=member.getMrank();
+		model.addAttribute("mresid", mresid);
+		model.addAttribute("mrank", mrank);
 		
 		int rowsPerPage=8;
 		int pagesPerGroup=5;
@@ -121,18 +132,29 @@ public class RestaurantController {
 		}
 	}
 	
-	
 	@RequestMapping("/delete")
-	public String delete(int resid){
+	public String delete(int resid, HttpSession session){
+		
+		
 		restaurantService.delete(resid);
+		
 		return "redirect:/restaurant/list";
 	}
 	
 	@RequestMapping("/info")
-	public String info(int resid, Model model){
+	public String info(int resid, Model model, HttpSession session){
 		Restaurant restaurant=restaurantService.info(resid);
-	//	Member member=memberService.
 		model.addAttribute("restaurant", restaurant);
+		
+		
+		mid=(String)session.getAttribute("login");
+		Member member=memberService.info(mid);
+		int mresid=member.getMresid();
+		int mrank=member.getMrank();
+		model.addAttribute("mresid", mresid);
+		model.addAttribute("mrank", mrank);
+	
+		
 		return "/restaurant/info";
 	}
 	

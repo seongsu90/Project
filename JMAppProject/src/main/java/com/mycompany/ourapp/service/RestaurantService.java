@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.mycompany.ourapp.dao.MemberDao;
 import com.mycompany.ourapp.dao.RestaurantDao;
 import com.mycompany.ourapp.dto.Restaurant;
 
@@ -20,7 +22,10 @@ public class RestaurantService {
 
 	
 @Autowired
-private RestaurantDao restaurantDao;  
+private RestaurantDao restaurantDao; 
+
+@Autowired
+private MemberDao memberDao;
 
 		public List<Restaurant> list(int pageNo, int rowsPerPage){
 			return restaurantDao.selectByPage(pageNo, rowsPerPage);

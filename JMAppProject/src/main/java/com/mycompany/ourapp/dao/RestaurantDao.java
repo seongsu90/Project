@@ -11,12 +11,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.ourapp.dto.Restaurant;
+import com.mycompany.ourapp.dto.Favorite;
 
 @Component
 public class RestaurantDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	
 	
 	public int insert(Restaurant restaurant) {
 		String sql="insert into restaurant(resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, rescloseday, resmime) values(seq_restaurant_resid.nextval,?,?,?,?,?,?,?,0,?,0)";
@@ -37,6 +40,7 @@ public class RestaurantDao {
 	}
 
 	public int delete(int resid) {
+		
 		String sql="delete from restaurant where resid=?";
 		int row=jdbcTemplate.update(sql, resid);
 		return row;

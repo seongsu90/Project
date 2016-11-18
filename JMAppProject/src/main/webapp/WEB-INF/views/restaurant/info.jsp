@@ -69,10 +69,12 @@
 		<div>
 			<c:if test="${login!=member.mid}">
 				<a href="modify?mid=${member.mid}">[수정]</a>
-
-	
-				<a href="remove?mid=${member.mid}">[삭제]</a>
 			</c:if>
+			
+			<c:if test="${mrank==2}">
+				<a href="delete?resid=${mresid}">[삭제]</a>
+			</c:if>
+			
 			<a href="list">[목록]</a>
 		</div>
 	</body>
