@@ -38,6 +38,7 @@
 		<br/>
 		<table style="width: 700px; border-collapse: collapse; border-style: solid; border-width: 2px; border-color: black;">
 			<tr>
+				<th> 식당 사진 </th>
 				<th> 식당 아이디 </th>
 				<th> 식당 이름</th>
 				<th> 식당 위치</th>
@@ -47,13 +48,14 @@
 				<th> 식당 오픈타임 </th>
 				<th> 식당 클로즈타임 </th>
 				<th> 식당 휴일 </th>
-				<th> 식당 사진 </th>
+			
 			</tr>
 			<c:forEach var="restaurant" items="${list}">
 				<tr>
 					
-					<td style="border: 1px solid black;">
-						<a href="info?resid=${restaurant.resid}">${restaurant.resid}</a></td>
+					
+					<td> <img src="showPhoto?ressavedfile=${restaurant.ressavedfile}" width="50px"/></td>
+					<td style="border: 1px solid black;"><a href="info?resid=${restaurant.resid}">${restaurant.resid}</a></td>
 					<td> ${restaurant.resname} </td>
 					<td> ${restaurant.reslocation} </td>
 					<td> ${restaurant.resinfo} </td>
@@ -62,7 +64,6 @@
 					<td> ${restaurant.resopen} </td>
 					<td> ${restaurant.resclose} </td>
 					<td> ${restaurant.rescloseday} </td>
-					<td> ${restaurant.ressavedfile} </td>
 				</tr>
 			</c:forEach>
 		</table>

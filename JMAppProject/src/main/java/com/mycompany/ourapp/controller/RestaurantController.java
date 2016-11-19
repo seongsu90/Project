@@ -2,6 +2,8 @@ package com.mycompany.ourapp.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
@@ -93,11 +95,27 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String add(Restaurant restaurant){
+	public String add(Restaurant restaurant, HttpSession session ){
 		logger.info("add() 실행");
-			restaurantService.add(restaurant);
-			return "redirect:/restaurant/list";  
+		try{
 			
+			restaurant.setResoriginfile(restaurant.getResphoto().getOriginalFilename());
+			String ressavedfile = new Date().getTime() + restaurant.getResphoto().getOriginalFilename(); // 저장하는 파일이 유일해야하기 때문에 날짜를 붙인다.
+			String realPath = session.getServletContext().getRealPath("/WEB-INF/photo/"+ressavedfile);
+			restaurant.getResphoto().transferTo(new File(realPath)); // 지정된 경로로 파일을 저장한다는것? 83,84,실제 파일시스템을 저장
+			restaurant.setRessavedfile(ressavedfile);
+			
+			restaurant.setResmime(restaurant.getResphoto().getContentType());
+			
+			
+			restaurantService.add(restaurant);
+			return "redirect:/restaurant/list"; 
+		}
+			
+			catch (Exception e) {
+				e.printStackTrace();
+				return "restaurant/addForm";
+			}
 			
 	}
 	
@@ -108,12 +126,12 @@ public class RestaurantController {
 		
 		
 		String resmime=request.getServletContext().getMimeType(fileName);
-		response.setContentType("image/jpeg");
+		response.setContentType(resmime);
 		
 		OutputStream os=response.getOutputStream();
 		
 		String filePath=request.getServletContext().getRealPath("/WEB-INF/photo/"+fileName);
-		FileInputStream is=new FileInputStream(filePath);
+		InputStream is=new FileInputStream(filePath);
 		
 		byte[] values=new byte[1024];
 		int byteNum=-1;
@@ -129,7 +147,7 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping("/delete")
-	public String delete(int resid, Model model){
+	public String delete(int resid){
 		
 		restaurantService.delete(resid);
 		
@@ -143,10 +161,13 @@ public class RestaurantController {
 		model.addAttribute("resid", resid);
 		
 		String mid=(String)session.getAttribute("login");
+		model.addAttribute("mid", mid);
 		Member member=memberService.info(mid);
 	
 		int mrank=member.getMrank();
+		int mresid=member.getMresid();
 		model.addAttribute("mrank", mrank);
+		model.addAttribute("mresid", mresid);
 	
 		
 		return "restaurant/info";
@@ -156,23 +177,41 @@ public class RestaurantController {
 	
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public String modifyForm(int resid, Model model){
-		Restaurant restaurant=restaurantService.info(resid);
+	public String modifyForm(int mresid, Model model){
+		Restaurant restaurant=restaurantService.info(mresid);
 		model.addAttribute("restaurant", restaurant);
-		return "/restaurant/modify";
+		return "restaurant/modify";
 	}
 	
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String modify(Restaurant restaurant){
-		Restaurant dbRestaurant=restaurantService.info(restaurant.getResid());
+	public String modify(Restaurant restaurant , HttpSession session) throws IllegalStateException, IOException{
+		String mid = (String) session.getAttribute("login");
+		Member member=memberService.info(mid);
+		restaurant.setResid(member.getMresid());
+		
+		
+		restaurant.setResoriginfile(restaurant.getResphoto().getOriginalFilename());
+		String ressavedfile = new Date().getTime() + restaurant.getResphoto().getOriginalFilename(); // 저장하는 파일이 유일해야하기 때문에 날짜를 붙인다.
+		String realPath = session.getServletContext().getRealPath("/WEB-INF/photo/"+ressavedfile);
+		restaurant.getResphoto().transferTo(new File(realPath)); // 지정된 경로로 파일을 저장한다는것? 83,84,실제 파일시스템을 저장
+		restaurant.setRessavedfile(ressavedfile);
+		
+		restaurant.setResmime(restaurant.getResphoto().getContentType());
+		
 		restaurantService.modify(restaurant);
 		return "redirect:/restaurant/list";
 	}
 	
 	@RequestMapping("/index")
-	public String index()
+	public String index(HttpSession session,  Model model)
 	{
+		String mid=(String)session.getAttribute("login");
+		Member member=memberService.info(mid);
+	
+		int mrank=member.getMrank();
+		model.addAttribute("mrank", mrank);
+	
 		return "restaurant/index";
 	}
 	

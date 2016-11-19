@@ -18,7 +18,7 @@
 			식당 전화번호 : <input type="tel" name="restel" value="${restaurant.restel}"/><br/>
 			식당 OPEN TIME : <input type="time" name="resopen" value="${restaurant.resopen}"/><br/>
 			식당 CLOSE TIME : <input type="time" name="resclose" value="${restaurant.resclose}"/><br/>			
-		<!-- 	식당 사진 :<input type="file" name="ressavedfile"/><br/>   -->
+		    식당 사진 :<input type="file" name="resphoto"/><br/>   
 					
 
 			식당 휴일:<input type="checkbox" name="rescloseday" value="월요일" >월요일

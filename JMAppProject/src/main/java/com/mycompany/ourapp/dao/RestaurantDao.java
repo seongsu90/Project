@@ -22,7 +22,7 @@ public class RestaurantDao {
 	
 	
 	public int insert(Restaurant restaurant) {
-		String sql="insert into restaurant(resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose, ressavedfile, rescloseday, resmime) values(seq_restaurant_resid.nextval,?,?,?,?,?,?,?,0,?,0)";
+		String sql="insert into restaurant(resid, resname, reslocation, restotaltable, resinfo, restel, resopen, resclose,  rescloseday, resoriginfile, ressavedfile,  resmime) values(seq_restaurant_resid.nextval,?,?,?,?,?,?,?,?,?,?,?)";
 		int row=jdbcTemplate.update(
 				sql,
 				restaurant.getResname(),
@@ -32,9 +32,10 @@ public class RestaurantDao {
 				restaurant.getRestel(),
 				restaurant.getResopen(),
 				restaurant.getResclose(),
-			//	restaurant.getRessavedfile(),
-				restaurant.getRescloseday()
-			//	restaurant.getResmime()
+				restaurant.getRescloseday(),
+				restaurant.getResoriginfile(),
+				restaurant.getRessavedfile(),
+				restaurant.getResmime()
 				);
 		return row;
 	}
@@ -47,7 +48,7 @@ public class RestaurantDao {
 	}
 
 	public int update(Restaurant restaurant) {
-		String sql="update restaurant set resname=?, reslocation=?, restotaltable=?, resinfo=?, restel=?, resopen=?, resclose=?, ressavedfile=?, rescloseday=?, resphoto=?, resmime=? where resid=?";
+		String sql="update restaurant set resname=?, reslocation=?, restotaltable=?, resinfo=?, restel=?, resopen=?, resclose=?, resoriginfile=?, ressavedfile=?, resmime=?, rescloseday=?  where resid=?";
 		int row=jdbcTemplate.update(
 				sql,
 				restaurant.getResname(),
@@ -57,12 +58,11 @@ public class RestaurantDao {
 				restaurant.getRestel(),
 				restaurant.getResopen(),
 				restaurant.getResclose(),
+				restaurant.getResoriginfile(),
 				restaurant.getRessavedfile(),
-				restaurant.getRescloseday(),
-				restaurant.getResphoto(),
 				restaurant.getResmime(),
+				restaurant.getRescloseday(),
 				restaurant.getResid()
-				
 				);
 		return row;
 	}
@@ -103,7 +103,7 @@ public class RestaurantDao {
 	}
 
 	public Restaurant selectByResid(int resid) {
-		String sql="select resid, resname, reslocation, restotaltable, resinfo, restel, rescloseday, resopen, resclose, ressavedfile, resmime from restaurant where resid=?";
+		String sql="select resid, resname, reslocation, restotaltable, resinfo, restel, rescloseday, resopen, resclose, resoriginfile, ressavedfile, resmime from restaurant where resid=?";
 		List<Restaurant> list=jdbcTemplate.query(sql, new Object[]{resid}, new RowMapper<Restaurant>(){
 			@Override
 			public Restaurant mapRow(ResultSet rs, int row) throws SQLException{
@@ -117,6 +117,7 @@ public class RestaurantDao {
 				restaurant.setRescloseday(rs.getString("rescloseday"));
 				restaurant.setResopen(rs.getString("resopen"));
 				restaurant.setResclose(rs.getString("resclose"));
+				restaurant.setResoriginfile(rs.getString("resoriginfile"));
 				restaurant.setRessavedfile(rs.getString("ressavedfile"));
 				restaurant.setResmime(rs.getString("resmime"));
 			

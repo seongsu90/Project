@@ -12,8 +12,10 @@ public class Restaurant {
 	private String rescloseday;
 	private String resopen;
 	private String resclose;
+	private String resoriginfile;
 	
 	private MultipartFile resphoto;
+	
 	private String ressavedfile;
 	private String resmime;
 	
@@ -91,4 +93,11 @@ public class Restaurant {
 	public void setResmime(String resmime) {
 		this.resmime = resmime;
 	}
+	public String getResoriginfile() {
+		return resoriginfile;
+	}
+	public void setResoriginfile(String resoriginfile) {
+		this.resoriginfile = resoriginfile;
+	}
+	
 }

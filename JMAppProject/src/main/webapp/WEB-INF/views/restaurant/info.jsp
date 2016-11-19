@@ -33,7 +33,7 @@
 		</tr>
 		
 		<tr>
-		<td style="background-color:orange; width:70px">식당 전제 테이블 수</td>
+		<td style="background-color:orange; width:70px">식당 전체 테이블 수</td>
 		<td><pre>${restaurant.restotaltable}</pre></td>
 		</tr>
 		
@@ -59,7 +59,7 @@
 		
 		<tr>
 		<td style="background-color:orange; width:70px">식당 사진</td>
-		<td><img src="showPhoto?savedfile=${restaurant.ressavedfile}" width="500px"/></td>
+		<td><img src="showPhoto?ressavedfile=${restaurant.ressavedfile}" width="500px"/></td>
 		</tr>
 		
 		</table>
@@ -67,11 +67,13 @@
 		
 		
 		<div>
-			<c:if test="${login!=member.mid}">
-				<a href="modify?mid=${member.mid}">[수정]</a>
+			<c:if test="${mrank!=0}">
+				<c:if test="${resid==mresid }">
+					<a href="modify?mresid=${mresid}">[수정]</a>
+				</c:if>
 			</c:if>
 			
-			<c:if test="${mrank==2}">
+			<c:if test="${mrank==1}">
 				<a href="delete?resid=${resid}">[삭제]</a>
 			</c:if>
 			
