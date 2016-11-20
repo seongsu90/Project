@@ -54,8 +54,8 @@ public class MenuListService {
 		
 	}
 	
-	public int modifyHot(int mlresid,boolean mlishot){
-		int row = menuListdao.modifyHot(mlresid,mlishot);
+	public int modifyHot(MenuList menuList){
+		int row = menuListdao.update(menuList);
 		if(row==0){return MODIFY_FAIL;}
 		return MODIFY_SUCCESS;
 	}
@@ -68,8 +68,8 @@ public class MenuListService {
 		return menuListdao.count();
 	}
 
-	public MenuList hotinfo(int mlresid, boolean mlishot) {
-		return menuListdao.selectByMlresidAndMlishot(mlresid, mlishot);
+	public MenuList hotinfo(int mlresid, String mlname,boolean mlishot) {
+		return menuListdao.selectByMlresidAndMlnameAndMlishot(mlresid, mlname, mlishot);
 	}
 
 }

@@ -14,8 +14,8 @@
 				식당명 : <input type="text" name="mlresid" value="${menuList.mlresid}"/><br/>
 				메뉴 정보 : <input type="text" name="mlinfo" value="${menuList.mlinfo}"/><br/>
 			     메뉴 사진 : <input type="file" name="mlsavedfile" value="${menuList.mlsavedfile}"/><br/>
-				핫메뉴 선택 : <input type="radio" name="mlishot" value="${menuList.mlishot}"/>핫해하태?
-						    <input type="radio" name="mlishot" value="${menuList.mlishot}"/>일반메뉴 등록<br/>
+				핫메뉴 선택 : <input type="radio" name="mlishot" value="true"/>핫해하태?
+						   <input type="radio" name="mlishot" value="false"/>일반메뉴<br/>
 				 	
 				<input type="submit" value="생성"/>
 			</form>

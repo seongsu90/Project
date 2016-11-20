@@ -88,13 +88,16 @@ public class MenuListController {
 		}
 
 		@RequestMapping(value="/modify", method=RequestMethod.GET)
-		public String modifyForm() {
+		public String modifyForm(int mlresid, String mlname, Model model) {
+			MenuList menuList = menuListService.info(mlresid, mlname);
+			model.addAttribute("menuList",menuList);
 			return "menulist/modify";
 		}
 		
 		@RequestMapping(value="/modify", method=RequestMethod.POST)
 		public String modify(MenuList menuList) {
-			return "redirect:/menulist/list";
+			menuListService.modify(menuList);
+			return "redirect:/menulist/index";
 		}
 		
 		@RequestMapping(value="/delete", method=RequestMethod.GET)
@@ -150,20 +153,21 @@ public class MenuListController {
 		}
 		
 		@RequestMapping(value="/modifyhot",method=RequestMethod.GET)	
-		public String modifyhotForm(){
+		public String modifyhotForm(int mlresid, String mlname, boolean mlishot, Model model){
+			MenuList menuList = menuListService.hotinfo(mlresid, mlname,mlishot);
+			model.addAttribute("menuList",menuList);
 			return "menulist/modifyhot";
 		}
 		
 		@RequestMapping(value="/modifyhot",method=RequestMethod.POST)	
-		public String modifyhot(int mlresid,boolean mlishot, Model model){
-			MenuList menuList = menuListService.hotinfo(mlresid,mlishot);
-			model.addAttribute("menuList", menuList);
+		public String modifyhot(MenuList menuList){
+			menuListService.modifyHot(menuList);
 			return "redirect:/menulist/index";
 		}
 		
 		@RequestMapping(value="/hotinfo")
-		public String hotinfo(int mlresid, boolean mlishot, Model model){
-			MenuList menuList = menuListService.hotinfo(mlresid,mlishot);
+		public String hotinfo(int mlresid, String mlname, boolean mlishot, Model model){
+			MenuList menuList = menuListService.hotinfo(mlresid,mlname,mlishot);
 			model.addAttribute("menuList", menuList);
 			return "menulist/hotinfo";
 		}
