@@ -73,8 +73,8 @@ public class MenuListService {
 		return menuListdao.selectByMlresidAndMlnameAndMlishot(mlresid, mlname, mlishot);
 	}
 
-	public List<MenuList> menuList(int presid) {
-		List<MenuList> menuList = posDao.selectMenu(presid);
+	public List<MenuList> menuList(int mlresid) {
+		List<MenuList> menuList = posDao.selectMenu(mlresid);
 		return menuList;
 	}
 	

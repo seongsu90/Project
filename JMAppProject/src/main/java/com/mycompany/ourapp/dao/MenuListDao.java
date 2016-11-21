@@ -159,9 +159,9 @@ public class MenuListDao {
 		return (list.size() != 0)?list.get(0) : null;
 	}
 
-	public List<MenuList> selectMenu(int presid) {
+	public List<MenuList> selectMenu(int mlresid) {
 		String sql="select mlname from menulist where mlresid=? ";
-		List<MenuList> list = jdbcTemplate.query(sql, new Object[]{presid}, new RowMapper<MenuList>() {
+		List<MenuList> list = jdbcTemplate.query(sql, new Object[]{mlresid}, new RowMapper<MenuList>() {
 			@Override
 			public MenuList mapRow(ResultSet rs, int row) throws SQLException {
 				MenuList menuList = new MenuList();

@@ -17,7 +17,10 @@ import com.mycompany.ourapp.dto.MenuList;
 import com.mycompany.ourapp.dto.Pos;
 import com.mycompany.ourapp.dto.Reservation;
 import com.mycompany.ourapp.dto.Restaurant;
+import com.mycompany.ourapp.service.CouponService;
+import com.mycompany.ourapp.service.EventService;
 import com.mycompany.ourapp.service.MemberService;
+import com.mycompany.ourapp.service.MenuListService;
 import com.mycompany.ourapp.service.PosService;
 import com.mycompany.ourapp.service.RestaurantService;
 
@@ -34,6 +37,15 @@ public class PosController {
 	
 	@Autowired
 	private RestaurantService restaurantService;
+	
+	@Autowired
+	private MenuListService menuListService;
+	
+	@Autowired
+	private CouponService couponService;
+	
+	@Autowired 
+	private EventService eventService;
 	
 	@RequestMapping("/index")
 	public String index(HttpSession session, Model model) {
@@ -57,18 +69,33 @@ public class PosController {
 		return "pos/index";
 	}
 
-	@RequestMapping(value="/add", method=RequestMethod.GET)
+/*	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addForm() {
 		logger.info("pos addForm 실행");
 		
 		return "pos/addForm";
-	}
+	}*/
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String add(Pos pos) {		// 수기 주문, 모바일 주문
 		logger.info("pos add 실행");		
 		
-		posService.add(pos);		
+		/*String pmlname = pos.getPmlname();
+		String[] str = pmlname.split(",|\\[|\\]|");		
+		for ( int i = 0 ; i < str.length ; i++ ) {			
+			logger.info(str[i].trim());
+			pos.setPmlname(str[i].trim());
+		}*/
+		
+		String[] arrMenu = pos.getTempmenu();		
+		int[] arrCount = pos.getTempcount();
+		
+		for ( int i = 0 ; i < arrMenu.length ; i++ ) {			
+			pos.setPmlname(arrMenu[i]);
+			pos.setPcount(arrCount[i]);
+			
+			posService.add(pos);
+		}
 		return "redirect:/pos/index";	
 	}
 
@@ -98,7 +125,7 @@ public class PosController {
 
 		List<Pos> infoList = posService.info(presid, ptableno);			// 테이블별 주문 내역
 		List<Integer> price = posService.calcSum(presid, ptableno);	// 합계 계산
-		List<MenuList> menuList = posService.menuList(presid);		// 매장 별 메뉴 리스트
+		List<MenuList> menuList = menuListService.menuList(presid);		// 매장 별 메뉴 리스트
 		
 		int totalPrice = 0;
 		for ( int i = 0; i < price.size(); i++ ) {
@@ -114,20 +141,15 @@ public class PosController {
 	
 	@RequestMapping("/checkCoupon")	
 	public String checkCoupon(String cbmid, int cbnumber, Model model) {
-		int result = posService.checkCoupon(cbmid, cbnumber);
+		int result = couponService.checkCoupon(cbmid, cbnumber);
 		
 		if (result == posService.COUPON_FAIL) {		// 1
-			model.addAttribute("result", "쿠폰의 정보가 일치하지 않습니다.");
-			return "pos/info";
-			/*return ("redirect:/pos/info?presid="+1+"&ptableno="+2);*/
+			model.addAttribute("result", "쿠폰의 정보가 일치하지 않습니다.");	
 		} else if (result == posService.COUPON_EXPIRE_DATE) {		// 2
 			model.addAttribute("result", "쿠폰의 유효기간이 만료되었습니다.");
-			return "pos/info";
-			/*return ("redirect:/pos/info?presid="+1+"&ptableno="+2);*/
 		} else {
 			model.addAttribute("result", result);
-			return "pos/info";
-			/*return ("redirect:/pos/info?presid="+1+"&ptableno="+2);*/
-		}		
+		}	
+		return "pos/info";		
 	}	
 }
