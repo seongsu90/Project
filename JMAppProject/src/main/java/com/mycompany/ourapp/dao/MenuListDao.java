@@ -172,7 +172,7 @@ public class MenuListDao {
 		 });
 		 	return list;
 		 }
-=======
+
 	public List<MenuList> selectMenu(int mlresid) {
 		String sql="select mlname from menulist where mlresid=? ";
 		List<MenuList> list = jdbcTemplate.query(sql, new Object[]{mlresid}, new RowMapper<MenuList>() {
@@ -185,6 +185,5 @@ public class MenuListDao {
 		});
 		return list;
 	}
-	
->>>>>>> branch 'master' of https://github.com/seongsu90/TeamRepository
+
 }
