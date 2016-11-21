@@ -2,7 +2,6 @@ package com.mycompany.ourapp.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import com.mycompany.ourapp.dto.Coupon;
-import com.mycompany.ourapp.dto.MenuList;
+import com.mycompany.ourapp.dto.Event;
 import com.mycompany.ourapp.dto.Pos;
 import com.mycompany.ourapp.dto.Reservation;
 
@@ -157,4 +155,24 @@ public class PosDao {
 		});
 		return (list.size() != 0) ? list.get(0) : null;
 	}*/
+	
+	public List<Integer> checkEvent(int eresid, int ptableno) {
+		String sql = "";
+				sql += "select (e.eprice * p.pcount) eventprice "; 
+				sql += "from event e, pos p ";				
+				sql += "where e.emlname = p.pmlname ";				
+				sql += "and sysdate between e.estart and e.eend ";
+				sql += "and e.eresid = p.presid ";
+				sql += "and p.presid = ? ";
+				sql += "and p.ptableno = ? ";				
+		
+		List<Integer> list = jdbcTemplate.query(sql, new Object[]{eresid, ptableno}, new RowMapper<Integer>() {
+			@Override
+			public Integer mapRow(ResultSet rs, int row) throws SQLException {				
+				
+				return rs.getInt("eventprice");
+			}
+		});
+		return list;			
+	}
 }

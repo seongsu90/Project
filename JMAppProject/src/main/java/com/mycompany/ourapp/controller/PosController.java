@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mycompany.ourapp.dto.Event;
 import com.mycompany.ourapp.dto.Member;
 import com.mycompany.ourapp.dto.MenuList;
 import com.mycompany.ourapp.dto.Pos;
@@ -43,10 +44,7 @@ public class PosController {
 	
 	@Autowired
 	private CouponService couponService;
-	
-	@Autowired 
-	private EventService eventService;
-	
+		
 	@RequestMapping("/index")
 	public String index(HttpSession session, Model model) {
 		logger.info("pos index");
@@ -87,7 +85,7 @@ public class PosController {
 			pos.setPmlname(str[i].trim());
 		}*/
 		
-		String[] arrMenu = pos.getTempmenu();		
+		String[] arrMenu = pos.getTempmenu();
 		int[] arrCount = pos.getTempcount();
 		
 		for ( int i = 0 ; i < arrMenu.length ; i++ ) {			
@@ -123,32 +121,40 @@ public class PosController {
 	public String info(int presid, int ptableno, Model model) {
 		logger.info("pos info 실행");
 
-		List<Pos> infoList = posService.info(presid, ptableno);			// 테이블별 주문 내역
-		List<Integer> price = posService.calcSum(presid, ptableno);	// 합계 계산
-		List<MenuList> menuList = menuListService.menuList(presid);		// 매장 별 메뉴 리스트
-		
+		List<Pos> infoList = posService.info(presid, ptableno);						// 테이블별 주문 내역
+		List<Integer> price = posService.calcSum(presid, ptableno);				// 합계 계산
+		List<MenuList> menuList = menuListService.menuList(presid);			// 매장별 메뉴 리스트
+		List<Integer> eventList = posService.checkEvent(presid, ptableno);		// 매장별 이벤트 메뉴 할인 합계
+				
 		int totalPrice = 0;
 		for ( int i = 0; i < price.size(); i++ ) {
 			totalPrice += price.get(i);
+		}
+		
+		int eventPrice = 0;
+		for ( int i = 0; i < eventList.size(); i++ ) {
+			eventPrice += eventList.get(i);
 		}
 		
 		model.addAttribute("ptableno", ptableno);
 		model.addAttribute("infoList", infoList);
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("menuList", menuList);
+		model.addAttribute("eventList", eventList);
+		model.addAttribute("eventPrice", eventPrice);
 		return "pos/info";
 	}
 	
 	@RequestMapping("/checkCoupon")	
 	public String checkCoupon(String cbmid, int cbnumber, Model model) {
-		int result = couponService.checkCoupon(cbmid, cbnumber);
+		int coupon = couponService.checkCoupon(cbmid, cbnumber);
 		
-		if (result == posService.COUPON_FAIL) {		// 1
-			model.addAttribute("result", "쿠폰의 정보가 일치하지 않습니다.");	
-		} else if (result == posService.COUPON_EXPIRE_DATE) {		// 2
-			model.addAttribute("result", "쿠폰의 유효기간이 만료되었습니다.");
+		if (coupon == posService.COUPON_FAIL) {		// 1
+			model.addAttribute("coupon", "쿠폰의 정보가 일치하지 않습니다.");	
+		} else if (coupon == posService.COUPON_EXPIRE_DATE) {		// 2
+			model.addAttribute("coupon", "쿠폰의 유효기간이 만료되었습니다.");
 		} else {
-			model.addAttribute("result", result);
+			model.addAttribute("coupon", coupon);
 		}	
 		return "pos/info";		
 	}	

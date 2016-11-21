@@ -84,7 +84,7 @@ public class CouponService {
 	
 	public int checkCoupon(String cbmid, int cbnumber) {		
 		Coupon coupon = couponDao.checkCoupon(cbmid, cbnumber);		
-		Date now = new Date();		
+		Date now = new Date();
 		
 		if (coupon == null) {
 			return COUPON_FAIL;

@@ -22,6 +22,7 @@
 				<tr>
 					<td align="center">${infoList.pmlname}</td>
 					<td align="center">${infoList.pcount}</td>	
+					<td><a href="modify?presid=${presid}&ptableno=${ptableno}"><input type="submit" value="수정"/></a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -29,14 +30,15 @@
 		<br/>	
 	 	
 	 	<b>합계 : ${totalPrice}</b><br/>
-	  	<b>쿠폰 : ${result}</b>
+	  	<b>쿠폰 : ${coupon}</b>
 	 	<a href="checkCoupon?cbmid=b&cbnumber=34427389"><input type="submit" value="확인"/></a><br/>
-	 	<b>이벤트 : </b><br/>
+		<b>이벤트 : ${eventPrice}</b><br/>
 	 	<b>마일리지 : </b><br/>
 	 	<b>---------------------------------------</b><br/>
-	 	<c:if test="${result != 1 || 2}">
+	 	<%-- <c:if test="${result != 1 || 2}">
 	 		<h3>결재 금액 : ${totalPrice - result}</h3><br/>
-	 	</c:if>
+	 	</c:if> --%>
+	 	<h3>결재 금액 : ${totalPrice - coupon - eventPrice}</h3><br/>
 		
 		<a href="delete?presid=${presid}&ptableno=${ptableno}"><input type="submit" value="결제"/></a>		
 		<a href="index"><input type="submit" value="뒤로"/></a><br/>	
@@ -63,10 +65,6 @@
 			</table>
 			<input type="submit" value="주문"/><br/>
 		</form> 
-		
-		<!-- <form method="post" action="/ourapp/pos/add">			
-			<input type="submit" value="주문"/><br/>
-		</form> -->
 			
 	</body>
 </html>
