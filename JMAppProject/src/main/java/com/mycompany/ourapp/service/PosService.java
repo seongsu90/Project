@@ -70,17 +70,17 @@ public class PosService {
 		return list; 
 	}
 
-	public List<MenuList> menuList(int presid) {
+/*	public List<MenuList> menuList(int presid) {
 		List<MenuList> menuList = posDao.selectMenu(presid);
 		return menuList;
-	}
+	}*/
 
 	public List<Reservation> reservList(int presid) {
 		List<Reservation> list = posDao.reservList(presid);
 		return list;
 	}
 	
-	public int checkCoupon(String cbmid, int cbnumber) {		
+/*	public int checkCoupon(String cbmid, int cbnumber) {		
 		Coupon coupon = posDao.checkCoupon(cbmid, cbnumber);		
 		Date now = new Date();		
 		
@@ -90,6 +90,6 @@ public class PosService {
 			return COUPON_EXPIRE_DATE;				
 		} 	
 		return coupon.getCdiscount();
-	}
+	}*/
 }
 

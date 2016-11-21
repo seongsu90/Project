@@ -87,6 +87,36 @@ public class RestaurantController {
 		return "restaurant/list";
 	}
 	
+
+	@RequestMapping("/myinfo")
+	public String myinfo(int resid, Model model, HttpSession session){
+		
+		try{
+			Restaurant restaurant=restaurantService.info(resid);
+		
+			model.addAttribute("restaurant", restaurant);
+			model.addAttribute("resid", resid);
+			
+			String mid=(String)session.getAttribute("login");
+			model.addAttribute("mid", mid);
+			Member member=memberService.info(mid);
+		
+			int mrank=member.getMrank();
+			int mresid=member.getMresid();
+			model.addAttribute("mrank", mrank);
+			model.addAttribute("mresid", mresid);
+		}catch(Exception e){
+			e.printStackTrace();
+			logger.info("식당이 존재하지 않습니다.");
+		}
+		
+		return "restaurant/info";
+	}
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addForm(){
@@ -181,6 +211,7 @@ public class RestaurantController {
 			int mresid=member.getMresid();
 			model.addAttribute("mrank", mrank);
 			model.addAttribute("mresid", mresid);
+			
 		}catch(Exception e){
 			e.printStackTrace();
 			logger.info("비회원 로그인");
@@ -225,8 +256,8 @@ public class RestaurantController {
 		String mid=(String)session.getAttribute("login");
 		Member member=memberService.info(mid);
 	
-		int mrank=member.getMrank();
-		model.addAttribute("mrank", mrank);
+		model.addAttribute("mrank", member.getMrank());
+		model.addAttribute("resid", member.getMresid());
 	
 		return "restaurant/index";
 	}

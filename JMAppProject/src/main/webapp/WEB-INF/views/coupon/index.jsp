@@ -17,6 +17,6 @@
 			4.<a href="/ourapp/coupon/info?cnumber=2115507"> 쿠폰 상세보기</a> <br/>
 
 			<%-- 회원전용메뉴 --%>
-			※<a href="/ourapp/coupon/list">내 쿠폰함</a>
+			※<a href="/ourapp/coupon/list?mid=${login}">내 쿠폰함</a>
 	</body>
 </html>

@@ -18,7 +18,7 @@
     </c:if>
     
     <c:if test="${mrank==2}">
-              ※<a href="/ourapp/restaurant/list">나의 식당 정보 열람 및 수정</a><br/>
+              ※<a href="/ourapp/restaurant/info?resid=${resid}">나의 식당 정보 열람 및 수정</a><br/>
     </c:if>
     
     <c:if test="${mrank==1}">

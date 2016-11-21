@@ -6,6 +6,22 @@ public class Pos {
 	private String pmlname;
 	private int pcount;
 	
+	private String[] tempmenu;	
+	private int[] tempcount;
+
+	
+	public String[] getTempmenu() {
+		return tempmenu;
+	}
+	public void setTempmenu(String[] tempmenu) {
+		this.tempmenu = tempmenu;
+	}
+	public int[] getTempcount() {
+		return tempcount;
+	}
+	public void setTempcount(int[] tempcount) {
+		this.tempcount = tempcount;
+	}
 	public int getPtableno() {
 		return ptableno;
 	}

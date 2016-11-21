@@ -33,8 +33,8 @@ public class ReservationService {
 		return DELETE_SUCCESS;
 	}
 	
-	public List<Reservation> list(int pageNo, int rowsPerPage){
-		return reservationDao.selectByPage(pageNo, rowsPerPage);
+	public List<Reservation> list(String mid, int pageNo, int rowsPerPage){
+		return reservationDao.selectByPage(mid,pageNo, rowsPerPage);
 	}
 	
 	public Reservation info(String rvMid, int rvResid) {
@@ -42,7 +42,10 @@ public class ReservationService {
 		return reservation;
 	}
 	
+	
 	public int getCount(){
 		return reservationDao.count();
 	}
+	
+
 }

@@ -4,6 +4,67 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript">
+		
+ 			$(document).ready(function() {
+ 				console.log("ready 실행");
+ 				setCity();
+ 				
+ 				$("#selCity").change(function () {
+ 					console.log("City Change");
+ 			        setProvince();
+ 			       $("#mlocation").val(""); 
+ 			    });
+ 				
+ 				$("#selProvince").change(function () {
+ 					console.log("Province Change");
+ 					setMlocation();
+ 			    });
+			});
+ 			
+ 			window.onload = function() {
+				console.log("onLoad");
+				var selCity = $("#selectedCity").val();
+				var selProvince = $("#selectedProv").val();
+ 				$.ajax({
+					url: "getProvince.jsp",
+					data: {"selCity":selCity, "selProvince":selProvince},
+					success: function (data) {
+						$("#selProvince").html(data);
+					}
+				});
+			};
+ 			
+			function setCity() {
+				console.log("setCity 실행");
+				var selCity = $("#selectedCity").val();
+				$.ajax({
+					url: "getCity.jsp",
+					data: {"selCity":selCity},
+					success: function (data) {
+						$("#selCity").html(data);
+					}
+				});
+			}
+			
+ 			function setProvince() {
+ 				console.log("setProvince 실행");
+ 				var selCity = $("#selCity").val();
+ 				$.ajax({
+					url: "getProvince.jsp",
+					data: {"selCity":selCity, "selProvince":null},
+					success: function (data) {
+						$("#selProvince").html(data);
+					}
+				});
+			}
+ 			
+ 			function setMlocation() {
+ 				console.log("setMlocation() 실행");
+				$("#mlocation").val($("#selCity").val() + " "+ $("#selProvince").val()); 				
+ 			}
+	    </script>
 		<style type="text/css">
 			.list {
 				text-align: right;
@@ -51,8 +112,16 @@
 				</tr>
 				
 				<tr>
-					<td class="list">관심지역 </td>
-					<td class="content"><input type="text" name="mlocation" value="${member.mlocation}"/></td>
+					<td class="list"> 관심지역 </td>
+					<td class="content">
+						시　도 | <select style="width: 110px" id="selCity" name="selCity">
+								</select><br/>
+						시군구 | <select style="width: 110px" id="selProvince" name="selProvince">
+								</select>
+								<input type="text" name="mlocation" id="mlocation" value="${member.mlocation}"/>
+								<input type="hidden" name="selectedCity" id="selectedCity" value="${slocation[0]}"/>
+								<input type="hidden" name="selectedProv" id="selectedProv" value="${slocation[1]}"/>
+					</td>
 				</tr>
 				
 				<tr>

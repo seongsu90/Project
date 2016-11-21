@@ -30,35 +30,43 @@
 	 	
 	 	<b>합계 : ${totalPrice}</b><br/>
 	  	<b>쿠폰 : ${result}</b>
-	 	<a href="checkCoupon?cbmid=d&cbnumber=31987865"><input type="submit" value="확인"/></a><br/>
+	 	<a href="checkCoupon?cbmid=b&cbnumber=34427389"><input type="submit" value="확인"/></a><br/>
 	 	<b>이벤트 : </b><br/>
 	 	<b>마일리지 : </b><br/>
 	 	<b>---------------------------------------</b><br/>
 	 	<c:if test="${result != 1 || 2}">
 	 		<h3>결재 금액 : ${totalPrice - result}</h3><br/>
 	 	</c:if>
-		 
-		 <a href="add?presid=${presid}&ptableno=${ptableno}"><input type="submit" value="주문"/></a>
+		
 		<a href="delete?presid=${presid}&ptableno=${ptableno}"><input type="submit" value="결제"/></a>		
 		<a href="index"><input type="submit" value="뒤로"/></a><br/>	
 		
- 		<h3>메뉴 리스트</h3>	
-		<table>
-			<tr>
-				<td style="width:200px;" align="center">메뉴</td>
-				<td style="width:100px" align="center">수량</td>
-			</tr>
-			<c:forEach var="menuList" items="${menuList}">
+ 		<h3>메뉴 리스트</h3>
+ 		<form method="post" action="/ourapp/pos/add">	
+			<table>
 				<tr>
-					<td>
-						<input type="checkbox" name=pmlname value=""/>${menuList.mlname} 							
-					</td>
-					<td>
-						<input style="width:50px" type="number" name=pcount value="0"/> 							
-					</td>				
+					<td style="width:200px;" align="center">메뉴</td>
+					<td style="width:100px" align="center">수량</td>
 				</tr>
-			</c:forEach>			
-		</table> 
+				<c:forEach var="menuList" items="${menuList}">
+					<tr>
+						<td>
+							<input type="hidden" name=presid value="${presid}"/> 							
+							<input type="hidden" name=ptableno value="${ptableno}"/>
+							<input type="checkbox" name=tempmenu value="${menuList.mlname}"/>${menuList.mlname} 							
+						</td>
+						<td>
+							<input style="width:50px" type="number" min="1" max="99" name=tempcount value=""/> 							
+						</td>				
+					</tr>					
+				</c:forEach>				
+			</table>
+			<input type="submit" value="주문"/><br/>
+		</form> 
+		
+		<!-- <form method="post" action="/ourapp/pos/add">			
+			<input type="submit" value="주문"/><br/>
+		</form> -->
 			
 	</body>
 </html>

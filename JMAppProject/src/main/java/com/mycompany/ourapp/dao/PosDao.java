@@ -61,7 +61,7 @@ public class PosDao {
 				pos.setPresid(rs.getInt("presid"));
 				pos.setPtableno(rs.getInt("ptableno"));	
 				pos.setPmlname(rs.getString("pmlname"));
-				pos.setPcount(rs.getInt("pcount"));
+				pos.setPcount(rs.getInt("pcount"));		
 							
 				return pos;
 			}	
@@ -106,7 +106,7 @@ public class PosDao {
 		return list;
 	}
 
-	public List<MenuList> selectMenu(int presid) {
+/*	public List<MenuList> selectMenu(int presid) {
 		String sql="select mlname from menulist where mlresid=? ";
 		List<MenuList> list = jdbcTemplate.query(sql, new Object[]{presid}, new RowMapper<MenuList>() {
 			@Override
@@ -117,7 +117,7 @@ public class PosDao {
 			}
 		});
 		return list;
-	}
+	}*/
 
 	public List<Reservation> reservList(int presid) {
 		String sql = "select * from reservation where rvresid=? order by rvtime ";
@@ -135,7 +135,7 @@ public class PosDao {
 		return list;
 	}
 
-	public Coupon checkCoupon(String cbmid, int cbnumber) {
+/*	public Coupon checkCoupon(String cbmid, int cbnumber) {
 		String sql = "select c.cnumber, c.cname, c.cdday, c.cinfo, c.cresid, c.cdiscount "; 
 				 sql += "from coupon c, couponbox cb ";
 				 sql += "where c.cnumber = cb.cbnumber ";
@@ -156,5 +156,5 @@ public class PosDao {
 			}
 		});
 		return (list.size() != 0) ? list.get(0) : null;
-	}
+	}*/
 }

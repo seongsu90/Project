@@ -41,7 +41,7 @@ public class CouponController {
 	}
 	
 	@RequestMapping("/list")
-	public String list(String pageNo,Model model,HttpSession session){
+	public String list(String mid,String pageNo,Model model,HttpSession session){
 		int intPageNo =1;
 		if(pageNo==null)
 		{
@@ -70,7 +70,7 @@ public class CouponController {
 		
 		if(groupNo==totalGroupNo){endPageNo= totalPageNo;}
 		
-		List<CouponBox> couponlist = couponservice.list(intPageNo, rowsPerPage);
+		List<CouponBox> couponlist = couponservice.list(mid,intPageNo, rowsPerPage);
 		model.addAttribute("pageNo",intPageNo);
 		model.addAttribute("rowsPerPage",rowsPerPage);
 		model.addAttribute("pagesPerGroup",pagesPerGroup);
