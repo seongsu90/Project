@@ -30,15 +30,17 @@ public class ReservationController {
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.GET)
-	public String addForm(){
+	public String addForm(int rvresid,HttpSession httpsession){
+		httpsession.setAttribute("rvresid", rvresid);
 		logger.info("addform 처리");
 		return "/reservation/addform";
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
-	public String add(Reservation reservation){
+	public String add(Reservation reservation,HttpSession httpsession){
 		logger.info("add 처리");
 		reservationservice.add(reservation);
+		httpsession.removeAttribute("rvresid");
 		return "redirect:/reservation/index";
 	}
 	
