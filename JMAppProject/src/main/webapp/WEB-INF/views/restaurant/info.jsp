@@ -13,11 +13,6 @@
 		<table style="width:570px">
 	
 		<tr>
-		<td style="background-color:orange; width:70px">식당 ID</td>
-		<td>${restaurant.resid}</td>
-		</tr>
-	
-		<tr>
 		<td style="background-color:orange; width:70px">식당 이름</td>
 		<td>${restaurant.resname}</td>
 		</tr>
