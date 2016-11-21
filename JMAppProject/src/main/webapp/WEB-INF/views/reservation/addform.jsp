@@ -15,7 +15,7 @@
 		- 예약 시간 <input type="time"  name="rvtime"  /> <br/>
 		- 인원 수(테이블당 최대 4명) <input type="number" name="rvperson" min="1" max="8"><br/>
 		- 예약 아이디<input type="text" name="rvmid" value="${login}"readonly> <br/>
-		- 예약하는 식당 <input type="text"  name="rvresid"  value="0" readonly/> <br/>
+		- 예약하는 식당 <input type="text"  name="rvresid" value="${rvresid}" readonly/> <br/>
 		
 		<input type="submit" value="예약하기"/> <br/>
 		</form>

@@ -21,7 +21,6 @@ public class MenuListService {
 	
 	@Autowired
 	private MenuListDao menuListdao;
-	private MenuListDao posDao;
 	
 	public List<MenuList> list(int pageNo, int rowsPerPage){
 		return menuListdao.selectByPage(pageNo, rowsPerPage); 
@@ -74,8 +73,8 @@ public class MenuListService {
 	}
 
 	public List<MenuList> menuList(int mlresid) {
-		List<MenuList> menuList = posDao.selectMenu(mlresid);
-		return menuList;
+		List<MenuList> menuList = menuListdao.selectMenu(mlresid);
+		return menuList; 
 	}
 	
 }
