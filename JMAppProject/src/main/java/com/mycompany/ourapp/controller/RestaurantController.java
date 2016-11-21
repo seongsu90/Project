@@ -194,7 +194,7 @@ public class RestaurantController {
 		restaurant.setResoriginfile(restaurant.getResphoto().getOriginalFilename());
 		String ressavedfile = new Date().getTime() + restaurant.getResphoto().getOriginalFilename(); // 저장하는 파일이 유일해야하기 때문에 날짜를 붙인다.
 		String realPath = session.getServletContext().getRealPath("/WEB-INF/photo/"+ressavedfile);
-		restaurant.getResphoto().transferTo(new File(realPath)); // 지정된 경로로 파일을 저장한다는것? 83,84,실제 파일시스템을 저장
+		restaurant.getResphoto().transferTo(new File(realPath)); 
 		restaurant.setRessavedfile(ressavedfile);
 		
 		restaurant.setResmime(restaurant.getResphoto().getContentType());
