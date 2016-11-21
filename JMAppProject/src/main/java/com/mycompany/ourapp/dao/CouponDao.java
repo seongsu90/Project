@@ -109,4 +109,27 @@ public class CouponDao {
 		);
 		return list;
 	}
+	
+	public Coupon checkCoupon(String cbmid, int cbnumber) {
+		String sql = "select c.cnumber, c.cname, c.cdday, c.cinfo, c.cresid, c.cdiscount "; 
+				 sql += "from coupon c, couponbox cb ";
+				 sql += "where c.cnumber = cb.cbnumber ";
+				 sql += "and cb.cbmid = ? ";
+				 sql += "and cb.cbnumber = ? ";
+		
+		List<Coupon> list =  jdbcTemplate.query(sql, new Object[] {cbmid, cbnumber}, new RowMapper<Coupon>() {
+			@Override
+			public Coupon mapRow(ResultSet rs, int row) throws SQLException {
+				Coupon coupon = new Coupon();
+				coupon.setCnumber(rs.getInt("cnumber"));
+				coupon.setCname(rs.getString("cname"));
+				coupon.setCdday(rs.getDate("cdday"));
+				coupon.setCinfo(rs.getString("cinfo"));
+				coupon.setCresid(rs.getInt("cresid"));
+				coupon.setCdiscount(rs.getInt("cdiscount"));
+				return coupon;
+			}
+		});
+		return (list.size() != 0) ? list.get(0) : null;
+	}
 }

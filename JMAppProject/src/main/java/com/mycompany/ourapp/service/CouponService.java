@@ -1,6 +1,7 @@
 package com.mycompany.ourapp.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,10 @@ public class CouponService {
 	
 	public static final int DELETE_SUCCESS = 0;
 	public static final int DELETE_FAIL = 1;
+	
+	public static final int COUPON_SUCCESS = 0;
+	public static final int COUPON_FAIL = 1;						// 쿠폰 조회 안됨
+	public static final int COUPON_EXPIRE_DATE = 2;
 	
 	
 	@Autowired
@@ -75,6 +80,18 @@ public class CouponService {
 
 	public int getCount() {
 		return couponDao.count();
+	}
+	
+	public int checkCoupon(String cbmid, int cbnumber) {		
+		Coupon coupon = couponDao.checkCoupon(cbmid, cbnumber);		
+		Date now = new Date();		
+		
+		if (coupon == null) {
+			return COUPON_FAIL;
+		} else if (now.after(coupon.getCdday())) {		// 쿠폰 유효기간 확인
+			return COUPON_EXPIRE_DATE;				
+		} 	
+		return coupon.getCdiscount();
 	}
 
 }
