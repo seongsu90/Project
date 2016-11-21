@@ -21,6 +21,11 @@
   				padding: 5px;
     			text-align: center;
 			}
+			
+			th {
+  				background-color: black;
+    			color: white;
+			}
 		
 		</style>
 	</head>
@@ -30,7 +35,7 @@
 		<hr/>
 		
 		<br/>
-		<table style="width: 1000px; border-collapse: collapse; border-style: solid; border-width: 3px; border-color: blacke;">
+		<table style="width: 1000px; border-collapse: separate; border-style: solid; border-width: 3px; border-color: black;">
 			<tr>
 				<th> 식당 사진 </th>
 				<th> 식당 이름</th>
@@ -47,7 +52,7 @@
 				<tr>
 					
 					
-					<td> <img src="showPhoto?ressavedfile=${restaurant.ressavedfile}" width="50px"/></td>
+					<td> <img src="showPhoto?ressavedfile=${restaurant.ressavedfile}" width="80px"/></td>
 					
 					<td style="border: 1px solid black;"><a href="info?resid=${restaurant.resid}">${restaurant.resname}</a></td>
 					

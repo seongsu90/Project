@@ -119,6 +119,22 @@ public class RestaurantController {
 			
 	}
 	
+	@RequestMapping(value="/deleteForm", method=RequestMethod.POST)
+	public String delete(int resid){
+		
+		restaurantService.delete(resid);
+		
+		return "redirect:/restaurant/list";
+	}
+	
+	@RequestMapping(value="/deleteForm", method=RequestMethod.GET)
+	public String deleteForm(){
+		logger.info("deleteForm() 실행");
+		return "restaurant/deleteForm";
+		
+	}
+	
+	
 	@RequestMapping("/showPhoto")
 	public void showPhoto(String ressavedfile, HttpServletRequest request, HttpServletResponse response){
 		try{
@@ -146,13 +162,7 @@ public class RestaurantController {
 		}
 	}
 	
-	@RequestMapping("/delete")
-	public String delete(int resid){
-		
-		restaurantService.delete(resid);
-		
-		return "redirect:/restaurant/list";
-	}
+	
 	
 	@RequestMapping("/info")
 	public String info(int resid, Model model, HttpSession session){

@@ -12,7 +12,7 @@
               ※<a href="/ourapp/restaurant/list">음식점 리스트보기</a><br/>
     <c:if test="${mrank==1}">
    	      ※<a href="/ourapp/restaurant/add">음식점추가하기</a><br/>	
-	      ※<a href="/ourapp/restaurant/delete">음식점삭제하기</a><br/> -->
+	      ※<a href="/ourapp/restaurant/deleteForm">음식점삭제하기</a><br/> -->
     </c:if>
     
     <c:if test="${mrank!=0}">
