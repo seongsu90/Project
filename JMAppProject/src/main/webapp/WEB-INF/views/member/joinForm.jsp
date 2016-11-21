@@ -12,8 +12,8 @@
  				console.log("ready 실행");
  				setCity();
  				
- 				$("#selMetro").change(function () {
- 					console.log("Metro Change");
+ 				$("#selCity").change(function () {
+ 					console.log("City Change");
  			        setProvince();
  			       $("#mlocation").val(""); 
  			    });
@@ -28,18 +28,19 @@
 				console.log("setCity 실행");
 				$.ajax({
 					url: "getCity.jsp",
+					data: {"selCity":null},
 					success: function (data) {
-						$("#selMetro").html(data);
+						$("#selCity").html(data);
 					}
 				});
 			}
 			
  			function setProvince() {
  				console.log("setProvince 실행");
- 				var cityName = $("#selMetro").val();
+ 				var selCity = $("#selCity").val();
  				$.ajax({
 					url: "getProvince.jsp",
-					data: {"cityName":cityName},
+					data: {"selCity":selCity, "selProvince":null},
 					success: function (data) {
 						$("#selProvince").html(data);
 					}
@@ -48,7 +49,7 @@
  			
  			function setMlocation() {
  				console.log("setMlocation() 실행");
-				$("#mlocation").val($("#selMetro").val() + " "+ $("#selProvince").val()); 				
+				$("#mlocation").val($("#selCity").val() + " "+ $("#selProvince").val()); 				
  			}
 	    </script>
 	</head>
@@ -56,7 +57,7 @@
 		<b>회원 가입</b>
 		<hr/>
 		<form method="post">
-			아이디 : <input type="text" name="mid" value="${member.mid}"/> ${error}
+			아이디 : <input type="text" name="mid" value="${member.mid}"/> &nbsp; <span style="color: red"><b>${error}</b></span>
 			<br/>
 			
 			이름 : <input type="text" name="mname" value="${member.mname}"/>
@@ -72,14 +73,14 @@
 			<br/>
 			
 			관심지역 :
-			시　도 | <select style="width: 110px" id="selMetro" name="selMerto"></select><br/>
-	　　　　　시군구 | <select style="width: 110px" id="selProvince" name="selProvince">
-				<option value="선택">선택</option>
-			</select>			
+			시　도 | <select style="width: 100px" id="selCity" name="selCity"></select><br/>
+	　 　　 　 시군구 | <select style="width: 100px" id="selProvince" name="selProvince">
+						<option value="선택">선택</option>
+					</select>			
 			<input type="text" name="mlocation" id="mlocation"/>
 			<br/>
 
-			<input type="submit" value="가입"/> ${error2}<br/>
+			<input type="submit" value="가입"/> &nbsp; <span style="color: red"><b>${error2}</b></span><br/>
 		</form>
 			
 	</body>

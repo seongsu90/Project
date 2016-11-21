@@ -58,7 +58,12 @@
 					<td> ${member.mphone} </td>
 					<td> ${member.mbirth} </td>
 					<td> ${member.mlocation} </td>
-					<td> ${member.mrank} </td>
+					<td> 
+						<c:if test="${member.mrank==0}"> 일반 </c:if>
+						<c:if test="${member.mrank==1}"> 점장 </c:if>
+						<c:if test="${member.mrank==2}"> <b>관리자</b> </c:if>
+						<c:if test="${member.mrank==3}"> <b style="color: red">블랙리스트</b> </c:if>
+					 </td>
 					<td> ${member.mpoint} </td>
 					<td> ${member.mresid} </td>
 					<td> <a href="/ourapp/member/modifyInfoForManager?mid=${member.mid}"><input type="button" value="수정"/></a></td>
