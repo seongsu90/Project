@@ -22,7 +22,6 @@
 				<tr>
 					<td align="center">${infoList.pmlname}</td>
 					<td align="center">${infoList.pcount}</td>	
-					<td><a href="modify?presid=${presid}&ptableno=${ptableno}"><input type="submit" value="수정"/></a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -58,7 +57,7 @@
 							<input type="checkbox" name=tempmenu value="${menuList.mlname}"/>${menuList.mlname} 							
 						</td>
 						<td>
-							<input style="width:50px" type="number" min="1" max="99" name=tempcount value=""/> 							
+							<input style="width:50px" type="number" min="0" max="99" name=tempcount value="0"/> 							
 						</td>				
 					</tr>					
 				</c:forEach>				

@@ -79,16 +79,33 @@ public class PosController {
 		logger.info("pos add 실행");		
 		
 		/*String pmlname = pos.getPmlname();
-		String[] str = pmlname.split(",|\\[|\\]|");		
-		for ( int i = 0 ; i < str.length ; i++ ) {			
-			logger.info(str[i].trim());
-			pos.setPmlname(str[i].trim());
+		String[] str = pmlname.split(",|\\[|\\]|");
+		String[] str = pmlname.split(",");
+		int[] arrCount = pos.getTempcount();
+		for (int i = 0; i < str.length; i++) {
+			pos.setPmlname(str[i]);
+			pos.setPcount(arrCount[i]);
+			
+			posService.add(pos);
+			
+			if (arrCount[i] != 0) {
+				logger.info(str[i].trim());
+				logger.info(String.valueOf(arrCount[i]).trim());				
+			}
 		}*/
 		
 		String[] arrMenu = pos.getTempmenu();
 		int[] arrCount = pos.getTempcount();
+		/*int[] arrResult = {};
+		for (int i = 0; i <arrCount.length; i++) {
+			if (arrCount[i] != 0) {
+				arrResult[i] = arrCount[i];
+			}
+		}*/
 		
 		for ( int i = 0 ; i < arrMenu.length ; i++ ) {			
+			/*logger.info(arrMenu[i]);
+			logger.info(String.valueOf(arrCount[i]));*/
 			pos.setPmlname(arrMenu[i]);
 			pos.setPcount(arrCount[i]);
 			
