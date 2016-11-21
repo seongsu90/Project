@@ -1,5 +1,6 @@
 package com.mycompany.ourapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,8 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.mycompany.ourapp.dto.Reservation;
+import com.mycompany.ourapp.dto.Restaurant;
 import com.mycompany.ourapp.service.ReservationService;
+import com.mycompany.ourapp.service.RestaurantService;
 
 @Controller
 @RequestMapping("/reservation")
@@ -21,6 +25,11 @@ public class ReservationController {
 	
 	@Autowired
 	private ReservationService reservationservice;
+	
+	
+	@Autowired
+	private RestaurantService restaurantservice;
+	
 	
 	@RequestMapping("/index")
 	public String index()
@@ -59,7 +68,10 @@ public class ReservationController {
 	}
 	
 	@RequestMapping("/list")
-	public String list(String pageNo,Model model,HttpSession session){
+	public String list(String mid,String pageNo,Model model,HttpSession session){
+	
+	
+				
 		int intPageNo =1;
 		if(pageNo==null)
 		{
@@ -81,13 +93,29 @@ public class ReservationController {
 		
 		int totalPageNo = totalBoardNo/rowsPerPage + ((totalBoardNo%rowsPerPage!=0)?1:0); //나머지가 있다면 1을 더하고 없으면 0을 더한다.
 	
-		List<Reservation> list = reservationservice.list(intPageNo, rowsPerPage);
+/*		Restaurant restaurant = restaurantservice.info(rvresid);	
+		restaurant.getResname();*/
+		List<Reservation> list = reservationservice.list(mid,intPageNo, rowsPerPage);
+		List<String> list2 = new ArrayList<>();
+		for(Reservation rs : list)
+		{
+			int resid = rs.getRvresid();
+			Restaurant rst=restaurantservice.info(resid);
+			list2.add(rst.getResname());
+		}
+		
+		for(int i=0; i<list.size();i++)
+		{
+			list.get(i).setRvresname(list2.get(i));
+		}
+		
 		model.addAttribute("pageNo",intPageNo);
 		model.addAttribute("rowsPerPage",rowsPerPage);
 		model.addAttribute("pagesPerGroup",pagesPerGroup);
 		model.addAttribute("totalPageNo",totalPageNo);
 		model.addAttribute("totalBoardNo",totalBoardNo);
 		model.addAttribute("list",list);
+
 		return "reservation/list";
 	}
 	

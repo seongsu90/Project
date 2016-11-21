@@ -17,14 +17,18 @@
 				<td style="background-color:#9966FF; width:70px">예약한 ID</td>
 				<td style="background-color:#9966FF; width:70px">예약 음식점</td>
 			</tr>
-			<c:forEach var="reservation" items="${list}">
+			
+				
+			<c:forEach var="reservation"   items="${list}">
 			<tr>
 				<td>${reservation.rvtime}</td>
 				<td>${reservation.rvperson}</td>
 				<td>${reservation.rvmid}</td>
-				<td>${reservation.rv}</td>
+				<td >${reservation.rvresname}</td>
 			</tr>
 			</c:forEach>
+		
+			
 			
 			</table>
 	</body>

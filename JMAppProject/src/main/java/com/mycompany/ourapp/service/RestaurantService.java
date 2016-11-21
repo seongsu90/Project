@@ -52,6 +52,9 @@ private MemberDao memberDao;
 		public Restaurant info(int resid){
 			return restaurantDao.selectByResid(resid);
 		}
+		public String search(int resid){
+			return restaurantDao.selectByResid(resid).getResname();
+		}
 		
 		public int getCount(){
 			return restaurantDao.count();

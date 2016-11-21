@@ -10,7 +10,14 @@ public class Reservation {
 	private int rvperson;
 	private String rvmid;
 	private int rvresid;
+	private String rvresname;
 	
+	public String getRvresname() {
+		return rvresname;
+	}
+	public void setRvresname(String rvresname) {
+		this.rvresname = rvresname;
+	}
 	public String getRvtime() {
 		return rvtime;
 	}

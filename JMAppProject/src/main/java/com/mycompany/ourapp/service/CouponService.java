@@ -74,8 +74,8 @@ public class CouponService {
 		return true;	
 	}
 
-	public List<CouponBox> list(int pageNo, int rowsPerPage){
-		return couponDao.selectByPage(pageNo, rowsPerPage);
+	public List<CouponBox> list(String mid,int pageNo, int rowsPerPage){
+		return couponDao.selectByPage(mid,pageNo, rowsPerPage);
 	}
 
 	public int getCount() {

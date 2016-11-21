@@ -84,25 +84,26 @@ public class CouponDao {
 		return count;
 	}
 
-	public List<CouponBox> selectByPage(int pageNo, int rowsPerPage) {
+	public List<CouponBox> selectByPage(String mid,int pageNo, int rowsPerPage) {
 		String sql = "";
 		sql += "select rn, cbmid, cbnumber ";
 		sql += "from ( ";
 		sql += "select rownum as rn, cbmid, cbnumber ";
 		sql += "from (select cbmid, cbnumber from couponbox) ";
-		sql += "where rownum<=? ";
+		sql += "where cbmid=? and rownum<=?";
 		sql += ") ";
 		sql += "where rn>=? ";
 		
 		List<CouponBox> list = jdbcTemplate.query(
 			sql,
-			new Object[]{(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage + 1)},
+			new Object[]{mid,(pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage + 1)},
 			new RowMapper<CouponBox>() {
 				@Override
 				public CouponBox mapRow(ResultSet rs, int row) throws SQLException {
 					CouponBox couponbox = new CouponBox();
 					couponbox.setCbmid(rs.getString("cbmid"));
 					couponbox.setCbnumber(rs.getInt("cbnumber"));
+
 					return couponbox;
 				}					
 			}
