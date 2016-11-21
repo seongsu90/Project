@@ -7,36 +7,30 @@
 		<meta charset="UTF-8"> 
 		<style type="text/css">
 			* {
-				font-family: 돋움;
+				font-family: 굴림;
 				font-size: 12px;
 			}
-			a {
-				text-decoration: none;
-				color: black;
+			table {
+  				width:100%;
 			}
-			a:HOVER {
-				color: blue;
+			table, th, td {
+   				border: 2px solid black;
+    			border-collapse: collapse;
 			}
-			th {
-				border-style: solid;
-				border-width: 1px;
-				border-bottom-width: 2px;
-				text-align: center;
+			th, td {
+  				padding: 5px;
+    			text-align: center;
 			}
-			td {
-				border-style: solid;
-				border-width: 1px;
-				text-align: center;
-			}
+		
 		</style>
 	</head>
 	<body>
 		<hr/>
-		<p style="font-size:150%;"><b>식당 목록</b></p>
+		<p style="font-size:100%;"><b>식당 목록</b></p>
 		<hr/>
 		
 		<br/>
-		<table style="width: 700px; border-collapse: collapse; border-style: solid; border-width: 2px; border-color: black;">
+		<table style="width: 1000px; border-collapse: collapse; border-style: solid; border-width: 3px; border-color: blacke;">
 			<tr>
 				<th> 식당 사진 </th>
 				<th> 식당 이름</th>
