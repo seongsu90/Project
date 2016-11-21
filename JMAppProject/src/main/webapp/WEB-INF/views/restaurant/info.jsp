@@ -80,6 +80,10 @@
 			</c:if>
 			
 			<a href="list">[목록]</a>
+			
+			<c:if test="${mrank==0}"> 
+				<a href="/ourapp/reservation/index">[예약하러 가기]</a>
+			</c:if>
 		</div>
 	</body>
 </html>

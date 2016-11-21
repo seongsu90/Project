@@ -9,15 +9,24 @@
 		Restaurant 메인 화면
 		<hr/>		
 		
-              ※<a href="/ourapp/restaurant/list">음식점 리스트보기</a><br/>
-    <c:if test="${mrank==1}">
-   	      ※<a href="/ourapp/restaurant/add">음식점추가하기</a><br/>	
-	      ※<a href="/ourapp/restaurant/deleteForm">음식점삭제하기</a><br/> -->
+	<c:if test="${mrank==0}">
+              ※<a href="/ourapp/restaurant/list">식당 리스트 열람 및 예약하기</a><br/>
     </c:if>
     
-    <c:if test="${mrank!=0}">
- 	      ※<a href="/ourapp/restaurant/modify">음식점 정보수정하기</a><br/> 
-	</c:if>
+    <c:if test="${mrank==1}">
+              ※<a href="/ourapp/restaurant/list">식당 리스트 열람/수정/삭제</a><br/>
+    </c:if>
+    
+    <c:if test="${mrank==2}">
+              ※<a href="/ourapp/restaurant/list">나의 식당 정보 열람 및 수정</a><br/>
+    </c:if>
+    
+    <c:if test="${mrank==1}">
+   	      ※<a href="/ourapp/restaurant/add">식당 추가하기</a><br/>	
+	      ※<a href="/ourapp/restaurant/deleteForm">식당 삭제하기</a><br/> 
+    </c:if>
+    
+
 
 	</body>
 </html>
