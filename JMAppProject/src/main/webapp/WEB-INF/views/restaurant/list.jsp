@@ -37,6 +37,9 @@
 		<br/>
 		<table style="width: 1000px; border-collapse: collapse; border-style: solid; border-width: 3px; border-color: black;">
 			<tr>
+				<c:if test="${mrank==2}">
+				<th> 식당 아이디</th>
+				</c:if>
 				<th> 식당 사진 </th>
 				<th> 식당 이름</th>
 				<th> 식당 위치</th>
@@ -46,17 +49,19 @@
 				<th> 식당 오픈타임 </th>
 				<th> 식당 클로즈타임 </th>
 				<th> 식당 휴일 </th>
+				
 			
 			</tr>
 			<c:forEach var="restaurant" items="${list}">
 				<tr>
 					
-					
+					<c:if test="${mrank==2}">
+						<th> ${restaurant.resid}</th>
+					</c:if>
 					<td> <img src="showPhoto?ressavedfile=${restaurant.ressavedfile}" width="80px"/></td>
 					
 					<td style="border: 1px solid black;"><a href="info?resid=${restaurant.resid}">${restaurant.resname}</a></td>
-					
-					
+				
 					<td> ${restaurant.reslocation} </td>
 					<td> ${restaurant.resinfo} </td>
 					<td> ${restaurant.restotaltable} </td>

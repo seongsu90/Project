@@ -13,6 +13,7 @@ public class Restaurant {
 	private String resopen;
 	private String resclose;
 	private String resoriginfile;
+	private String[] closeday;
 	
 	private MultipartFile resphoto;
 	
@@ -98,6 +99,12 @@ public class Restaurant {
 	}
 	public void setResoriginfile(String resoriginfile) {
 		this.resoriginfile = resoriginfile;
+	}
+	public String[] getCloseday() {
+		return closeday;
+	}
+	public void setCloseday(String[] closeday) {
+		this.closeday = closeday;
 	}
 	
 }

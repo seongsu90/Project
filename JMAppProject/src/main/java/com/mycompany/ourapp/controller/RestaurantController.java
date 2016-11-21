@@ -88,30 +88,7 @@ public class RestaurantController {
 	}
 	
 
-	@RequestMapping("/myinfo")
-	public String myinfo(int resid, Model model, HttpSession session){
-		
-		try{
-			Restaurant restaurant=restaurantService.info(resid);
-		
-			model.addAttribute("restaurant", restaurant);
-			model.addAttribute("resid", resid);
-			
-			String mid=(String)session.getAttribute("login");
-			model.addAttribute("mid", mid);
-			Member member=memberService.info(mid);
-		
-			int mrank=member.getMrank();
-			int mresid=member.getMresid();
-			model.addAttribute("mrank", mrank);
-			model.addAttribute("mresid", mresid);
-		}catch(Exception e){
-			e.printStackTrace();
-			logger.info("식당이 존재하지 않습니다.");
-		}
-		
-		return "restaurant/info";
-	}
+
 	
 	
 	
@@ -125,7 +102,7 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String add(Restaurant restaurant, HttpSession session ){
+	public String add(Restaurant restaurant, HttpSession session){
 		logger.info("add() 실행");
 		try{
 			
@@ -137,7 +114,19 @@ public class RestaurantController {
 			
 			restaurant.setResmime(restaurant.getResphoto().getContentType());
 			
-			
+			int i=1;
+			int size=restaurant.getCloseday().length;
+			String close="";
+		        for(String closeday : restaurant.getCloseday()){		        	
+		        	close+=closeday;
+		        	if(i<size){	
+		        		close+="/";
+		        		i++;
+		        	}
+		        	
+		        }
+		        
+		    restaurant.setRescloseday(close);
 			restaurantService.add(restaurant);
 			return "redirect:/restaurant/list"; 
 		}
@@ -149,7 +138,16 @@ public class RestaurantController {
 			
 	}
 	
-	@RequestMapping(value="/deleteForm", method=RequestMethod.POST)
+
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String delete(){
+		logger.info("deleteForm() 실행");
+		return "restaurant/deleteForm";
+		
+	}
+	
+	
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public String delete(int resid){
 		
 		restaurantService.delete(resid);
@@ -157,12 +155,6 @@ public class RestaurantController {
 		return "redirect:/restaurant/list";
 	}
 	
-	@RequestMapping(value="/deleteForm", method=RequestMethod.GET)
-	public String deleteForm(){
-		logger.info("deleteForm() 실행");
-		return "restaurant/deleteForm";
-		
-	}
 	
 	
 	@RequestMapping("/showPhoto")

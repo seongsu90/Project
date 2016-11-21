@@ -62,12 +62,12 @@
 		
 		
 		<div>
-			<c:if test="${mrank==2}">
+			<c:if test="${mrank==1}">
 				<c:if test="${resid==mresid }">
 					<a href="modify?mresid=${mresid}">[수정]</a>
 				</c:if>
 			</c:if>
-			<c:if test="${mrank==1}">
+			<c:if test="${mrank==2}">
 				
 					<a href="modify?mresid=${resid}">[수정]</a>
 				
@@ -75,7 +75,7 @@
 			
 			
 			
-			<c:if test="${mrank==1}">
+			<c:if test="${mrank==2}">
 				<a href="delete?resid=${resid}">[삭제]</a>
 			</c:if>
 			

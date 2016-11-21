@@ -12,9 +12,10 @@
 		삭제할 식당의 id를 입력하세요.<br/>
 		<form method="post">
 			<input type="text" name="resid" value="${restaurant.resid}"/>
+			<input type="submit" value="식당 삭제 완료"/><br/>		
 		</form>
 		
-		<input type="submit" value="식당 삭제 완료"/><br/>		
+	
 	</body>
 	
 		
