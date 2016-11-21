@@ -52,16 +52,15 @@ private MemberDao memberDao;
 		public Restaurant info(int resid){
 			return restaurantDao.selectByResid(resid);
 		}
+		public String search(int resid){
+			return restaurantDao.selectByResid(resid).getResname();
+		}
 		
 		public int getCount(){
 			return restaurantDao.count();
 		}
 		
-		/*public int nowTable(int resid){
-			int emptyTable=RestaurantDao.emptyTableNum(resid);
-			return emptyTable;}*/
-			
-		
+	
 		
 		
 }

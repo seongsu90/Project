@@ -67,23 +67,10 @@
 					<a href="modify?mresid=${mresid}">[수정]</a>
 				</c:if>
 			</c:if>
-			<c:if test="${mrank==1}">
-				
-					<a href="modify?mresid=${resid}">[수정]</a>
-				
-			</c:if>
+	
 			
 			
-			
-			<c:if test="${mrank==1}">
-				<a href="delete?resid=${resid}">[삭제]</a>
-			</c:if>
-			
-			<a href="list">[목록]</a>
-			
-			<c:if test="${mrank==0}"> 
-				<a href="/ourapp/reservation/add?rvresid=${resid}">[예약하러 가기]</a>
-			</c:if>
+
 		</div>
 	</body>
 </html>

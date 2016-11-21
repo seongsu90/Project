@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -96,14 +97,14 @@ public class MemberController {
 		
 	}
 	
-	// 비밀번호 변경 폼
+	// 비밀번호 재설정 폼
 	@RequestMapping(value="/mpasswordReset", method=RequestMethod.GET)
 	public String mpasswordResetForm() {
 		logger.info("mpasswordResetForm() GET 실행");
 		return "member/mpasswordResetForm";
 	}
 	
-	// 비밀번호 변경 
+	// 비밀번호 재설정 
 	@RequestMapping(value="/mpasswordReset", method=RequestMethod.POST)
 	public String mpasswordReset(String mid, String mpassword, String mpassword2, Model model) {
 		logger.info("mpasswordReset() POST 실행");
@@ -141,7 +142,6 @@ public class MemberController {
 			return "member/joinForm";
 		}
 	}
-
 	
 	// 회원 정보보기 ( 사용자 기준 )
 	@RequestMapping("/info")
@@ -157,6 +157,11 @@ public class MemberController {
 	public String modifyInfoForm(String mid,  Model model) {
 		logger.info("modifyInfoForm() GET 실행");
 		Member member = memberService.info(mid);
+		String selectedLocation[] = member.getMlocation().split(" ");
+		if ( selectedLocation.length == 3 ) {
+			selectedLocation[1] += (" " + selectedLocation[2]);
+		}
+		model.addAttribute("slocation", selectedLocation);
 		model.addAttribute("member", member);
 		return "member/modifyInfoForm";
 	}
@@ -190,13 +195,13 @@ public class MemberController {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(String pageNo, @RequestParam(required=false, defaultValue="") String find, Model model, HttpSession session) {
 		logger.info("list() GET 실행");
-		//
+/*
 		String mid = (String) session.getAttribute("login");
 		Member member = memberService.info(mid);
 		if ( member == null || member.getMrank() != 2 ) {
 			return "redirect:/";
 		}
-		//
+*/
 		int intPageNo = 1;
 		if ( pageNo == null ) {
 			pageNo = (String) session.getAttribute("pageNo");
@@ -249,6 +254,39 @@ public class MemberController {
 		return "redirect:/member/list";		
 	}
 	
+	// 회원 정보 수정 폼(Manager)
+	@RequestMapping(value="/modifyInfoForManager", method=RequestMethod.GET)
+	public String modifyInfoForManagerForm(String mid,  Model model) {
+		logger.info("modifyInfoForManagerForm() GET 실행");
+		Member member = memberService.info(mid);
+		String selectedLocation[] = member.getMlocation().split(" ");
+		if ( selectedLocation.length == 3 ) {
+			selectedLocation[1] += (" " + selectedLocation[2]);
+		}
+		model.addAttribute("slocation", selectedLocation);
+		model.addAttribute("member", member);
+		return "member/modifyInfoForManagerForm";
+	}
+	
+	// 회원 정보 수정 (Manager)
+	@RequestMapping(value="/modifyInfoForManager", method=RequestMethod.POST)
+	public String modifyInfoForManager(Member member, Model model) {
+		logger.info("modifyInfoForManager() POST 실행");
+			try {
+				memberService.modify(member);
+				return "redirect:/member/list";
+			} catch (DataIntegrityViolationException e) {
+				model.addAttribute("member", member);
+				model.addAttribute("error", " 입력하신 id의 레스토랑이 없습니다.");
+				return "member/modifyInfoForManagerForm";
+			}
+			catch (Exception e1) {
+				model.addAttribute("member", member);
+				model.addAttribute("error", " 모든 항목을 입력해 주세요");
+				return "member/modifyInfoForManagerForm";
+			}
+	}
+	
 	// 로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
@@ -285,27 +323,5 @@ public class MemberController {
 						
 	}
 	
-	// 회원 정보 수정 폼(Manager)
-	@RequestMapping(value="/modifyInfoForManager", method=RequestMethod.GET)
-	public String modifyInfoForManagerForm(String mid,  Model model) {
-		logger.info("modifyInfoForManagerForm() GET 실행");
-		Member member = memberService.info(mid);
-		model.addAttribute("member", member);
-		return "member/modifyInfoForManagerForm";
-	}
-	
-	// 회원 정보 수정 (Manager)
-	@RequestMapping(value="/modifyInfoForManager", method=RequestMethod.POST)
-	public String modifyInfoForManager(Member member, Model model) {
-		logger.info("modifyInfoForManager() POST 실행");
-			try {
-				memberService.modify(member);
-				return "redirect:/member/list";
-			} catch (Exception e) {
-				model.addAttribute("member", member);
-				model.addAttribute("error", " 모든 항목을 입력해 주세요");
-				return "member/modifyInfoForManagerForm";
-			}
-	}
 	
 }
