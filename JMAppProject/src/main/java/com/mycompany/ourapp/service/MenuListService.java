@@ -74,7 +74,7 @@ public class MenuListService {
 
 	public List<MenuList> menuList(int mlresid) {
 		List<MenuList> menuList = menuListdao.selectMenu(mlresid);
-		return menuList;
+		return menuList; 
 	}
 	
 }
