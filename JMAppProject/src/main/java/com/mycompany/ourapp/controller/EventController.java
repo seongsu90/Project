@@ -40,7 +40,7 @@ public class EventController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
-	public String addForm(){
+	public String addForm(Event event){
 		logger.info("addForm 요청처리");
 		return "event/addForm";
 	}

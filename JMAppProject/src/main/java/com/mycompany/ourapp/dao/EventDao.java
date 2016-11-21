@@ -111,8 +111,8 @@ public class EventDao {
 						event.setEname(rs.getString("ename"));
 						event.setEresid(rs.getInt("eresid"));
 						event.setEsavedfile(rs.getString("esavedfile"));
-						event.setEname(rs.getString("einfo"));
-						event.setEinfo(rs.getString("emlname"));
+						event.setEinfo(rs.getString("einfo"));
+						event.setEmlname(rs.getString("emlname"));
 						event.setEprice(rs.getInt("eprice"));
 						event.setEstart(rs.getDate("estart"));
 						event.setEend(rs.getDate("eend"));

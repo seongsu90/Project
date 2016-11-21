@@ -159,5 +159,17 @@ public class MenuListDao {
 		return (list.size() != 0)?list.get(0) : null;
 	}
 
+	public List<MenuList> selectMenu(int presid) {
+		String sql="select mlname from menulist where mlresid=? ";
+		List<MenuList> list = jdbcTemplate.query(sql, new Object[]{presid}, new RowMapper<MenuList>() {
+			@Override
+			public MenuList mapRow(ResultSet rs, int row) throws SQLException {
+				MenuList menuList = new MenuList();
+				menuList.setMlname(rs.getString("mlname"));				
+				return menuList;
+			}
+		});
+		return list;
+	}
 	
 }
