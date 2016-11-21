@@ -1,14 +1,11 @@
 package com.mycompany.ourapp.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mycompany.ourapp.dao.PosDao;
-import com.mycompany.ourapp.dto.Coupon;
-import com.mycompany.ourapp.dto.MenuList;
 import com.mycompany.ourapp.dto.Pos;
 import com.mycompany.ourapp.dto.Reservation;
 
@@ -91,5 +88,10 @@ public class PosService {
 		} 	
 		return coupon.getCdiscount();
 	}*/
+	
+	public List<Integer> checkEvent(int eresid, int ptableno) {
+		List<Integer> list = posDao.checkEvent(eresid, ptableno);
+		return list;
+	}
 }
 
