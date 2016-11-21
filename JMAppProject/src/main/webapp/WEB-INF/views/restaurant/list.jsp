@@ -35,7 +35,7 @@
 		<hr/>
 		
 		<br/>
-		<table style="width: 1000px; border-collapse: separate; border-style: solid; border-width: 3px; border-color: black;">
+		<table style="width: 1000px; border-collapse: collapse; border-style: solid; border-width: 3px; border-color: black;">
 			<tr>
 				<th> 식당 사진 </th>
 				<th> 식당 이름</th>

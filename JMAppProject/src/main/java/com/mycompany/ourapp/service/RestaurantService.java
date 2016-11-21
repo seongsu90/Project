@@ -57,11 +57,7 @@ private MemberDao memberDao;
 			return restaurantDao.count();
 		}
 		
-		/*public int nowTable(int resid){
-			int emptyTable=RestaurantDao.emptyTableNum(resid);
-			return emptyTable;}*/
-			
-		
+	
 		
 		
 }
