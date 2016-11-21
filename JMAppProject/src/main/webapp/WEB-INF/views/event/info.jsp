@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<td style="background-color:blue; width:100px">이벤트 사진</td>
-				<td><img src="showPhoto?savedfile=${event.esavedfile}" width="500px"/></td>
+				<td><img src="showPhoto?esavedfile=${event.esavedfile}" width="500px"/></td>
 			</tr>	
 			<tr>
 				<td style="background-color:blue; width:100px">이벤트 정보</td>

@@ -28,7 +28,7 @@
 			<ul>
 				<li>이름 : <input type="text" name=ename value="${event.ename}"/><br/></li>
 				<li>식당명 : <input type="number" name=eresid  value="${event.eresid}"/><br/></li>
-				<li>이벤트 사진 : <input type="file" name=esavedfile value="${event.esavedfile}"/><br/></li>
+				<li>이벤트 사진 : <input type="file" name=esavedfile/><br/></li>
 				<li>이벤트 정보 : <input type="text" name=einfo value="${event.einfo}"/><br/></li>
 				<li>이벤트 메뉴 이름 : <input type="text" name=emlname value="${event.emlname}"/><br/></li>
 				<li>이벤트 할인가격 : <input type="number" name=eprice value="${event.eprice}"/><br/></li>

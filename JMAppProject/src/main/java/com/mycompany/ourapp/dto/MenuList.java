@@ -1,4 +1,7 @@
 package com.mycompany.ourapp.dto;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class MenuList {
 	private String mlname;
 	private int mlprice;
@@ -6,7 +9,6 @@ public class MenuList {
 	private String mlinfo;
 	private String mlsavedfile;
 	private boolean mlishot;
-	
 	public String getMlname() {
 		return mlname;
 	}
@@ -43,6 +45,7 @@ public class MenuList {
 	public void setMlishot(boolean mlishot) {
 		this.mlishot = mlishot;
 	}
+	
 	
 	
 	

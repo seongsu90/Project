@@ -8,12 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class Event {
 	private String ename; 
 	private int eresid;
-	
-	private String eoriginfile;
-	private MultipartFile ephoto;
 	private String esavedfile;
-	private String emime;
-	
 	private String einfo;
 	private String emlname;
 	private int eprice;
@@ -34,29 +29,11 @@ public class Event {
 	public void setEresid(int eresid) {
 		this.eresid = eresid;
 	}
-	public String getEoriginfile() {
-		return eoriginfile;
-	}
-	public void setEoriginfile(String eoriginfile) {
-		this.eoriginfile = eoriginfile;
-	}
-	public MultipartFile getEphoto() {
-		return ephoto;
-	}
-	public void setEphoto(MultipartFile ephoto) {
-		this.ephoto = ephoto;
-	}
 	public String getEsavedfile() {
 		return esavedfile;
 	}
 	public void setEsavedfile(String esavedfile) {
 		this.esavedfile = esavedfile;
-	}
-	public String getEmime() {
-		return emime;
-	}
-	public void setEmime(String emime) {
-		this.emime = emime;
 	}
 	public String getEinfo() {
 		return einfo;
@@ -87,6 +64,7 @@ public class Event {
 	}
 	public void setEend(Date eend) {
 		this.eend = eend;
-	}	
+	}
+	
 	
 }

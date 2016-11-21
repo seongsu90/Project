@@ -6,10 +6,8 @@ package com.mycompany.ourapp.controller;
 
 
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,33 +40,16 @@ public class EventController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
-	public String addForm(Event event){
+	public String addForm(){
 		logger.info("addForm 요청처리");
 		return "event/addForm";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String add(Event event, HttpSession session){
+	public String add(Event event){
 		logger.info("add 요청처리");
-		try{
-			
-			event.setEoriginfile(event.getEphoto().getOriginalFilename());
-			String esavedfile = new Date().getTime() + event.getEphoto().getOriginalFilename(); 
-			String realPath = session.getServletContext().getRealPath("/WEB-INF/photo/"+esavedfile);
-			event.getEphoto().transferTo(new File(realPath)); 
-			event.setEsavedfile(esavedfile);
-			
-			event.setEmime(event.getEphoto().getContentType());
-			
-			
-			eventService.add(event);
-			return "redirect:/event/index"; 
-		}
-			
-			catch (Exception e) {
-				e.printStackTrace();
-				return "event/addForm";
-			}
+		eventService.add(event);
+		return "redirect:/event/index";
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)

@@ -34,12 +34,13 @@
 		<hr/>
 		<div>
 			<ul>
-			<c:if test="${mrank==2}">
-				<li><a href="/ourapp/event/add">이벤트 생성</a><br/></li>
-				<li><a href="/ourapp/event/modify?eresid=28&emlname=오리구이">이벤트 수정</a><br/></li>
-				<li><a href="/ourapp/event/delete">이벤트 삭제</a></li>
-			</c:if>
 			<c:if test="${login!=null}">
+				<c:if test="${mrank!=0}">
+					<li><a href="/ourapp/event/add">이벤트 생성</a><br/></li>
+					<li><a href="/ourapp/event/modify?eresid=28&emlname=오리구이">이벤트 수정</a><br/></li>
+					<li><a href="/ourapp/event/delete">이벤트 삭제</a></li>
+				</c:if>
+			
 				<li><a href="/ourapp/event/list">이벤트 리스트</a><br/></li>
 				<li><a href="/ourapp/event/info?eresid=28&emlname=오리구이">이벤트 정보</a><br/></li>
 			</c:if>	
