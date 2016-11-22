@@ -59,7 +59,7 @@ public class PosController {
 		Restaurant restaurant = restaurantService.info(presid);		// 매장별 총 테이블 수
 		int totalTable = restaurant.getRestotaltable();
 		
-		List<Reservation> reservList =  posService.reservList(presid);		// 매장별 예약자 확인
+		List<Reservation> reservList =  reservationService.reservList(presid);		// 매장별 예약자 확인
 		
 		memberService.addPenalty(rvmid);		// 블랙리스트
 		
@@ -145,12 +145,18 @@ public class PosController {
 			eventPrice += eventList.get(i);
 		}
 		
+		int point = 0;
+		for ( int i = 0; i < price.size(); i++ ) {
+			point = (int) ((totalPrice - eventPrice) * 0.01);
+		}
+		
 		model.addAttribute("ptableno", ptableno);
 		model.addAttribute("infoList", infoList);
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("menuList", menuList);
 		model.addAttribute("eventList", eventList);
 		model.addAttribute("eventPrice", eventPrice);
+		model.addAttribute("point", point);
 		return "pos/info";
 	}
 	
@@ -158,9 +164,9 @@ public class PosController {
 	public String checkCoupon(String cbmid, int cbnumber, Model model) {
 		int coupon = couponService.checkCoupon(cbmid, cbnumber);
 		
-		if (coupon == posService.COUPON_FAIL) {		// 1
+		if (coupon == CouponService.COUPON_FAIL) {		// 1
 			model.addAttribute("coupon", "쿠폰의 정보가 일치하지 않습니다.");	
-		} else if (coupon == posService.COUPON_EXPIRE_DATE) {		// 2
+		} else if (coupon == CouponService.COUPON_EXPIRE_DATE) {		// 2
 			model.addAttribute("coupon", "쿠폰의 유효기간이 만료되었습니다.");
 		} else {
 			model.addAttribute("coupon", coupon);

@@ -65,40 +65,33 @@
 						</a>					
 					</td>
 				</tr>
-					
 			</table>
-		</c:if>
+			<br/><br/>
 		
-		<br/><br/>
-		
-		<table width="400" border="1">			
-			<tr>
-				<td>예약시간</td>
-				<td>인원수</td>
-				<td>예약자</td>
-				<td>확인</td>
-			</tr>
-			<c:forEach  var="reservList" items="${reservList}">
+			<table width="400" border="1">			
 				<tr>
-					<td>${reservList.rvtime}</td>
-					<td>${reservList.rvperson}</td>
-					<td>${reservList.rvmid}</td>
-					<td>
-						<form method="post" action="/ourapp/reservation/delete">
-							<input type="hidden" name="rvMid" value="${reservList.rvmid}"/>
-							<input type="hidden" name="rvResid" value="${reservList.rvresid}"/>
-							<input type="submit" value="확인"/>					
-						</form>
-						<a href="index?rvmid=${reservList.rvmid}"><input type="submit" value="삭제"/></a>
-						<form method="post" action="/ourapp/reservation/delete">
-							<input type="hidden" name="rvMid" value="${reservList.rvmid}"/>
-							<input type="hidden" name="rvResid" value="${reservList.rvresid}"/>
-							<input type="submit" value="확인"/>					
-						</form>
-					</td>							
+					<td>예약시간</td>
+					<td>인원수</td>
+					<td>예약자</td>
+					<td>확인</td>
 				</tr>
-			</c:forEach>
-		</table>		
+				<c:forEach  var="reservList" items="${reservList}">
+					<tr>
+						<td>${reservList.rvtime}</td>
+						<td>${reservList.rvperson}</td>
+						<td>${reservList.rvmid}</td>
+						<td>
+							<form method="post" action="/ourapp/reservation/delete">
+								<input type="hidden" name="rvmid" value="${reservList.rvmid}"/>
+								<input type="hidden" name="rvresid" value="${reservList.rvresid}"/>
+								<input type="submit" value="확인"/>													
+							</form>							
+							<a href="index?rvmid=${reservList.rvmid}"><input type="submit" value="삭제"/></a>
+						</td>							
+					</tr>
+				</c:forEach>
+			</table>		
+		</c:if>
 		<c:if test="${presid == 0}">돌아가</c:if>
 		
 		<%-- <form method="post" action="/ourapp/reservation/delete">

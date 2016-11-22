@@ -72,10 +72,10 @@ public class PosService {
 		return menuList;
 	}*/
 
-	public List<Reservation> reservList(int presid) {
+/*	public List<Reservation> reservList(int presid) {
 		List<Reservation> list = posDao.reservList(presid);
 		return list;
-	}
+	}*/
 	
 /*	public int checkCoupon(String cbmid, int cbnumber) {		
 		Coupon coupon = posDao.checkCoupon(cbmid, cbnumber);		
@@ -92,6 +92,11 @@ public class PosService {
 	public List<Integer> checkEvent(int eresid, int ptableno) {
 		List<Integer> list = posDao.checkEvent(eresid, ptableno);
 		return list;
+	}
+	
+	public int getCount(int presid) {
+		int result = posDao.count(presid);		
+		return result;
 	}
 }
 

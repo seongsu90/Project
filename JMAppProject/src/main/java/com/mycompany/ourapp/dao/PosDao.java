@@ -117,7 +117,7 @@ public class PosDao {
 		return list;
 	}*/
 
-	public List<Reservation> reservList(int presid) {
+/*	public List<Reservation> reservList(int presid) {
 		String sql = "select * from reservation where rvresid=? order by rvtime ";
 		List<Reservation> list = jdbcTemplate.query(sql, new Object[]{presid}, new RowMapper<Reservation>() {
 			@Override
@@ -131,7 +131,7 @@ public class PosDao {
 			}
 		});
 		return list;
-	}
+	}*/
 
 /*	public Coupon checkCoupon(String cbmid, int cbnumber) {
 		String sql = "select c.cnumber, c.cname, c.cdday, c.cinfo, c.cresid, c.cdiscount "; 
@@ -174,5 +174,11 @@ public class PosDao {
 			}
 		});
 		return list;			
+	}
+
+	public int count(int presid) {
+		String sql ="select count(distinct(ptableno)) from pos where presid = ? ";
+		int count = jdbcTemplate.queryForObject(sql, Integer.class);
+		return count;	
 	}
 }
