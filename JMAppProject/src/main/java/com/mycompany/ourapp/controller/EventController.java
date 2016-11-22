@@ -159,5 +159,4 @@ public class EventController {
 		return "event/list";
 	}
 	
-	
 }

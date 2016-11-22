@@ -35,7 +35,7 @@
 		<div>
 			<ul>
 			<c:if test="${login!=null}"> 
-				<c:if test="${mrank!=0}">
+				<c:if test="${mrank!=0 and mrank!=3}">
 					<li><a href="/ourapp/menulist/add">메뉴리스트 생성</a><br/></li>
 					<li><a href="/ourapp/menulist/modify?mlresid=28&mlname=핫치킨">메뉴리스트 수정</a><br/></li>
 					<li><a href="/ourapp/menulist/delete">메뉴 리스트삭제</a><br/></li>

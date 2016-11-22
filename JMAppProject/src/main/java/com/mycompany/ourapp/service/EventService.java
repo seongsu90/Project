@@ -47,6 +47,7 @@ public class EventService {
 		int row = eventdao.update(event);
 		if(row==0){return MODIFY_FAIL;}
 		return  MODIFY_SUCCESS;
+	
 	}
 	
 	public Event info(int eresid, String emlname){
@@ -61,4 +62,9 @@ public class EventService {
 	public int getCount(){
 		return eventdao.count();
 	}
+	
+	/*public List<Integer> checkEvent(int eresid, int ptableno) {
+		List<Integer> list = eventdao.checkEvent(eresid, ptableno);
+		return list;
+	}*/
 }
