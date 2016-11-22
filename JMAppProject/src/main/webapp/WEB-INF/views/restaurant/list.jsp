@@ -11,7 +11,7 @@
 				font-size: 12px;
 			}
 			table {
-  				width:100%;
+  				width:120%;
 			}
 			table, th, td {
    				border: 2px solid black;
@@ -22,10 +22,10 @@
     			text-align: center;
 			}
 			
-			th {
+		 	th {
   				background-color: black;
     			color: white;
-			}
+			} 
 		
 		</style>
 	</head>
@@ -60,7 +60,7 @@
 					</c:if>
 					<td> <img src="showPhoto?ressavedfile=${restaurant.ressavedfile}" width="80px"/></td>
 					
-					<td style="border: 1px solid black;"><a href="info?resid=${restaurant.resid}">${restaurant.resname}</a></td>
+					<td style="border: 2px solid black;"><a href="info?resid=${restaurant.resid}">${restaurant.resname}</a></td>
 				
 					<td> ${restaurant.reslocation} </td>
 					<td> ${restaurant.resinfo} </td>
