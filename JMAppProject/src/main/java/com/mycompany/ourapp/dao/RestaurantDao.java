@@ -67,20 +67,20 @@ public class RestaurantDao {
 		return row;
 	}
 	
-	public List<Restaurant> selectByPage(int pageNo, int rowsPerPage){
-		String sql="";
-		sql+="select rn, resid, resname, reslocation, resinfo, restotaltable, restel, resopen, resclose, rescloseday ,ressavedfile ";
-		sql+="from( " ;
-		sql+="select rownum as rn, resid, resname, reslocation, resinfo, restotaltable, restel, resopen, resclose, rescloseday ,ressavedfile ";
-		sql+="from (select resid, resname, reslocation, resinfo, restotaltable, restel, resopen, resclose, rescloseday ,ressavedfile from Restaurant order by resid desc) ";
-		sql+="where rownum<=? ";
-		sql+=") ";
-		sql+="where rn>=? ";
+	public List<Restaurant> selectByPage(int pageNo, int rowsPerPage, String find){
+		String sql = "";
+		sql += "select rn, resid, resname, reslocation, resinfo, restotaltable, restel, resopen, resclose, rescloseday ,ressavedfile ";
+		sql += "from( " ;
+		sql += "select rownum as rn, resid, resname, reslocation, resinfo, restotaltable, restel, resopen, resclose, rescloseday ,ressavedfile ";
+		sql += "from (select resid, resname, reslocation, resinfo, restotaltable, restel, resopen, resclose, rescloseday ,ressavedfile from Restaurant) ";
+		sql += "where resname like ? and rownum<=? ";
+		sql += ") ";
+		sql += "where rn>=? order by resid ";
 		
 		
 		List<Restaurant> list=jdbcTemplate.query(
 				sql, 
-				new Object[]{(pageNo*rowsPerPage),((pageNo-1)*rowsPerPage+1)},
+				new Object[]{"%"+find+"%", (pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1)},
 				new RowMapper<Restaurant>(){
 					@Override
 					public Restaurant mapRow(ResultSet rs, int row)throws SQLException{
@@ -102,6 +102,8 @@ public class RestaurantDao {
 		);
 	return list;
 	}
+	
+
 
 	public Restaurant selectByResid(int resid) {
 		String sql="select resid, resname, reslocation, restotaltable, resinfo, restel, rescloseday, resopen, resclose, resoriginfile, ressavedfile, resmime from restaurant where resid=?";
@@ -128,12 +130,13 @@ public class RestaurantDao {
 		return (list.size()!=0)? list.get(0) : null;
 	}
 
-	public int count(){
-		String sql="select count(*) from restaurant";
-		int count=jdbcTemplate.queryForObject(sql, Integer.class);   
+	public int count(String find){
+		String sql="select count(*) from restaurant where resname like ? ";
+		int count=jdbcTemplate.queryForObject(sql, new Object[]{"%"+find+"%"}, Integer.class);   
 		return count;
 	}
 
+	
 /*	public static int emptyTableNum(int resid) {
 		String sql="select count (distinct ptableno) from Pos where resid=? ";
 		jdbcTemplate.

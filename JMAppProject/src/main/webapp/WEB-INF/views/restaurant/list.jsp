@@ -76,10 +76,13 @@
  		
 	
  		
-		<div style="width: 600px">
-		<input type="text" name="resid" value="${restaurant.resid}"/>식당 검색하기</a>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		
+		<form method="post" action="/ourapp/restaurant/list?pageNo=1">
+			식당 이름으로 검색 <input type="text" name="find" value="${find}"/>
+			<input type="submit" value="찾기"/>
+		</form>
+		
+		<div style="width: 600px">
 			<c:if test="${pageNo!=1}">
 			<a href="list?pageNo=1&find=${find}">[처음]</a>
 			</c:if>

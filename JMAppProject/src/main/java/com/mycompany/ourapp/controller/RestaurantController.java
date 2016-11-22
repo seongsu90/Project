@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.ourapp.dao.FavoriteDao;
 import com.mycompany.ourapp.dto.Member;
@@ -37,8 +38,8 @@ public class RestaurantController {
 	@Autowired
 	private MemberService memberService;
 	
-	@RequestMapping("/list")
-	public String list(String pageNo, Model model, HttpSession session){
+	@RequestMapping(value="/list", method=RequestMethod.GET)
+	public String list(String pageNo, @RequestParam(required=false, defaultValue="") String find, Model model, HttpSession session){
 		
 		int intPageNo = 1;
 		if ( pageNo == null ) {
@@ -52,9 +53,17 @@ public class RestaurantController {
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
 		
 		
+		//관심지역 주소 얻기
+		String mid=(String)session.getAttribute("login");
+		model.addAttribute("mid", mid);
+		Member member=memberService.info(mid);
+		String loc=member.getMlocation();
+		
+		
+		
 		int rowsPerPage=8;
 		int pagesPerGroup=5;
-		int totalRestaurantNo=restaurantService.getCount();
+		int totalRestaurantNo=restaurantService.getCount(find);
 		
 		int totalPageNo=totalRestaurantNo/rowsPerPage+((totalRestaurantNo%rowsPerPage!=0)?1:0);
 		int totalGroupNo=totalPageNo/pagesPerGroup+((totalPageNo%pagesPerGroup!=0)?1:0);
@@ -66,7 +75,7 @@ public class RestaurantController {
 			endPageNo=totalPageNo;
 		}
 		
-		List<Restaurant> list=restaurantService.list(intPageNo, rowsPerPage);
+		List<Restaurant> list=restaurantService.list(intPageNo, rowsPerPage, find);
 		model.addAttribute("list", list);
 		model.addAttribute("pageNo", intPageNo);
 		model.addAttribute("rowsPerPage", rowsPerPage);
@@ -77,8 +86,18 @@ public class RestaurantController {
 		model.addAttribute("groupNo", groupNo);
 		model.addAttribute("startPageNo", startPageNo);
 		model.addAttribute("endPageNo", endPageNo);
+		model.addAttribute("find", find);
 		return "restaurant/list";
 	}
+	@RequestMapping(value="/list", method=RequestMethod.POST)
+	public String findList(String pageNo, String find, Model model) {
+		logger.info("findList() POST 실행");
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("find", find);
+
+		return "redirect:/restaurant/list";		
+	}
+	
 	
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)

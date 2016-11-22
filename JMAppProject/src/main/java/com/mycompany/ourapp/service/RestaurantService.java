@@ -27,8 +27,9 @@ private RestaurantDao restaurantDao;
 @Autowired
 private MemberDao memberDao;
 
-		public List<Restaurant> list(int pageNo, int rowsPerPage){
-			return restaurantDao.selectByPage(pageNo, rowsPerPage);
+		public List<Restaurant> list(int pageNo, int rowsPerPage, String find){
+			return restaurantDao.selectByPage(pageNo, rowsPerPage, find);
+			
 	
 		}
 
@@ -53,14 +54,12 @@ private MemberDao memberDao;
 			return restaurantDao.selectByResid(resid);
 		}
 		
-		public List<Restaurant> searchlist(int pageNo, int rowsPerPage){
-			return restaurantDao.selectByPage(pageNo, rowsPerPage);
-	
-		}
 		
-		public int getCount(){
-			return restaurantDao.count();
+		public int getCount(String find){
+			return restaurantDao.count(find);
 		}
+
+	
 		
 	
 		
