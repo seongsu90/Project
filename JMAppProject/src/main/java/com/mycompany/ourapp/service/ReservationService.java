@@ -23,8 +23,17 @@ public class ReservationService {
 	private ReservationDao reservationDao;
 	
 	public int add(Reservation reservation) {
-		int row = reservationDao.insert(reservation);
-		return ADD_SUCCESS;
+		String mid = reservation.getRvmid();
+		int resid = reservation.getRvresid();
+		
+		if(reservationDao.selectById(mid, resid)==null)
+		{
+			int row = reservationDao.insert(reservation);
+			return ADD_SUCCESS;
+		}else
+		{
+			return ADD_FAIL;
+		}
 	}
 	
 	public int delete(String rvMid, int rvResid) {

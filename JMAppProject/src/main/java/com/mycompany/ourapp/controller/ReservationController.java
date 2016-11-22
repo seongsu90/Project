@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycompany.ourapp.dto.Reservation;
 import com.mycompany.ourapp.dto.Restaurant;
+import com.mycompany.ourapp.service.MemberService;
 import com.mycompany.ourapp.service.ReservationService;
 import com.mycompany.ourapp.service.RestaurantService;
 
@@ -30,6 +31,9 @@ public class ReservationController {
 	
 	@Autowired
 	private RestaurantService restaurantservice;
+	
+	@Autowired
+	private MemberService memberservice;
 	
 	
 	@RequestMapping("/index")
@@ -85,9 +89,14 @@ public class ReservationController {
 			model.addAttribute("error1", "TIME_OUT");
 			return "/reservation/addform";
 		}else{
-			reservationservice.add(reservation);
-			httpsession.removeAttribute("rvresid");
-			return "redirect:/reservation/index";
+			int result = reservationservice.add(reservation);
+			if(result==0)
+			{
+				httpsession.removeAttribute("rvresid");
+				return "redirect:/reservation/index";
+			}
+			model.addAttribute("error1", "ALREADY");
+			return "/reservation/addform";
 		}
 	}
 	
@@ -100,9 +109,37 @@ public class ReservationController {
 	}
 	
 	@RequestMapping(value="/delete",method=RequestMethod.POST)
-	public String delete (String rvMid, int rvResid)
+	public String delete (String rvmid, int rvresid,HttpSession httpsession,Model model)
 	{
-		reservationservice.delete(rvMid, rvResid);
+		Date now = new Date();
+		Reservation rsv = reservationservice.info(rvmid, rvresid);
+		String rsvTime = rsv.getRvtime();
+
+		String h = rsvTime.substring(0, 2);
+		String m = rsvTime.substring(3);
+		int hour = Integer.parseInt(h);		
+		int minute = Integer.parseInt(m);
+		
+		int mrank = memberservice.info(rvmid).getMrank();
+		if(mrank==1)
+		{
+			reservationservice.delete(rvmid, rvresid);
+			httpsession.removeAttribute("rvresid");
+			return "redirect:/pos/index";
+		}
+
+		if(now.getHours()==hour)
+		{
+			if((minute-now.getMinutes())<20||(minute-now.getMinutes())<0)
+			{
+				model.addAttribute("error", "TIME_LIMIT");
+				return "/reservation/deleteform";
+			}
+		}
+
+		reservationservice.delete(rvmid, rvresid);
+		httpsession.removeAttribute("rvresid");
+
 		return "redirect:/reservation/index";
 	}
 	

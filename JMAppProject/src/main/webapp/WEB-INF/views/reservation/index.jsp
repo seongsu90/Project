@@ -9,7 +9,7 @@
 		
 		예약기능
 		<hr/>
-			1. <a href="/ourapp/reservation/add">예약하기</a><br/>
+			1. <a href="/ourapp/restaurant/list">예약하기</a><br/>
 			2. <a href="/ourapp/reservation/delete">예약 취소하기</a><br/>
 			3. <a href="/ourapp/reservation/list?mid=${login}">예약 목록보기</a><br/>
 	</body>
