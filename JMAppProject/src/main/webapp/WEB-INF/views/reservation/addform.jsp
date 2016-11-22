@@ -1,4 +1,5 @@
 <%@ page  contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html> <!-- root 태크, 엘리먼트라고 하기도 한다. -->
@@ -12,7 +13,9 @@
 		<hr/> <!-- 시작과 동시에 끝이다라는 의미<br/>// 태그의 의미는 수평선그리기 -->
 		<form method="post">
 		※ 당일 예약만 가능합니다. 현재시각 <br/>
-		- 예약 시간 <input type="time"  name="rvtime"  /> <br/>
+		- 예약 시간 <input type="time"  name="rvtime"  /> 
+		<c:if test="${error1 == 'TIME_OUT'}"> *올바른 시간이 아닙니다.</c:if>
+		<c:if test="${error1 == 'DAY_OUT'}"> *오늘은 쉬는날 입니다.</c:if><br/>
 		- 인원 수(테이블당 최대 4명) <input type="number" name="rvperson" min="1" max="8"><br/>
 		- 예약 아이디<input type="text" name="rvmid" value="${login}"readonly> <br/>
 		- 예약하는 식당 <input type="text"  name="rvresid" value="${rvresid}" readonly/> <br/>

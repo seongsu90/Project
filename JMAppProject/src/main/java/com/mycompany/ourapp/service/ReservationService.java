@@ -13,6 +13,9 @@ public class ReservationService {
 	private static final int ADD_SUCCESS = 0;
 	private static final int ADD_FAIL =1;
 	
+	private static final int TIME_OUT=1;
+	private static final int DAY_OUT=1;
+	
 	private static final int DELETE_SUCCESS = 0;
 	private static final int DELETE_FAIL = 1;
 	

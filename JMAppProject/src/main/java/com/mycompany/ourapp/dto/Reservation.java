@@ -1,11 +1,10 @@
 package com.mycompany.ourapp.dto;
 
-import java.sql.Time;
+
 
 
 public class Reservation {
 
-	
 	private String rvtime;
 	private int rvperson;
 	private String rvmid;
@@ -18,12 +17,7 @@ public class Reservation {
 	public void setRvresname(String rvresname) {
 		this.rvresname = rvresname;
 	}
-	public String getRvtime() {
-		return rvtime;
-	}
-	public void setRvtime(String rvtime) {
-		this.rvtime = rvtime;
-	}
+	
 	public int getRvperson() {
 		return rvperson;
 	}
@@ -42,8 +36,11 @@ public class Reservation {
 	public void setRvresid(int rvresid) {
 		this.rvresid = rvresid;
 	}
+	public String getRvtime() {
+		return rvtime;
+	}
+	public void setRvtime(String rvtime) {
+		this.rvtime = rvtime;
+	}
 
-	
-	
-	
 }

@@ -1,6 +1,7 @@
 package com.mycompany.ourapp.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -46,11 +47,48 @@ public class ReservationController {
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
-	public String add(Reservation reservation,HttpSession httpsession){
+	public String add(Reservation reservation,HttpSession httpsession,Model model){
 		logger.info("add 처리");
-		reservationservice.add(reservation);
-		httpsession.removeAttribute("rvresid");
-		return "redirect:/reservation/index";
+		int resid = (int) httpsession.getAttribute("rvresid");
+		Restaurant rs = restaurantservice.info(resid);
+		String optime = rs.getResopen();
+		optime = optime.substring(0, 2);
+		int op = Integer.parseInt(optime);
+		String cltime = rs.getResclose();
+		cltime  = cltime.substring(0, 2);
+		int cl = Integer.parseInt(cltime);
+		
+		String revtime =reservation.getRvtime().substring(0, 2);
+		int rvt = Integer.parseInt(revtime);
+		
+		String[] cloday = rs.getRescloseday().split("/");
+		String[] sevenday = {"일요일","월요일","화요일","수요일","목요일","금요일","토요일"};
+		Date date = new Date();
+		
+		for(int i=0; i<cloday.length;i++)
+		{
+			for(int j=0;j<sevenday.length;j++)
+			{
+				if(cloday[i].equals(sevenday[j]))
+				{
+					if(j==date.getDay())
+					{
+						model.addAttribute("error1", "DAY_OUT");
+						return "/reservation/addform";
+					}
+				}
+			}
+		}
+
+		if(op>rvt || cl<rvt)
+		{
+			model.addAttribute("error1", "TIME_OUT");
+			return "/reservation/addform";
+		}else{
+			reservationservice.add(reservation);
+			httpsession.removeAttribute("rvresid");
+			return "redirect:/reservation/index";
+		}
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
