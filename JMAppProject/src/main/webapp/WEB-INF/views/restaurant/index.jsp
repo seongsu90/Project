@@ -11,7 +11,7 @@
 		
 	<c:if test="${mrank==0}">
               ※<a href="/ourapp/restaurant/list">전체 식당 리스트 열람 및 예약하기</a><br/>
-              ※<a href="/ourapp/restaurant/mylist">나의 관심 지역 식당 리스트 열람 및 예약하기</a><br/>      
+              ※<a href="/ourapp/restaurant/list">나의 관심 지역 식당 리스트 열람 및 예약하기</a><br/>      
     </c:if>
     
     <c:if test="${mrank==2}">

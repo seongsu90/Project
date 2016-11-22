@@ -49,8 +49,11 @@
  			
  			function setReslocation() {
  				console.log("setReslocation() 실행");
-				$("#reslocation").val($("#selCity").val() + " "+ $("#selProvince").val()); 				
+				$("#reslocation").val($("#selCity").val() + " "+ $("#selProvince").val());  				
  			}
+ 			
+ 			
+ 			
 	    </script>
 		
 		
@@ -66,6 +69,7 @@
 			 시　도 | <select style="width: 100px" id="selCity" name="selCity"></select><br/>
 	　 　　 　 시군구 | <select style="width: 100px" id="selProvince" name="selProvince">
 						<option value="선택">선택</option>
+						
 					</select>			
 			<input type="text" name="reslocation" id="reslocation"/>
 			<br/>

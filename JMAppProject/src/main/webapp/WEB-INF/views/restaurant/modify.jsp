@@ -40,9 +40,10 @@
  			
 			function setCity() {
 				console.log("setCity 실행");
+				var selCity = $("#selectedCity").val();
 				$.ajax({
 					url: "getCity.jsp",
-					data: {"selCity":null},
+					data: {"selCity":selCity},
 					success: function (data) {
 						$("#selCity").html(data);
 					}

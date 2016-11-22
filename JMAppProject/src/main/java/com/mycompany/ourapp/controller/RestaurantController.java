@@ -54,10 +54,10 @@ public class RestaurantController {
 		
 		
 		//관심지역 주소 얻기
-		String mid=(String)session.getAttribute("login");
+	/*	String mid=(String)session.getAttribute("login");
 		model.addAttribute("mid", mid);
 		Member member=memberService.info(mid);
-		String loc=member.getMlocation();
+		String loc=member.getMlocation();*/
 		
 		
 		
