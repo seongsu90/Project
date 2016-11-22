@@ -125,7 +125,7 @@ public class ReservationController {
 		{
 			reservationservice.delete(rvmid, rvresid);
 			httpsession.removeAttribute("rvresid");
-			return "redirect:/reservation/index";
+			return "redirect:/pos/index";
 		}
 
 		if(now.getHours()==hour)
