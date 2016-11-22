@@ -18,7 +18,9 @@
 	※<a href="/ourapp/member/findMid">아이디찾기</a><br/>
 	※<a href="/ourapp/member/findMpassword">비밀번호찾기</a><br/>
     ※<a href="/ourapp/member/join">회원가입</a><br/>
+    <c:if test="${mrank==2}">
     ※<a href="/ourapp/member/list">회원목록</a><br/>
+    </c:if>
     <c:if test="${login != null}">
     ※<a href="/ourapp/member/info?mid=${login}">회원정보</a>
     </c:if><br/>
@@ -47,8 +49,7 @@
      [restaurant]<br/>  
      <c:if test="${login==null}">
      ※<a href="/ourapp/restaurant/list">음식점 리스트보기</a><br/>
-    로그인을 해야 주문 기능을 이용할 수 있습니다. <br/>
-    비회원 로그인 시 식당 정보 열람만 가능합니다. <br/>
+    로그인을 해야 추가 식당기능을 이용할 수 있습니다.<br/>
     </c:if> 
     <c:if test="${login!=null}">
      ※<a href="/ourapp/restaurant/index?mid=${login}">음식점 기능</a><br/>
@@ -62,7 +63,7 @@
      -------------------------------------------------------<br/>
      [Reservation]<br/>
      <c:if test="${login==null}">
-   	회원 로그인 : 식당 정보보기,  비회원 로그인:<br/>
+    로그인을 해야 예약기능을 이용할 수 있습니다.<br/>
     </c:if> 
     <c:if test="${login!=null}">
      ※<a href="/ourapp/reservation/index">예약기능</a><br/>
