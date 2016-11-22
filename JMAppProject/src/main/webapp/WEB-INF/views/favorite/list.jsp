@@ -39,16 +39,14 @@
 		<br/> <br/>
 		<table style="border-collapse: collapse; border-style: solid; border-width: 2px; border-color: black;">
 			<tr>
-				<th> Restaurant id </th>
 				<th> Restaurant Name </th>
 				<th> Restaurant Info </th>
 				<th> &nbsp; </th>
 			</tr>
 			<c:forEach var="resList" items="${resList}">
 				<tr>
-					<td> ${resList.resid} </td>
-					<td> ${resList.resname} </td>
-					<td> ${resList.resinfo} </td>
+					<td> <a href="/ourapp/restaurant/info?resid=${resList.resid}">${resList.resname}</a> </td>
+					<td> ${resList.resinfo}</td>
 					<td> <a href="/ourapp/favorite/delete?fresid=${resList.resid}"><input type="button" value="삭제"/></a></td>
 				</tr>
 			</c:forEach>
