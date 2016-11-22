@@ -117,7 +117,6 @@ public class ReservationController {
 		Date now = new Date();
 		Reservation rsv = reservationservice.info(rvmid, rvresid);
 		String rsvTime = rsv.getRvtime();
-		logger.info(""+rsvTime);
 
 		String h = rsvTime.substring(0, 2);
 		String m = rsvTime.substring(3);
@@ -125,16 +124,16 @@ public class ReservationController {
 		int minute = Integer.parseInt(m);
 		
 		String mid = memberservice.getMid(rvresid);
-		logger.info(""+mid);
-		int mrank = memberservice.info(mid).getMrank();
-		
-		
-		if(mrank==1)
-		{
-			reservationservice.delete(rvmid, rvresid);
-			httpsession.removeAttribute("rvresid");
-			return "redirect:/pos/index";
+		if(rvmid==mid){
+			int mrank = memberservice.info(mid).getMrank();
+			if(mrank==1)
+			{
+				reservationservice.delete(rvmid, rvresid);
+				httpsession.removeAttribute("rvresid");
+				return "redirect:/pos/index";
+			}
 		}
+		
 
 		if(now.getHours()==hour)
 		{

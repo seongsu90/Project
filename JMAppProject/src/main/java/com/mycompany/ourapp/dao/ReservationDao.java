@@ -58,7 +58,7 @@ public class ReservationDao {
 		sql += "select rn, rvtime, rvperson, rvmid, rvresid ";
 		sql += "from ( ";
 		sql += "select rownum as rn,rvtime, rvperson, rvmid, rvresid ";
-		sql += "from (select rvtime, rvperson, rvmid, rvresid from reservation order by rvtime desc) ";
+		sql += "from (select rvtime, rvperson, rvmid, rvresid from reservation order by rvtime) ";
 		sql += "where rvmid=? and rownum<=? ";
 		sql += ") ";
 		sql += "where rn>=? ";

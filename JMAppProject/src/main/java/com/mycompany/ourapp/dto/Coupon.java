@@ -12,7 +12,14 @@ public class Coupon {
 	private String cinfo;
 	private int cresid;
 	private int cdiscount;
+	private String cresname;
 	
+	public String getCresname() {
+		return cresname;
+	}
+	public void setCresname(String cresname) {
+		this.cresname = cresname;
+	}
 	public int getCnumber() {
 		return cnumber;
 	}

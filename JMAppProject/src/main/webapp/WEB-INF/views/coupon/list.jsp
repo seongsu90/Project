@@ -8,17 +8,26 @@
 	</head>
 	<body> <!-- 브라우저에 나오는 부분 -->
 		
-		&nbsp; <font size="6"><b>coupon list</b></font></p>
+		&nbsp; <font size="6"><b>coupon list</b></font>
 		<hr/> <!-- 시작과 동시에 끝이다라는 의미<br/>// 태그의 의미는 수평선그리기 -->
 			<table style="width:570px">
 			<tr>
 				<td style="background-color:#9966FF; width:70px">쿠폰소유자</td>
+				<td style="background-color:#9966FF; width:70px">쿠폰이름</td>
 				<td style="background-color:#9966FF; width:70px">쿠폰번호</td>
+				<td style="background-color:#9966FF; width:70px">쿠폰내용</td>
+				<td style="background-color:#9966FF; width:70px">사용가능 음식점</td>
+				<td style="background-color:#9966FF; width:70px">쿠폰상세보기</td>
+				
 			</tr>
-			<c:forEach var="couponbox" items="${couponlist}">
+			<c:forEach var="coupon" items="${coupon}">
 			<tr>
-				<td>${couponbox.cbmid}</td>
-				<td>${couponbox.cbnumber}</td>
+				<td>${login}</td>
+				<td>${coupon.cname}</td>
+				<td>${coupon.cnumber}</td>
+				<td>${coupon.cinfo}</td>
+				<td>${coupon.cresname}</td>
+				<td><a href="/ourapp/coupon/info?cnumber=${coupon.cnumber}">상세보기</a></td>
 			</tr>
 			</c:forEach>
 			

@@ -1,5 +1,6 @@
 package com.mycompany.ourapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,11 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.mycompany.ourapp.dto.Coupon;
 import com.mycompany.ourapp.dto.CouponBox;
 import com.mycompany.ourapp.dto.Member;
 import com.mycompany.ourapp.service.CouponService;
 import com.mycompany.ourapp.service.MemberService;
+import com.mycompany.ourapp.service.RestaurantService;
 
 
 
@@ -31,6 +34,9 @@ public class CouponController {
 	
 	@Autowired
 	private MemberService memberservice;
+	
+	@Autowired
+	private RestaurantService restaurantservice;
 	
 	
 	@RequestMapping("/index")
@@ -71,6 +77,20 @@ public class CouponController {
 		if(groupNo==totalGroupNo){endPageNo= totalPageNo;}
 		
 		List<CouponBox> couponlist = couponservice.list(mid,intPageNo, rowsPerPage);
+		List<Coupon> coupon = new ArrayList<>();
+		int cn = 0;
+		for(int i=0; i<couponlist.size();i++)
+		{
+			CouponBox cb =couponlist.get(i);
+			cn=cb.getCbnumber();
+			coupon.add(couponservice.info(cn));
+		}
+		for(int i=0;i<coupon.size();i++)
+		{
+			coupon.get(i).setCresname(restaurantservice.info(coupon.get(i).getCresid()).getResname());
+		}
+		
+		
 		model.addAttribute("pageNo",intPageNo);
 		model.addAttribute("rowsPerPage",rowsPerPage);
 		model.addAttribute("pagesPerGroup",pagesPerGroup);
@@ -81,6 +101,7 @@ public class CouponController {
 		model.addAttribute("startPageNo",startPageNo);
 		model.addAttribute("endPageNo",endPageNo);
 		model.addAttribute("couponlist",couponlist);
+		model.addAttribute("coupon",coupon);
 		return "coupon/list";
 	}
 	
