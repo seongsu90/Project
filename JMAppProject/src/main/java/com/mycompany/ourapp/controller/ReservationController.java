@@ -120,7 +120,9 @@ public class ReservationController {
 		int hour = Integer.parseInt(h);		
 		int minute = Integer.parseInt(m);
 		
-		int mrank = memberservice.info(rvmid).getMrank();
+		String mid = memberservice.getMid(rvresid);
+		int mrank = memberservice.info(mid).getMrank();
+		
 		if(mrank==1)
 		{
 			reservationservice.delete(rvmid, rvresid);
