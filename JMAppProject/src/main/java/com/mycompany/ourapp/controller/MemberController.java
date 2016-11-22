@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -134,10 +135,14 @@ public class MemberController {
 		try {
 			int result = memberService.join(member);
 			return "redirect:/member/login";
-		} catch (DuplicateKeyException e) {
+		} catch ( UncategorizedSQLException e ) {
+			model.addAttribute("error", " 20자 이하의 아이디를 입력하세요");
+			return "member/joinForm";
+		} catch (DuplicateKeyException e1) {
 			model.addAttribute("error", " 아이디가 존재합니다. 다른 아이디를 입력해 주세요.");
 			return "member/joinForm";
-		} catch (Exception e1) {
+		} catch (Exception e2) {
+			e2.printStackTrace();
 			model.addAttribute("error2", " 모든 항목을 입력해 주세요");
 			return "member/joinForm";
 		}
