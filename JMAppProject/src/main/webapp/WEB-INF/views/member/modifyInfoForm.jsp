@@ -80,7 +80,7 @@
 		</style>
 	</head>
 	<body>
-		<b>회원 정보</b>
+		<b>회원 정보 수정</b>
 		<hr/>
 		
 		<form method="post">

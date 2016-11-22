@@ -217,8 +217,9 @@ public class MemberController {
 	
 	// 회원 수정하기 폼
 	@RequestMapping(value="/modifyInfo", method=RequestMethod.GET)
-	public String modifyInfoForm(String mid,  Model model) {
+	public String modifyInfoForm(String mid, HttpSession session, Model model) {
 		logger.info("modifyInfoForm() GET 실행");
+		Member loginMember = memberService.info((String) session.getAttribute("login"));
 		Member member = memberService.info(mid);
 		String selectedLocation[] = member.getMlocation().split(" ");
 		if ( selectedLocation.length == 3 ) {
@@ -226,7 +227,7 @@ public class MemberController {
 		}
 		model.addAttribute("slocation", selectedLocation);
 		model.addAttribute("member", member);
-		if ( member.getMrank() == 2 ) {
+		if ( loginMember.getMrank() == 2 ) {
 			return "member/modifyInfoForManagerForm";			
 		} else {
 			return "member/modifyInfoForm";
@@ -236,10 +237,13 @@ public class MemberController {
 	// 회원 수정
 	@RequestMapping(value="/modifyInfo", method=RequestMethod.POST)
 	public String modifyInfo(Member member, String newmpassword, Model model, HttpSession session) {
+		System.out.println(member.getMid());
 		String mid = (String) session.getAttribute("login");
+		System.out.println(mid);
 		Member dbmember = memberService.info(mid);
 		if ( dbmember.getMrank() == 2 ) {
-			logger.info("modifyInfoForManager() POST 실행");
+			logger.info("modifyInfo() ( Manager ) POST 실행");
+			System.out.println(newmpassword);
 			try {
 				memberService.modify(member);
 				return "redirect:/member/list";
@@ -289,7 +293,6 @@ public class MemberController {
 		model.addAttribute("member", member);
 		return "member/modifyInfoForManagerForm";
 	}
-*/
 	
 	// 회원 정보 수정 (Manager)
 	@RequestMapping(value="/modifyInfoForManager", method=RequestMethod.POST)
@@ -309,6 +312,7 @@ public class MemberController {
 				return "member/modifyInfoForManagerForm";
 			}
 	}
+*/
 	
 	// 로그아웃
 	@RequestMapping("/logout")
