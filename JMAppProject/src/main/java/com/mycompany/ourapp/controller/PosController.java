@@ -12,17 +12,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.mycompany.ourapp.dto.Event;
 import com.mycompany.ourapp.dto.Member;
 import com.mycompany.ourapp.dto.MenuList;
 import com.mycompany.ourapp.dto.Pos;
 import com.mycompany.ourapp.dto.Reservation;
 import com.mycompany.ourapp.dto.Restaurant;
 import com.mycompany.ourapp.service.CouponService;
-import com.mycompany.ourapp.service.EventService;
 import com.mycompany.ourapp.service.MemberService;
 import com.mycompany.ourapp.service.MenuListService;
 import com.mycompany.ourapp.service.PosService;
+import com.mycompany.ourapp.service.ReservationService;
 import com.mycompany.ourapp.service.RestaurantService;
 
 @Controller
@@ -44,9 +43,12 @@ public class PosController {
 	
 	@Autowired
 	private CouponService couponService;
+	
+	@Autowired
+	private ReservationService reservationService;
 		
 	@RequestMapping("/index")
-	public String index(HttpSession session, Model model) {
+	public String index(String rvmid, HttpSession session, Model model) {
 		logger.info("pos index");
 		String mid = (String) session.getAttribute("login");		// 로그인 mid 찾아서 레스토랑번호 확인
 		Member member = memberService.info(mid);
@@ -58,6 +60,8 @@ public class PosController {
 		int totalTable = restaurant.getRestotaltable();
 		
 		List<Reservation> reservList =  posService.reservList(presid);		// 매장별 예약자 확인
+		
+		memberService.addPenalty(rvmid);		// 블랙리스트
 		
 		session.setAttribute("presid", presid);
 		model.addAttribute("posList", posList);		
@@ -78,36 +82,24 @@ public class PosController {
 	public String add(Pos pos) {		// 수기 주문, 모바일 주문
 		logger.info("pos add 실행");		
 		
-		/*String pmlname = pos.getPmlname();
-		String[] str = pmlname.split(",|\\[|\\]|");
-		String[] str = pmlname.split(",");
-		int[] arrCount = pos.getTempcount();
-		for (int i = 0; i < str.length; i++) {
-			pos.setPmlname(str[i]);
-			pos.setPcount(arrCount[i]);
-			
-			posService.add(pos);
-			
-			if (arrCount[i] != 0) {
-				logger.info(str[i].trim());
-				logger.info(String.valueOf(arrCount[i]).trim());				
-			}
-		}*/
+		String[] arrMenu = pos.getTempmenu();			// 주문 메뉴
+		int[] arrCount = pos.getTempcount();				// 수량 배열
+		int[] arrResult = new int[arrCount.length];		// 수량 중에 0인 것 제거
+		int cnt = 0;
 		
-		String[] arrMenu = pos.getTempmenu();
-		int[] arrCount = pos.getTempcount();
-		/*int[] arrResult = {};
 		for (int i = 0; i <arrCount.length; i++) {
-			if (arrCount[i] != 0) {
-				arrResult[i] = arrCount[i];
+			if (arrCount[i] == 0) {
+				cnt++;
+			} else {
+				arrResult[i-cnt] = arrCount[i];
 			}
-		}*/
+		}
 		
 		for ( int i = 0 ; i < arrMenu.length ; i++ ) {			
 			/*logger.info(arrMenu[i]);
-			logger.info(String.valueOf(arrCount[i]));*/
+			logger.info(String.valueOf(arrResult[i]));*/
 			pos.setPmlname(arrMenu[i]);
-			pos.setPcount(arrCount[i]);
+			pos.setPcount(arrResult[i]);
 			
 			posService.add(pos);
 		}

@@ -64,7 +64,8 @@
 							</c:forEach>
 						</a>					
 					</td>
-				</tr>	
+				</tr>
+					
 			</table>
 		</c:if>
 		
@@ -75,16 +76,38 @@
 				<td>예약시간</td>
 				<td>인원수</td>
 				<td>예약자</td>
+				<td>확인</td>
 			</tr>
 			<c:forEach  var="reservList" items="${reservList}">
 				<tr>
 					<td>${reservList.rvtime}</td>
 					<td>${reservList.rvperson}</td>
 					<td>${reservList.rvmid}</td>
+					<td>
+						<form method="post" action="/ourapp/reservation/delete">
+							<input type="hidden" name="rvMid" value="${reservList.rvmid}"/>
+							<input type="hidden" name="rvResid" value="${reservList.rvresid}"/>
+							<input type="submit" value="확인"/>					
+						</form>
+						<a href="index?rvmid=${reservList.rvmid}"><input type="submit" value="삭제"/></a>
+						<form method="post" action="/ourapp/reservation/delete">
+							<input type="hidden" name="rvMid" value="${reservList.rvmid}"/>
+							<input type="hidden" name="rvResid" value="${reservList.rvresid}"/>
+							<input type="submit" value="확인"/>					
+						</form>
+					</td>							
 				</tr>
 			</c:forEach>
 		</table>		
 		<c:if test="${presid == 0}">돌아가</c:if>
+		
+		<%-- <form method="post" action="/ourapp/reservation/delete">
+			<c:forEach  var="reservList" items="${reservList}">
+				<a href="/ourapp/reservation/delete?rvMid=${reservList.rvmid}&rvResid=${reservList.rvresid}"><input type="submit" value="확인"/></a>			
+			</c:forEach>
+		</form> --%>
+		
+		
 		
 		
 		

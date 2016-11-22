@@ -37,7 +37,7 @@
 	 	<%-- <c:if test="${result != 1 || 2}">
 	 		<h3>결재 금액 : ${totalPrice - result}</h3><br/>
 	 	</c:if> --%>
-	 	<h3>결재 금액 : ${totalPrice - coupon - eventPrice}</h3><br/>
+	 	<h3>결제 금액 : ${totalPrice - coupon - eventPrice}</h3><br/>
 		
 		<a href="delete?presid=${presid}&ptableno=${ptableno}"><input type="submit" value="결제"/></a>		
 		<a href="index"><input type="submit" value="뒤로"/></a><br/>	
