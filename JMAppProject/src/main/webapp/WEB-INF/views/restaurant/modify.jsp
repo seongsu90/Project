@@ -83,13 +83,14 @@
 		<tr>
 		<td style="background-color:#CCCCFF; width:150px">식당 휴일</td>
 		<td>
-		<input type="checkbox" name="rescloseday" value="월요일" >월요일
-			          <input type="checkbox" name="rescloseday" value="화요일" >화요일
-			          <input type="checkbox" name="rescloseday" value="수요일" >수요일
-			          <input type="checkbox" name="rescloseday" value="목요일" >목요일
-			          <input type="checkbox" name="rescloseday" value="금요일" >금요일
-			          <input type="checkbox" name="rescloseday" value="토요일" >토요일
-			          <input type="checkbox" name="rescloseday" value="일요일" >일요일 <br/> 
+			  <input type="checkbox" name="closeday" value="월요일" >월요일
+	          <input type="checkbox" name="closeday" value="화요일" >화요일
+	          <input type="checkbox" name="closeday" value="수요일" >수요일
+	          <input type="checkbox" name="closeday" value="목요일" >목요일
+	          <input type="checkbox" name="closeday" value="금요일" >금요일
+	          <input type="checkbox" name="closeday" value="토요일" >토요일
+	          <input type="checkbox" name="closeday" value="일요일" >일요일 
+	           <input type="checkbox" name="closeday" value="휴일 없음" >휴일 없음<br/>
 		
 		</td>
 		</tr>

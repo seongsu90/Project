@@ -37,7 +37,8 @@
 			          <input type="checkbox" name="closeday" value="목요일" >목요일
 			          <input type="checkbox" name="closeday" value="금요일" >금요일
 			          <input type="checkbox" name="closeday" value="토요일" >토요일
-			          <input type="checkbox" name="closeday" value="일요일" >일요일 <br/> 
+			          <input type="checkbox" name="closeday" value="일요일" >일요일 
+			          <input type="checkbox" name="closeday" value="휴일 없음" >휴일 없음<br/> 
 									
 		
 			<input type="submit" value="식당 추가 완료"/><br/>		

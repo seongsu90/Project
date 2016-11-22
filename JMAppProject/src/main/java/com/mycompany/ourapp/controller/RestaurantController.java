@@ -52,13 +52,6 @@ public class RestaurantController {
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
 		
 		
-	/*	mid=(String)session.getAttribute("login");
-		Member member=memberService.info(mid);
-		int mresid=member.getMresid();
-		int mrank=member.getMrank();
-		model.addAttribute("mresid", mresid);
-		model.addAttribute("mrank", mrank);*/
-		
 		int rowsPerPage=8;
 		int pagesPerGroup=5;
 		int totalRestaurantNo=restaurantService.getCount();
@@ -217,6 +210,7 @@ public class RestaurantController {
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public String modifyForm(int mresid, Model model){
+		
 		Restaurant restaurant=restaurantService.info(mresid);
 		model.addAttribute("restaurant", restaurant);
 		return "restaurant/modify";
@@ -225,8 +219,10 @@ public class RestaurantController {
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Restaurant restaurant , HttpSession session) throws IllegalStateException, IOException{
+		
 		String mid = (String) session.getAttribute("login");
 		Member member=memberService.info(mid);
+		if(member.getMrank()==1){
 		restaurant.setResid(member.getMresid());
 		
 		
@@ -238,7 +234,56 @@ public class RestaurantController {
 		
 		restaurant.setResmime(restaurant.getResphoto().getContentType());
 		
+		int i=1;
+		int size=restaurant.getCloseday().length;
+		String close="";
+	        for(String closeday : restaurant.getCloseday()){		        	
+	        	close+=closeday;
+	        	if(i<size){	
+	        		close+="/";
+	        		i++;
+	        	}
+	        	
+	        }
+	        
+	    restaurant.setRescloseday(close);
+		
+		
+		
 		restaurantService.modify(restaurant);
+		}
+		else if(member.getMrank()==2){
+			restaurant.setResid(restaurant.getResid());
+			
+			
+			restaurant.setResoriginfile(restaurant.getResphoto().getOriginalFilename());
+			String ressavedfile = new Date().getTime() + restaurant.getResphoto().getOriginalFilename(); // 저장하는 파일이 유일해야하기 때문에 날짜를 붙인다.
+			String realPath = session.getServletContext().getRealPath("/WEB-INF/photo/"+ressavedfile);
+			restaurant.getResphoto().transferTo(new File(realPath)); 
+			restaurant.setRessavedfile(ressavedfile);
+			
+			restaurant.setResmime(restaurant.getResphoto().getContentType());
+			
+			int i=1;
+			int size=restaurant.getCloseday().length;
+			String close="";
+		        for(String closeday : restaurant.getCloseday()){		        	
+		        	close+=closeday;
+		        	if(i<size){	
+		        		close+="/";
+		        		i++;
+		        	}
+		        	
+		        }
+		        
+		    restaurant.setRescloseday(close);
+			
+			
+			restaurantService.modify(restaurant);
+			
+			
+		}
+		
 		return "redirect:/restaurant/list";
 	}
 	
@@ -253,6 +298,9 @@ public class RestaurantController {
 	
 		return "restaurant/index";
 	}
+	
+
+	
 	
 
 }

@@ -83,7 +83,7 @@
 			
 			<c:if test="${mrank==0}"> 
 				<a href="/ourapp/reservation/add?rvresid=${resid}">[예약하러 가기]</a>
-				<a href="/ourapp/reservation/list">[나의 예약 목록]</a>
+				<a href="/ourapp/reservation/list?mid=${login}">[나의 예약 목록]</a>
 				
 			</c:if>
 		</div>

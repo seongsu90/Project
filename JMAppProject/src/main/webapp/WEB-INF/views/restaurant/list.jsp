@@ -23,8 +23,8 @@
 			}
 			
 		 	th {
-  				background-color: black;
-    			color: white;
+  				background-color: white;
+    			color: black;
 			} 
 		
 		</style>
@@ -77,6 +77,9 @@
 	
  		
 		<div style="width: 600px">
+		<a href="/ourapp/restaurant/search">식당 검색하기</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		
 			<c:if test="${pageNo!=1}">
 			<a href="list?pageNo=1&find=${find}">[처음]</a>
 			</c:if>
@@ -99,6 +102,7 @@
 			<a href="list?pageNo=${totalPageNo}&find=${find}">[맨끝]</a>
 			</c:if>
 		</div>
+		
 		
 	</body>
 </html>

@@ -77,6 +77,7 @@ public class RestaurantDao {
 		sql+=") ";
 		sql+="where rn>=? ";
 		
+		
 		List<Restaurant> list=jdbcTemplate.query(
 				sql, 
 				new Object[]{(pageNo*rowsPerPage),((pageNo-1)*rowsPerPage+1)},
