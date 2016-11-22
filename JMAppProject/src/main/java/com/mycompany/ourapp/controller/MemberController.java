@@ -152,45 +152,6 @@ public class MemberController {
 		return "member/info";
 	}
 	
-	// 회원 수정하기 폼
-	@RequestMapping(value="/modifyInfo", method=RequestMethod.GET)
-	public String modifyInfoForm(String mid,  Model model) {
-		logger.info("modifyInfoForm() GET 실행");
-		Member member = memberService.info(mid);
-		String selectedLocation[] = member.getMlocation().split(" ");
-		if ( selectedLocation.length == 3 ) {
-			selectedLocation[1] += (" " + selectedLocation[2]);
-		}
-		model.addAttribute("slocation", selectedLocation);
-		model.addAttribute("member", member);
-		return "member/modifyInfoForm";
-	}
-	
-	// 회원 수정
-	@RequestMapping(value="/modifyInfo", method=RequestMethod.POST)
-	public String modifyInfo(String mphone, String mlocation, String mpassword, String newmpassword, Model model, HttpSession session) {
-		logger.info("modifyInfo() POST 실행");
-		String mid = (String) session.getAttribute("login");
-		Member member = memberService.info(mid);
-		if ( member.getMpassword().equals(mpassword) ) {
-			member.setMphone(mphone);
-			member.setMlocation(mlocation);
-			member.setMpassword(newmpassword);
-			try {
-				memberService.modify(member);
-				return "redirect:/member/info?mid=" + mid;
-			} catch (Exception e) {
-				model.addAttribute("member", member);
-				model.addAttribute("error", " 모든 항목을 입력해 주세요");
-				return "member/modifyInfoForm";
-			}
-		} else {
-			model.addAttribute("member", member);
-			model.addAttribute("error", " 비밀번호가 틀렸습니다");
-			return "member/modifyInfoForm";
-		}
-	}
-	
 	// 회원 리스트 보기
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(String pageNo, @RequestParam(required=false, defaultValue="") String find, Model model, HttpSession session) {
@@ -254,6 +215,67 @@ public class MemberController {
 		return "redirect:/member/list";		
 	}
 	
+	// 회원 수정하기 폼
+	@RequestMapping(value="/modifyInfo", method=RequestMethod.GET)
+	public String modifyInfoForm(String mid,  Model model) {
+		logger.info("modifyInfoForm() GET 실행");
+		Member member = memberService.info(mid);
+		String selectedLocation[] = member.getMlocation().split(" ");
+		if ( selectedLocation.length == 3 ) {
+			selectedLocation[1] += (" " + selectedLocation[2]);
+		}
+		model.addAttribute("slocation", selectedLocation);
+		model.addAttribute("member", member);
+		if ( member.getMrank() == 2 ) {
+			return "member/modifyInfoForManagerForm";			
+		} else {
+			return "member/modifyInfoForm";
+		}
+	}
+	
+	// 회원 수정
+	@RequestMapping(value="/modifyInfo", method=RequestMethod.POST)
+	public String modifyInfo(Member member, String newmpassword, Model model, HttpSession session) {
+		String mid = (String) session.getAttribute("login");
+		Member dbmember = memberService.info(mid);
+		if ( dbmember.getMrank() == 2 ) {
+			logger.info("modifyInfoForManager() POST 실행");
+			try {
+				memberService.modify(member);
+				return "redirect:/member/list";
+			} catch (DataIntegrityViolationException e) {
+				model.addAttribute("member", member);
+				model.addAttribute("error", " 입력하신 id의 레스토랑이 없습니다.");
+				return "member/modifyInfoForManagerForm";
+			}
+			catch (Exception e1) {
+				model.addAttribute("member", member);
+				model.addAttribute("error", " 모든 항목을 입력해 주세요");
+				return "member/modifyInfoForManagerForm";
+			}
+		} else {
+			logger.info("modifyInfo() POST 실행");
+			if ( dbmember.getMpassword().equals(member.getMpassword()) ) {
+				dbmember.setMphone(member.getMphone());
+				dbmember.setMlocation(member.getMlocation());
+				dbmember.setMpassword(newmpassword);
+				try {
+					memberService.modify(dbmember);
+					return "redirect:/member/info?mid=" + mid;
+				} catch (Exception e) {
+					model.addAttribute("member", dbmember);
+					model.addAttribute("error", " 모든 항목을 입력해 주세요");
+					return "member/modifyInfoForm";
+				}
+			} else {
+				model.addAttribute("member", member);
+				model.addAttribute("error", " 비밀번호가 틀렸습니다");
+				return "member/modifyInfoForm";
+			}
+		}
+	}
+
+/*	
 	// 회원 정보 수정 폼(Manager)
 	@RequestMapping(value="/modifyInfoForManager", method=RequestMethod.GET)
 	public String modifyInfoForManagerForm(String mid,  Model model) {
@@ -267,6 +289,7 @@ public class MemberController {
 		model.addAttribute("member", member);
 		return "member/modifyInfoForManagerForm";
 	}
+*/
 	
 	// 회원 정보 수정 (Manager)
 	@RequestMapping(value="/modifyInfoForManager", method=RequestMethod.POST)

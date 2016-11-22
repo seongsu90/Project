@@ -83,7 +83,7 @@
 		<b>회원 정보 수정</b>
 		<hr/>
 		
-		<form method="post" action="/ourapp/member/modifyInfoForManager">
+		<form method="post" action="/ourapp/member/modifyInfo">
 			<input type="hidden" name="mid" value="${member.mid}"/>
 			<table>
 				<tr>

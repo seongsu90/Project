@@ -66,7 +66,7 @@
 					 </td>
 					<td> ${member.mpoint} </td>
 					<td> ${member.mresid} </td>
-					<td> <a href="/ourapp/member/modifyInfoForManager?mid=${member.mid}"><input type="button" value="수정"/></a></td>
+					<td> <a href="/ourapp/member/modifyInfo?mid=${member.mid}"><input type="button" value="수정"/></a></td>
 				</tr>
 			</c:forEach>
 		</table>

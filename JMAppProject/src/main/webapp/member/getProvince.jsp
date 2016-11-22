@@ -10,7 +10,7 @@ String[] seoul = {"강남구", "강동구", "강북구", "강서구", "관악구
 String[] city = null;
 
 if ( selCity.equals("선택") ) {
-	city = Arrays.copyOf(new String[]{""}, 1);
+	city = Arrays.copyOf(new String[]{"선택"}, 1);
 } else if ( selCity.equals("강원도") ) {
 	city = Arrays.copyOf(kangwon, kangwon.length);
 } else if ( selCity.equals("경기도") ) {

@@ -51,10 +51,9 @@
  			function setProvince() {
  				console.log("setProvince 실행");
  				var selCity = $("#selCity").val();
- 				var selProvince = $("#selProvince").val();
  				$.ajax({
 					url: "getProvince.jsp",
-					data: {"selCity":selCity, "selProvince":selProvince},
+					data: {"selCity":selCity, "selProvince":null},
 					success: function (data) {
 						$("#selProvince").html(data);
 					}

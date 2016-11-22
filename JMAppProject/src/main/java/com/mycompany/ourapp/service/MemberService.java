@@ -26,8 +26,8 @@ public class MemberService {
 	public static final int WITHDRAW_SUCCESS = 0;
 	public static final int WITHDRAW_FAIL = 1;
 	
-	public static final int RANK_CHANGE_SUCCESS = 0;
-	public static final int RANK_CHANGE_FAIL = 1;
+	public static final int ADD_PENALTY_SUCCESS = 0;
+	public static final int ADD_PENALTY_FAIL = 1;
 	
 	@Autowired
 	private MemberDao memberDao;
@@ -81,13 +81,13 @@ public class MemberService {
 		return true;
 	}
 	
-	public int rankChange(String mid, int mrank, int mResid) {
+	public int addPenalty(String mid) {
 		Member member = memberDao.selectByMid(mid);
-		if ( member == null ) return RANK_CHANGE_FAIL;
-		member.setMrank(mrank);
+		if ( member == null ) return ADD_PENALTY_FAIL;
+		member.setMrank(member.getMrank()-1);
 		int row = memberDao.update(member);
-		if ( row != 1 ) return RANK_CHANGE_FAIL;
-		return RANK_CHANGE_SUCCESS;
+		if ( row != 1 ) return ADD_PENALTY_FAIL;
+		return ADD_PENALTY_SUCCESS;
 	}
 	
 	public int getCount(String find) {
