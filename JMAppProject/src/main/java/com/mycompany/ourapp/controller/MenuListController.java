@@ -1,7 +1,10 @@
 package com.mycompany.ourapp.controller;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -77,14 +80,31 @@ public class MenuListController {
 		}
 		
 		@RequestMapping(value="/add", method=RequestMethod.GET)
-		public String addForm(MenuList menuList) {				
+		public String addForm() {				
 			return "menulist/addForm";
 		}
 		
 		@RequestMapping(value="/add", method=RequestMethod.POST)
-		public String add(MenuList menuList) {		
-		   menuListService.add(menuList);	
-			return "redirect:/menulist/list";	
+		public String add(MenuList menuList,HttpSession session) {
+			try{
+				
+				
+				menuList.setMloriginfile(menuList.getMlphoto().getOriginalFilename());
+				String mlsavedfile = new Date().getTime() + menuList.getMlphoto().getOriginalFilename(); // 저장하는 파일이 유일해야하기 때문에 날짜를 붙인다.
+				String realPath = session.getServletContext().getRealPath("/WEB-INF/photo/"+mlsavedfile);
+				menuList.getMlphoto().transferTo(new File(realPath)); // 지정된 경로로 파일을 저장한다는것? 83,84,실제 파일시스템을 저장
+				menuList.setMlsavedfile(mlsavedfile);
+				
+				menuList.setMlmime(menuList.getMlphoto().getContentType());
+			        
+				menuListService.add(menuList);
+				return "redirect:/menulist/list"; 
+			}
+				
+				catch (Exception e) {
+					e.printStackTrace();
+					return "menulist/addForm";
+				}
 		}
 
 		@RequestMapping(value="/modify", method=RequestMethod.GET)
@@ -95,7 +115,14 @@ public class MenuListController {
 		}
 		
 		@RequestMapping(value="/modify", method=RequestMethod.POST)
-		public String modify(MenuList menuList) {
+		public String modify(MenuList menuList,HttpSession session) throws IllegalStateException, IOException {
+			menuList.setMloriginfile(menuList.getMlphoto().getOriginalFilename());
+			String mlsavedfile = new Date().getTime() + menuList.getMlphoto().getOriginalFilename(); // 저장하는 파일이 유일해야하기 때문에 날짜를 붙인다.
+			String realPath = session.getServletContext().getRealPath("/WEB-INF/photo/"+mlsavedfile);
+			menuList.getMlphoto().transferTo(new File(realPath)); 
+			menuList.setMlsavedfile(mlsavedfile);
+			
+			menuList.setMlmime(menuList.getMlphoto().getContentType());
 			menuListService.modify(menuList);
 			return "redirect:/menulist/list";
 		}
@@ -125,7 +152,7 @@ public class MenuListController {
 			
 			
 			String mlmime=request.getServletContext().getMimeType(fileName);
-			response.setContentType("image/jpeg");
+			response.setContentType(mlmime);
 			
 			OutputStream os=response.getOutputStream();
 			
@@ -160,7 +187,15 @@ public class MenuListController {
 		}
 		
 		@RequestMapping(value="/modifyhot",method=RequestMethod.POST)	
-		public String modifyhot(MenuList menuList){
+		public String modifyhot(MenuList menuList,HttpSession session) throws IllegalStateException, IOException{
+			
+			menuList.setMloriginfile(menuList.getMlphoto().getOriginalFilename());
+			String mlsavedfile = new Date().getTime() + menuList.getMlphoto().getOriginalFilename(); // 저장하는 파일이 유일해야하기 때문에 날짜를 붙인다.
+			String realPath = session.getServletContext().getRealPath("/WEB-INF/photo/"+mlsavedfile);
+			menuList.getMlphoto().transferTo(new File(realPath)); 
+			menuList.setMlsavedfile(mlsavedfile);
+			
+			menuList.setMlmime(menuList.getMlphoto().getContentType());
 			menuListService.modifyHot(menuList);
 			return "redirect:/menulist/hotlist";
 		}

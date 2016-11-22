@@ -108,7 +108,6 @@ public class EventController {
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Event event, HttpSession session) throws IllegalStateException, IOException{
 		logger.info("modify 완료");
-		String mid = (String) session.getAttribute("login");
 		
 		event.setEoriginfile(event.getEphoto().getOriginalFilename());
 		String esavedfile = new Date().getTime() + event.getEphoto().getOriginalFilename(); // 저장하는 파일이 유일해야하기 때문에 날짜를 붙인다.

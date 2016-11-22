@@ -9,6 +9,29 @@ public class MenuList {
 	private String mlinfo;
 	private String mlsavedfile;
 	private boolean mlishot;
+	
+	private MultipartFile mlphoto;
+	private String mlmime;
+	private String mloriginfile;
+	
+	public MultipartFile getMlphoto() {
+		return mlphoto;
+	}
+	public void setMlphoto(MultipartFile mlphoto) {
+		this.mlphoto = mlphoto;
+	}
+	public String getMlmime() {
+		return mlmime;
+	}
+	public void setMlmime(String mlmime) {
+		this.mlmime = mlmime;
+	}
+	public String getMloriginfile() {
+		return mloriginfile;
+	}
+	public void setMloriginfile(String mloriginfile) {
+		this.mloriginfile = mloriginfile;
+	}
 	public String getMlname() {
 		return mlname;
 	}

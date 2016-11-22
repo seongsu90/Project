@@ -50,7 +50,7 @@ public class EventDao {
 	
 	public int update(Event event){
 		logger.info("update 요청처리");
-		String sql = "update event set ename=?, esavedfile=?, einfo=?, eprice=?, estart=?, eend=?, eoriginfile=?, emime=? where eresid=? and emlname=?";
+		String sql = "update event set ename=?, esavedfile=?, einfo=?, eprice=?, estart=?, eend=? where eresid=? and emlname=?";
 		int row = jdbcTemplate.update(
 				sql,
 				event.getEname(),
@@ -60,9 +60,8 @@ public class EventDao {
 				event.getEstart(),
 				event.getEend(),
 				event.getEresid(),
-				event.getEmlname(),
-				event.getEoriginfile(),
-				event.getEmime()
+				event.getEmlname()
+				
 				);
 		return row;
 	}

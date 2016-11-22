@@ -9,7 +9,7 @@
 		
 		핫메뉴 수정
 		<hr/>
-			<form method="post">
+			<form method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td style="background-color:purple; width:120px;">메뉴가격</td>
@@ -25,7 +25,7 @@
 				</tr>
 				<tr>
 					<td style="background-color:purple; width:120px;">새 메뉴사진</td>
-					<td><input type="file" name="mlsavedfile" value="${menuList.mlsavedfile}" style="width:600px"/></td>
+					<td><input type="file" name="mlphoto" value="${menuList.mlsavedfile}" style="width:600px"/></td>
 				</tr>
 				<tr>
 					<td style="background-color:purple; width:120px;">핫 초이스</td>
@@ -37,6 +37,7 @@
 		
 			</table>
 				<input type="submit" value="수정"/>
+				
 			</form>
 	</body>
 </html>

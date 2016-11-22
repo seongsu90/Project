@@ -10,7 +10,7 @@
 		
 		메뉴리스트 수정
 		<hr/>
-			<form method="post">
+			<form method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td style="background-color:blue; width:120px;">메뉴가격</td>
@@ -26,7 +26,7 @@
 				</tr>
 				<tr>
 					<td style="background-color:blue; width:120px;">새 메뉴사진</td>
-					<td><input type="file" name="mlsavedfile" value="${menuList.mlsavedfile}"/></td>
+					<td><input type="file" name="mlphoto" value="${menuList.mlsavedfile}"/></td>
 				</tr>
 				<tr>
 					<td style="background-color:blue; width:120px;">초이스</td>

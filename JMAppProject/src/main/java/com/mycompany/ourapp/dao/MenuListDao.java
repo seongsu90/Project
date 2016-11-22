@@ -20,7 +20,7 @@ public class MenuListDao {
 	private MenuList menuList;
 	
 	public int insert(MenuList menuList){
-		String sql="insert into menuList(mlname,mlprice,mlresid,mlinfo,mlsavedfile,mlishot) values(?,?,?,?,?,?)";
+		String sql="insert into menuList(mlname,mlprice,mlresid,mlinfo,mlsavedfile,mlishot,mloriginfile,mlmime) values(?,?,?,?,?,?,?,?)";
 		int row = jdbcTemplate.update(
 				sql,
 				menuList.getMlname(),
@@ -28,7 +28,9 @@ public class MenuListDao {
 				menuList.getMlresid(),
 				menuList.getMlinfo(),
 				menuList.getMlsavedfile(),
-				menuList.getMlishot()
+				menuList.getMlishot(),
+				menuList.getMloriginfile(),
+				menuList.getMlmime()
 				);
 		return row;
 	}
@@ -90,7 +92,7 @@ public class MenuListDao {
 	}
 
 	public MenuList selectByMlresidAndMlname(int mlresid, String mlname) {
-		String sql = "select mlprice,mlinfo,mlsavedfile,mlishot from menuList where mlresid=? and mlname=?";
+		String sql = "select mlprice,mlinfo,mlsavedfile,mlishot,mloriginfile,mlmime from menuList where mlresid=? and mlname=?";
 		List<MenuList> list = jdbcTemplate.query(sql, new Object[]{mlresid,mlname}, new RowMapper<MenuList>() {
 			@Override
 			public MenuList mapRow(ResultSet rs, int row) throws SQLException {
@@ -99,7 +101,8 @@ public class MenuListDao {
 				menuList.setMlinfo(rs.getString("mlinfo"));
 				menuList.setMlsavedfile(rs.getString("mlsavedfile"));
 				menuList.setMlishot(rs.getBoolean("mlishot"));
-				
+				menuList.setMloriginfile(rs.getString("mloriginfile"));
+				menuList.setMlmime(rs.getString("mlmime"));
 				return menuList;
 			}
 		});
@@ -144,7 +147,7 @@ public class MenuListDao {
 	}
 
 	public MenuList selectByMlresidAndMlnameAndMlishot(int mlresid, String mlname, boolean mlishot) {
-		String sql="select mlprice, mlinfo, mlsavedfile from menuList where mlresid=? and mlname=? and mlishot=?";
+		String sql="select mlprice, mlinfo, mlsavedfile,mloriginfile,mlmime from menuList where mlresid=? and mlname=? and mlishot=?";
 		List<MenuList> list = jdbcTemplate.query(sql, new Object[]{mlresid,mlname, mlishot}, new RowMapper<MenuList>() {
 			@Override
 			public MenuList mapRow(ResultSet rs, int row) throws SQLException {
@@ -152,7 +155,8 @@ public class MenuListDao {
 				menuList.setMlprice(rs.getInt("mlprice"));
 				menuList.setMlinfo(rs.getString("mlinfo"));
 				menuList.setMlsavedfile(rs.getString("mlsavedfile"));
-				
+				menuList.setMloriginfile(rs.getString("mloriginfile"));
+				menuList.setMlmime(rs.getString("mlmime"));
 				return menuList;
 			}
 		});

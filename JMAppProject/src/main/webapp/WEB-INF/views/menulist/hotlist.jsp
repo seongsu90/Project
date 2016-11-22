@@ -49,7 +49,7 @@
 		</table>
 		<br/>
  		
-		<%-- <div style="width: 600px">
+		<div style="width: 600px">
 			<c:if test="${pageNo!=1}">
 			<a href="list?pageNo=1&find=${find}">[처음]</a>
 			</c:if>
@@ -71,7 +71,7 @@
 			<c:if test="${pageNo!=totalPageNo}">
 			<a href="list?pageNo=${totalPageNo}&find=${find}">[맨끝]</a>
 			</c:if>
-		</div> --%>
+		</div>
 		
 		
 	</body>

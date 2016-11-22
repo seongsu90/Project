@@ -16,7 +16,7 @@
 			 </tr>
 			 <tr>
 				<td style="background-color:blue; width:100px">정보</td>
-				<td>${menuList.mlinfo}</td>
+				<td>${menuList.mlinfo}</td>	
 			 </tr>
 			<tr>
 				<td style="background-color:blue; width:100px">메뉴 사진</td>
@@ -27,12 +27,12 @@
 				<td>${menuList.mlishot}</td>
 			</tr>
 		</table>
-	    <div>
-			<c:if test="${mrank!=2}">
-				<a href="modify?mlresid=${menuList.mlresid}&mlname=${menuList.mlname}">[수정]</a>
+	  
+			
+			    <a href="modify?mlresid=${menuList.mlresid}&mlname=${menuList.mlname}"><input type="submit" value="수정"/></a>
 				<a href="delete?mlresid=${menuList.mlresid}">[삭제]</a>
-			</c:if>
+			
 			<a href="list">[목록]</a>
-		 </div> 
+		 
 	</body>
 </html>

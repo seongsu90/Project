@@ -23,5 +23,12 @@
 				<td><img src="showPhoto?mlsavedfile=${menuList.mlsavedfile}" width="500px"/></td>
 			</tr>
 		</table>
+		<div>
+			<c:if test="${mrank!=2}">
+			    <a href="modify?mlresid=${menuList.mlresid}&mlname=${menuList.mlname}">[수정]</a>
+				<a href="delete?mlresid=${menuList.mlresid}">[삭제]</a>
+			</c:if>
+			<a href="list">[목록]</a>
+		</div>
 	</body>
 </html>
