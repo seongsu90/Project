@@ -36,18 +36,18 @@
 				<th>이벤트 시작기간</th>
 				<th>이벤트 종료기간</th>
 			</tr>
-			<c:forEach var="list" items="${list}">
+			<c:forEach var="event" items="${list}">
 				<tr>
-					<td>${list.ename}</td>			
-					<td>${list.eresid}</td>
+					<td>${event.ename}</td>			
+					<td><a href="info?eresid=${event.eresid}&emlname=${event.emlname}">${event.eresid}</a></td>
 					<td>
-						<img src="showPhoto?esavedfile=${list.esavedfile}" width="100px"/>
+						<img src="showPhoto?esavedfile=${event.esavedfile}" width="100px"/>
 					</td>
-					<td>${list.einfo}</td>
-					<td>${list.emlname}</td>
-					<td>${list.eprice}</td>
-					<td>${list.estart}</td>
-					<td>${list.eend}</td>
+					<td>${event.einfo}</td>
+					<td>${event.emlname}</td>
+					<td>${event.eprice}</td>
+					<td>${event.estart}</td>
+					<td>${event.eend}</td>
 				</tr>
 			</c:forEach>
 		</table>

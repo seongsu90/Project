@@ -17,6 +17,28 @@ public class Event {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date eend;
 	
+	private MultipartFile ephoto;
+	private String emime;
+	private String eoriginfile;
+	
+	public MultipartFile getEphoto() {
+		return ephoto;
+	}
+	public void setEphoto(MultipartFile ephoto) {
+		this.ephoto = ephoto;
+	}
+	public String getEmime() {
+		return emime;
+	}
+	public void setEmime(String emime) {
+		this.emime = emime;
+	}
+	public String getEoriginfile() {
+		return eoriginfile;
+	}
+	public void setEoriginfile(String eoriginfile) {
+		this.eoriginfile = eoriginfile;
+	}
 	public String getEname() {
 		return ename;
 	}

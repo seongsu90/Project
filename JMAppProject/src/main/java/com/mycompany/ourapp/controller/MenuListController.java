@@ -84,7 +84,7 @@ public class MenuListController {
 		@RequestMapping(value="/add", method=RequestMethod.POST)
 		public String add(MenuList menuList) {		
 		   menuListService.add(menuList);	
-			return "redirect:/menulist/index";	
+			return "redirect:/menulist/list";	
 		}
 
 		@RequestMapping(value="/modify", method=RequestMethod.GET)
@@ -97,7 +97,7 @@ public class MenuListController {
 		@RequestMapping(value="/modify", method=RequestMethod.POST)
 		public String modify(MenuList menuList) {
 			menuListService.modify(menuList);
-			return "redirect:/menulist/index";
+			return "redirect:/menulist/list";
 		}
 		
 		@RequestMapping(value="/delete", method=RequestMethod.GET)
@@ -108,7 +108,7 @@ public class MenuListController {
 		@RequestMapping(value="/delete", method=RequestMethod.POST)
 		public String delete(int mlresid, String mlname) {
 			menuListService.delete(mlresid, mlname);
-			return "redirect:/menulist/index";	
+			return "redirect:/menulist/list";	
 		}
 		
 		@RequestMapping("/info")	
@@ -162,7 +162,7 @@ public class MenuListController {
 		@RequestMapping(value="/modifyhot",method=RequestMethod.POST)	
 		public String modifyhot(MenuList menuList){
 			menuListService.modifyHot(menuList);
-			return "redirect:/menulist/index";
+			return "redirect:/menulist/hotlist";
 		}
 		
 		@RequestMapping(value="/hotinfo")

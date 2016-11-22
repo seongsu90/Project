@@ -38,7 +38,7 @@
 				<tr>
 					<td>${menuList.mlname}</td>			
 					<td>${menuList.mlprice}</td>
-					<td>${menuList.mlresid}</td>
+					<td><a href="info?mlresid=${menuList.mlresid}&mlname=${menuList.mlname}">${menuList.mlresid}</a></td>
 					<td>${menuList.mlinfo}</td>
 					<td>
 						<img src="showPhoto?mlsavedfile=${menuList.mlsavedfile}" width="500px"/>

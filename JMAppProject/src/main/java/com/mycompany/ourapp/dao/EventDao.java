@@ -24,7 +24,7 @@ public class EventDao {
 
 	public int insert(Event event){
 		logger.info("insert 요청처리");
-		String sql="insert into event(ename,eresid,esavedfile,einfo,emlname,eprice,estart,eend) values(?,?,?,?,?,?,?,?)";
+		String sql="insert into event(ename,eresid,esavedfile,einfo,emlname,eprice,estart,eend,eoriginfile,emime) values(?,?,?,?,?,?,?,?,?,?)";
 		int row = jdbcTemplate.update(
 				sql,
 				event.getEname(),
@@ -34,7 +34,9 @@ public class EventDao {
 				event.getEmlname(),
 				event.getEprice(),
 				event.getEstart(),
-				event.getEend()
+				event.getEend(),
+				event.getEoriginfile(),
+				event.getEmime()
 				);
 		return row;
 	}
@@ -48,7 +50,7 @@ public class EventDao {
 	
 	public int update(Event event){
 		logger.info("update 요청처리");
-		String sql = "update event set ename=?, esavedfile=?, einfo=?, eprice=?, estart=?, eend=? where eresid=? and emlname=?";
+		String sql = "update event set ename=?, esavedfile=?, einfo=?, eprice=?, estart=?, eend=?, eoriginfile=?, emime=? where eresid=? and emlname=?";
 		int row = jdbcTemplate.update(
 				sql,
 				event.getEname(),
@@ -58,14 +60,16 @@ public class EventDao {
 				event.getEstart(),
 				event.getEend(),
 				event.getEresid(),
-				event.getEmlname()
+				event.getEmlname(),
+				event.getEoriginfile(),
+				event.getEmime()
 				);
 		return row;
 	}
 	
 	public Event selectByEresidAndEmlname(int eresid, String emlname) {
 		logger.info("select 요청처리");
-		String sql = "select ename, eresid, esavedfile, einfo, emlname, eprice, estart, eend from event where eresid=? and emlname=?";
+		String sql = "select ename, eresid, esavedfile, einfo, emlname, eprice, estart, eend, eoriginfile, emime from event where eresid=? and emlname=?";
 		List<Event> list = jdbcTemplate.query(sql, new Object[]{eresid,emlname}, new RowMapper<Event>() {
 			@Override
 			public Event mapRow(ResultSet rs, int row) throws SQLException {
@@ -78,7 +82,8 @@ public class EventDao {
 				event.setEprice(rs.getInt("eprice"));
 				event.setEstart(rs.getDate("estart"));
 				event.setEend(rs.getDate("eend"));
-				
+				event.setEoriginfile(rs.getString("eoriginfile"));
+				event.setEmime(rs.getString("emime"));
 				return event;
 			}
 		});

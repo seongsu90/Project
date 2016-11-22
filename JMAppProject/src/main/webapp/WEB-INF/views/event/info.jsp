@@ -43,6 +43,12 @@
 				<td>${event.eend}</td>
 			</tr>	
 		</table>
-		
+		<div>
+			<c:if test="${mrank!=2}">
+			    <a href="modify?eresid=${event.eresid}&emlname=${event.emlname}">[수정]</a>
+				<a href="delete?eresid=${event.eresid}">[삭제]</a>
+			</c:if>
+			<a href="list">[목록]</a>
+		</div>	
 	</body>
 </html>

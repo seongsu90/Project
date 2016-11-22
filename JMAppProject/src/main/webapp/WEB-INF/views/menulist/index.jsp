@@ -34,18 +34,13 @@
 		<hr/>
 		<div>
 			<ul>
-			<c:if test="${login!=null}"> 
-				<c:if test="${mrank!=0 and mrank!=3}">
-					<li><a href="/ourapp/menulist/add">메뉴리스트 생성</a><br/></li>
-					<li><a href="/ourapp/menulist/modify?mlresid=28&mlname=핫치킨">메뉴리스트 수정</a><br/></li>
-					<li><a href="/ourapp/menulist/delete">메뉴 리스트삭제</a><br/></li>
-					<li><a href="/ourapp/menulist/modifyhot?mlresid=28&mlname=핫치킨&mlishot=1">핫메뉴 수정</a><br/></li>
+				<c:if test="${login!=null}"> 
+					<c:if test="${mrank!=0 and mrank!=3}">
+						<li><a href="/ourapp/menulist/add">메뉴리스트 생성</a><br/></li>
+						<li><a href="/ourapp/menulist/list">메뉴 리스트보기</a><br/></li>
+					    <li><a href="/ourapp/menulist/hotlist?mlresid=${menuList.mlresid}&mlishot=1">핫메뉴리스트 보기</a><br/></li>
+					</c:if>
 				</c:if>
-			</c:if>
-				<li><a href="/ourapp/menulist/info?mlresid=28&mlname=쌀국수">메뉴 정보</a><br/></li>
-				<li><a href="/ourapp/menulist/list">메뉴 리스트보기</a><br/></li>
-				<li><a href="/ourapp/menulist/hotlist?mlresid=0&mlishot=1">핫메뉴리스트 보기</a><br/></li>
-				<li><a href="/ourapp/menulist/hotinfo?mlresid=0&mlname=닭발&mlishot=1">핫메뉴 정보</a><br/></li>
 			</ul>
 		</div>	
 	</body>

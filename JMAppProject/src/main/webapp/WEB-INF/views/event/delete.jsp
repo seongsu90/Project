@@ -10,9 +10,9 @@
 		이벤트 삭제
 		<hr/> <!-- 시작과 동시에 끝이다라는 의미<br/>// 태그의 의미는 수평선그리기 -->
 		<form method="post">
-		 이벤트 식당<input type="text" name="eresid" value="${event.eresid}"> <br/>
-		 이벤트 메뉴<input type="text" name="emlname" value="${event.emlname}"><br/>
 		
+			메뉴:<input type="text" name="emlname" value="${event.emlname}"><br/>
+			
 		<input type="submit" value="삭제하기"/> <br/>
 		</form>
 	</body>
