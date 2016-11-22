@@ -124,7 +124,7 @@ public class ReservationController {
 		int minute = Integer.parseInt(m);
 		
 		String mid = memberservice.getMid(rvresid);
-		if(rvmid==mid){
+		if(rvmid!=mid){
 			int mrank = memberservice.info(mid).getMrank();
 			if(mrank==1)
 			{
