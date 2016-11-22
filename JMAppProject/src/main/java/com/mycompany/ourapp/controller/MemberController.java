@@ -218,7 +218,6 @@ public class MemberController {
 	// 회원 수정하기 폼
 	@RequestMapping(value="/modifyInfo", method=RequestMethod.GET)
 	public String modifyInfoForm(String mid, HttpSession session, Model model) {
-		logger.info("modifyInfoForm() GET 실행");
 		Member loginMember = memberService.info((String) session.getAttribute("login"));
 		Member member = memberService.info(mid);
 		String selectedLocation[] = member.getMlocation().split(" ");
@@ -228,8 +227,10 @@ public class MemberController {
 		model.addAttribute("slocation", selectedLocation);
 		model.addAttribute("member", member);
 		if ( loginMember.getMrank() == 2 ) {
+			logger.info("modifyInfoForm() ( Manager ) GET 실행");
 			return "member/modifyInfoForManagerForm";			
 		} else {
+			logger.info("modifyInfoForm() GET 실행");
 			return "member/modifyInfoForm";
 		}
 	}

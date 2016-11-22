@@ -79,6 +79,19 @@ public class MemberDao {
 		});
 		return (list.size() != 0)?list.get(0) : null;	
 	}
+	
+	// resid로 mid 찾기
+	public String selectMidByMresid(int mresid) {
+		String sql = "select mid from member where mresid=?";
+		
+		List<String> list = jdbcTemplate.query(sql, new Object[] {mresid}, new RowMapper<String>(){
+			@Override
+			public String mapRow(ResultSet rs, int row) throws SQLException {
+				return rs.getString("mid");
+			}
+		});
+		return (list.size() != 0)?list.get(0) : null;
+	}
 
 	// 아이디 찾기
 	public String selectMidByMnameAndMphone(String mname, String mphone) {
@@ -102,7 +115,16 @@ public class MemberDao {
 		sql += "from (select mid, mname, mpassword, mphone, mbirth, mlocation, mrank, mpoint, mresid from member) ";
 		sql += "where mid like ? or mname like ? and rownum<=? ";
 		sql += ") ";
+		sql += "where rn>=? order by mid ";
+/*		
+		sql += "select rn, mid, mname, mpassword, mphone, mbirth, mlocation, mrank, mpoint, mresid ";
+		sql += "from ( ";
+		sql += "select rownum as rn, mid, mname, mpassword, mphone, mbirth, mlocation, mrank, mpoint, mresid ";
+		sql += "from (select mid, mname, mpassword, mphone, mbirth, mlocation, mrank, mpoint, mresid from member) ";
+		sql += "where mid like ? or mname like ? and rownum<=? ";
+		sql += ") ";
 		sql += "where rn>=? order by rn desc ";
+*/
 		
 		List<Member> list = jdbcTemplate.query(
 			sql,
@@ -133,5 +155,7 @@ public class MemberDao {
 		int count = jdbcTemplate.queryForObject(sql, new Object[]{"%"+find+"%", "%"+find+"%"}, Integer.class);
 		return count;
 	}
+
+
 	
 }

@@ -62,7 +62,10 @@
 						<c:if test="${member.mrank==0}"> 일반 </c:if>
 						<c:if test="${member.mrank==1}"> 점장 </c:if>
 						<c:if test="${member.mrank==2}"> <b>관리자</b> </c:if>
-						<c:if test="${member.mrank==3}"> <b style="color: red">블랙리스트</b> </c:if>
+						<c:if test="${member.mrank==-1}"> <span style="color: red">경고1회 </span></c:if>
+						<c:if test="${member.mrank==-2}"> <span style="color: red">경고2회 </span></c:if>
+						<c:if test="${member.mrank==-3}"> <b style="color: red">블랙리스트</b> </c:if>
+						
 					 </td>
 					<td> ${member.mpoint} </td>
 					<td> ${member.mresid} </td>

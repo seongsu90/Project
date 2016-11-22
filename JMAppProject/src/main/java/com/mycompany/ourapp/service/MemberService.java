@@ -52,6 +52,10 @@ public class MemberService {
 		return memberDao.selectMidByMnameAndMphone(mname, mphone);
 	}
 	
+	public String getMid(int mresid) {
+		return memberDao.selectMidByMresid(mresid);
+	}
+	
 	public Member info(String mid, String mpassword) {
 		Member member = memberDao.selectByMid(mid);
 		if ( member.getMpassword().equals(mpassword) == false ) return null;
