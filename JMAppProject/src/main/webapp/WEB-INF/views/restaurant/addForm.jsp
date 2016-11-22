@@ -4,6 +4,56 @@
 <html> 
 	<head> 
 		<meta charset="UTF-8">
+		
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript">
+		
+ 			$(document).ready(function() {
+ 				console.log("ready 실행");
+ 				setCity();
+ 				
+ 				$("#selCity").change(function () {
+ 					console.log("City Change");
+ 			        setProvince();
+ 			       $("#reslocation").val(""); 
+ 			    });
+ 				
+ 				$("#selProvince").change(function () {
+ 					console.log("Province Change");
+ 					setReslocation();
+ 			    });
+			});
+ 			
+			function setCity() {
+				console.log("setCity 실행");
+				$.ajax({
+					url: "getCity.jsp",
+					data: {"selCity":null},
+					success: function (data) {
+						$("#selCity").html(data);
+					}
+				});
+			}
+			
+ 			function setProvince() {
+ 				console.log("setProvince 실행");
+ 				var selCity = $("#selCity").val();
+ 				$.ajax({
+					url: "getProvince.jsp",
+					data: {"selCity":selCity, "selProvince":null},
+					success: function (data) {
+						$("#selProvince").html(data);
+					}
+				});
+			}
+ 			
+ 			function setReslocation() {
+ 				console.log("setReslocation() 실행");
+				$("#reslocation").val($("#selCity").val() + " "+ $("#selProvince").val()); 				
+ 			}
+	    </script>
+		
+		
 	</head>
 	<body> 
 	Restaurant 추가
@@ -13,16 +63,12 @@
 		<form method="post" enctype="multipart/form-data">
 			식당 이름 : <input type="text" name="resname" value="${restaurant.resname}"/><br/>
 			식당 위치 :
-						<select name="reslocation">
-						<option value="${restaurant.reslocation}">-- 지역을 선택하세요 --</option>
-			  			 <optgroup label = "서울시">
-                            <option value ="송파구">송파구</option>
-                            <option value = "강남구">강남구</option>
-                            <option value = "서초구">서초구</option>
-                            <option value = "중구">중구</option>
-                            
-                        </optgroup>
-                        </select><br/>
+			 시　도 | <select style="width: 100px" id="selCity" name="selCity"></select><br/>
+	　 　　 　 시군구 | <select style="width: 100px" id="selProvince" name="selProvince">
+						<option value="선택">선택</option>
+					</select>			
+			<input type="text" name="reslocation" id="reslocation"/>
+			<br/>
 			식당 테이블 수 : <input type="number" name="restotaltable" value="${restaurant.restotaltable}"/><br/>
 			식당 정보 : <input type="text" name="resinfo" value="${restaurant.resinfo}"/><br/>
 			식당 전화번호 : <input type="tel" name="restel" value="${restaurant.restel}"/><br/>

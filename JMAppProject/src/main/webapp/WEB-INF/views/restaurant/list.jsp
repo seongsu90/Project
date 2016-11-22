@@ -98,6 +98,8 @@
 				<a href="list?pageNo=${endPageNo+1}&find=${find}">[다음]</a>
 			</c:if>
 			
+		
+		
 			<c:if test="${pageNo!=totalPageNo}">
 			<a href="list?pageNo=${totalPageNo}&find=${find}">[맨끝]</a>
 			</c:if>

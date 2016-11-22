@@ -4,6 +4,69 @@
 <html> 
 	<head> 
 		<meta charset="UTF-8">
+		
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript">
+		
+ 			$(document).ready(function() {
+ 				console.log("ready 실행");
+ 				setCity();
+ 				
+ 				$("#selCity").change(function () {
+ 					console.log("City Change");
+ 			        setProvince();
+ 			       $("#reslocation").val(""); 
+ 			    });
+ 				
+ 				$("#selProvince").change(function () {
+ 					console.log("Province Change");
+ 					setReslocation();
+ 			    });
+			});
+ 			
+ 			window.onload = function() {
+				console.log("onLoad");
+				var selCity = $("#selectedCity").val();
+				var selProvince = $("#selectedProv").val();
+ 				$.ajax({
+					url: "getProvince.jsp",
+					data: {"selCity":selCity, "selProvince":selProvince},
+					success: function (data) {
+						$("#selProvince").html(data);
+					}
+				});
+			};
+ 			
+ 			
+			function setCity() {
+				console.log("setCity 실행");
+				$.ajax({
+					url: "getCity.jsp",
+					data: {"selCity":null},
+					success: function (data) {
+						$("#selCity").html(data);
+					}
+				});
+			}
+			
+ 			function setProvince() {
+ 				console.log("setProvince 실행");
+ 				var selCity = $("#selCity").val();
+ 				$.ajax({
+					url: "getProvince.jsp",
+					data: {"selCity":selCity, "selProvince":null},
+					success: function (data) {
+						$("#selProvince").html(data);
+					}
+				});
+			}
+ 			
+ 			function setReslocation() {
+ 				console.log("setReslocation() 실행");
+				$("#reslocation").val($("#selCity").val() + " "+ $("#selProvince").val()); 				
+ 			}
+	    </script>
+		
 		<style type="text/css">
 			* {
 				font-family: 굴림;
@@ -18,7 +81,7 @@
 			}
 			th, td {
   				padding: 5px;
-    			text-align: center;
+    			text-align: left;
 			}
 			
 			th {
@@ -41,8 +104,19 @@
 		</tr>
 		
 		<tr>
-		<td style="background-color:#CCCCFF; width:150px">식당 위치</td>
-		<td><input type="text" name="reslocation" style="width:600px" value="${restaurant.reslocation}"></td>
+	
+		<td style="background-color:#CCCCFF; width:150px"> 식당 위치 </td>
+					<td>
+						시　도 | <select style="width: 150px" id="selCity" name="selCity">
+								</select><br/>
+						시군구 | <select style="width: 150px" id="selProvince" name="selProvince">
+								</select>
+								<input type="text" name="reslocation" id="reslocation" value="${restaurant.reslocation}"/>
+								<input type="hidden" name="selectedCity" id="selectedCity" value="${slocation[0]}"/>
+								<input type="hidden" name="selectedProv" id="selectedProv" value="${slocation[1]}"/>
+					</td>
+
+
 		</tr>
 		
 			<tr>

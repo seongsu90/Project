@@ -208,6 +208,12 @@ public class RestaurantController {
 		model.addAttribute("restaurant", restaurant);
 		model.addAttribute("resid", restaurant.getResid());
 		
+		String selectedLocation[] = restaurant.getReslocation().split(" ");
+		if ( selectedLocation.length == 3 ) {
+			selectedLocation[1] += (" " + selectedLocation[2]);
+		}
+		model.addAttribute("slocation", selectedLocation);
+		
 		return "restaurant/modify";
 	}
 	
