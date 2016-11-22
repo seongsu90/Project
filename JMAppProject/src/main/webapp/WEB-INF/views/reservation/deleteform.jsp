@@ -12,7 +12,7 @@
 		<hr/> <!-- 시작과 동시에 끝이다라는 의미<br/>// 태그의 의미는 수평선그리기 -->
 		<form method="post">
 		- 예약 아이디<input type="text" name="rvMid" value="${login}"readonly> <br/>
-		- 예약 음식점<input type="text" name="rvResid" value="${cresid}"readonly> <br/>
+		- 예약 음식점<input type="text" name="rvResid" value="${rvresid}"readonly> <br/>
 		
 		<input type="submit" value="삭제하기"/> <br/>
 		</form>

@@ -16,6 +16,7 @@
 				<td style="background-color:#9966FF; width:70px">예약인원</td>
 				<td style="background-color:#9966FF; width:70px">예약한 ID</td>
 				<td style="background-color:#9966FF; width:70px">예약 음식점</td>
+				<td style="background-color:#9966FF; width:70px">예약 취소</td>
 			</tr>
 			
 				
@@ -25,6 +26,7 @@
 				<td>${reservation.rvperson}</td>
 				<td>${reservation.rvmid}</td>
 				<td >${reservation.rvresname}</td>
+				<td ><a href="/ourapp/reservation/delete?rvresid=${reservation.rvresid}">예약 취소</a></td>
 			</tr>
 			</c:forEach>
 		

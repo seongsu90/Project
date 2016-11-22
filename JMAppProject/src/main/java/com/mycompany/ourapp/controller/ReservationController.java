@@ -92,9 +92,10 @@ public class ReservationController {
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	public String deleteform()
+	public String deleteform(int rvresid,Model model)
 	{
 		logger.info("deleteform 처리");
+		model.addAttribute("rvresid", rvresid);
 		return "/reservation/deleteform";
 	}
 	
