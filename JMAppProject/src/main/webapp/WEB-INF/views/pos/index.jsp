@@ -22,7 +22,7 @@
 	<body>
 		Pos 메인화면
 		<hr/>	
-		
+
 		<c:if test="${presid != 0}">
 			<table width="400" border="1">
 				<tr>
@@ -93,18 +93,28 @@
 			</table>		
 		</c:if>
 		<c:if test="${presid == 0}">돌아가</c:if>
+
 		
-		<%-- <form method="post" action="/ourapp/reservation/delete">
-			<c:forEach  var="reservList" items="${reservList}">
-				<a href="/ourapp/reservation/delete?rvMid=${reservList.rvmid}&rvResid=${reservList.rvresid}"><input type="submit" value="확인"/></a>			
-			</c:forEach>
-		</form> --%>
+		<%-- <c:forEach var="i" begin="0" end="${totalTable/4}">
+			<table>
+				<tr>
+					<td>
+						${presid}
+					</td>
+					<td>
+						${presid}
+					</td>
+					<td>
+						${presid}
+					</td>
+					<td>
+						${presid}
+					</td>
+				</tr>
+			</table>
+		</c:forEach> --%>
 		
-		
-		
-		
-		
-	<%-- 	<c:if test="${presid != 0}">
+	 	<%-- <c:if test="${presid != 0}">
 			<table width="400" border="1">
 				<c:forEach  var="i" begin="0" end="${totalTable/2}">
 					<c:if test="${i%2 != 0}">
@@ -153,7 +163,7 @@
 					</c:if>
 				</c:forEach>		
 			</table>
-		</c:if>	 --%>	
+		</c:if>	  --%>	
 		
 		
 

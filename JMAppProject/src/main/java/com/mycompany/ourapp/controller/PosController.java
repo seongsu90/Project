@@ -1,6 +1,10 @@
 package com.mycompany.ourapp.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -50,18 +54,19 @@ public class PosController {
 	@RequestMapping("/index")
 	public String index(String rvmid, HttpSession session, Model model) {
 		logger.info("pos index");
-		String mid = (String) session.getAttribute("login");		// 로그인 mid 찾아서 레스토랑번호 확인
+		String mid = (String) session.getAttribute("login");			// 로그인 mid 찾아서 레스토랑번호 확인
 		Member member = memberService.info(mid);
 		int presid = member.getMresid();
 		
-		List<Pos> posList = posService.list(presid);					// 매장 별 주문 내역
+		List<Pos> posList = posService.list(presid);						// 매장 별 주문 내역
 		
 		Restaurant restaurant = restaurantService.info(presid);		// 매장별 총 테이블 수
 		int totalTable = restaurant.getRestotaltable();
+
+		memberService.addPenalty(rvmid);									// 블랙리스트
+		reservationService.delete(rvmid, presid);
 		
 		List<Reservation> reservList =  reservationService.reservList(presid);		// 매장별 예약자 확인
-		
-		memberService.addPenalty(rvmid);		// 블랙리스트
 		
 		session.setAttribute("presid", presid);
 		model.addAttribute("posList", posList);		
@@ -71,20 +76,28 @@ public class PosController {
 		return "pos/index";
 	}
 
-/*	@RequestMapping(value="/add", method=RequestMethod.GET)
-	public String addForm() {
-		logger.info("pos addForm 실행");
-		
-		return "pos/addForm";
-	}*/
-	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String add(Pos pos) {		// 수기 주문, 모바일 주문
+	public String add(Pos pos, HttpSession session) {		// 수기 주문, 모바일 주문
 		logger.info("pos add 실행");		
 		
 		String[] arrMenu = pos.getTempmenu();			// 주문 메뉴
 		int[] arrCount = pos.getTempcount();				// 수량 배열
-		int[] arrResult = new int[arrCount.length];		// 수량 중에 0인 것 제거
+				
+		Map<String, Integer> map = new HashMap<>();
+		for (int i = 0; i < arrMenu.length; i++) {
+			if ( arrCount[i] != 0 ) {
+				map.put(arrMenu[i], arrCount[i]);
+			}
+		}
+		
+		Set<Entry<String, Integer>> set = map.entrySet();
+		for (Entry<String, Integer> entry : set) {
+			pos.setPmlname(entry.getKey());
+			pos.setPcount(entry.getValue());
+			posService.add(pos);
+		}
+		
+		/*int[] arrResult = new int[arrCount.length];		// 수량 중에 0인 것 제거
 		int cnt = 0;
 		
 		for (int i = 0; i <arrCount.length; i++) {
@@ -96,13 +109,13 @@ public class PosController {
 		}
 		
 		for ( int i = 0 ; i < arrMenu.length ; i++ ) {			
-			/*logger.info(arrMenu[i]);
-			logger.info(String.valueOf(arrResult[i]));*/
+			logger.info(arrMenu[i]);
+			logger.info(String.valueOf(arrResult[i]));
 			pos.setPmlname(arrMenu[i]);
 			pos.setPcount(arrResult[i]);
 			
 			posService.add(pos);
-		}
+		}*/
 		return "redirect:/pos/index";	
 	}
 
@@ -145,9 +158,12 @@ public class PosController {
 			eventPrice += eventList.get(i);
 		}
 		
-		int point = 0;
+		int result = 0;
+		int point = 0;		
 		for ( int i = 0; i < price.size(); i++ ) {
-			point = (int) ((totalPrice - eventPrice) * 0.01);
+			result = totalPrice - eventPrice;
+			/*point = (int) ((totalPrice - eventPrice) * 0.01);*/
+			point = (int) (result * 0.01);
 		}
 		
 		model.addAttribute("ptableno", ptableno);
@@ -156,6 +172,7 @@ public class PosController {
 		model.addAttribute("menuList", menuList);
 		model.addAttribute("eventList", eventList);
 		model.addAttribute("eventPrice", eventPrice);
+		model.addAttribute("result", result);
 		model.addAttribute("point", point);
 		return "pos/info";
 	}

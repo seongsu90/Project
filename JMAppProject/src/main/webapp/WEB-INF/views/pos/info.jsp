@@ -32,12 +32,12 @@
 	  	<b>쿠폰 : ${coupon}</b>
 	 	<a href="checkCoupon?cbmid=b&cbnumber=34427389"><input type="submit" value="확인"/></a><br/>
 		<b>이벤트 : ${eventPrice}</b><br/>
-	 	<b>마일리지 : ${point}</b><br/>
+	 	<b>포인트 : ${point}</b><br/>
 	 	<b>---------------------------------------</b><br/>
 	 	<%-- <c:if test="${coupon != 1 || 2}">
 	 		<h3>결재 금액 : ${totalPrice - coupon}</h3><br/>
 	 	</c:if> --%>
-	 	<h3>결제 금액 : ${totalPrice - eventPrice}</h3><br/>
+	 	<h3>결제 금액 : ${result}</h3><br/>
 		
 		<a href="delete?presid=${presid}&ptableno=${ptableno}"><input type="submit" value="결제"/></a>		
 		<a href="index"><input type="submit" value="뒤로"/></a><br/>	
@@ -54,15 +54,15 @@
 						<td>
 							<input type="hidden" name=presid value="${presid}"/> 							
 							<input type="hidden" name=ptableno value="${ptableno}"/>
-							<input type="checkbox" name=tempmenu value="${menuList.mlname}"/>${menuList.mlname} 							
+							<input type="text" name=tempmenu value="${menuList.mlname}" readonly/>							
 						</td>
 						<td>
 							<input style="width:50px" type="number" min="0" max="99" name=tempcount value="0"/> 							
 						</td>				
 					</tr>					
 				</c:forEach>				
-			</table>
-			<input type="submit" value="주문"/><br/>
+			</table>			
+			<input type="submit" value="주문"/><br/>			
 		</form> 
 			
 	</body>
