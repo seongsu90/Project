@@ -32,7 +32,7 @@
 	식당 수정
 	<hr/>
 	<form method="post"  enctype="multipart/form-data">
-		<input type="hidden" name="mresid" value="${member.mresid}">
+		<input type="hidden" name="resid" value="${resid}"> 
 		
 		<table>
 		<tr>
@@ -90,7 +90,7 @@
 	          <input type="checkbox" name="closeday" value="금요일" >금요일
 	          <input type="checkbox" name="closeday" value="토요일" >토요일
 	          <input type="checkbox" name="closeday" value="일요일" >일요일 
-	           <input type="checkbox" name="closeday" value="휴일 없음" >휴일 없음<br/>
+	          <input type="checkbox" name="closeday" value="휴일 없음" >휴일 없음<br/>
 		
 		</td>
 		</tr>

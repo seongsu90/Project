@@ -77,7 +77,7 @@
 	
  		
 		<div style="width: 600px">
-		<a href="/ourapp/restaurant/search">식당 검색하기</a>
+		<input type="text" name="resid" value="${restaurant.resid}"/>식당 검색하기</a>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		
 			<c:if test="${pageNo!=1}">

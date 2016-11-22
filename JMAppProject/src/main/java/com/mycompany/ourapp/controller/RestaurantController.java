@@ -80,13 +80,6 @@ public class RestaurantController {
 		return "restaurant/list";
 	}
 	
-
-
-	
-	
-	
-	
-	
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addForm(){
@@ -213,6 +206,8 @@ public class RestaurantController {
 		
 		Restaurant restaurant=restaurantService.info(mresid);
 		model.addAttribute("restaurant", restaurant);
+		model.addAttribute("resid", restaurant.getResid());
+		
 		return "restaurant/modify";
 	}
 	
@@ -225,6 +220,7 @@ public class RestaurantController {
 		if(member.getMrank()==1){
 		restaurant.setResid(member.getMresid());
 		
+		 
 		
 		restaurant.setResoriginfile(restaurant.getResphoto().getOriginalFilename());
 		String ressavedfile = new Date().getTime() + restaurant.getResphoto().getOriginalFilename(); // 저장하는 파일이 유일해야하기 때문에 날짜를 붙인다.
