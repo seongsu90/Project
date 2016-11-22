@@ -86,4 +86,20 @@ public class ReservationDao {
 		int count = jdbcTemplate.queryForObject(sql, Integer.class);
 		return count;
 	}
+	
+	public List<Reservation> reservList(int presid) {
+		String sql = "select * from reservation where rvresid=? order by rvtime ";
+		List<Reservation> list = jdbcTemplate.query(sql, new Object[]{presid}, new RowMapper<Reservation>() {
+			@Override
+			public Reservation mapRow(ResultSet rs, int row) throws SQLException {
+				Reservation reservation = new Reservation();
+				reservation.setRvtime(rs.getString("rvtime"));
+				reservation.setRvperson(rs.getInt("rvperson"));
+				reservation.setRvmid(rs.getString("rvmid"));
+				reservation.setRvresid(rs.getInt("rvresid"));				
+				return reservation;
+			}
+		});
+		return list;
+	}
 }

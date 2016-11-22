@@ -41,14 +41,17 @@ public class ReservationService {
 	}
 	
 	public Reservation info(String rvMid, int rvResid) {
-		Reservation reservation = new Reservation();
+		Reservation reservation = reservationDao.selectById(rvMid, rvResid);
 		return reservation;
 	}
-	
-	
+
 	public int getCount(){
 		return reservationDao.count();
 	}
 	
+	public List<Reservation> reservList(int presid) {
+		List<Reservation> list = reservationDao.reservList(presid);
+		return list;
+	}
 
 }

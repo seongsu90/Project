@@ -92,17 +92,35 @@ public class ReservationController {
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	public String deleteform(int rvresid,Model model)
+	public String deleteform(int rvresid,HttpSession httpsession)
 	{
 		logger.info("deleteform 처리");
-		model.addAttribute("rvresid", rvresid);
+		httpsession.setAttribute("rvresid", rvresid);
 		return "/reservation/deleteform";
 	}
 	
 	@RequestMapping(value="/delete",method=RequestMethod.POST)
-	public String delete (String rvMid, int rvResid)
+	public String delete (String rvMid, int rvResid,HttpSession httpsession,Model model)
 	{
+		Date now = new Date();
+		Reservation rsv = reservationservice.info(rvMid, rvResid);
+		String rsvTime = rsv.getRvtime();
+
+		String h = rsvTime.substring(0, 2);
+		String m = rsvTime.substring(3);
+		int hour = Integer.parseInt(h);		
+		int minute = Integer.parseInt(m);
+		
+		if(now.getHours()==hour)
+		{
+			if((minute-now.getMinutes())<20||(minute-now.getMinutes())<0)
+			{
+				model.addAttribute("error", "TIME_LIMIT");
+				return "/reservation/deleteform";
+			}
+		}
 		reservationservice.delete(rvMid, rvResid);
+		httpsession.removeAttribute("rvresid");
 		return "redirect:/reservation/index";
 	}
 	

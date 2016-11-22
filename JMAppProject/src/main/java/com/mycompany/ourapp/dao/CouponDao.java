@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import com.mycompany.ourapp.dto.Coupon;
 import com.mycompany.ourapp.dto.CouponBox;
+import com.mycompany.ourapp.dto.Reservation;
 
 @Component
 public class CouponDao {
@@ -133,4 +134,6 @@ public class CouponDao {
 		});
 		return (list.size() != 0) ? list.get(0) : null;
 	}
+	
+
 }

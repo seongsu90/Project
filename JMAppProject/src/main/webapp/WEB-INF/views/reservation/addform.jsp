@@ -12,7 +12,7 @@
 		&nbsp; <font size="6"><b>add</b></font></p>
 		<hr/> <!-- 시작과 동시에 끝이다라는 의미<br/>// 태그의 의미는 수평선그리기 -->
 		<form method="post">
-		※ 당일 예약만 가능합니다. 현재시각 <br/>
+		※ 당일 예약만 가능합니다. <br/>
 		- 예약 시간 <input type="time"  name="rvtime"  /> 
 		<c:if test="${error1 == 'TIME_OUT'}"> *올바른 시간이 아닙니다.</c:if>
 		<c:if test="${error1 == 'DAY_OUT'}"> *오늘은 쉬는날 입니다.</c:if><br/>
