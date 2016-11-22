@@ -66,7 +66,7 @@ public class ReservationController {
 		int rvt = Integer.parseInt(revtime);
 		
 		String[] cloday = rs.getRescloseday().split("/");
-		String[] sevenday = {"일요일","월요일","화요일","수요일","목요일","금요일","토요일"};
+		String[] sevenday = {"일요일","월요일","화요일","수요일","목요일","금요일","토요일","휴무 없음"};
 		Date date = new Date();
 		
 		for(int i=0; i<cloday.length;i++)
@@ -79,6 +79,9 @@ public class ReservationController {
 					{
 						model.addAttribute("error1", "DAY_OUT");
 						return "/reservation/addform";
+					}
+					if(j==7){
+						break;
 					}
 				}
 			}
