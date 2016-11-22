@@ -85,9 +85,14 @@ public class ReservationController {
 			model.addAttribute("error1", "TIME_OUT");
 			return "/reservation/addform";
 		}else{
-			reservationservice.add(reservation);
-			httpsession.removeAttribute("rvresid");
-			return "redirect:/reservation/index";
+			int result = reservationservice.add(reservation);
+			if(result==0)
+			{
+				httpsession.removeAttribute("rvresid");
+				return "redirect:/reservation/index";
+			}
+			model.addAttribute("error1", "ALREADY");
+			return "/reservation/addform";
 		}
 	}
 	
