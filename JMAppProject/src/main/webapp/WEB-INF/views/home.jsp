@@ -18,9 +18,7 @@
 	※<a href="/ourapp/member/findMid">아이디찾기</a><br/>
 	※<a href="/ourapp/member/findMpassword">비밀번호찾기</a><br/>
     ※<a href="/ourapp/member/join">회원가입</a><br/>
-    <c:if test="${mrank==2}">
     ※<a href="/ourapp/member/list">회원목록</a><br/>
-    </c:if>
     <c:if test="${login != null}">
     ※<a href="/ourapp/member/info?mid=${login}">회원정보</a>
     </c:if><br/>
@@ -72,6 +70,9 @@
      [Favorite]<br/>
      ※<a href="/ourapp/favorite/add">즐겨찾기 추가폼</a><br/>
      ※<a href="/ourapp/favorite/list">즐겨찾기 리스트</a><br/>
+     
+      -------------------------------------------------------<br/>
+      ※<a href="/ourapp/home">New Home page</a><br/>
 </body>
 	<!--  -->
 

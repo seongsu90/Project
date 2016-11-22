@@ -25,4 +25,10 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("/home")
+	public String index2() { 
+		logger.info("home2() 실행"); 
+		return "/home1";
+	}
+	
 }

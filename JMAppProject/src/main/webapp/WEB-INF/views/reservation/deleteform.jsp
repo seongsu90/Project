@@ -12,8 +12,8 @@
 		&nbsp; <font size="6"><b>Delete_Form</b></font></p>
 		<hr/> <!-- 시작과 동시에 끝이다라는 의미<br/>// 태그의 의미는 수평선그리기 -->
 		<form method="post">
-		- 예약 아이디<input type="text" name="rvMid" value="${login}"readonly> <br/>
-		- 예약 음식점<input type="text" name="rvResid" value="${rvresid}"readonly>
+		- 예약 아이디<input type="text" name="rvmid" value="${login}"readonly> <br/>
+		- 예약 음식점<input type="text" name="rvresid" value="${rvresid}"readonly>
 		<c:if test="${error == 'TIME_LIMIT'}"> *예약취소는 20분전에만 가능합니다.</c:if><br/>
 		
 		<input type="submit" value="삭제하기"/> <br/>

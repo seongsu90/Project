@@ -104,10 +104,10 @@ public class ReservationController {
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	public String deleteform(int rvresid,Model model)
+	public String deleteform(int rvresid,HttpSession httpsession)
 	{
 		logger.info("deleteform 처리");
-		model.addAttribute("rvresid", rvresid);
+		httpsession.setAttribute("rvresid", rvresid);
 		return "/reservation/deleteform";
 	}
 	
@@ -117,6 +117,7 @@ public class ReservationController {
 		Date now = new Date();
 		Reservation rsv = reservationservice.info(rvmid, rvresid);
 		String rsvTime = rsv.getRvtime();
+		logger.info(""+rsvTime);
 
 		String h = rsvTime.substring(0, 2);
 		String m = rsvTime.substring(3);
@@ -124,7 +125,9 @@ public class ReservationController {
 		int minute = Integer.parseInt(m);
 		
 		String mid = memberservice.getMid(rvresid);
+		logger.info(""+mid);
 		int mrank = memberservice.info(mid).getMrank();
+		
 		
 		if(mrank==1)
 		{
