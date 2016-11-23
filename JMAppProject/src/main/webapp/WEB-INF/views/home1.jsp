@@ -4,35 +4,28 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Food House a Hotels and Restaurants Category Flat Bootstarp responsive Website Template | Home :: w3layouts</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Food House Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="/ourapp/resources/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- Custom Theme files -->
-<link href="/ourapp/resources/css/style.css" rel='stylesheet' type='text/css' />	
-<script src="/ourapp/resources/js/jquery.min.js"> </script>
-<!--web-fonts-->
-  <link href='http://fonts.googleapis.com/css?family=Niconne|Playball|Open+Sans:300italic,400italic,600italic,400,300,600,700' rel='stylesheet' type='text/css'>
-<!--//web-fonts-->
-<link rel="stylesheet" type="text/css"
-			href="/ourapp/resources/bootstrap-3.3/css/bootstrap.min.css">
-			<script type="text/javascrpt"
-			src="/ourapp/resources/bootstrap-3.3/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/ourapp/resources/css/style.css" />	
-	<script type="text/javascript" src="/ourapp/resources/js/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="/ourapp/resources/js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="/ourapp/resources/js/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="/ourapp/resources/js/prefixfree.min.js"></script>
-	<script type="text/javascript" src="/ourapp/resources/js/custom.js"></script>
-	<script type="text/javascrpt" src="/ourapp/resources/js/bootstrap.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/bootstrap-3.3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/style.css" />
+	<%-- <link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.css" rel='stylesheet' type='text/css' /> --%>
+	<link href='http://fonts.googleapis.com/css?family=Niconne|Playball|Open+Sans:300italic,400italic,600italic,400,300,600,700' rel='stylesheet' type='text/css'>
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/bootstrap-3.3/js/bootstrap.min.js"></script>
+	<%-- <script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/prefixfree.min.js"></script> --%>
+	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-ui.min.js"></script>
 
+
+	<style>
+	 div.container {
+         width: 120%;   
+         margin: auto;
+
+     }
+	</style>
 </head>
 <body>
-	<!--start-header-->
+    <!--start-header-->
 	<div id="home" class="header">
 			<!--logo-->
 			<div class="header-top">
@@ -41,19 +34,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="top-nav">
 					<span class="menu"> </span>
 					<ul>
+						<li ><p class="text-center"><a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal">로그인</a></p></li>					
 						<li><a class="active" href="/ourapp/home">Home</a></li> 
 						<li><a href="/ourapp/web/memberindex">회원관리</a></li>
 						<li><a href="/ourapp/web/resmanagement">가맹점관리</a></li> 
 						<li><a href="/ourapp/web/ordermanagement">주문관리</a></li> 
 						<li><a href="/ourapp/web/restaurantmanege">매장관리</a></li>
-						<li><a href="/ourapp/web/menumanagement">메뉴판관리</a></li> 
-						<li><a href="/ourapp/web/contact">오시는길</a></li>
-						<li class="lost"><a href="/ourapp/member/login">로그인</a></li>
-						
+						<li><a href="/ourapp/web/menumanagement">메뉴관리</a></li> 
+						<li class="lost"><a href="/ourapp/web/contact">오시는길</a></li>
 						<div class="clearfix"> </div>
 					</ul>
+					
+		        		
+				
 				</div>
+
 				<div class="clearfix"> </div>
+				
 		<!-- script-for-menu -->
 				<script>
 					$(document).ready(function(){
@@ -329,7 +326,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li><a href="/ourapp/web/resmanagement">가맹점관리</a></li> 
 							<li><a href="/ourapp/web/ordermanagement">주문관리</a></li> 
 							<li><a href="/ourapp/web/restaurantmanege">매장관리</a></li>
-							<li><a href="/ourapp/web/menumanagement">메뉴판관리</a></li> 
+							<li><a href="/ourapp/web/menumanagement">메뉴관리</a></li> 
 							<li><a href="/ourapp/web/contact">오시는길</a></li>
 							<div class="clearfix"> </div>
 						</ul>
@@ -362,7 +359,108 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 	 <p>Copyright &copy; 2015 All Rights Reserved Design by <a href="http://w3layouts.com/">W3layouts</a> </p>
 			   </div>		
 
-			</div>		
+			</div>
+			
+			
+			
+<!-- END # BOOTSNIP INFO -->
+
+<!-- BEGIN # MODAL LOGIN -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" align="center">
+					<img class="img-circle" id="img_logo" src="http://bootsnipp.com/img/logo.jpg">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</button>
+				</div>
+                
+                <!-- Begin # DIV Form -->
+                <div id="div-forms">
+                
+                    <!-- Begin # Login Form -->
+                    <form id="login-form">
+		                <div class="modal-body">
+				    		<div id="div-login-msg">
+                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <span id="text-login-msg">Type your username and password.</span>
+                            </div>
+				    		<input id="login_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
+				    		<input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Remember me
+                                </label>
+                            </div>
+        		    	</div>
+				        <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                            </div>
+				    	    <div>
+                                <button id="login_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                                <button id="login_register_btn" type="button" class="btn btn-link">Register</button>
+                            </div>
+				        </div>
+                    </form>
+                    <!-- End # Login Form -->
+                    
+                    <!-- Begin | Lost Password Form -->
+                    <form id="lost-form" style="display:none;">
+    	    		    <div class="modal-body">
+		    				<div id="div-lost-msg">
+                                <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <span id="text-lost-msg">Type your e-mail.</span>
+                            </div>
+		    				<input id="lost_email" class="form-control" type="text" placeholder="E-Mail (type ERROR for error effect)" required>
+            			</div>
+		    		    <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+                            </div>
+                            <div>
+                                <button id="lost_login_btn" type="button" class="btn btn-link">Log In</button>
+                                <button id="lost_register_btn" type="button" class="btn btn-link">Register</button>
+                            </div>
+		    		    </div>
+                    </form>
+                    <!-- End | Lost Password Form -->
+                    
+                    <!-- Begin | Register Form -->
+                    <form id="register-form" style="display:none;">
+            		    <div class="modal-body">
+		    				<div id="div-register-msg">
+                                <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <span id="text-register-msg">Register an account.</span>
+                            </div>
+		    				<input id="register_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
+                            <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
+                            <input id="register_password" class="form-control" type="password" placeholder="Password" required>
+            			</div>
+		    		    <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                            </div>
+                            <div>
+                                <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
+                                <button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                            </div>
+		    		    </div>
+                    </form>
+                    <!-- End | Register Form -->
+                    
+                </div>
+                <!-- End # DIV Form -->
+                
+			</div>
+		</div>
+	</div>
+    <!-- END # MODAL LOGIN -->
+
+<!-- END # BOOTSNIP INFO -->
+
+
 			<!--start-smoth-scrolling-->
 			<script type="text/javascript">
 								jQuery(document).ready(function($) {
@@ -389,6 +487,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									});
 								</script>
 		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-
+    
 </body>
 </html>
