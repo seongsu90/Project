@@ -9,7 +9,7 @@ public class WebController {
 	@RequestMapping("/memberindex")
 	public String memIndex()
 	{
-		return "/web/memberindex";
+		return "redirect:/member/list";
 	}
 	
 	@RequestMapping("/resmanagement")
