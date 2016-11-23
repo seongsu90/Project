@@ -22,20 +22,27 @@
  					console.log("Province Change");
  					setReslocation();
  			    });
+ 				
+ 				$("#detail").change(function () {
+ 					console.log("dtail Change");
+ 					setReslocation();
+ 			    });
 			});
  			
- 			window.onload = function() {
+ 		 	window.onload = function() {
 				console.log("onLoad");
 				var selCity = $("#selectedCity").val();
 				var selProvince = $("#selectedProv").val();
+				var detail=$("#detail").val();
  				$.ajax({
 					url: "getProvince.jsp",
-					data: {"selCity":selCity, "selProvince":selProvince},
+					data: {"selCity":selCity, "selProvince":selProvince, "detail":detail},
 					success: function (data) {
 						$("#selProvince").html(data);
 					}
 				});
-			};
+ 				
+			}; 
  			
  			
 			function setCity() {
@@ -62,9 +69,21 @@
 				});
 			}
  			
+ 			function setDetail() {
+ 				console.log("setDetail 실행");
+ 				var detail = $("#detail").val();
+ 				$.ajax({
+					url: "getDetail.jsp",
+					data: {"selCity":selCity, "selProvince":selProvince, "detail":detail},
+					success: function (data) {
+						$("#detail").html(data);
+					}
+				});
+			}
+ 			
  			function setReslocation() {
  				console.log("setReslocation() 실행");
-				$("#reslocation").val($("#selCity").val() + " "+ $("#selProvince").val()); 				
+				$("#reslocation").val($("#selCity").val() + " "+ $("#selProvince").val()+ " " +$("#detail").val()); 				
  			}
 	    </script>
 		
@@ -112,9 +131,12 @@
 								</select><br/>
 						시군구 | <select style="width: 150px" id="selProvince" name="selProvince">
 								</select>
+					    상세 주소 | <input type="text" id="detail" name="detail">
 								<input type="text" name="reslocation" id="reslocation" value="${restaurant.reslocation}"/>
 								<input type="hidden" name="selectedCity" id="selectedCity" value="${slocation[0]}"/>
 								<input type="hidden" name="selectedProv" id="selectedProv" value="${slocation[1]}"/>
+								<input type="hidden" name="detail" id="detail" value="${detail}"/>
+				
 					</td>
 
 

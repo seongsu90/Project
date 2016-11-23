@@ -22,6 +22,11 @@
  					console.log("Province Change");
  					setReslocation();
  			    });
+ 				
+ 				$("#detail").change(function () {
+ 					console.log("dtail Change");
+ 					setReslocation();
+ 			    });
 			});
  			
 			function setCity() {
@@ -47,9 +52,24 @@
 				});
 			}
  			
+ 			function setDetail() {
+ 				console.log("setDetail 실행");
+ 				var detail = $("#detail").val();
+ 				$.ajax({
+					url: "getDetail.jsp",
+					data: {"selCity":selCity, "selProvince":selProvince, "detail":detail},
+					success: function (data) {
+						$("#detail").html(data);
+					}
+				});
+			}
+ 			
+ 			
+ 			
+ 			
  			function setReslocation() {
  				console.log("setReslocation() 실행");
-				$("#reslocation").val($("#selCity").val() + " "+ $("#selProvince").val());  				
+				$("#reslocation").val($("#selCity").val() + " "+ $("#selProvince").val() + " "+$("#detail").val());  				
  			}
  			
  			
@@ -67,10 +87,11 @@
 			식당 이름 : <input type="text" name="resname" value="${restaurant.resname}"/><br/>
 			식당 위치 :
 			 시　도 | <select style="width: 100px" id="selCity" name="selCity"></select><br/>
-	　 　　 　 시군구 | <select style="width: 100px" id="selProvince" name="selProvince">
-						<option value="선택">선택</option>
-						
-					</select>			
+	　 　　 　 시군구 | <select style="width: 100px" id="selProvince" name="selProvince"> 
+						<option value="선택">선택</option> </select><br/>
+			&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 상세 주소 | <input type="text" id="detail" name="detail">
+			
+			
 			<input type="text" name="reslocation" id="reslocation"/>
 			<br/>
 			식당 테이블 수 : <input type="number" name="restotaltable" value="${restaurant.restotaltable}"/><br/>
