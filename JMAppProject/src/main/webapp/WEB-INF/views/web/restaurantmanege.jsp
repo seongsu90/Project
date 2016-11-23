@@ -46,7 +46,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="/ourapp/web/resmanagement">가맹점관리</a></li> 
 						<li><a href="/ourapp/web/ordermanagement">주문관리</a></li> 
 						<li><a class="active"  href="/ourapp/web/restaurantmanege">매장관리</a></li>
-						<li><a href="/ourapp/web/menumanagement">메뉴판관리</a></li> 
+						<li><a href="/ourapp/web/menumanagement">메뉴관리</a></li> 
 						<li><a href="/ourapp/web/contact">오시는길</a></li>
 						<li class="lost"><a href="/ourapp/member/login">로그인</a></li>
 					</ul>
@@ -113,7 +113,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li><a href="/ourapp/web/memberindex">회원관리</a></li>
 							<li><a href="/ourapp/web/resmanagement">가맹점관리</a></li> 
 							<li><a href="/ourapp/web/ordermanagement">주문관리</a></li> 
-							<li><a href="/ourapp/web/menumanagement">메뉴판관리</a></li> 
+							<li><a href="/ourapp/web/menumanagement">메뉴관리</a></li> 
 							<li><a href="/ourapp/web/restaurantmanege">매장관리</a></li>
 							
 							<div class="clearfix"> </div>

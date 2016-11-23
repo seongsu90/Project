@@ -69,7 +69,9 @@
 					<td> ${restaurant.resopen} </td>
 					<td> ${restaurant.resclose} </td>
 					<td> ${restaurant.rescloseday} </td>
+					
 				</tr>
+				
 			</c:forEach>
 		</table>
 		<br/>
@@ -107,6 +109,7 @@
 			<a href="list?pageNo=${totalPageNo}&find=${find}">[맨끝]</a>
 			</c:if>
 		</div>
+		
 		
 		
 	</body>
