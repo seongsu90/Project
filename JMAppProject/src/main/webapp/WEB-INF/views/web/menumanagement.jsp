@@ -6,30 +6,39 @@
 <head>
 <title>Food House a Hotels and Restaurants Category Flat Bootstarp responsive Website Template | Home :: w3layouts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Food House Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="/ourapp/resources/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- Custom Theme files -->
-<link href="/ourapp/resources/css/style.css" rel='stylesheet' type='text/css' />	
-<script src="/ourapp/resources/js/jquery.min.js"> </script>
-<!--web-fonts-->
-  <link href='http://fonts.googleapis.com/css?family=Niconne|Playball|Open+Sans:300italic,400italic,600italic,400,300,600,700' rel='stylesheet' type='text/css'>
-<!--//web-fonts-->
-<link rel="stylesheet" type="text/css"
-			href="/ourapp/resources/bootstrap-3.3/css/bootstrap.min.css">
-			<script type="text/javascrpt"
-			src="/ourapp/resources/bootstrap-3.3/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/ourapp/resources/css/style.css" />	
-	<script type="text/javascript" src="/ourapp/resources/js/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="/ourapp/resources/js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="/ourapp/resources/js/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="/ourapp/resources/js/prefixfree.min.js"></script>
-	<script type="text/javascript" src="/ourapp/resources/js/custom.js"></script>
-	<script type="text/javascrpt" src="/ourapp/resources/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/bootstrap-3.3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/style.css" />
+	<%-- <link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.css" rel='stylesheet' type='text/css' /> --%>
+	<link href='http://fonts.googleapis.com/css?family=Niconne|Playball|Open+Sans:300italic,400italic,600italic,400,300,600,700' rel='stylesheet' type='text/css'>
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/bootstrap-3.3/js/bootstrap.min.js"></script>
+	<%-- <script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/prefixfree.min.js"></script> --%>
+	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-ui.min.js"></script>
+	<script>
+	$(document).ready(function () {
 
+	$('.star').on('click', function () {
+      $(this).toggleClass('star-checked');
+    });
+
+    $('.ckbox label').on('click', function () {
+      $(this).parents('tr').toggleClass('selected');
+    });
+
+    $('.btn-filter').on('click', function () {
+      var $target = $(this).data('target');
+      if ($target != 'all') {
+        $('.table tr').css('display', 'none');
+        $('.table tr[data-status="' + $target + '"]').fadeIn('slow');
+      } else {
+        $('.table tr').css('display', 'none').fadeIn('slow');
+      }
+    });
+
+ });
+	</script>
+	 
 </head>
 <body>
 	<!--start-header-->
@@ -46,7 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="/ourapp/web/resmanagement">가맹점관리</a></li> 
 						<li><a href="/ourapp/web/ordermanagement">주문관리</a></li> 
 						<li><a href="/ourapp/web/restaurantmanege">매장관리</a></li>
-						<li><a class="active" href="/ourapp/web/menumanagement">메뉴판관리</a></li> 
+						<li><a class="active" href="/ourapp/web/menumanagement">메뉴관리</a></li> 
 						<li><a href="/ourapp/web/contact">오시는길</a></li>
 						<li class="lost"><a href="/ourapp/member/login">로그인</a></li>
 					</ul>
@@ -74,69 +83,193 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--gallery-->
 	<div class="gallery services">
 		<div class="container">
-				<h3>Portfolio</h3>
+				<h3>MenuList</h3>
 			<div class="portfolio-bottom">
 				<div class="gallery-one two">
 					<div class="col-md-3 gallery-left two">
 						<a href="/ourapp/resources/img/g1.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-								<img src="/ourapp/resources/img/g1.jpg" alt="" class="img-responsive zoom-img"/>
-						</a>
+						  </a>
+						   <div class="container">
+	<div class="row">
+
+		<section class="content">
+			<h1>목록</h1>
+			<div class="col-md-8 col-md-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="pull-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-success btn-filter" data-target="pagado">Pagado</button>
+								<button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pendiente</button>
+								<button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Cancelado</button>
+								<button type="button" class="btn btn-default btn-filter" data-target="all">Todos</button>
+							</div>
+						</div>
+						<div class="table-container">
+							<table class="table table-filter">
+								<tbody>
+									<tr data-status="pagado">
+										<td>
+											<div class="ckbox">
+												<input type="checkbox" id="checkbox1">
+												<label for="checkbox1"></label>
+											</div>
+										</td>
+										<td>
+											<a href="javascript:;" class="star">
+												<i class="glyphicon glyphicon-star"></i>
+											</a>
+										</td>
+										<td>
+											<div class="media">
+												<a href="#" class="pull-left">
+													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+												</a>
+												<div class="media-body">
+													<span class="media-meta pull-right">Febrero 13, 2016</span>
+													<h4 class="title">
+														Lorem Impsum
+														<span class="pull-right pagado">(Pagado)</span>
+													</h4>
+													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr data-status="pendiente">
+										<td>
+											<div class="ckbox">
+												<input type="checkbox" id="checkbox3">
+												<label for="checkbox3"></label>
+											</div>
+										</td>
+										<td>
+											<a href="javascript:;" class="star">
+												<i class="glyphicon glyphicon-star"></i>
+											</a>
+										</td>
+										<td>
+											<div class="media">
+												<a href="#" class="pull-left">
+													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+												</a>
+												<div class="media-body">
+													<span class="media-meta pull-right">Febrero 13, 2016</span>
+													<h4 class="title">
+														Lorem Impsum
+														<span class="pull-right pendiente">(Pendiente)</span>
+													</h4>
+													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr data-status="cancelado">
+										<td>
+											<div class="ckbox">
+												<input type="checkbox" id="checkbox2">
+												<label for="checkbox2"></label>
+											</div>
+										</td>
+										<td>
+											<a href="javascript:;" class="star">
+												<i class="glyphicon glyphicon-star"></i>
+											</a>
+										</td>
+										<td>
+											<div class="media">
+												<a href="#" class="pull-left">
+													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+												</a>
+												<div class="media-body">
+													<span class="media-meta pull-right">Febrero 13, 2016</span>
+													<h4 class="title">
+														Lorem Impsum
+														<span class="pull-right cancelado">(Cancelado)</span>
+													</h4>
+													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr data-status="pagado" class="selected">
+										<td>
+											<div class="ckbox">
+												<input type="checkbox" id="checkbox4" checked>
+												<label for="checkbox4"></label>
+											</div>
+										</td>
+										<td>
+											<a href="javascript:;" class="star star-checked">
+												<i class="glyphicon glyphicon-star"></i>
+											</a>
+										</td>
+										<td>
+											<div class="media">
+												<a href="#" class="pull-left">
+													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+												</a>
+												<div class="media-body">
+													<span class="media-meta pull-right">Febrero 13, 2016</span>
+													<h4 class="title">
+														Lorem Impsum
+														<span class="pull-right pagado">(Pagado)</span>
+													</h4>
+													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr data-status="pendiente">
+										<td>
+											<div class="ckbox">
+												<input type="checkbox" id="checkbox5">
+												<label for="checkbox5"></label>
+											</div>
+										</td>
+										<td>
+											<a href="javascript:;" class="star">
+												<i class="glyphicon glyphicon-star"></i>
+											</a>
+										</td>
+										<td>
+											<div class="media">
+												<a href="#" class="pull-left">
+													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+												</a>
+												<div class="media-body">
+													<span class="media-meta pull-right">Febrero 13, 2016</span>
+													<h4 class="title">
+														Lorem Impsum
+														<span class="pull-right pendiente">(Pendiente)</span>
+													</h4>
+													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
-					<div class="col-md-3 gallery-left two">
-						<a href="/ourapp/resources/img/b7.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-								<img src="/ourapp/resources/img/b7.jpg" alt="" class="img-responsive zoom-img"/>
-						</a>
+				</div>
+				<div class="content-footer">
+					<p>
+						Page © - 2016 <br>
+						Powered By <a href="https://www.facebook.com/tavo.qiqe.lucero" target="_blank">TavoQiqe</a>
+					</p>
+				</div>
+			</div>
+		</section>
+		
+	</div>
+</div>
+						
+						  
+						
+						
 					</div>
-					<div class="col-md-3 gallery-left two">
-						<a href="/ourapp/resources/img/g4.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-								<img src="/ourapp/resources/img/g4.jpg" alt="" class="img-responsive zoom-img"/>
-						</a>
-					</div>
-					<div class="col-md-3 gallery-left two">
-						<a href="/ourapp/resources/img/g3.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-								<img src="/ourapp/resources/img/g3.jpg" alt="" class="img-responsive zoom-img"/>
-						</a>
-					</div>
-					<div class="col-md-3 gallery-left two">
-						<a href="/ourapp/resources/img/g5.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-								<img src="/ourapp/resources/img/g5.jpg" alt="" class="img-responsive zoom-img"/>
-						</a>
-					</div>
-					<div class="col-md-3 gallery-left two">
-						<a href="/ourapp/resources/img/g2.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-								<img src="/ourapp/resources/img/g2.jpg" alt="" class="img-responsive zoom-img"/>
-						</a>
-					</div>
-					<div class="col-md-3 gallery-left two">
-						<a href="/ourapp/resources/img/g6.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-								<img src="/ourapp/resources/img/g6.jpg" alt="" class="img-responsive zoom-img"/>
-						</a>
-					</div>
-					<div class="col-md-3 gallery-left two">
-						<a href="/ourapp/resources/img/g1.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-								<img src="/ourapp/resources/img/g1.jpg" alt="" class="img-responsive zoom-img"/>
-						</a>
-					</div>
-					<div class="col-md-3 gallery-left two">
-						<a href="/ourapp/resources/img/g1.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-								<img src="/ourapp/resources/img/g1.jpg" alt="" class="img-responsive zoom-img"/>
-						</a>
-					</div>
-					<div class="col-md-3 gallery-left two">
-						<a href="/ourapp/resources/img/b7.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-								<img src="/ourapp/resources/img/b7.jpg" alt="" class="img-responsive zoom-img"/>
-						</a>
-					</div>
-					<div class="col-md-3 gallery-left two">
-						<a href="/ourapp/resources/img/b8.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-								<img src="/ourapp/resources/img/b8.jpg" alt="" class="img-responsive zoom-img"/>
-						</a>
-					</div>
-					<div class="col-md-3 gallery-left two">
-						<a href="/ourapp/resources/img/g3.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-								<img src="/ourapp/resources/img/g3.jpg" alt="" class="img-responsive zoom-img"/>
-						</a>
-					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -179,7 +312,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li><a href="/ourapp/web/resmanagement">가맹점관리</a></li> 
 							<li><a href="/ourapp/web/ordermanagement">주문관리</a></li>
 							<li><a href="/ourapp/web/restaurantmanege">매장관리</a></li> 
-							<li><a href="/ourapp/web/menumanagement">메뉴판관리</a></li> 
+							<li><a href="/ourapp/web/menumanagement">메뉴관리</a></li> 
 							<li><a href="/ourapp/web/contact">오시는길</a></li>
 							<div class="clearfix"> </div>
 						</ul>

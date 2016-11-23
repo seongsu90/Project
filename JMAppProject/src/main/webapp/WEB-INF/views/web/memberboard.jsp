@@ -9,31 +9,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Food House a Hotels and Restaurants Category Flat Bootstarp responsive Website Template |About :: w3layouts</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="Food House Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/bootstrap-3.3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/style.css" />
+	<%-- <link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.css" rel='stylesheet' type='text/css' /> --%>
+	<link href='http://fonts.googleapis.com/css?family=Niconne|Playball|Open+Sans:300italic,400italic,600italic,400,300,600,700' rel='stylesheet' type='text/css'>
 	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-	<link href="/ourapp/resources/bootstrap-3.3/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
-	<!-- Custom Theme files -->
-	<link href="/ourapp/resources/css/style.css" rel='stylesheet' type='text/css' />	
-	<script src="/ourapp/resources/js/jquery.min.js"> </script>
-	<!--web-fonts-->
-	  <link href='http://fonts.googleapis.com/css?family=Niconne|Playball|Open+Sans:300italic,400italic,600italic,400,300,600,700' rel='stylesheet' type='text/css'>
-	<!--//web-fonts-->
-	<link rel="stylesheet" type="text/css"
-				href="/ourapp/resources/bootstrap-3.3/css/bootstrap.min.css">
-	<script type="text/javascrpt"
-			src="/ourapp/resources/bootstrap-3.3/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/ourapp/resources/css/style.css" />	
-	<script type="text/javascript" src="/ourapp/resources/js/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="/ourapp/resources/js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="/ourapp/resources/js/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="/ourapp/resources/js/prefixfree.min.js"></script>
-	<script type="text/javascript" src="/ourapp/resources/js/custom.js"></script>
-	<script type="text/javascript" src="/ourapp/resources/bootstrap-3.3/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/bootstrap-3.3/js/bootstrap.min.js"></script>
+	<%-- <script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/prefixfree.min.js"></script> --%>
+	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-ui.min.js"></script>
 
 	<style type="text/css">
 		table#acrylic {
@@ -322,6 +307,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	
 	<!-- 수정 Modal ############################################## -->
+	
 	<div id="memberModifyModal" class="modal fade" tabindex="-1" role="dialog">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
