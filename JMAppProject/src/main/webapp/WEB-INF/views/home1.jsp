@@ -41,12 +41,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="top-nav">
 					<span class="menu"> </span>
 					<ul>
-						<li><a class="active" href="/ourapp/">Home</a></li> 
-						<li><a href="about.html">About</a></li>
-						<li><a href="menu.html">MENU</a></li> 
-						<li><a href="404.html">SERVICES</a></li> 
-						<li><a href="portfolio.html">PORTFOLIO</a></li> 
-						<li><a href="contact.html">Contact</a></li> 
+						<li><a class="active" href="/ourapp/home">Home</a></li> 
+						<li><a href="/ourapp/web/memberindex">회원관리</a></li>
+						<li><a href="/ourapp/web/resmanagement">가맹점관리</a></li> 
+						<li><a href="/ourapp/web/ordermanagement">주문관리</a></li> 
+						<li><a href="/ourapp/web/restaurantmanege">매장관리</a></li>
+						<li><a href="/ourapp/web/menumanagement">메뉴판관리</a></li> 
+						<li><a href="/ourapp/web/contact">오시는길</a></li>
 						<li class="lost"><a href="/ourapp/member/login">로그인</a></li>
 						
 						<div class="clearfix"> </div>
@@ -76,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<img src="/ourapp/resources/img/bg2.jpg" class="img-responsive" alt="" />
 										<div class="caption1">
 										<div class="logo">
-											<a href="index.html"><h1>주문<span>할게요!</span></h1></a>
+											<a href="/ourapp/home"><h1>주문<span>할게요!</span></h1></a>
 										</div>
 											<h2>BEST RECIPES WITH
 											BEST INGREDIENTS</h2>	
@@ -87,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<img src="/ourapp/resources/img/bg.jpg" class="img-responsive" alt="" />
 									  <div class="caption1">
 										<div class="logo">
-											<a href="index.html"><h1>주문<span>할게요!</span></h1></a>
+											<a href="/ourapp/home"><h1>주문<span>할게요!</span></h1></a>
 										</div>
 										<h2>BEST RECIPES WITH
 											BEST INGREDIENTS</h2>	
@@ -98,7 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<img src="/ourapp/resources/img/bg3.jpg" class="img-responsive" alt="" />
 									<div class="caption1">
 									<div class="logo">
-										<a href="index.html"><h1>주문<span>할게요!</span></h1></a>
+										<a href="/ourapp/home"><h1>주문<span>할게요!</span></h1></a>
 									</div>
 										<h2>BEST RECIPES WITH
 											BEST INGREDIENTS</h2>
@@ -323,12 +324,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="bottom-nav">
 					       <h4>LEARN</h4>
 							<ul>
-							<li><a class="active" href="index.html">Home</a></li> 
-							<li><a href="about.html">About</a></li>
-							<li><a href="menu.html">MENU</a></li> 
-							<li><a href="404.html">SERVICES</a></li> 
-							<li><a href="portfolio.html">PORTFOLIO</a></li> 
-							<li><a href="contact.html">Contact</a></li>
+							<li><a class="active" href="/ourapp/home">Home</a></li> 
+							<li><a href="/ourapp/web/memberindex">회원관리</a></li>
+							<li><a href="/ourapp/web/resmanagement">가맹점관리</a></li> 
+							<li><a href="/ourapp/web/ordermanagement">주문관리</a></li> 
+							<li><a href="/ourapp/web/restaurantmanege">매장관리</a></li>
+							<li><a href="/ourapp/web/menumanagement">메뉴판관리</a></li> 
+							<li><a href="/ourapp/web/contact">오시는길</a></li>
 							<div class="clearfix"> </div>
 						</ul>
 					 </div>
