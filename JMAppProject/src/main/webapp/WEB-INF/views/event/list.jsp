@@ -28,7 +28,7 @@
 		<table style="width: 1000px;">
 			<tr>
 				<th>이벤트 이름</th>
-				<th>식당명</th>
+				<th>식당 아이디</th>
 				<th>이벤트 사진</th>
 				<th>이벤트 정보</th>
 				<th>이벤트 메뉴 이름</th>

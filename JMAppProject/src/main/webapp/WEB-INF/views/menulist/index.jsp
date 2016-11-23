@@ -36,11 +36,13 @@
 			<ul>
 				<c:if test="${login!=null}"> 
 					<c:if test="${mrank!=0 and mrank!=3}">
+					
 						<li><a href="/ourapp/menulist/add">메뉴리스트 생성</a><br/></li>
-						<li><a href="/ourapp/menulist/list">메뉴 리스트보기</a><br/></li>
-					    <li><a href="/ourapp/menulist/hotlist?mlresid=${menuList.mlresid}&mlishot=1">핫메뉴리스트 보기</a><br/></li>
+						
 					</c:if>
 				</c:if>
+				<li><a href="/ourapp/menulist/list">메뉴 리스트보기</a><br/></li>
+				<li><a href="/ourapp/menulist/hotlist?mlishot=1">핫메뉴리스트 보기</a><br/></li>
 			</ul>
 		</div>	
 	</body>

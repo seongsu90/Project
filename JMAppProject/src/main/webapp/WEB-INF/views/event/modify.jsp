@@ -18,7 +18,7 @@
 						</tr>
 					
 						<tr>
-							<td style="background-color:blue; width:100px">식당</td>
+							<td style="background-color:blue; width:100px">식당 아이디</td>
 							<td>${event.eresid}</td>
 						</tr>
 						

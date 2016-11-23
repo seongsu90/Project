@@ -87,8 +87,7 @@ public class MenuListController {
 		@RequestMapping(value="/add", method=RequestMethod.POST)
 		public String add(MenuList menuList,HttpSession session) {
 			try{
-				
-				
+		
 				menuList.setMloriginfile(menuList.getMlphoto().getOriginalFilename());
 				String mlsavedfile = new Date().getTime() + menuList.getMlphoto().getOriginalFilename(); // 저장하는 파일이 유일해야하기 때문에 날짜를 붙인다.
 				String realPath = session.getServletContext().getRealPath("/WEB-INF/photo/"+mlsavedfile);
@@ -117,7 +116,7 @@ public class MenuListController {
 		@RequestMapping(value="/modify", method=RequestMethod.POST)
 		public String modify(MenuList menuList,HttpSession session) throws IllegalStateException, IOException {
 			menuList.setMloriginfile(menuList.getMlphoto().getOriginalFilename());
-			String mlsavedfile = new Date().getTime() + menuList.getMlphoto().getOriginalFilename(); // 저장하는 파일이 유일해야하기 때문에 날짜를 붙인다.
+			String mlsavedfile = new Date().getTime() + menuList.getMlphoto().getOriginalFilename();
 			String realPath = session.getServletContext().getRealPath("/WEB-INF/photo/"+mlsavedfile);
 			menuList.getMlphoto().transferTo(new File(realPath)); 
 			menuList.setMlsavedfile(mlsavedfile);
@@ -142,6 +141,7 @@ public class MenuListController {
 		public String info(int mlresid, String mlname, Model model) {
 			MenuList menuList = menuListService.info(mlresid, mlname);
 			model.addAttribute("menuList",menuList);
+			
 			return "menulist/info";
 		}
 	
@@ -173,8 +173,8 @@ public class MenuListController {
 		}
 		
 		@RequestMapping("/hotlist")	
-		public String resHotList(int mlresid, boolean mlishot,Model model){
-			List<MenuList> menuList = menuListService.resHotList(mlresid, mlishot);
+		public String resHotList(boolean mlishot,Model model){
+			List<MenuList> menuList = menuListService.resHotList(mlishot);
 			model.addAttribute("menuList",menuList);
 			return "menulist/hotlist";
 		}
@@ -197,7 +197,7 @@ public class MenuListController {
 			
 			menuList.setMlmime(menuList.getMlphoto().getContentType());
 			menuListService.modifyHot(menuList);
-			return "redirect:/menulist/hotlist";
+			return "redirect:/menulist/index";
 		}
 		
 		@RequestMapping(value="/hotinfo")

@@ -49,9 +49,8 @@ public class MenuListService {
 		return DELETE_SUCCESS;
 	}
 	
-	public List<MenuList> resHotList(int mlresid, boolean mlishot){
-		return menuListdao.resHotList(mlresid, mlishot);
-		
+	public List<MenuList> resHotList(boolean mlishot){
+		return menuListdao.resHotList(mlishot);
 	}
 	
 	public int modifyHot(MenuList menuList){

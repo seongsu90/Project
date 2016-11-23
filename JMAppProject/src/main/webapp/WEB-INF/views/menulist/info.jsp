@@ -27,11 +27,12 @@
 				<td>${menuList.mlishot}</td>
 			</tr>
 		</table>
-	  
-			
-			    <a href="modify?mlresid=${menuList.mlresid}&mlname=${menuList.mlname}"><input type="submit" value="수정"/></a>
-				<a href="delete?mlresid=${menuList.mlresid}">[삭제]</a>
-			
+		 	 <c:if test="${login!=null}">
+				<c:if test="${mrank!=0}">
+				    <a href="modify?mlresid=${menuList.mlresid}&mlname=${menuList.mlname}">[수정]</a>
+					<a href="delete?mlresid=${menuList.mlresid}">[삭제]</a>
+				</c:if>
+			</c:if>
 			<a href="list">[목록]</a>
 		 
 	</body>

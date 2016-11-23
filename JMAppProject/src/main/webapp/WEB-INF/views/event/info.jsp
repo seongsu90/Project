@@ -15,7 +15,7 @@
 				<td>${event.ename}</td>
 			</tr>
 			<tr>
-				<td style="background-color:blue; width:100px">식당명</td>	
+				<td style="background-color:blue; width:100px">식당 아이디</td>	
 				<td>${event.eresid}</td>
 			</tr>
 			<tr>
@@ -45,7 +45,7 @@
 		</table>
 		<div>
 			<c:if test="${mrank!=2}">
-			    <a href="modify?eresid=${event.eresid}&emlname=${event.emlname}">[수정]</a>
+				 <a href="modify?eresid=${event.eresid}&emlname=${event.emlname}">[수정]</a>
 				<a href="delete?eresid=${event.eresid}">[삭제]</a>
 			</c:if>
 			<a href="list">[목록]</a>

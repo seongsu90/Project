@@ -12,6 +12,10 @@
 			<form method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
+					<td style="background-color:purple; width:120px;">메뉴이름</td>
+					<td><input type="text" name="mlname" value="${menuList.mlname}" style="width:600px"/></td>
+				</tr>
+				<tr>
 					<td style="background-color:purple; width:120px;">메뉴가격</td>
 					<td><input type="number" name="mlprice" value="${menuList.mlprice}" style="width:600px"/></td>
 				</tr>
