@@ -6,7 +6,6 @@
 		<meta charset="UTF-8">
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript">
-		
  			$(document).ready(function() {
  				console.log("ready 실행");
  				setCity();

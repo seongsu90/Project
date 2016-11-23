@@ -6,7 +6,6 @@
 		<meta charset="UTF-8">
 		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript">
-		
  			$(document).ready(function() {
  				console.log("ready 실행");
  				setCity();
@@ -50,6 +49,23 @@
  				console.log("setMlocation() 실행");
 				$("#mlocation").val($("#selCity").val() + " "+ $("#selProvince").val()); 				
  			}
+ 			
+ 			function requestcnum() {
+ 				console.log("getcnum() 실행");
+ 				$.ajax({
+ 					url: "requestCnum.jsp",
+ 					success: function() {
+ 						$("#cnumposition").html(data);
+ 					} 					
+ 				});
+ 			}
+ 			
+			function checkcnum() {
+ 				console.log("checkcnum() 실행");
+ 				
+ 			}
+ 			
+ 			
 	    </script>
 	</head>
 	<body>
@@ -65,7 +81,10 @@
 			패스워드 : <input type="password" name="mpassword"/>
 			<br/>
 			
-			휴대전화 : <input type="tel" name="mphone" value="${member.mphone}"/>
+			휴대전화 : <input type="tel" name="mphone" value="${member.mphone}"/> <button id="requestcnum" onclick="requestcnum()">인증번호요청</button>
+			<br/>
+			
+			<div id="cnumposition"></div>
 			<br/>
 			
 			생일 : <input type="date" name="mbirth" value="${member.mbirth}"/>
