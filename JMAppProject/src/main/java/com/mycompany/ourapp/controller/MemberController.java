@@ -159,7 +159,12 @@ public class MemberController {
 	
 	// 회원 리스트 보기
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String list(String pageNo, @RequestParam(required=false, defaultValue="") String find, Model model, HttpSession session) {
+	public String list() {
+		return "web/memberindex";	
+	}
+	
+	@RequestMapping(value="/memberboard", method=RequestMethod.GET)
+	public String memberboard(String pageNo, @RequestParam(required=false, defaultValue="") String find, Model model, HttpSession session) {
 		logger.info("list() GET 실행");
 /*
 		String mid = (String) session.getAttribute("login");
@@ -207,7 +212,7 @@ public class MemberController {
 		model.addAttribute("find", find);
 		model.addAttribute("list", list);
 		
-		return "web/memberindex";	
+		return "web/memberboard";	
 	}
 	
 	// 회원 검색 ( mid, mname 기준 ) 
@@ -241,15 +246,11 @@ public class MemberController {
 	}
 	
 	// 회원 수정
-	@RequestMapping(value="/modifyInfo", method=RequestMethod.POST)
+	/*@RequestMapping(value="/modifyInfo", method=RequestMethod.POST)
 	public String modifyInfo(Member member, String newmpassword, Model model, HttpSession session) {
-		System.out.println(member.getMid());
 		String mid = (String) session.getAttribute("login");
-		System.out.println(mid);
 		Member dbmember = memberService.info(mid);
-		if ( dbmember.getMrank() == 2 ) {
-			logger.info("modifyInfo() ( Manager ) POST 실행");
-			System.out.println(newmpassword);
+		if (dbmember.getMrank() == 2) {
 			try {
 				memberService.modify(member);
 				return "redirect:/member/list";
@@ -257,14 +258,50 @@ public class MemberController {
 				model.addAttribute("member", member);
 				model.addAttribute("error", " 입력하신 id의 레스토랑이 없습니다.");
 				return "member/modifyInfoForManagerForm";
-			}
-			catch (Exception e1) {
+			} catch (Exception e1) {
 				model.addAttribute("member", member);
 				model.addAttribute("error", " 모든 항목을 입력해 주세요");
 				return "member/modifyInfoForManagerForm";
 			}
 		} else {
-			logger.info("modifyInfo() POST 실행");
+			if ( dbmember.getMpassword().equals(member.getMpassword()) ) {
+				dbmember.setMphone(member.getMphone());
+				dbmember.setMlocation(member.getMlocation());
+				dbmember.setMpassword(newmpassword);
+				try {
+					memberService.modify(dbmember);
+					return "redirect:/member/info?mid=" + mid;
+				} catch (Exception e) {
+					model.addAttribute("member", dbmember);
+					model.addAttribute("error", " 모든 항목을 입력해 주세요");
+					return "member/modifyInfoForm";
+				}
+			} else {
+				model.addAttribute("member", member);
+				model.addAttribute("error", " 비밀번호가 틀렸습니다");
+				return "member/modifyInfoForm";
+			}
+		}
+	}*/
+	
+	
+	@RequestMapping(value="/modify", method=RequestMethod.POST)
+	public String modify(Member member, String newmpassword, Model model, HttpSession session) {
+		String mid = (String) session.getAttribute("login");
+		Member dbmember = memberService.info(mid);
+		if (dbmember.getMrank() == 2) {
+			String result = "success";
+			try {
+				memberService.modify(member);
+			} catch (DataIntegrityViolationException e) {
+				result = "noRestaurant";
+			} catch (Exception e1) {
+				e1.printStackTrace();
+				result = "wrongData";
+			}
+			model.addAttribute("result", result);
+			return "member/modify";
+		} else {
 			if ( dbmember.getMpassword().equals(member.getMpassword()) ) {
 				dbmember.setMphone(member.getMphone());
 				dbmember.setMlocation(member.getMlocation());
