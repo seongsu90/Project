@@ -112,10 +112,10 @@ public class MemberDao {
 		sql += "select rn, mid, mname, mpassword, mphone, mbirth, mlocation, mrank, mpoint, mresid ";
 		sql += "from ( ";
 		sql += "select rownum as rn, mid, mname, mpassword, mphone, mbirth, mlocation, mrank, mpoint, mresid ";
-		sql += "from (select mid, mname, mpassword, mphone, mbirth, mlocation, mrank, mpoint, mresid from member) ";
-		sql += "where mid like ? or mname like ? and rownum<=? ";
+		sql += "from (select mid, mname, mpassword, mphone, mbirth, mlocation, mrank, mpoint, mresid from member order by mrank desc, mid) ";
+		sql += "where (mid like ? or mname like ?) and rownum<=? ";
 		sql += ") ";
-		sql += "where rn>=? order by mid ";
+		sql += "where rn>=? order by rn ";
 /*		
 		sql += "select rn, mid, mname, mpassword, mphone, mbirth, mlocation, mrank, mpoint, mresid ";
 		sql += "from ( ";

@@ -179,7 +179,7 @@ public class MemberController {
 		}
 		session.setAttribute("pageNo", String.valueOf(intPageNo));
 		
-		int rowsPerPage = 10;
+		int rowsPerPage = 5;
 		int pagesPerGroup = 5;
 		
 		int totalMemberNo = memberService.getCount(find);
@@ -207,7 +207,7 @@ public class MemberController {
 		model.addAttribute("find", find);
 		model.addAttribute("list", list);
 		
-		return "member/list";	
+		return "web/memberindex";	
 	}
 	
 	// 회원 검색 ( mid, mname 기준 ) 
